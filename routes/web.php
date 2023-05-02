@@ -30,6 +30,7 @@ Route::get('/dashboard', function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+/*admin prefix*/
 Route::prefix('admin')->group(function () {
     Route::resource('event-locations', EventLocationController::class);
     Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
