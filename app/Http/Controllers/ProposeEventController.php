@@ -40,7 +40,7 @@ class ProposeEventController extends Controller
 
         $eventLocation = UserEventLocation::create($validatedData);
 
-        return redirect()->route('home.index');
+        return redirect()->route('home.home');
     }
 
     public function show(EventLocation $eventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application

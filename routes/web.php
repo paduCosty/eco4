@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -47,7 +44,7 @@ Route::prefix('admin')->group(function () {
 Route::get('get-event-locations/{city_id}', [EventLocationController::class, 'get_event_locations'])
     ->name('get-event-locations.get_event_locations');
 
-Route::get('/home', [ProposeEventController::class, 'home'])->name('home.home');
+Route::get('/', [ProposeEventController::class, 'home'])->name('home.home');
 Route::post('/home', [ProposeEventController::class, 'store'])->name('home.store');
 
 require __DIR__.'/auth.php';
