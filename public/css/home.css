@@ -1,0 +1,837 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter' !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.logo-link {
+    position: absolute;
+}
+
+h1, h2, h3 {
+    letter-spacing: 0px;
+}
+
+input[type='text'], input[type='email'], input[type='checkbox'] {
+    border: 1px solid #F6F4F4!important;
+}
+
+.partner-logo
+{
+    background: #F8F8F8;
+    border-radius: 6px;
+}
+
+img, svg {
+    vertical-align: super;
+}
+
+#logo-eco-4 {
+    position: relative;
+    float: right;
+    margin-top: -8px;
+    width: 23px;
+    height: 26px;
+}
+
+#eco-logo-top {
+    width: 78px;
+    height: 28px;
+}
+
+.like-button {
+    box-sizing: border-box;
+    width: 102px;
+    height: 25px;
+    background-color: #0070ff;
+    color: white;
+    border: 1px solid #000000;
+    position: absolute;
+    border-radius: 4px;
+}
+
+.like-image {
+    display: inline-block;
+    position: relative;
+}
+
+.like-count {
+    position: relative;
+    top: -9.5px;
+}
+
+.input-normal, .form-check-input {
+    /*box-shadow: none!important;*/
+}
+
+
+#clean-logo {
+    margin-top: 11px;
+    max-width: 630px;
+    max-height: 216px;
+}
+
+#bio-logo {
+    max-width: 414px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #B9B9B9;
+    margin-top: -21px;
+    padding-top: 7px;
+}
+#bio-logo1 {
+    max-width: 414px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #B9B9B9;
+    margin-top: -21px;
+    padding-top: 7px;
+}
+
+.step-card {
+    background: #FFFFFF;
+    box-shadow: 0px 15px 50px rgb(160 163 189 / 10%);
+    border-radius: 10px;
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 20px 40px;
+    margin-bottom: 10px;
+}
+
+#next-edition-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    text-align: center;
+    letter-spacing: -0.5px;
+    color: #171717;
+    margin-top: 6px;
+    margin-bottom: 31px;
+}
+
+.next-event-select {
+    margin-left: 50px;
+}
+
+#main-select-county {
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4;
+    border-radius: 4px;
+    max-width: 359px;
+    max-height: 52px;
+    float: right;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
+}
+
+#see-next-edition-details {
+    background: #A6CE39;
+    border: 1px solid #EFEFEF;
+    border-radius: 7px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.4px;
+    color: #FFFFFF;
+    width: 133px;
+    height: 52px;
+}
+
+#next-edition-svg-2 {
+    margin-left: 3px;
+    margin-right: 7px;
+}
+
+.how-to-get-involved {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.5px;
+    color: #171717;
+}
+
+.add-next-eco-action {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 120%;
+    letter-spacing: -0.4px;
+    color: #4BDE97;
+}
+
+.previous-event-photo-container {
+    max-width: 129px;
+}
+
+.previous-event-photo-container img {
+    width: 100%;
+}
+
+.partners-and-editions {
+    margin-top: 22px;
+}
+
+.get-envolved-section {
+    margin-top: 33px;
+}
+
+.single-sponcer {
+    background: #F8F8F8;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+footer {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #A6CE39;
+    background: white;
+}
+
+.donation-in, .footer-container {
+    margin-top: -13px;
+}
+
+.donation-in {
+    max-width: 270px;
+    width: auto;
+    padding: 0px;
+}
+
+.footer-copyright p {
+    color: #B9B9B9;
+}
+
+.modal-window {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.close-modal {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+    margin-bottom: 8px;
+}
+
+.close-modal-button {
+    background: transparent;
+    border: none;
+    color: #B9B9B9;
+}
+
+.modal-close-text-container {
+    text-align: center !important;
+}
+
+#actions-Ialomita-title,
+#friends-Ialomita,
+#i-have-car-section,
+#name-label,
+.friends-enrolled {
+    font-style: normal;
+}
+
+#actions-Ialomita-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.4px;
+    color: #171717;
+}
+
+#friends-Ialomita,
+#i-have-car-section,
+#name-label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #171717;
+}
+
+#friends-Ialomita {
+    margin-left: -20px;
+}
+
+#confirmation-for-number-of-people {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+    max-width: 100%;
+    max-height: 28px;
+}
+
+.terms-conditions-text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+}
+
+.modal-register-button, .modal-close-button {
+    box-sizing: border-box;
+    background: #A6CE39;
+    border: 1px solid #EFEFEF;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    letter-spacing: -0.4px;
+    color: #FFFFFF!important;
+    display: inline-block;
+    max-width: 133px;
+    max-height: 34px;
+}
+
+.friends-enrolled {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #171717;
+}
+
+.form-modal-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #171717;
+}
+
+.dropdown-eco4 {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    width: 100%;
+}
+
+.dropdown-eco4 > option {
+    color: #B9B9B9;
+}
+
+.select-arrow-svg {
+    float: right;
+}
+
+.input-text-eco4 {
+    box-sizing: border-box;
+    width: 275px;
+    height: 24px;
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4!important;
+    border-radius: 4px;
+    margin-bottom: 11px;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 10px rgb(0 0 0 / 5%);
+}
+
+.input-text-eco4-donate {
+    width: 100%;
+}
+
+#suma {
+    max-width: 80px;
+}
+
+.input-number-of-friends-eco4 {
+    box-sizing: border-box;
+    width: 133px;
+    height: 24px;
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4!important;
+    border-radius: 4px;
+}
+
+.input-number-of-seats-eco4 {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4!important;
+    border-radius: 4px;
+    width: 100px;
+    height: 24px;
+}
+
+.row > input.input-text-eco4,
+.row > input.eco-input-text-modal.input-text-eco4
+{
+    width: 275px;
+    height: 24px;
+}
+
+.row > input.input-number-of-friends-eco4 {
+    width: 133px;
+    height: 24px;
+}
+
+.row > textarea.company-package-modal-textarea {
+    width: 275px;
+    height: 102px;
+}
+
+.row > textarea.donations-message-input {
+    width: 275px;
+    height: 75px;
+}
+
+#close-modal-1 {
+    position: relative;
+    left: 202px;
+}
+
+#confirm {
+    max-width: 480px;
+}
+
+.confirm-message {
+    max-width: 433px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+}
+
+.Asociatia-Crestem-Romania-Contact-Info {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #171717;
+}
+
+.about-us-content {
+    max-width: 433px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+}
+
+.eco-proposal-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.4px;
+    color: #171717;
+    max-width: 226px;
+}
+
+.how-it-works {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #171717;
+}
+
+.movila-select-group {
+    margin-left: -25px;
+}
+
+.gps-coords-eco-proposal {
+    box-sizing: border-box;
+}
+
+.eco-action-proposal-map {
+    width: 275px;
+    height: 261px;
+}
+
+
+.movila-number-of-packages {
+    position: relative;
+    left: -100px;
+}
+
+.company-package-modal-textarea {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4!important;
+    border-radius: 4px;
+    width: 275px;
+    height: 102px;
+}
+
+.donations-message-input {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #F6F4F4!important;
+    border-radius: 4px;
+}
+
+#svg-arrow-1, #svg-arrow-2 {
+    width: 25px;
+    height: 18px;
+    background-color: white;
+    position: relative;
+    top: -25px;
+}
+
+#gps-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+}
+
+.warning {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    letter-spacing: -0.3px;
+    color: #B9B9B9;
+    width: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: none;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+::-webkit-scrollbar-track {
+    webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: none;
+}
+
+.map-container {
+    padding: 2%;
+    text-align: center;
+}
+
+#map_wrapper_div {
+    height: 400px;
+}
+
+#map_tuts {
+    width: 100%;
+    height: 100%;
+}
+
+#eco-actions-to-county-count {
+    height: 70px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 58px;
+    line-height: 70px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #A6CE39;
+    display: inline-block
+}
+
+.slider-main li:after {
+    background-color: transparent;
+}
+
+.show-next-event-button-section {
+    display: flex;
+    align-items: center;
+    margin-top: -12px;
+}
+
+#nextEcoActionListContainer {
+    display: none;
+}
+
+.error-messages {
+    background: #ffd5d5;
+    opacity: 0.6;
+    border: 1px solid #EFEFEF;
+    border-radius: 7px;
+    margin: 5px;
+    font-size:  12px;
+    /*  font-weight: bolder; */
+    display: none;
+}
+
+.error-message {
+    letter-spacing: -0.3px;
+    color: #171717;
+}
+
+.fullWidthSelect {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.fullWidthSelectSVG {
+    float: right;
+    margin-top: -2px;
+}
+
+input, select {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    color: #B9B9B9 !important;
+}
+
+@media only screen and (max-width: 575px) {
+    .company-package-modal-textarea {
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+
+    #mainSelectWrapper {
+        align-self: center;
+    }
+
+    .show-next-event-button-section {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #bio-logo {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 680px) {
+    .next-event-select {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 633px) {
+    #close-modal-1 {
+        position: relative;
+        left: 0px;
+        float: right;
+    }
+
+    #enroll-button-Ialomita {
+        margin-left: 0px;
+        float: right;
+    }
+
+    .number-of-friends {
+        max-width: 105px;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .modal-close-text-container {
+        text-align: right !important;
+    }
+}
+
+@media only screen and (max-width: 418px) {
+    .arrow-icon-enroll-Movila {
+        margin-left: 70px;
+        margin-top: -47px;
+    }
+}
+
+@media only screen and (max-width: 981px) {
+    .empty-seats {
+        margin-top: 8px;
+        margin-left: -100%;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .eco-input-text-modal {
+        margin-top: 10px;
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .empty-seats {
+        margin-top: -74px;
+        margin-left: -0;
+    }
+
+    .friends-enrolled {
+        margin-left: -0;
+        margin-top: 8px;
+    }
+}
+
+@media only screen and (max-width: 962px) {
+    #second-select-Movila-modal {
+        margin-top: 30px;
+        margin-left: -95px;
+    }
+
+    #second-svg-Movila-modal {
+        position: relative;
+        left: -95px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    #second-select-Movila-modal {
+        margin-top: 30px;
+        margin-left: -104px;
+    }
+
+    #second-svg-Movila-modal {
+        position: relative;
+        left: 1px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    #svg-arrow-2 {
+        margin-left: 68px;
+    }
+
+    .dropdown-eco4 {
+        width: 100%;
+    }
+
+    .select-arrow-svg {
+        margin-left: 70px;
+    }
+
+    .input-text-eco4 {
+        width: 100%;
+    }
+
+    .input-number-of-seats-eco4 {
+        width: 100%;
+    }
+
+    .input-number-of-friends-eco4 {
+        width: 100%;
+    }
+
+    .company-package-modal-textarea {
+        width: 100%;
+    }
+
+    #second-svg-eco-action-proposal {
+        margin-left: -32px;
+    }
+
+    #second-select-Movila-modal {
+        margin-left: 0px;
+    }
+
+    .eco-action-proposal-map {
+        width: 100%;
+    }
+
+    .gps-coords-eco-proposal {
+        width: 100%;
+    }
+
+    .donate-amount-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .step-card {
+        margin-bottom: 15px;
+        margin-left: 0px;
+    }
+
+    .next-event-select {
+        margin: 10px;
+    }
+}
+
+.fix-alignment {
+    display: flex;
+    justify-content: space-around;
+}
+
+.fix-alignment-1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fix-alignment-2 {
+    display: flex;
+    justify-content: end;
+}
+
+.fix-padding {
+    padding-right: 5px;
+}
+
+.main-count-action {
+    display: flex;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+#eco-actions-to-county-count {
+    text-align: center;
+    margin-top: -14px;
+}
+
+.separated-count-card {
+    margin-right: 2px;
+}
+
+@media only screen and (max-width: 576px) {
+    .fix-alignment-1 {
+        flex-direction: column;
+    }
+
+    .fix-alignment-1 div {
+        width: 100%;
+    }
+
+    .main-count-action {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .main-count-action div {
+        width: 100%;
+    }
+}
