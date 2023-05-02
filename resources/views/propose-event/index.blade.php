@@ -2,6 +2,8 @@
 
 @section('content')
 
+    @include('components.modals.enrol_modal')
+
     <body>
     <header style="margin-bottom: 50px; margin-top: 50px;">
         <div class="container">
@@ -216,7 +218,12 @@
                     <div class="col-12 col-sm-6 white-block">
                         <div class="select-wrapper" id="mainSelectWrapper">
                             <select id="main-select-county" class="select transparent-btn"
-                                    aria-label="Default select example"></select>
+                                    aria-label="Default select example">
+                                <option value="">none</option>
+                                @foreach($approved_cities as $city)
+                                    <option value="{{$city->id}}">{{$city->name}}</option>
+                                @endforeach
+                            </select>
 
                             <div class="slider-link text-end add-next-eco-action">
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
@@ -258,21 +265,15 @@
         </div>
 
         <!-- Eco Actions Cards -->
+
         <div class="container" id="nextEcoActionListContainer">
+
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" id="event_card">
                     <div class="slider-wrap">
                         <h3>Următoarele acțiuni <span id="next-eco-actions-edition-name"></span></h3>
-
-                        <div class="slider-main">
-                            <ul class="slider row col-lg-12" id="eco-actions-container"></ul>
-
-                            <div class="slider-controller" id="slider_pager">
-                                <div class="slide_common_p slider_prev_m"></div>
-                                <div class="bx-controls"></div>
-                                <div class="slide_common_p slider_next_m"></div>
-                            </div>
-                        </div>
+                        <ul class="slider row col-lg-12" id="eco-actions-container">
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1210,8 +1211,8 @@
                                                 <div class="col-12 col-sm-6">
                                                     <div class="special-input-wrap">
                                                         <select required
-                                                            class="form-control input-normal insert-localities"
-                                                            id="region_cities">
+                                                                class="form-control input-normal insert-localities"
+                                                                id="region_cities">
                                                             <option value="">Localitate</option>
                                                         </select>
 
@@ -1544,278 +1545,7 @@
     </div>
 
     <!-- Enroll General Eco Action -->
-    <div class="row">
-        <div class="col-12">
-            <div class="modal-window modal fade" id="enrollModalGeneral" tabindex="-1"
-                 aria-labelledby="enrollModalGeneral"
-                 aria-hidden="true" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content" id="enroll-Movila-Miresei">
-                        <div class="modal-header close-modal">
-                            <h5 class="modal-title" id="enroll-action-title">Înscriere pentru o acțiune de
-                                Ecologizare</h5>
 
-                            <div class="modal-close-text-container">
-                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button"
-                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-5">Închide <span
-                                        style="color: #A6CE39">[X]</span></button>
-                            </div>
-                        </div>
-
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="pop-content">
-                                    <form id="volunteer_add_general" name="volunteer_add_general" method="POST">
-                                        <div class="row form-group">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="nume_voluntar_general"
-                                                       class="col-form-label form-modal-label">Nume,
-                                                    prenume</label>
-                                            </div>
-
-                                            <div class="col-12 col-sm-7">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <input type="text"
-                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                               name="nume_voluntar_general" id="nume_voluntar_general"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="email_voluntar_general"
-                                                       class="col-form-label form-modal-label">Email</label>
-                                            </div>
-
-                                            <div class="col-12 col-sm-7">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <input type="email"
-                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                               name="email_voluntar_general"
-                                                               id="email_voluntar_general"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="tel_voluntar_general"
-                                                       class="col-form-label form-modal-label">Telefon</label>
-                                            </div>
-
-                                            <div class="col-12 col-sm-7">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <input type="tel"
-                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                               name="tel_voluntar_general" id="tel_voluntar_general"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="judet_voluntar_general"
-                                                       class="col-form-label form-modal-label">Sunt
-                                                    din</label>
-                                            </div>
-
-                                            <div class="col-12 col-sm-7">
-                                                <div class="row fix-alignment" style="margin-left: -8px;">
-                                                    <div class="col-12 col-sm-5 me-1" style="margin: initial;">
-                                                        <select class="dropdown-eco4 form-control select-location"
-                                                                name="judet_voluntar_general"
-                                                                id="judet_voluntar_general"
-                                                                onchange="viewLocationsInCounty(this, 2)">
-                                                            <option value="">Judet</option>
-                                                        </select>
-
-                                                        <svg class="select-arrow-svg" id="svg-arrow-1" width="24"
-                                                             height="24" viewBox="0 0 24 24" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                                fill="#A6CE39"/>
-                                                        </svg>
-                                                    </div>
-
-                                                    <div class="col-12 col-sm-5" style="margin: auto;">
-                                                        <select class="dropdown-eco4 form-control insert-localities"
-                                                                name="localitate_voluntar_general"
-                                                                id="localitate_voluntar_general">
-                                                            <option value="">Localitate</option>
-                                                        </select>
-
-                                                        <svg class="select-arrow-svg" id="svg-arrow-2" width="24"
-                                                             height="24" viewBox="0 0 24 24" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                                fill="#A6CE39"/>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class=" row form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-5">
-                                                    <label for="allEcoActionsFullSelect"
-                                                           class="col-form-label form-modal-label">Particip la</label>
-                                                </div>
-
-                                                <div class="col-12 col-sm-7">
-                                                    <select class="dropdown-eco4 form-control fullWidthSelect"
-                                                            name="allEcoActionsFullSelect" id="allEcoActionsFullSelect">
-                                                        <option value="">Selecteaza</option>
-                                                    </select>
-
-                                                    <svg class="select-arrow-svg fullWidthSelectSVG" id="svg-arrow-2"
-                                                         width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="friends_enrolled_modal_2_general"
-                                                       class="col-form-label form-modal-label">Mai vin</label>
-                                            </div>
-
-                                            <div class="col-12 col-sm-7">
-                                                <div class="row">
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-6">
-                                                            <input type="text"
-                                                                   class="input-number-of-friends-eco4 eco-input-text-modal"
-                                                                   name="friends_enrolled_modal_2_general"
-                                                                   id="friends_enrolled_modal_2_general"/>
-                                                        </div>
-
-                                                        <div class="col-12 col-sm-6">
-                                                            <label for="friends_enrolled_modal_2_general"
-                                                                   class="friends-enrolled"
-                                                                   style="width: 133px; height: 17px;">prieteni să facem
-                                                                treabă</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group" id="i-have-car-section">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="car_modal_2_general">Am mașină și</label>
-                                            </div>
-
-                                            <div class="col-12 col-sm-7">
-                                                <div class="fix-alignment-1">
-                                                    <div>
-                                                        <input type="text" class="input-number-of-seats-eco4"
-                                                               name="car_modal_2_general" id="car_modal_2_general"/>
-                                                    </div>
-
-                                                    <div>
-                                                        <label for="car_modal_2_general" style="padding-right: 15px;">locuri
-                                                            libere in ea</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group">
-                                                <div class="col-12 text-start" id="field-completion-message">
-                                                    <label id="confirmation-for-number-of-people">
-                                                        Atenție: completarea acestui câmp presupune că vei
-                                                        lua de la locul de pornire numărul de persoane specificat
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group m-1">
-                                                <div class="col-12">
-                                                    <div class="terms-conditions-text">
-                                                        <span id="eco-action-general-enroll-modal-check-1-span"></span>
-                                                        <input class="form-check-input" value="" type="checkbox"
-                                                               name="eco-action-general-enroll-modal-check-1"
-                                                               id="eco-action-general-enroll-modal-check-1"/>
-                                                        <label style="display: inline;" style="display: inline;"
-                                                               for="eco-action-general-enroll-modal-check-1">Sunt de
-                                                            acord
-                                                            cu </label>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                           style="color: #A6CE39;">termenii și condițiile acestui</a>
-                                                        site.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group m-1">
-                                                <div class="col-12">
-                                                    <div class="terms-conditions-text">
-                                                        <span id="eco-action-general-enroll-modal-check-2-span"></span>
-                                                        <input class="form-check-input" value="" type="checkbox"
-                                                               name="eco-action-general-enroll-modal-check-2"
-                                                               id="eco-action-general-enroll-modal-check-2"/>
-                                                        <label style="display: inline;" style="display: inline;"
-                                                               for="eco-action-general-enroll-modal-check-2">Sunt de
-                                                            acord
-                                                            cu </label>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#workshop"
-                                                           style="color: #A6CE39;">termenii și condițiile de
-                                                            participare</a>
-                                                        la
-                                                        workshop-ul de ecologizare.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group m-1">
-                                                <div class="col-12">
-                                                    <div class="terms-conditions-text">
-                                                        <span id="eco-action-general-enroll-modal-check-3-span"></span>
-                                                        <input class="form-check-input" value="" type="checkbox"
-                                                               name="eco-action-general-enroll-modal-check-3"
-                                                               id="eco-action-general-enroll-modal-check-3"/>
-                                                        <label style="display: inline;" style="display: inline;"
-                                                               for="eco-action-general-enroll-modal-check-3">Sunt de
-                                                            acord
-                                                            cu </label>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#contract"
-                                                           style="color: #A6CE39;;">contractul de voluntariat.</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="error-messages"></div>
-
-                                            <div class="row form-group">
-                                                <div class="col-12 fix-alignment-2">
-                                                    <input type="submit" id="volunteer-enroll-general-button"
-                                                           class="form-submit modal-register-button"
-                                                           value="Mă inscriu"/>
-                                                </div>
-                                            </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Confirm -->
     <div class="row">

@@ -22,6 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('js/propose_event.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}"></script>
 
 
 </head>

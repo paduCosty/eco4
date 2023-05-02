@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserEventLocation extends Model
 {
-    protected $table='users_event_locations';
+    protected $table = 'users_event_locations';
     protected $fillable = [
         'user_id',
         'email',
@@ -34,4 +34,15 @@ class UserEventLocation extends Model
     {
         return $this->hasMany(EventRegistration::class);
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'event_location_id');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'event_location_id');
+    }
+
 }

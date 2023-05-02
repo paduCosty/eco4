@@ -577,9 +577,9 @@ footer {
     margin-top: -12px;
 }
 
-#nextEcoActionListContainer {
-    display: none;
-}
+/*#nextEcoActionListContainer {*/
+/*    display: none;*/
+/*}*/
 
 .error-messages {
     background: #ffd5d5;

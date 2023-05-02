@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\UserEventLocation;
@@ -12,8 +13,9 @@ class ProposeEventController extends Controller
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $eventLocations = UserEventLocation::all();
-        return view('admin.propose-event.index', compact('eventLocations', ));
+        return view('admin.propose-event.index', compact('eventLocations',));
     }
+
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
 
@@ -87,7 +89,12 @@ class ProposeEventController extends Controller
     {
         $events = EventLocation::all();
         $regions = Region::all();
-        return view('propose-event.index', compact('events', 'regions'));
+        $approved_cities = City::has('approvedEventLocations')->select('id', 'name')->get();
+        $cities = City::all();
+
+
+//        dd($cities->toArray());
+        return view('propose-event.index', compact('events', 'regions', 'approved_cities', 'cities'));
     }
 
 }

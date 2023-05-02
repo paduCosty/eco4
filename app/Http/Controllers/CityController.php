@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -56,4 +57,54 @@ class CityController extends Controller
 
         return response()->json($response);
     }
+
+    public function approved_events(Request $request)
+    {
+        $city_id = $request->city_id;
+        if ($city_id) {
+//            $approved_events = UserEventLocation::where('status', 'approved')
+//                ->whereHas('eventLocation.city', function ($query) use ($city_id) {
+//                    $query->where('id', $city_id);
+//                })
+//                ->get();
+            $approved_events = UserEventLocation::where('status', 'approved')
+                ->whereHas('eventLocation.city', function ($query) use ($city_id) {
+                    $query->where('id', $city_id);
+                })
+                ->with('city.region')
+                ->get();
+
+            $response = array(
+                'status' => 'success',
+                'message' => 'Cererea AJAX a fost procesată cu succes!',
+                'data' => $approved_events
+            );
+        } else {
+            $response = array(
+                'status' => false,
+                'message' => 'Ceva nu a mers',
+            );
+        }
+
+        return response()->json($response);
+    }
+
+    public function get_cities_by_region_id(Request $request)
+    {
+        $response = array(
+            'status' => false,
+            'message' => 'Ceva nu a mers',
+        );
+
+        if ($request->region_id) {
+            $cities_by_region = City::with('region')->where('region_id', $request->region_id)->get();
+            $response = array(
+                'status' => 'success',
+                'message' => 'Cererea AJAX a fost procesată cu succes!',
+                'data' => $cities_by_region
+            );
+        }
+        return response()->json($response);
+    }
+
 }

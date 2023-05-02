@@ -34,4 +34,9 @@ class EventLocation extends Model
     {
         return $this->hasMany(UserEventLocation::class);
     }
+
+    public function approvedUsersEventLocations()
+    {
+        return $this->hasMany(UserEventLocation::class)->where('status', 'approved');
+    }
 }

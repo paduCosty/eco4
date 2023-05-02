@@ -21,7 +21,7 @@ class City extends Model
 
     public function eventLocations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(EventLocation::class ,'cities_id');
+        return $this->hasMany(EventLocation::class, 'cities_id');
 //        return $this->belongsTo(City::class, 'cities_id');
     }
 
@@ -29,4 +29,10 @@ class City extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function approvedEventLocations()
+    {
+        return $this->hasMany(EventLocation::class, 'cities_id')->whereHas('approvedUsersEventLocations');
+    }
+
 }
