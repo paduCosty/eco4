@@ -52,6 +52,7 @@ Route::post('/home', [ProposeEventController::class, 'store'])->name('home.store
 
 require __DIR__.'/auth.php';
 
+
 //Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
