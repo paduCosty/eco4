@@ -34,9 +34,9 @@
 
             <div class="row">
 
-                <div class="col-12 col-sm-7">
+                <div class="col-12 col-sm-7 mb-5">
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-12 col-sm-6 ">
                             <h6>Judet</h6>
                             <select id="regions" name="" class="form-control select-location">
                                 <option value="">Judet</option>
@@ -54,21 +54,20 @@
                     </div>
                 </div>
             </div>
-            <br>
+       
 
-            <div class="container mt-5">
+            <div class="container mb-4">
                <div id="map"></div>
             </div>
-            <div>
+            <div class="mt-4">
                 <input type="hidden" id="gps_longitude" name="longitude">
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
-            <br>
-            <br>
-            <div class="row form-group">
-                <div class="col-12 col-sm-4">
+       
+            <div class="row form-group mb-4">
+                <div class="col-12 col-sm-6">
                     <label class="col-form-label form-modal-label">Tip teren</label>
-                    <select name="relief_type" class="form-control select-location">
+                    <select name="relief_type" class="form-control ">
                         <option value="">Selecteaza</option>
                         <option value="Campie">Campie</option>
                         <option value="Deal">Deal</option>
@@ -76,7 +75,7 @@
                     </select>
                 </div>
             </div>
-            <br>
+        
 
             <div class="row form-group">
                 <div class="col-12 col-sm-4">
@@ -94,6 +93,7 @@
         </form>
 
         <script type="text/javascript">
+        
             $(document).ready(function () {
                 // console.log(url('/'));
                 var APP_URL = {!! json_encode(url('/')) !!};
@@ -105,7 +105,7 @@
                         type: 'Get',
                         data: {region_id: region_id},
                         success: function (response) {
-
+                            
                             var options = '<select name="cities_id" id="cities_by_region" class="form-control select-location">';
                             $.each(response.data, function (index, value) {
                                 options += '<option lat="' + value.latitude + '" lng="' + value.longitude + '" value="' + value.id + '">' + value.name + '</option>';
