@@ -4,7 +4,6 @@
 
     @include('components.modals.enrol_modal')
 
-    <body>
     <header style="margin-bottom: 50px; margin-top: 50px;">
         <div class="container">
             <div class="row">
@@ -104,94 +103,94 @@
             </div>
         </div>
 
-{{--        <div class="steps">--}}
-{{--            <div class="container">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
-{{--                        <div class="step-card">--}}
-{{--                            <div class="single-step-svg float-start">--}}
-{{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
-{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#2F49D1"/>--}}
-{{--                                    <path d="M36 38V28" stroke="#2F49D1" stroke-width="2" stroke-linecap="round"--}}
-{{--                                          stroke-linejoin="round"/>--}}
-{{--                                    <path d="M30 38V22" stroke="#2F49D1" stroke-width="2" stroke-linecap="round"--}}
-{{--                                          stroke-linejoin="round"/>--}}
-{{--                                    <path d="M24 38V32" stroke="#2F49D1" stroke-width="2" stroke-linecap="round"--}}
-{{--                                          stroke-linejoin="round"/>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
-{{--                            <div class="single-step-text float-start">--}}
-{{--                                <h6 id="nr-editii"></h6>--}}
-{{--                                <p id="nr-editii-gramatical">Ediție</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+        {{--        <div class="steps">--}}
+        {{--            <div class="container">--}}
+        {{--                <div class="row">--}}
+        {{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
+        {{--                        <div class="step-card">--}}
+        {{--                            <div class="single-step-svg float-start">--}}
+        {{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
+        {{--                                     xmlns="http://www.w3.org/2000/svg">--}}
+        {{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#2F49D1"/>--}}
+        {{--                                    <path d="M36 38V28" stroke="#2F49D1" stroke-width="2" stroke-linecap="round"--}}
+        {{--                                          stroke-linejoin="round"/>--}}
+        {{--                                    <path d="M30 38V22" stroke="#2F49D1" stroke-width="2" stroke-linecap="round"--}}
+        {{--                                          stroke-linejoin="round"/>--}}
+        {{--                                    <path d="M24 38V32" stroke="#2F49D1" stroke-width="2" stroke-linecap="round"--}}
+        {{--                                          stroke-linejoin="round"/>--}}
+        {{--                                </svg>--}}
+        {{--                            </div>--}}
+        {{--                            <div class="single-step-text float-start">--}}
+        {{--                                <h6 id="nr-editii"></h6>--}}
+        {{--                                <p id="nr-editii-gramatical">Ediție</p>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
 
-{{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
-{{--                        <div class="step-card">--}}
-{{--                            <div class="single-step-svg float-start">--}}
-{{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
-{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#FFB648"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M40 33.5H34.48V32.73C34.48 32.37 34.04 32.19 33.79 32.44L32.28 33.96C32.12 34.12 32.12 34.37 32.28 34.53L33.79 36.05C34.05 36.31 34.48 36.13 34.48 35.76V35H40V33.5ZM39.72 38.21L38.21 36.69C37.95 36.43 37.52 36.61 37.52 36.98V37.75H32V39.25H37.52V40.02C37.52 40.38 37.96 40.56 38.21 40.31L39.72 38.79C39.88 38.63 39.88 38.37 39.72 38.21V38.21ZM27.5 23.5C28.6 23.5 29.5 22.6 29.5 21.5C29.5 20.4 28.6 19.5 27.5 19.5C26.4 19.5 25.5 20.4 25.5 21.5C25.5 22.6 26.4 23.5 27.5 23.5ZM23.75 26.9L21.23 39.81C21.11 40.43 21.58 41 22.21 41H22.3C22.77 41 23.18 40.67 23.28 40.21L24.85 33L27 35V40C27 40.55 27.45 41 28 41C28.55 41 29 40.55 29 40V34.28C29 33.75 28.79 33.24 28.41 32.87L26.95 31.4L27.55 28.4C28.62 29.72 30.13 30.63 31.86 30.91C32.46 31.01 33 30.52 33 29.91C33 29.42 32.64 29.01 32.16 28.93C30.67 28.68 29.41 27.78 28.65 26.55L27.7 24.95C27.35 24.35 26.7 24 26 24C25.75 24 25.5 24.05 25.25 24.15L21.24 25.79C20.49 26.1 20 26.83 20 27.64V30C20 30.55 20.45 31 21 31C21.55 31 22 30.55 22 30V27.65L23.75 26.9Z"--}}
-{{--                                        fill="#FFB648"/>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
+        {{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
+        {{--                        <div class="step-card">--}}
+        {{--                            <div class="single-step-svg float-start">--}}
+        {{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
+        {{--                                     xmlns="http://www.w3.org/2000/svg">--}}
+        {{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#FFB648"/>--}}
+        {{--                                    <path--}}
+        {{--                                        d="M40 33.5H34.48V32.73C34.48 32.37 34.04 32.19 33.79 32.44L32.28 33.96C32.12 34.12 32.12 34.37 32.28 34.53L33.79 36.05C34.05 36.31 34.48 36.13 34.48 35.76V35H40V33.5ZM39.72 38.21L38.21 36.69C37.95 36.43 37.52 36.61 37.52 36.98V37.75H32V39.25H37.52V40.02C37.52 40.38 37.96 40.56 38.21 40.31L39.72 38.79C39.88 38.63 39.88 38.37 39.72 38.21V38.21ZM27.5 23.5C28.6 23.5 29.5 22.6 29.5 21.5C29.5 20.4 28.6 19.5 27.5 19.5C26.4 19.5 25.5 20.4 25.5 21.5C25.5 22.6 26.4 23.5 27.5 23.5ZM23.75 26.9L21.23 39.81C21.11 40.43 21.58 41 22.21 41H22.3C22.77 41 23.18 40.67 23.28 40.21L24.85 33L27 35V40C27 40.55 27.45 41 28 41C28.55 41 29 40.55 29 40V34.28C29 33.75 28.79 33.24 28.41 32.87L26.95 31.4L27.55 28.4C28.62 29.72 30.13 30.63 31.86 30.91C32.46 31.01 33 30.52 33 29.91C33 29.42 32.64 29.01 32.16 28.93C30.67 28.68 29.41 27.78 28.65 26.55L27.7 24.95C27.35 24.35 26.7 24 26 24C25.75 24 25.5 24.05 25.25 24.15L21.24 25.79C20.49 26.1 20 26.83 20 27.64V30C20 30.55 20.45 31 21 31C21.55 31 22 30.55 22 30V27.65L23.75 26.9Z"--}}
+        {{--                                        fill="#FFB648"/>--}}
+        {{--                                </svg>--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="single-step-text float-start">--}}
-{{--                                <h6 id="nr-voluntari"></h6>--}}
-{{--                                <p>Voluntari</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+        {{--                            <div class="single-step-text float-start">--}}
+        {{--                                <h6 id="nr-voluntari"></h6>--}}
+        {{--                                <p>Voluntari</p>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
 
-{{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
-{{--                        <div class="step-card">--}}
-{{--                            <div class="single-step-svg float-start">--}}
-{{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
-{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#A6CE39"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M38.24 29.24C39.3658 28.1142 39.9983 26.5872 39.9983 24.995C39.9983 23.4029 39.3658 21.8759 38.24 20.75C37.1142 19.6242 35.5872 18.9917 33.995 18.9917C32.4028 18.9917 30.8758 19.6242 29.75 20.75L23 27.5V36H31.5L38.24 29.24Z"--}}
-{{--                                        stroke="#A6CE39" stroke-width="2" stroke-linecap="round"--}}
-{{--                                        stroke-linejoin="round"/>--}}
-{{--                                    <path d="M34 25L20 39" stroke="#A6CE39" stroke-width="2" stroke-linecap="round"--}}
-{{--                                          stroke-linejoin="round"/>--}}
-{{--                                    <path d="M35.5 32H27" stroke="#A6CE39" stroke-width="2" stroke-linecap="round"--}}
-{{--                                          stroke-linejoin="round"/>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
+        {{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
+        {{--                        <div class="step-card">--}}
+        {{--                            <div class="single-step-svg float-start">--}}
+        {{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
+        {{--                                     xmlns="http://www.w3.org/2000/svg">--}}
+        {{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#A6CE39"/>--}}
+        {{--                                    <path--}}
+        {{--                                        d="M38.24 29.24C39.3658 28.1142 39.9983 26.5872 39.9983 24.995C39.9983 23.4029 39.3658 21.8759 38.24 20.75C37.1142 19.6242 35.5872 18.9917 33.995 18.9917C32.4028 18.9917 30.8758 19.6242 29.75 20.75L23 27.5V36H31.5L38.24 29.24Z"--}}
+        {{--                                        stroke="#A6CE39" stroke-width="2" stroke-linecap="round"--}}
+        {{--                                        stroke-linejoin="round"/>--}}
+        {{--                                    <path d="M34 25L20 39" stroke="#A6CE39" stroke-width="2" stroke-linecap="round"--}}
+        {{--                                          stroke-linejoin="round"/>--}}
+        {{--                                    <path d="M35.5 32H27" stroke="#A6CE39" stroke-width="2" stroke-linecap="round"--}}
+        {{--                                          stroke-linejoin="round"/>--}}
+        {{--                                </svg>--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="single-step-text float-start">--}}
-{{--                                <h6 id="nr-saci-gunoi"></h6>--}}
-{{--                                <p>saci adunați</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+        {{--                            <div class="single-step-text float-start">--}}
+        {{--                                <h6 id="nr-saci-gunoi"></h6>--}}
+        {{--                                <p>saci adunați</p>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
 
-{{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
-{{--                        <div class="step-card">--}}
-{{--                            <div class="single-step-svg float-start">--}}
-{{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
-{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#4BDE97"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M37.35 27.04C36.67 23.59 33.64 21 30 21C27.11 21 24.61 22.64 23.36 25.04C20.35 25.36 18 27.9 18 31C18 34.31 20.69 37 24 37H37C39.76 37 42 34.76 42 32C42 29.36 39.95 27.22 37.35 27.04ZM37 35H24.17C22.08 35 20.22 33.47 20.02 31.39C19.79 29.01 21.66 27 24 27C25.92 27 27.53 28.36 27.91 30.17C28.01 30.65 28.41 31 28.89 31C29.5 31 30 30.45 29.88 29.85C29.45 27.61 27.77 25.82 25.59 25.22C26.69 23.76 28.48 22.85 30.48 23.02C33.36 23.27 35.49 25.84 35.49 28.73V29H36.86C38.31 29 39.65 29.97 39.93 31.4C40.32 33.31 38.85 35 37 35Z"--}}
-{{--                                        fill="#4BDE97"/>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
+        {{--                    <div class="col-lg-3 col-md-3 col-sm-6 col-6">--}}
+        {{--                        <div class="step-card">--}}
+        {{--                            <div class="single-step-svg float-start">--}}
+        {{--                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"--}}
+        {{--                                     xmlns="http://www.w3.org/2000/svg">--}}
+        {{--                                    <circle opacity="0.1" cx="30" cy="30" r="30" fill="#4BDE97"/>--}}
+        {{--                                    <path--}}
+        {{--                                        d="M37.35 27.04C36.67 23.59 33.64 21 30 21C27.11 21 24.61 22.64 23.36 25.04C20.35 25.36 18 27.9 18 31C18 34.31 20.69 37 24 37H37C39.76 37 42 34.76 42 32C42 29.36 39.95 27.22 37.35 27.04ZM37 35H24.17C22.08 35 20.22 33.47 20.02 31.39C19.79 29.01 21.66 27 24 27C25.92 27 27.53 28.36 27.91 30.17C28.01 30.65 28.41 31 28.89 31C29.5 31 30 30.45 29.88 29.85C29.45 27.61 27.77 25.82 25.59 25.22C26.69 23.76 28.48 22.85 30.48 23.02C33.36 23.27 35.49 25.84 35.49 28.73V29H36.86C38.31 29 39.65 29.97 39.93 31.4C40.32 33.31 38.85 35 37 35Z"--}}
+        {{--                                        fill="#4BDE97"/>--}}
+        {{--                                </svg>--}}
+        {{--                            </div>--}}
 
-{{--                            <div class="single-step-text float-start">--}}
-{{--                                <h6 id="cantitate-gunoi-colectat"></h6>--}}
-{{--                                <p>gunoi colectat</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        {{--                            <div class="single-step-text float-start">--}}
+        {{--                                <h6 id="cantitate-gunoi-colectat"></h6>--}}
+        {{--                                <p>gunoi colectat</p>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
 
         <div class="next-event">
             <div class="container">
@@ -575,7 +574,6 @@
         </div>
         </div>
     </main>
-
 
 
     <!-- modals -->
@@ -2460,18 +2458,10 @@
         </div>
     </div>
 
-    <!-- Confidence Politics -->
-    <
-
-    </body>
-    <style>
-
+    @endsection
+    <style type="text/css">
+        #map {
+            height: 400px;
+            width: 600px;
+        }
     </style>
-
-@endsection
-<style type="text/css">
-    #map {
-        height: 400px;
-        width: 600px;
-    }
-</style>
