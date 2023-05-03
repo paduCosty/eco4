@@ -11,8 +11,8 @@
                 <br>
                 <br>
 
-                <div class="pull-right">
-                    <a class="btn btn-default butts fs-6" href="{{ route('event-locations.index') }}"> Back</a>
+                <div class="pull-right mb-4">
+                    <a class="btn btn-default butts fs-5" href="{{ route('event-locations.index') }}"> Back</a>
                 </div>
             </div>
         </div>
@@ -34,29 +34,30 @@
 
             <div class="row">
 
-                <div class="col-12 col-sm-7 mb-5">
-                    <div class="row">
+                <div class="col-12 col-sm-8 mb-5 text-dark">
+                    <div class="row mb-2">
                         <div class="col-12 col-sm-6 ">
-                            <h6>Judet</h6>
-                            <select id="regions" name="" class="form-control select-location">
-                                <option value="">Judet</option>
+                            <label class="fs-5">Judet</label>
+                            <select id="regions"  class="form-control select-location fs-6 text-dark">
+                                <option>Judet</option>
+                                
                                 @foreach($regions as $region)
                                     <option value="{{$region->id}}">{{$region->name}} </option>
                                 @endforeach
-                                <h6>Localitate</h6>
 
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6">
-                        <div id="city"></div>
+                    <div class="col-12 col-sm-6 mb-1">
+                        <label class="fs-5 ">Localitate </label>
+                        <div class="fs-6 " id="city" > </div>
                     </div>
                 </div>
             </div>
        
 
-            <div class="container mb-4">
+            <div class="container mb-2">
                <div id="map"></div>
             </div>
             <div class="mt-4">
@@ -64,10 +65,10 @@
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
        
-            <div class="row form-group mb-4">
+            <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
-                    <label class="col-form-label form-modal-label">Tip teren</label>
-                    <select name="relief_type" class="form-control ">
+                    <label class="fs-5 ">Tip teren</label>
+                    <select name="relief_type" class="form-control fs-6 text-dark">
                         <option value="">Selecteaza</option>
                         <option value="Campie">Campie</option>
                         <option value="Deal">Deal</option>
@@ -77,11 +78,11 @@
             </div>
         
 
-            <div class="row form-group">
-                <div class="col-12 col-sm-4">
-                    <label class="col-form-label form-modal-label">La fata locului</label>
-                    <select name="size_volunteer_id" class="form-control select-location">
-                        <option value="">Selecteaza</option>
+            <div class="row form-group mb-3">
+                <div class="col-12 col-sm-6">
+                    <label class="fs-5">La fata locului</label>
+                    <select name="size_volunteer_id" class="form-control select-location fs-6 text-dark">
+                        <option>Selecteaza</option>
                         @foreach($size_volunteers as $size_volunteer)
                             <option value="{{$size_volunteer->id}}">{{$size_volunteer->name}}</option>
                         @endforeach
@@ -89,7 +90,9 @@
 
                 </div>
             </div>
-            <button type="submit">Send</button>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default butts fs-5"> Send </button>
+            </div>
         </form>
 
         <script type="text/javascript">

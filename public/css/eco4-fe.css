@@ -3,15 +3,15 @@ body {
     background: #ffffff;
 }
 .butts {
-    color: white;
+    color: rgb(201, 248, 189);
     font-weight:bolder;
     text-align: center;
-    box-shadow: 0 14px 19px 0 rgba(22, 184, 76, 0.2), 0 6px 20px 0 rgba(6, 184, 45, 0.19)
+    box-shadow: 0 16px 25px 0 rgba(22, 184, 76, 0.2), 0 16px 25px 0 rgba(6, 184, 45, 0.19)
 }
 .buttons {
     font-weight: 18px;
     height: 34px;
-    color: white;
+    color: rgb(161, 247, 154);
     font-weight:bolder;
     text-align: center;
     box-shadow: 0 9px 12px 0 rgba(22, 184, 76, 0.2), 0 6px 20px 0 rgba(6, 184, 45, 0.19)

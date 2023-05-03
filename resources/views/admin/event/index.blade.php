@@ -2,21 +2,19 @@
 
 @section('content')
     <div class="container">
-        <div class="text-center">
+        <div class="text-center mb-5">
                 <h1>Evenimente</h1>
         </div>
-        <br>
     <div class="row">
         
 
-        <div class="col-lg-18 margin-tb">
-            <div class="pull-right ">
+        <div class="col-lg-18 margin-tb mb-5">
+            <div class="pull-right mb-5">
                 <a class="btn btn-default butts fs-5" href="{{ route('event-locations.create') }}"> Create New Product</a>
             </div>
         </div>
     </div>
-    <br>
-    <br>
+    
 
 
     @if ($message = Session::get('success'))
