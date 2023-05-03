@@ -43,7 +43,6 @@ class EventLocationController extends Controller
             'size_volunteer_id' => 'required',
         ]);
         $validatedData['user_id'] = $user_id;
-//        dd($validatedData);
         $eventLocation = EventLocation::create($validatedData);
 
         return redirect()->route('event-locations.index');
@@ -58,25 +57,38 @@ class EventLocationController extends Controller
     public function edit(EventLocation $event_location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $size_volunteers = SizeVolunteers::all();
-        $regions = Region::all();
+        $city = City::select('id', 'name', 'region_id')->where('id', $event_location->cities_id)
+            ->first();
+        $region = Region::select('id', 'name')->where('id', $city->region_id)->first();
 
         $event_location = EventLocation::with('city')->findOrFail($event_location->id);
 
-        return view('admin.event.edit', compact('event_location', 'regions', 'size_volunteers'));
+        return view('admin.event.edit',
+            compact(
+                'event_location',
+                'region',
+                'city',
+                'size_volunteers',
+            )
+        );
     }
 
     public function update(Request $request, EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
     {
+        $user_id = Auth::id();
+
+        if (!$user_id) {
+            redirect()->route('event-locations.index');
+        }
         $validatedData = $request->validate([
-//            'name' => 'required',
             'cities_id' => 'required',
-            'user_id' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
             'relief_type' => 'required',
-//            'status' => 'required',
+            'size_volunteer_id' => 'required',
         ]);
 
+        $validatedData['user_id'] = $user_id;
         $eventLocation->update($validatedData);
 
         return redirect()->route('event-locations.index');
@@ -95,10 +107,8 @@ class EventLocationController extends Controller
             $event_locations = EventLocation::where('cities_id', $request->city_id)
                 ->get();
             $city = City::where('id', $request->city_id)->first();
-//            dump($event_locations);
-//            dd($city);
 
-            return response()->json(['event_locations'=>$event_locations, 'city'=> $city]);
+            return response()->json(['event_locations' => $event_locations, 'city' => $city]);
         }
         return response()->json(['message' => false]);
     }

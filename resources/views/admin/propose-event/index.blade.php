@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+{{--<h4>Aici  trebuie facut un quiue car sa verifice datele si cand se termina evenimentele sa seteze statusul cu inactiv</h4>--}}
+{{--<h4>mai trebuie adaugat la status inca o conditie sa fie acceptat/refuzat/pending/efectut</h4>--}}
+{{--<h4>adaugarea butoanelor care schimba statusul</h4>--}}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
