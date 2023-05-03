@@ -65,16 +65,16 @@
                     @else
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home.home') }}">{{ __('home') }}</a>
+                            <a class="nav-link" href="{{ route('home.home') }}">{{ __('Home') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a style="color:red" class="nav-link" href="{{ route('event-locations.index') }}">{{ __('admin creaza un event') }}</a>
+                            <a style="color:red" class="nav-link" href="{{ route('event-locations.index') }}">{{ __('Admin-Creaza un event') }}</a>
                         </li>
 
                         <li class="nav-item">
                             <a style="color:green" class="nav-link"
-                               href="{{ route('admin.propose-locations.home') }}">{{ __('evenimente propuse') }}</a>
+                               href="{{ route('admin.propose-locations.home') }}">{{ __('Evenimente propuse') }}</a>
                         </li>
 
                         <li class="nav-item dropdown">

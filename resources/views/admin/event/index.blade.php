@@ -2,16 +2,22 @@
 
 @section('content')
     <div class="container">
+        <div class="text-center">
+                <h1>Evenimente</h1>
+        </div>
+        <br>
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Locuri pentru evenimente</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('event-locations.create') }}"> Create New Product</a>
+        
+
+        <div class="col-lg-18 margin-tb">
+            <div class="pull-right ">
+                <a class="btn btn-default butts fs-5" href="{{ route('event-locations.create') }}"> Create New Product</a>
             </div>
         </div>
     </div>
+    <br>
+    <br>
+
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -19,13 +25,13 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-hover t">
         <tr>
-            <th>No</th>
+            <th>Nr.</th>
             <th>Relief</th>
-            <th>Long</th>
-            <th>Lat</th>
-            <th width="280px">Action</th>
+            <th>Longitudine</th>
+            <th>Latitudine</th>
+            <th width="170px">Action</th>
         </tr>
         @php($i = 0)
         @foreach ($events as $event)
@@ -39,12 +45,12 @@
 
 {{--                        <a class="btn btn-info" href="{{ route('event-locations.show',$event->id) }}">Show</a>--}}
 
-                        <a class="btn btn-primary" href="{{ route('event-locations.edit',$event->id) }}">Edit</a>
+                        <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger buttons">Delete</button>
                     </form>
                 </td>
             </tr>
