@@ -5,14 +5,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
+                <div class="text-center">
                     <h2>Add New Product</h2>
                 </div>
+                <br>
+                <br>
+
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('event-locations.index') }}"> Back</a>
+                    <a class="btn btn-default butts fs-6" href="{{ route('event-locations.index') }}"> Back</a>
                 </div>
             </div>
         </div>
+        <br> 
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -33,12 +37,13 @@
                 <div class="col-12 col-sm-7">
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3">
-
+                            <h6>Judet</h6>
                             <select id="regions" name="" class="form-control select-location">
                                 <option value="">Judet</option>
                                 @foreach($regions as $region)
-                                    <option value="{{$region->id}}">{{$region->name}}</option>
+                                    <option value="{{$region->id}}">{{$region->name}} </option>
                                 @endforeach
+                                <h6>Localitate</h6>
 
                             </select>
                         </div>
@@ -49,18 +54,20 @@
                     </div>
                 </div>
             </div>
+            <br>
 
             <div class="container mt-5">
-                <div id="map"></div>
+               <div id="map"></div>
             </div>
             <div>
                 <input type="hidden" id="gps_longitude" name="longitude">
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
+            <br>
+            <br>
             <div class="row form-group">
                 <div class="col-12 col-sm-4">
-                    <label for=""
-                           class="col-form-label form-modal-label">Tip teren</label>
+                    <label class="col-form-label form-modal-label">Tip teren</label>
                     <select name="relief_type" class="form-control select-location">
                         <option value="">Selecteaza</option>
                         <option value="Campie">Campie</option>
@@ -69,6 +76,8 @@
                     </select>
                 </div>
             </div>
+            <br>
+
             <div class="row form-group">
                 <div class="col-12 col-sm-4">
                     <label class="col-form-label form-modal-label">La fata locului</label>
@@ -150,7 +159,8 @@
 
 <style type="text/css">
     #map {
-        height: 400px;
+        width:700px;
+        height: 500px;
     }
 </style>
 

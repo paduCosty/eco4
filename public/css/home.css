@@ -64,9 +64,9 @@ img, svg {
     top: -9.5px;
 }
 
-.input-normal, .form-check-input {
+/* .input-normal, .form-check-input { */
     /*box-shadow: none!important;*/
-}
+/* } */
 
 
 #clean-logo {
@@ -535,7 +535,7 @@ footer {
 }
 
 ::-webkit-scrollbar-track {
-    webkit-box-shadow: none;
+    /* webkit-box-shadow: none; */
     box-shadow: none;
     border-radius: none;
 }
