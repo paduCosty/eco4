@@ -62,16 +62,23 @@ class CityController extends Controller
     {
         $city_id = $request->city_id;
         if ($city_id) {
-//            $approved_events = UserEventLocation::where('status', 'approved')
-//                ->whereHas('eventLocation.city', function ($query) use ($city_id) {
-//                    $query->where('id', $city_id);
-//                })
-//                ->get();
-            $approved_events = UserEventLocation::where('status', 'approved')
+            //tre sa fac un query care sa imi ia datele calumea
+            $approved_events = UserEventLocation::where('users_event_locations.status', 'approved')
                 ->whereHas('eventLocation.city', function ($query) use ($city_id) {
                     $query->where('id', $city_id);
                 })
-                ->with('city.region')
+                ->with([
+                    'eventLocation:id,name,cities_id,size_volunteer_id,relief_type',
+                    'eventLocation.city:id,name,region_id',
+                    'eventLocation.city.region:id,name',
+                    'eventLocation.sizeVolunteer:id,name',
+                ])
+                ->join('event_locations', 'users_event_locations.event_location_id', '=', 'event_locations.id')
+                ->join('size_volunteers', 'event_locations.size_volunteer_id', '=', 'size_volunteers.id')
+                ->select(
+                    'users_event_locations.*',
+                    'size_volunteers.name as size_volunteer_name',
+                )
                 ->get();
 
             $response = array(

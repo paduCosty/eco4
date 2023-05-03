@@ -39,4 +39,14 @@ class EventLocation extends Model
     {
         return $this->hasMany(UserEventLocation::class)->where('status', 'approved');
     }
+
+    public function sizeVolunteer()
+    {
+        return $this->belongsTo(SizeVolunteers::class);
+    }
+
+    public function eventRegistrations()
+    {
+        return $this->belongsTo(UserEventLocation::class, 'users_event_location_id', 'id');
+    }
 }

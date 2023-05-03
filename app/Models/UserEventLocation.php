@@ -32,7 +32,7 @@ class UserEventLocation extends Model
 
     public function eventRegistrations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(EventRegistration::class);
+        return $this->hasMany(EventRegistration::class, 'users_event_location_id');
     }
 
     public function city()
