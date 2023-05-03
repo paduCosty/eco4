@@ -5,13 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="text-center">
+                <div class="text-center mb-5">
                     <h2>Add New Product</h2>
                 </div>
-                <br>
-                <br>
 
-                <div class="pull-right mb-4">
+                <div class="pull-right mb-3">
                     <a class="btn btn-default butts fs-5" href="{{ route('event-locations.index') }}"> Back</a>
                 </div>
             </div>
