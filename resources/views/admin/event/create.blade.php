@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <br> 
+        <br>
 
         @if ($errors->any())
             <div class="alert alert-danger">

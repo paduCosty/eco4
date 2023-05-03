@@ -69,7 +69,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a style="color:red" class="nav-link" href="{{ route('event-locations.index') }}">{{ __('Admin-Creaza un event') }}</a>
+                            <a style="color:red" class="nav-link"
+                               href="{{ route('event-locations.index') }}">{{ __('Admin-Creaza un event') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -106,4 +107,43 @@
     </main>
 </div>
 </body>
+@include('components.modals.about_us_modal')
+@include('components.modals.contact_us_modal')
+@include('components.modals.terms_and_conditions_modal')
+@include('components.modals.privacy_policy')
+
+<footer>
+    <div class="container footer-container">
+        <div class="row">
+            <div class="col-12" style="text-align: center;">
+                <div class="footer-menu">
+                    <ul>
+
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#aboutUsModal">Despre proiect</a>
+                        </li>
+
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+                        </li>
+
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#tandc">Termeni și condiții</a>
+                        </li>
+
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#pandc">Politica de
+                                confidențialitate</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-copyright">
+                    <p>2016 - 2022 Toate drepturile Creștem România Împreună</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>
+
