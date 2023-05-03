@@ -9,12 +9,12 @@ body {
     box-shadow: 0 14px 19px 0 rgba(22, 184, 76, 0.2), 0 6px 20px 0 rgba(6, 184, 45, 0.19)
 }
 .buttons {
-    weight: 20px;
-    height: 29px;
+    font-weight: 18px;
+    height: 34px;
     color: white;
     font-weight:bolder;
     text-align: center;
-    box-shadow: 0 14px 19px 0 rgba(22, 184, 76, 0.2), 0 6px 20px 0 rgba(6, 184, 45, 0.19)
+    box-shadow: 0 9px 12px 0 rgba(22, 184, 76, 0.2), 0 6px 20px 0 rgba(6, 184, 45, 0.19)
 }
 .t {
     text-align: center;
