@@ -24,28 +24,27 @@
             </div>
         @endif
 
-        <form action="{{ route('event-locations.store') }}" method="POST">
+        <form action="{{ route('event-locations.update', $event_location->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <div class="row">
 
                 <div class="col-12 col-sm-7">
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3">
-
-                            <select id="regions" name="" class="form-control select-location">
-                                <option value="">Judet</option>
-                                @foreach($regions as $region)
-                                    <option @if($region->id == $event_location->city->region_id)  selected
-                                            @endif value="{{$region->id}}">{{$region->name}}</option>
-                                @endforeach
-
+                            <label>Judet:</label>
+                            <select class="form-control" name="region_id" >
+                                <option  value="{{$region->id}}" selected>{{$region->name}}</option>
                             </select>
+
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-6">
-                        <div id="city"></div>
+                        <label>Localitate</label>
+                        <select class="form-control" name="cities_id" >
+                            <option  value="{{$city->id}}" selected>{{$city->name}}</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -63,9 +62,9 @@
                            class="col-form-label form-modal-label">Tip teren</label>
                     <select name="relief_type" class="form-control select-location">
                         <option value="">Selecteaza</option>
-                        <option value="Campie">Campie</option>
-                        <option value="Deal">Deal</option>
-                        <option value="Munte">Munte</option>
+                        <option value="Campie" @if($event_location->relief_type == 'Campie') selected @endif>Campie</option>
+                        <option value="Deal" @if($event_location->relief_type == 'Deal') selected @endif>Deal</option>
+                        <option value="Munte" @if($event_location->relief_type == 'Munte') selected @endif>Munte</option>
                     </select>
                 </div>
             </div>
@@ -80,6 +79,7 @@
                         @endforeach
                     </select>
 
+
                 </div>
             </div>
             <button type="submit">Send</button>
@@ -90,68 +90,24 @@
 
 @endsection
 
+
 <style type="text/css">
     #map {
-        height: 400px;
+        height: 70%;
+        /*width: 600px;*/
     }
 </style>
 <script type="text/javascript">
-    var APP_URL = {!! json_encode(url('/')) !!};
-    function loadCities() {
-        $('#cities_by_region').remove();
-        var region_id = $('#regions').val();
-        $.ajax({
-            url: APP_URL + '/admin/get-cities',
-            type: 'Get',
-            data: {region_id: region_id},
-            success: function (response) {
-                console.log(response);
 
-                var options = '<select name="cities_id" id="cities_by_region" class="form-control select-location">';
-                $.each(response.data, function (index, value) {
-                    options += '<option lat="' + value.latitude + '" lng="' + value.longitude + '" value="' + value.id + '">' + value.name + '</option>';
-                });
+    function initMap() {
 
-                $('#city').append(options += '</select>');
-
-                // Apelăm funcția pentru a actualiza harta
-                updateMap();
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr.responseText);
-            }
-        });
-    }
-
-    function updateMap() {
-        var lat = $('option:selected', '#cities_by_region').attr('lat');
-        var lng = $('option:selected', '#cities_by_region').attr('lng');
-        // console.log('Lat:', lat, 'Lng:', lng);
-
-        initMap(parseFloat(lat), parseFloat(lng), zoom = 11)
-    }
-
-    $(document).ready(function() {
-        // Apelăm funcția la încărcarea paginii
-        loadCities();
-    });
-
-    $('#regions').change(function () {
-        loadCities();
-    });
-
-    $(document).on('change', '#cities_by_region', function () {
-        updateMap();
-    });
-    function initMap(lat, lng, zoom = 8) {
-        if (!lat || !lng) {
-            //set lat and lng to Bucharest
-            lat = 44.439663;
-            lng = 26.096306;
-        }
-
+        let event_location = {!! json_encode($event_location) !!};
+        lat = event_location.latitude;
+        lng = event_location.longitude;
+        $('#gps_latitude').val(lat);
+        $('#gps_longitude').val(lng);
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: zoom,
+            zoom: 13,
             center: {lat: lat, lng: lng},
         });
 

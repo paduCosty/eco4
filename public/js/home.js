@@ -37,7 +37,7 @@ $(document).ready(function () {
                                         <a href="#" "=""><h5 style="color: #F26464;">${value.event_location.city.name}, ${value.event_location.city.region.name} </h5></a>
                                         <p>Când: ${value.due_date}</p>
                                         <p>${value.size_volunteer_name}</p>
-                                        <p>${value.number_of_registrations}</p>
+                                        <p>Relief: ${value.event_location.relief_type}</p>
 <!--                                <p>Mai trebuie: 37 </p>-->
 <!--                                <p>Descriere: </p><p>Te invităm la o acțiune deosebită: ne jucăm și facem treabă. Ecologizăm zona de pădure și marginile de râu de pe lângă Cernica, prin intermediul unui joc.&nbsp;</p><p>Ne aranjăm pe echipe (10 echipe), și timp de 2 ore colectăm deșeuri. Câștigă echipa ce colectează cantitatea / numărul cel mai mare de saci. Pentru că ne trebuie și un arbitrul demn de încredere, acesta va fi reprezentantul Primăriei.&nbsp;</p><p>Și da, sacii vor fi colectați de către salubrist, demonstrând faptul că împreună (primăria, voluntarii, salubriștii) putem face treaba așa cum trebuie.&nbsp;</p><p>Iar în rest, o să avem muzică, apă și evident saci și mănuși.&nbsp;</p><p>Durata acțiunii: maxim 4 ore, din momentul ieșirii din casă :)))</p><p></p>-->
                                     </div>
