@@ -29,9 +29,9 @@
             @method('PUT')
             <div class="row">
 
-                <div class="col-12 col-sm-7">
+                <div class="col-12 col-sm-6 mb-4">
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class=" mb-3">
                             <label class="fs-5">Judet:</label>
                             <select class="form-control fs-6 text-dark" name="region_id" >
                                 <option  value="{{$region->id}}" selected>{{$region->name}}</option>
@@ -40,8 +40,8 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 mb-4">
-                        <label class="fs-5">Localitate</label>
+                    <div class="cmb-4">
+                        <label class="fs-5">Localitate:</label>
                         <select class="form-control fs-6 text-dark" name="cities_id" >
                             <option  value="{{$city->id}}" selected>{{$city->name}}</option>
                         </select>
@@ -57,8 +57,8 @@
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
             <div class="row form-group mb-3">
-                <div class="col-12 col-sm-4">
-                    <label class="fs-5">Tip teren</label>
+                <div class="col-12 col-sm-6">
+                    <label class="fs-5">Tip teren:</label>
                     <select name="relief_type" class="form-control select-location fs-6 text-dark">
                         <option value="">Selecteaza</option>
                         <option value="Campie" @if($event_location->relief_type == 'Campie') selected @endif>Campie</option>
@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="row form-group mb-3">
-                <div class="col-12 col-sm-4">
-                    <label class="fs-5">La fata locului</label>
+                <div class="col-12 col-sm-6">
+                    <label class="fs-5">La fata locului:</label>
                     <select name="size_volunteer_id" class="form-control select-location fs-6 text-dark">
                         <option value="">Selecteaza</option>
                         @foreach($size_volunteers as $size_volunteer)

@@ -32,10 +32,10 @@
 
             <div class="row">
 
-                <div class="col-12 col-sm-8 mb-5 text-dark">
-                    <div class="row mb-2">
-                        <div class="col-12 col-sm-6 ">
-                            <label class="fs-5">Judet</label>
+                <div class="col-12 col-sm-6 mb-5">
+                    <div class="row mb-2 text-dark">
+                        <div >
+                            <label class="fs-5">Judet:</label>
                             <select id="regions"  class="form-control select-location fs-6 text-dark">
                                 <option>Judet</option>
                                 
@@ -47,9 +47,9 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 mb-1">
-                        <label class="fs-5 ">Localitate </label>
-                        <div class="fs-6 " id="city" > </div>
+                    <div class="mb-1">
+                        <label class="fs-5">Localitate: </label>
+                        <div class="fs-6 " id="city"> </div>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
        
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
-                    <label class="fs-5 ">Tip teren</label>
+                    <label class="fs-5 ">Tip teren:</label>
                     <select name="relief_type" class="form-control fs-6 text-dark">
                         <option value="">Selecteaza</option>
                         <option value="Campie">Campie</option>
@@ -78,7 +78,7 @@
 
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
-                    <label class="fs-5">La fata locului</label>
+                    <label class="fs-5">La fata locului:</label>
                     <select name="size_volunteer_id" class="form-control select-location fs-6 text-dark">
                         <option>Selecteaza</option>
                         @foreach($size_volunteers as $size_volunteer)

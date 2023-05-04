@@ -26,7 +26,7 @@
 
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         {{--        @include('admin.sidebar.sidebar')--}}
@@ -106,13 +106,13 @@
         @yield('content')
     </main>
 </div>
-</body>
+
 @include('components.modals.about_us_modal')
 @include('components.modals.contact_us_modal')
 @include('components.modals.terms_and_conditions_modal')
 @include('components.modals.privacy_policy')
 
-<footer>
+<footer class="mt-auto">
     <div class="container footer-container">
         <div class="row">
             <div class="col-12" style="text-align: center;">
@@ -145,5 +145,6 @@
         </div>
     </div>
 </footer>
+</body>
 </html>
 
