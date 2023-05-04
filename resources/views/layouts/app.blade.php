@@ -112,7 +112,7 @@
 @include('components.modals.terms_and_conditions_modal')
 @include('components.modals.privacy_policy')
 
-<footer class="mt-auto">
+<footer class="mb-97%>
     <div class="container footer-container">
         <div class="row">
             <div class="col-12" style="text-align: center;">
