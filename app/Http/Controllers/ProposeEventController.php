@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\SizeVolunteers;
 use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProposeEventController extends Controller
 {

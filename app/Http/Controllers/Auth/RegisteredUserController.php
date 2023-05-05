@@ -36,13 +36,10 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
         ]);
 
-        //generate a random password
-        $password = Str::random(10);
-        $password = "admin12345";
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($password),
+            'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
