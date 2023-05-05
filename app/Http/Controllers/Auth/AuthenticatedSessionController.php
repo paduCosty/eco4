@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
+use mysql_xdevapi\Exception;
 use PHPUnit\Framework\Error;
 
 class AuthenticatedSessionController extends Controller
@@ -54,19 +55,24 @@ class AuthenticatedSessionController extends Controller
 
     public function store(LoginRequest $request): RedirectResponse
     {
-        $client = new Client();
-        $response = Http::asForm()->post('https://www.crm.cri.org.ro/androiddev/5sd58dh8we5/login', [
-            'user' => $request['email'],
-            'pass' => $request['password']
-        ]);
-
+        try {
+            $response = Http::asForm()->post(env('LOGIN_URL') . 'login', [
+                'user' => $request['email'],
+                'pass' => $request['password']
+            ]);
+        } catch (Exception) {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Autentificarea a esuat.',
+            ]);
+        }
+//dd($response->json());
         if ($response->getStatusCode() == 200) {
             $user_resp = json_decode($response->getBody(), true);
             if ($user_resp && $user_resp[0]) {
                 $user_resp = $user_resp[0];
 
                 $user = User::where('email', $user_resp['email'])->first();
-//                dd($user_resp);
+
                 if ($user) {
                     // User already exists, update their record
                     $user->id = $user_resp['id'] ?? '';
