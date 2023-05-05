@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
@@ -31,18 +32,33 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'data' => ['required' ,'date', 'before:16 years ago', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
         ]);
 
-        //generate a random password
-        $password = Str::random(10);
-        $password = "admin12345";
+        $response = Http::asForm()->post(env('LOGIN_URL').'register', [
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'data' => $request['data'],
+            'country' => $request['country'],
+            'city' => $request['city'],
+            'pass' => $request['password'],
+        ]);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($password),
+            'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));

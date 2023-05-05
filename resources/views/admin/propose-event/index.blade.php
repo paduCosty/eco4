@@ -19,6 +19,7 @@
                     <th>Termeni de atelier</th>
                     <th>Contract de voluntariat</th>
                     <th>Status</th>
+                    <th>Acțiuni</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,12 +33,23 @@
                         <td>{{ $location->terms_workshop ? 'Da' : 'Nu' }}</td>
                         <td>{{ $location->volunteering_contract ? 'Da' : 'Nu' }}</td>
                         <td>{{ ucfirst($location->status) }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-success">Aprobă</button>
+                                <button type="button" class="btn btn-sm btn-danger">Respinge</button>
+                                <button type="button" class="btn btn-sm btn-primary">Editează</button>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+            {{ $eventLocations->links() }}
+
         </div>
+
     </div>
 </div>
+
 
 @endsection
