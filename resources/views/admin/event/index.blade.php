@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
                 <div class="pull-right mb-5">
-                    <a class="btn btn-default butts fs-5" href="{{ route('event-locations.create') }}"> Create New Product</a>
+                    <a class="btn btn-default butts fs-5" href="{{ route('event-locations.create') }}"> Creaza o locatie noua</a>
                 </div>
             </div>
         </div>
@@ -46,7 +46,8 @@
                 </tr>
             @endforeach
         </table>
-        {{ $events->links() }}
+        {!! $events->withQueryString()->links('pagination::bootstrap-5') !!}
+
     </div>
 
 @endsection

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="text-center mb-5">
-                    <h2>Add New Product</h2>
+                    <h2>Adauga o noua locatie</h2>
                 </div>
 
                 <div class="pull-right mb-3">
@@ -38,7 +38,7 @@
                             <label class="fs-5">Judet:</label>
                             <select id="regions"  class="form-control select-location fs-6 text-dark">
                                 <option>Judet</option>
-                                
+
                                 @foreach($regions as $region)
                                     <option value="{{$region->id}}">{{$region->name}} </option>
                                 @endforeach
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-       
+
 
             <div class="container mb-2">
                <div id="map"></div>
@@ -62,7 +62,7 @@
                 <input type="hidden" id="gps_longitude" name="longitude">
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
-       
+
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5 ">Tip teren:</label>
@@ -74,7 +74,7 @@
                     </select>
                 </div>
             </div>
-        
+
 
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
@@ -94,7 +94,7 @@
         </form>
 
         <script type="text/javascript">
-        
+
             $(document).ready(function () {
                 // console.log(url('/'));
                 var APP_URL = {!! json_encode(url('/')) !!};
@@ -106,7 +106,7 @@
                         type: 'Get',
                         data: {region_id: region_id},
                         success: function (response) {
-                            
+
                             var options = '<select name="cities_id" id="cities_by_region" class="form-control select-location">';
                             $.each(response.data, function (index, value) {
                                 options += '<option lat="' + value.latitude + '" lng="' + value.longitude + '" value="' + value.id + '">' + value.name + '</option>';
