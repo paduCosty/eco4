@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\UserEventLocation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class ProposeEventController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $eventLocations = UserEventLocation::paginate(10);
+        $eventLocations = UserEventLocation::paginate(8);
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 

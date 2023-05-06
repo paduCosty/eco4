@@ -65,12 +65,12 @@
                     @else
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home.home') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" style="color:green" href="{{ route('home.home') }}">{{ __('Home') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a style="color:red" class="nav-link"
-                               href="{{ route('event-locations.index') }}">{{ __('Admin-Creaza un event') }}</a>
+                            <a style="color:green" class="nav-link"
+                               href="{{ route('event-locations.index') }}">{{ __('Creaza loc Ecologizare') }}</a>
                         </li>
 
                         <li class="nav-item">
@@ -79,8 +79,8 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a style="color:green" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                 {{ Auth::user()->name }}
                             </a>
 

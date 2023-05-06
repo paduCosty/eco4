@@ -13,7 +13,7 @@ class EventLocationController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $events = EventLocation::all();
+        $events = EventLocation::paginate(10);
 
         return view('admin.event.index', compact('events'));
     }

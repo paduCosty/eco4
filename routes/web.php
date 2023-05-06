@@ -23,19 +23,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route::middleware(['auth', 'role:admin'])->group(function () {
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-/*admin prefix*/
-Route::prefix('admin')->group(function () {
-    Route::resource('event-locations', EventLocationController::class);
-    Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
-    /*ajax calls city*/
-    Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
+    /*admin prefix*/
+    Route::prefix('admin')->group(function () {
+        Route::resource('event-locations', EventLocationController::class);
+        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
+        /*ajax calls city*/
+        Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
+    });
 });
-//});
 
 /*ajax calls city*/
 Route::get('/cities-if-event-exists', [CityController::class, 'get_cities_by_event_locations'])
@@ -64,7 +64,6 @@ Route::post('/volunteer_registration', [VolunteerController::class, 'store'])
 /*Ajax volunteer END*/
 
 require __DIR__ . '/auth.php';
-
 
 
 //Auth::routes();

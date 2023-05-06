@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use PharIo\Version\Exception;
 
 class RegisteredUserController extends Controller
 {
@@ -35,35 +36,49 @@ class RegisteredUserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'data' => ['required' ,'date', 'before:16 years ago', 'max:255'],
+            'data' => ['required', 'date', 'before:16 years ago', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
         ]);
 
-        $response = Http::asForm()->post(env('LOGIN_URL').'register', [
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'phone' => $request['phone'],
-            'address' => $request['address'],
-            'data' => $request['data'],
-            'country' => $request['country'],
-            'city' => $request['city'],
-            'pass' => $request['password'],
-        ]);
+        try {
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            $response = Http::asForm()->post(env('LOGIN_URL') . 'register', [
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'data' => $request['data'],
+                'country' => $request['country'],
+                'city' => $request['city'],
+                'pass' => $request['password'],
+            ]);
 
-        event(new Registered($user));
+        } catch (Exception) {
+            return redirect()->route('login')->withErrors([
+                'password' => 'Inregistrarea a esuat.',
+            ]);
+        }
 
-        Auth::login($user);
+        if ($response->json() == '1') {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            event(new Registered($user));
+
+            Auth::login($user);
+        } else {
+            return redirect()->route('login')->withErrors([
+                'password' => 'Inregistrarea a esuat.',
+            ]);
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }
