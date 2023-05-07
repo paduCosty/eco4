@@ -37,14 +37,18 @@ class EventCompletedCron extends Command
         --------------------------------------------*/
 
 
-        $events = UserEventLocation::where('due_date', Carbon::now('Europe/Bucharest')->toDateString())->get();
+        $events = UserEventLocation::where('due_date', Carbon::now('Europe/Bucharest')->toDateString())
+            ->where('statu', 'aprobat')
+            ->get();
 
         foreach ($events as $event) {
             $event->status = 'in desfasurare';
             $event->save();
         }
 
-        $events_end = UserEventLocation::where('due_date', Carbon::now('Europe/Bucharest')->subDay()->toDateString())->get();
+        $events_end = UserEventLocation::where('due_date', Carbon::now('Europe/Bucharest')->subDay()->toDateString())
+            ->where('status', 'in desfasurare')
+            ->get();
         foreach ($events_end as $event) {
             $event->status = 'desfasurat';
             $event->save();

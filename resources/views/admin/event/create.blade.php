@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -34,9 +33,9 @@
 
                 <div class="col-12 col-sm-6 mb-5">
                     <div class="row mb-2 text-dark">
-                        <div >
+                        <div>
                             <label class="fs-5">Judet:</label>
-                            <select id="regions"  class="form-control select-location fs-6 text-dark">
+                            <select id="regions" class="form-control select-location fs-6 text-dark">
                                 <option>Judet</option>
 
                                 @foreach($regions as $region)
@@ -49,20 +48,26 @@
 
                     <div class="mb-1">
                         <label class="fs-5">Localitate: </label>
-                        <div class="fs-6 " id="city"> </div>
+                        <div class="fs-6 " id="city"></div>
                     </div>
                 </div>
             </div>
 
 
             <div class="container mb-2">
-               <div id="map"></div>
+                <div id="map"></div>
             </div>
             <div class="mt-4">
                 <input type="hidden" id="gps_longitude" name="longitude">
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
 
+            <div class="row form-group mb-3" style="display: none" id="address_display">
+                <div class="col-12 col-sm-6">
+                    <label class="fs-5 " for="pin_address">Adresa selectata:</label>
+                    <input class="form-control fs-6 text-dark" readonly name="address" id="pin_address">
+                </div>
+            </div>
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5 ">Tip teren:</label>
@@ -89,7 +94,7 @@
                 </div>
             </div>
             <div class="pull-right">
-                <button type="submit" class="btn btn-default butts fs-5"> Send </button>
+                <button type="submit" class="btn btn-default butts fs-5"> Send</button>
             </div>
         </form>
 
@@ -124,7 +129,7 @@
                     var lat = $('option:selected', this).attr('lat');
                     var lng = $('option:selected', this).attr('lng');
 
-                    initMap(parseFloat(lat), parseFloat(lng), zoom = 11)
+                    initMap(parseFloat(lat), parseFloat(lng), zoom = 13)
                 });
             });
 
@@ -141,15 +146,29 @@
                 });
 
                 const marker = new google.maps.Marker({
-                    position: {lat: lat, lng: lng},
+                    // position: {lat: lat, lng: lng},
                     map: map,
                 });
+
+                const geocoder = new google.maps.Geocoder();
 
                 map.addListener("click", (event) => {
                     $('#gps_latitude').val(event.latLng.lat());
                     $('#gps_longitude').val(event.latLng.lng());
                     marker.setPosition(event.latLng);
+
+                    geocoder.geocode({location: event.latLng}, (results, status) => {
+                        if (status === "OK" && results[0]) {
+                            console.log(results[0].formatted_address);
+                            $('#address_display').show();
+                            $('#pin_address').val(results[0].formatted_address);
+
+                        } else {
+                            console.log("Geocoding failed: " + status);
+                        }
+                    });
                 });
+
             }
 
             window.initMap = initMap;
@@ -160,7 +179,7 @@
 
 <style type="text/css">
     #map {
-        width:700px;
+        width: 700px;
         height: 500px;
     }
 </style>

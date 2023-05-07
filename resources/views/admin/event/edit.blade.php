@@ -56,6 +56,14 @@
                 <input type="hidden" id="gps_longitude" name="longitude">
                 <input type="hidden" id="gps_latitude" name="latitude">
             </div>
+
+            <div class="row form-group mb-3" id="address_display">
+                <div class="col-12 col-sm-6">
+                    <label class="fs-5 " for="pin_address">Adresa selectata:</label>
+                    <input class="form-control fs-6 text-dark" value="{{$event_location->address}}" readonly name="address" id="pin_address">
+                </div>
+            </div>
+
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5">Tip teren:</label>
@@ -115,11 +123,25 @@
             map: map,
         });
 
+        const geocoder = new google.maps.Geocoder();
+
         map.addListener("click", (event) => {
             $('#gps_latitude').val(event.latLng.lat());
             $('#gps_longitude').val(event.latLng.lng());
             marker.setPosition(event.latLng);
+
+            geocoder.geocode({location: event.latLng}, (results, status) => {
+                if (status === "OK" && results[0]) {
+                    console.log(results[0].formatted_address);
+                    $('#address_display').show();
+                    $('#pin_address').val(results[0].formatted_address);
+
+                } else {
+                    console.log("Geocoding failed: " + status);
+                }
+            });
         });
+
     }
 
     window.initMap = initMap;

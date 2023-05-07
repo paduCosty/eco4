@@ -16,6 +16,7 @@ class ProposeEventController extends Controller
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $eventLocations = UserEventLocation::paginate(10);
+// trebuie sa mai fac butoanele de respinge si de aproba + edit-ul 
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 

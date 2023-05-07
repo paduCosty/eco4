@@ -34,17 +34,18 @@ class EventLocationController extends Controller
         if (!$user_id) {
             redirect()->route('event-locations.index');
         }
+//        dd($request->all());
 
         $validatedData = $request->validate([
             'cities_id' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
+            'address' => 'required',
             'relief_type' => 'required',
             'size_volunteer_id' => 'required',
         ]);
         $validatedData['user_id'] = $user_id;
         $eventLocation = EventLocation::create($validatedData);
-
         return redirect()->route('event-locations.index');
     }
 
@@ -84,6 +85,7 @@ class EventLocationController extends Controller
             'cities_id' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
+            'address' => 'required',
             'relief_type' => 'required',
             'size_volunteer_id' => 'required',
         ]);

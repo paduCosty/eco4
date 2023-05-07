@@ -13,6 +13,7 @@ class EventLocation extends Model
         'user_id',
         'longitude',
         'latitude',
+        'address',
         'status',
         'relief_type',
         'size_volunteer_id'

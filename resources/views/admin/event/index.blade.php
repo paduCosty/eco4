@@ -23,7 +23,9 @@
         <table class="table table-hover t">
             <tr>
                 <th>Nr.</th>
+                <th>Adresa</th>
                 <th>Relief</th>
+                <th>Voluntari</th>
                 <th>Longitudine</th>
                 <th>Latitudine</th>
                 <th width="170px">Action</th>
@@ -32,7 +34,9 @@
             @foreach ($events as $event)
                 <tr>
                     <td>{{ ++$i }}</td>
+                    <td>{{ $event->address }}</td>
                     <td>{{ $event->relief_type }}</td>
+                    <td>{{ $event->sizeVolunteer->name }}</td>
                     <td>{{ $event->longitude }}</td>
                     <td>{{ $event->latitude }}</td>
                     <td>

@@ -24,11 +24,8 @@
             <tr>
                 <th>Nume</th>
                 <th>Email</th>
-                <th>Eveniment</th>
+                <th>Adresa</th>
                 <th>Data limită</th>
-                <th>Termeni de site</th>
-                <th>Termeni de atelier</th>
-                <th>Contract de voluntariat</th>
                 <th>Status</th>
                 <th>Acțiuni</th>
             </tr>
@@ -37,18 +34,19 @@
                 <tr>
                     <td>{{ $location->name }}</td>
                     <td>{{ $location->email }}</td>
-                    <td>{{ $location->eventLocation->name }}</td>
+                    <td>{{ $location->eventLocation->address }}</td>
                     <td>{{ $location->due_date }}</td>
-                    <td>{{ $location->terms_site ? 'Da' : 'Nu' }}</td>
-                    <td>{{ $location->terms_workshop ? 'Da' : 'Nu' }}</td>
-                    <td>{{ $location->volunteering_contract ? 'Da' : 'Nu' }}</td>
                     <td>{{ ucfirst($location->status) }}</td>
                     <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-success">Aprobă</button>
-                            <button type="button" class="btn btn-sm btn-danger">Respinge</button>
-                            <button type="button" class="btn btn-sm btn-primary">Editează</button>
-                        </div>
+                        <form action="{{ route('event-locations.destroy',$location->id) }}" method="POST">
+                            @csrf
+                            <div class="btn-group">
+                                <a type="button" class="btn btn-success buttons">Aprobă</a>
+                                <a type="button" class="btn btn-danger buttons">Respinge</a>
+                                <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$location->id) }}">Editeaza</a>
+
+                            </div>
+                        </form>
                     </td>
                 </tr>
             @endforeach
