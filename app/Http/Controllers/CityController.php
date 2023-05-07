@@ -63,7 +63,7 @@ class CityController extends Controller
         $city_id = $request->city_id;
         if ($city_id) {
             //tre sa fac un query care sa imi ia datele calumea
-            $approved_events = UserEventLocation::where('users_event_locations.status', 'approved')
+            $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat')
                 ->whereHas('eventLocation.city', function ($query) use ($city_id) {
                     $query->where('id', $city_id);
                 })
