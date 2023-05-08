@@ -318,11 +318,11 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h4 id="next-edition-title">Următoarea ediție <span id="next-edition-title-interval"></span></h4>
+                    <h2 id="next-edition-title">Următoarea ediție <span id="next-edition-title-interval"></span></h2>
                 </div>
             </div>
 
-            <div class="row next-event-select">
+            {{-- <div class="row next-event-select">
                 <div class="col-12 col-sm-6 white-block" style="text-align:center;/*margin-left: 200px; */">
                     <div class="select-wrapper" id="mainSelectWrapper">
                         <select id="main-select-county" class="select transparent-btn"
@@ -340,7 +340,7 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -597,7 +597,7 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
                                 <div class="row form-group">
                                     <div class="col-12 text-start" id="field-completion-message">
                                         <label id="confirmation-for-number-of-people">
-                                            Atenție: completarea acestui câmp presupune că vei
+                                            Atenție: Completarea acestui câmp presupune că vei
                                             lua de la locul de pornire numărul de persoane specificat
                                         </label>
                                     </div>
@@ -606,7 +606,7 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
                                 <div class="row form-group m-1">
                                     <div class="col-12">
                                         <div class="terms-conditions-text">
-                                            Sunt de acord cu <a href="#" style="color: #A6CE39;">termenii și condițiile
+                                            Sunt de acord cu <a href="#" style="color: #A6CE39;">Termenii și Condițiile
                                                 acestui</a> site.
                                         </div>
                                     </div>
@@ -615,7 +615,7 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
                                 <div class="row form-group m-1">
                                     <div class="col-12">
                                         <div class="terms-conditions-text">
-                                            Sunt de acord cu <a href="#" style="color: #A6CE39;">termenii și condițiile
+                                            Sunt de acord cu <a href="#" style="color: #A6CE39;">Termenii și Condițiile
                                                 de participare</a> la
                                             workshop-ul de ecologizare.
                                         </div>
@@ -712,7 +712,7 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="adresaemail" class="col-sm-5 col-form-label">Observa?ii</label>
+                                    <label for="adresaemail" class="col-sm-5 col-form-label">Observatii</label>
                                     <div class="col-sm-7">
                                         <textarea name="observatii" class="input-normal input-textarea"></textarea>
                                     </div>
@@ -726,7 +726,7 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
 
                                         <label class="form-check-label" for="">Sunt de acord cu <span><a href="#"
                                                                                                          data-bs-toggle="modal"
-                                                                                                         data-bs-target="#tandc">termenii și condițiile</a></span>
+                                                                                                         data-bs-target="#tandc">Termenii și Ccondițiile</a></span>
                                             acestei platforme
                                         </label>
                                     </div>
@@ -781,9 +781,9 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
 
                                                 <br/>
 
-                                                <ul class="how-it-works">
-                                                    <li>
-                                                        te înscrii, completând formularul de mai jos
+                                                <ul class="how-it-works text-dark">
+                                                    <li >
+                                                        Te înscrii, completând formularul de mai jos
                                                     </li>
 
                                                     <li>
@@ -3840,12 +3840,12 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
     }
 
     .add-next-eco-action {
-        font-style: normal;
+        /* font-style: normal;
         font-weight: 500;
-        font-size: 11px;
+        font-size: 16px;
         line-height: 120%;
-        letter-spacing: -0.4px;
-        color: #4BDE97;
+        /* letter-spacing: -0.4px; */
+        /* color: #084b18; */ */
     }
 
     .previous-event-photo-container {
