@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('welcome');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,10 +31,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     /*admin prefix*/
     Route::prefix('admin')->group(function () {
         Route::resource('event-locations', EventLocationController::class);
+
+        Route::resource('propose-locations', ProposeEventController::class);
         Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
-        Route::resource('event-locations', EventLocationController::class);
-        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
-        Route::post('/propose-locations/{id}', [ProposeEventController::class, 'edit']);
+
 
         /*ajax calls city*/
         Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');

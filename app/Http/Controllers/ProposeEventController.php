@@ -48,20 +48,19 @@ class ProposeEventController extends Controller
         return redirect()->route('home.home');
     }
 
-    public function show(EventLocation $eventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
 //        return view('event-locations.show', compact('eventLocation'));
-        dd('show');
+        dd($location);
     }
 
-    public function edit(EventLocation $event_location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-//        $size_volunteers = SizeVolunteers::all();
-//        $regions = Region::all();
+        dd($location->id);
+
 //
-//        $event_location = EventLocation::with('city')->findOrFail($event_location->id);
-//
-//        return view('admin.event.edit', compact('event_location', 'regions', 'size_volunteers'));
+        $user = EventLocation::first();
+        return view('admin.propose-event.edit', compact('user'));
     }
 
     public function update(Request $request, EventLocation $eventLocation): \Illuminate\Http\RedirectResponse

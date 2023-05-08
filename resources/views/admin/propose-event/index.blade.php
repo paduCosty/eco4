@@ -68,18 +68,21 @@
                         @endif
                     </td>
                     <td>
-                        <form action="{{ route('event-locations.destroy',$location->id) }}" method="POST">
-                            @csrf
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <div class="d-inline-block">
-                                    <button class="btn btn-default buttons"
-                                            href="{{ route('propose-locations.edit',$location->id) }}">Editeaza
-                                    </button>
+                            <div class="d-inline-block">
+{{--                                <form action="{{ route('event-locations.destroy',$location->id) }}" method="POST">--}}
 
-                                </div>
+                                <a class="btn btn-default buttons"
+                                   href="{{ route('propose-locations.edit',$location->id) }}">Editeaza
+                                </a>
+                                    <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a>
+
+{{--                                    @csrf--}}
+{{--                                </form>--}}
+
                             </div>
-                        </form>
+                        </div>
                     </td>
                 </tr>
                 @php($i++)
