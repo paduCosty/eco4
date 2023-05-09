@@ -7,16 +7,13 @@ use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\UserEventLocation;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProposeEventController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $eventLocations = UserEventLocation::paginate(10);
-// trebuie sa mai fac butoanele de respinge si de aproba + edit-ul 
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 
@@ -49,20 +46,19 @@ class ProposeEventController extends Controller
         return redirect()->route('home.home');
     }
 
-    public function show(EventLocation $eventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
 //        return view('event-locations.show', compact('eventLocation'));
-        dd('show');
+        dd($location->id);
     }
 
-    public function edit(EventLocation $event_location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(UserEventLocation $userEventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $size_volunteers = SizeVolunteers::all();
-        $regions = Region::all();
+        dd($userEventLocation->id);
 
-        $event_location = EventLocation::with('city')->findOrFail($event_location->id);
-
-        return view('admin.event.edit', compact('event_location', 'regions', 'size_volunteers'));
+//
+        $user = EventLocation::first();
+        return view('admin.propose-event.edit', compact('user'));
     }
 
     public function update(Request $request, EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
@@ -82,8 +78,9 @@ class ProposeEventController extends Controller
         return redirect()->route('event-locations.index');
     }
 
-    public function destroy(EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
+    public function destroy(UserEventLocation $eventLocation): \Illuminate\Http\RedirectResponse
     {
+        dd($eventLocation->id);
         $eventLocation->delete();
 
         return redirect()->route('event-locations.index');
@@ -99,6 +96,21 @@ class ProposeEventController extends Controller
 
 //        dd($cities->toArray());
         return view('propose-event.index', compact('events', 'regions', 'approved_cities', 'cities'));
+    }
+
+    public function approve_or_decline_propose_event(Request $request)
+    {
+        if ($request->location_id && $request->val) {
+            $userEventLocation = UserEventLocation::where('id', $request->location_id)
+                ->first();
+
+            if ($userEventLocation && $request->val) {
+                $userEventLocation->status = $request->val;
+                $userEventLocation->save();
+                return response()->json(['success' => true, 'status' => ucfirst($userEventLocation->status)]);
+            }
+        }
+        return response()->json(['success' => false]);
     }
 
 }

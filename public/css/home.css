@@ -65,7 +65,7 @@ img, svg {
 }
 
 /* .input-normal, .form-check-input { */
-    /*box-shadow: none!important;*/
+/*box-shadow: none!important;*/
 /* } */
 
 
@@ -110,7 +110,6 @@ img, svg {
 #next-edition-title {
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
     line-height: 140%;
     text-align: center;
     letter-spacing: -0.5px;
@@ -135,6 +134,7 @@ img, svg {
 }
 
 #see-next-edition-details {
+
     background: #A6CE39;
     border: 1px solid #EFEFEF;
     border-radius: 7px;
@@ -144,8 +144,8 @@ img, svg {
     line-height: 120%;
     letter-spacing: -0.4px;
     color: #FFFFFF;
-    width: 133px;
-    height: 52px;
+    width: 113px;
+    height: 37px;
 }
 
 #next-edition-svg-2 {
@@ -166,11 +166,11 @@ img, svg {
 
 .add-next-eco-action {
     font-style: normal;
-    font-weight: 500;
-    font-size: 11px;
+    font-weight: 700px;
+    font-size: 26px;
     line-height: 120%;
-    letter-spacing: -0.4px;
-    color: #4BDE97;
+    /* letter-spacing: -0.4px; */
+    color: #023116;
 }
 
 .previous-event-photo-container {
@@ -460,8 +460,8 @@ footer {
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 140%;
-    letter-spacing: -0.3px;
+    /* line-height: 140%; */
+    /* letter-spacing: -0.3px; */
     color: #171717;
 }
 

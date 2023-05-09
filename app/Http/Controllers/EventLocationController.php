@@ -57,6 +57,7 @@ class EventLocationController extends Controller
 
     public function edit(EventLocation $event_location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
+//        dd($event_location->id);
         $size_volunteers = SizeVolunteers::all();
         $city = City::select('id', 'name', 'region_id')->where('id', $event_location->cities_id)
             ->first();

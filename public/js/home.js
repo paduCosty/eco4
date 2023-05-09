@@ -44,7 +44,7 @@ $(document).ready(function () {
 
                                     <div class="slider-link text-end">
                                         <a href="#" class="enrol-button" data-bs-toggle="modal" users_event_location_id="${value.id}" data-bs-target="#enrollModalGeneral" >
-                                            înscriere +
+                                            Inscriere +
                                         </a>
                                     </div>
                                 </li>`

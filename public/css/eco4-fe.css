@@ -100,7 +100,7 @@ a{
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
-    color: #4BDE97;
+    color: #086920;
     padding: 5px 10px;
     display: inline-block;
     margin-top: 20px;
@@ -232,15 +232,15 @@ a{
     opacity: 1;
 }
 .slider-link a{
-    background: rgba(75, 222, 151, 0.1);
-    border-radius: 3px;
-    font-style: normal;
+    background: rgb(232, 253, 246);
+    border-radius: 9px;
+    font-style: bold;
     font-weight: 500;
-    font-size: 17px;
-    color: #4BDE97;
-    padding: 10px 15px;
+    font-size: 21px;
+    color: #169627;
+    padding: 8px 13px;
     display: inline-block;
-    margin-top: 20px;
+    margin-top: -5px;
 }
 .slide_common_p a {
     padding: 22px;
