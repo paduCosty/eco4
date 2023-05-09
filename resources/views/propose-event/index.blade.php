@@ -229,7 +229,7 @@
                         </div>
 
 
-                        <div class=" slider-link add-next-eco-action col-sm-7 ">
+                        <div class="slider-link add-next-eco-action col-sm-7 ">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
                                 Propune acțiune de ecologizare +
                             </a>
@@ -277,10 +277,12 @@
 
             <div class="row ">
                 <div class="col-12 mb-3" id="event_card">
-                    <div class="slider-wrap ">
+                   
                         <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span></h2>
-                        <ul class="slider row col-lg-12" id="eco-actions-container">
+                         <div>
+                        <ul class="row col-lg-12 slider-wrap" id="eco-actions-container">
                         </ul>
+                        
                     </div>
                 </div>
             </div>
@@ -600,7 +602,7 @@
                             </div>
                         </div>
 
-                        <div class="modal-body">
+                        {{-- <div class="modal-body">
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="row form-group">
@@ -856,14 +858,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Packages For Companies -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="packages" tabindex="-1" aria-labelledby="packagesModalLabel"
                 aria-hidden="true" role="dialog">
@@ -1023,7 +1025,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Eco Action Proposal -->
 
@@ -1034,7 +1036,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header close-modal">
-                            <h5 class="modal-title eco-proposal-title">Propunere acțiune ecologizare</h5>
+                            <h4 class="modal-title eco-proposal-title">Propunere acțiune ecologizare</h4>
 
                             <div class="modal-close-text-container ">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
@@ -1136,29 +1138,41 @@
                                             <form id="volunteer_proposal_form" action="{{ route('home.store') }}"
                                                 method="POST">
                                                 @csrf
-                                                <div class="col-12 col-sm-5">
+                                                {{-- <div class="col-12 col-sm-5">
+                                                    <label for="nume_voluntar_propus"
+                                                           class="col-form-label form-modal-label">Nume, 
+                                                        Prenume</label>
+                                                    <input type="text"
+                                                           class="input-text-eco4 eco-input-text-modal"
+                                                           name="name" required/>
+                                                </div> --}}
+                                                <div class="row form-group col-12 col-sm-6">
+                                                <div class="mb-3">
                                                     <label for="nume_voluntar_propus"
                                                         class="col-form-label form-modal-label">Nume, 
-                                                        Prenume</label>
-                                                    <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                        name="name" required />
+                                                        Prenume</label> <span id="eroare_nume_voluntar_propus"></span>
+                                                    <input type="text" class="form-control input-normal"
+                                                        name="name" required >
                                                 </div>
 
-                                                <div class="col-12 col-sm-5">
-                                                    <label for="nume_voluntar_propus"
-                                                        class="col-form-label form-modal-label">Email:</label>
-                                                    <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                        name="email" required />
+                                                <div class="mb-3">
+                                                    <label for=""
+                                                        class="col-form-label form-modal-label"> Email:</label>
+                                                    <input type="text" class="form-control input-normal"
+                                                        name="email" required >
                                                 </div>
 
-                                                <div class="col-12 col-sm-5">
-                                                    <label class="col-form-label form-modal-label">Telefon:</label>
-                                                    <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                        name="phone" required />
+                                                <div class="mb-3">
+                                                    <label for=""
+                                                    class="col-form-label form-modal-label">Telefon:</label>
+                                                    <input type="text" class="form-control input-normal"
+                                                        name="phone" required >
+                                                        
                                                 </div>
+                                            </div>
 
-                                                <div class="row form-group mb-3">
-                                                    <div class="col-12 col-sm-5 ">
+                                                <div class="row form-group col-12 col-sm-6">
+                                                    <div class=" mb-3 ">
                                                         <label for="judet_voluntar_propus"
                                                             class="col-form-label form-modal-label">Propune
                                                             acțiune la:</label>
@@ -1173,8 +1187,8 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6 mb-3">
+                                                {{-- </div>
+                                                <div class="col-12 col-sm-6 mb-3"> --}}
                                                     <div class="special-input-wrap">
                                                         <select required
                                                             class="form-control input-normal insert-localities"
@@ -1284,7 +1298,7 @@
                                 Brăila</h5>
 
                             <div class="modal-close-text-container">
-                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button text fs-5"
+                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button text-dark fs-5"
                                 style="color: #a00404" data-bs-dismiss="modal" aria-label="Close" id="close-modal-4">Close</button>
                             </div>
                         </div>
@@ -1295,8 +1309,8 @@
                                     <form id="volunteer_add" name="volunteer_add" method="POST">
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
-                                                <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
-                                                    prenume</label>
+                                                {{-- <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
+                                                    prenume</label> --}}
                                             </div>
 
                                             <div class="col-12 col-sm-7">
@@ -1466,7 +1480,7 @@
                                                         for="eco-action-enroll-modal-check-2">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#workshop"
-                                                        style="color: #A6CE39;">termenii și condițiile de participare</a>
+                                                        style="color: #A6CE39;">Termenii și Condițiile de participare</a>
                                                     la
                                                     workshop-ul de ecologizare.
                                                 </div>
@@ -1630,9 +1644,9 @@
                                             <div class="col-12 col-sm-6">
                                                 <div class="row form-group">
                                                     <div class="col-12 col-sm-4">
-                                                        <label for="name-donate-modal"
+                                                        {{-- <label for="name-donate-modal"
                                                             class="col-form-label form-modal-label">Nume,
-                                                            prenume</label>
+                                                            Prenume</label> --}}
                                                     </div>
 
                                                     <div class="col-12 col-sm-8">

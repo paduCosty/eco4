@@ -390,13 +390,13 @@ $paypal_url = "https://webpad-solutions.com"; // LIVE Paypal API URL
                     </div>
 
                     <div class="modal-body">
-                        <div class="container">
+                         <div class="container">
                             <div class="pop-content">
                                 <div class="row form-group">
                                     <div class="col-12 col-sm-4">
                                         <label for="name-actions-modal" class="col-form-label form-modal-label">Nume,
                                             prenume</label>
-                                    </div>
+                                    </div> 
 
                                     <div class="col-12 col-sm-8">
                                         <div class="row">
