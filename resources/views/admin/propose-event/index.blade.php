@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
                 <div class="pull-right mb-5">
-                    {{--                    <a class="btn btn-default butts fs-5" href="{{ route('home.home') }}"> Propune un eveniment</a>--}}
+                    <a class="btn btn-default butts fs-5" href="{{ route('home.home') }}"> Propune un eveniment</a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                         @if($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
                             {{ ucfirst($location->status) }}
                         @else
-                            <div class="d-inline-block buttons">
+                            <div class="d-inline-block buttons-switch">
                                 <div class="switch-toggle switch-3 switch-candy"
                                      style="background-color: transparent">
                                     <input id="on-{{ $i }}" name="state-d-{{ $i }}" type="radio"
@@ -140,4 +140,5 @@
         /*font-family: 'Inter' !important;*/
         font-family: inherit;
     }
+
 </style>

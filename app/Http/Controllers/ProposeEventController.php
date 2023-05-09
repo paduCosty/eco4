@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\SizeVolunteers;
 use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
@@ -43,6 +42,7 @@ class ProposeEventController extends Controller
 
         $eventLocation = UserEventLocation::create($validatedData);
 
+        session()->flash('success', 'Datele au fost salvate cu succes!');
         return redirect()->route('home.home');
     }
 
@@ -52,30 +52,31 @@ class ProposeEventController extends Controller
         dd($location->id);
     }
 
-    public function edit(UserEventLocation $userEventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(UserEventLocation $userEventLocation)
     {
-        dd($userEventLocation->id);
+
+//        dd($userEventLocation->id);
 
 //
-        $user = EventLocation::first();
-        return view('admin.propose-event.edit', compact('user'));
+//        $user = EventLocation::first();
+        return view('admin.propose-event.edit', compact(
+            'userEventLocation'
+        ));
     }
 
-    public function update(Request $request, EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
         $validatedData = $request->validate([
-//            'name' => 'required',
-            'cities_id' => 'required',
-            'user_id' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
-            'relief_type' => 'required',
-//            'status' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'due_date' => 'required',
+            'status' => 'required',
+
         ]);
 
-        $eventLocation->update($validatedData);
+        $userEventLocation->update($validatedData);
 
-        return redirect()->route('event-locations.index');
+        return redirect()->route('propose-locations.index');
     }
 
     public function destroy(UserEventLocation $eventLocation): \Illuminate\Http\RedirectResponse

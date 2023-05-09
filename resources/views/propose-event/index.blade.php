@@ -228,8 +228,8 @@
                             <button id="see-next-edition-details">Vezi detalii</button>
                         </div>
 
-
-                        <div class=" slider-link add-next-eco-action col-sm-7 ">
+                        @include('components.modals.propose-event-location-modal')
+                        <div class="slider-link add-next-eco-action col-sm-7 ">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
                                 Propune acțiune de ecologizare +
                             </a>
@@ -276,11 +276,13 @@
 
             <div class="row ">
                 <div class="col-12 mb-3" id="event_card">
-                    <div class="slider-wrap ">
-                        <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span>
-                        </h2>
-                        <ul class="slider row col-lg-12" id="eco-actions-container">
+
+                    <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span>
+                    </h2>
+                    <div>
+                        <ul class="row col-lg-12 slider-wrap" id="eco-actions-container">
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -585,10 +587,10 @@
 
     <!-- modals -->
     <!-- Actions In Ialomita -->
-    <div class="row">
+    {{--  <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="nextEventModal" tabindex="-1" aria-labelledby="nextEventModal"
-                 aria-hidden="true" role="dialog">
+                aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header close-modal">
@@ -596,14 +598,12 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                    Close
-                                </button>
+                                    data-bs-dismiss="modal" aria-label="Close">
+                                    Close </button>
                             </div>
                         </div>
 
-                        <div class="modal-body">
+                         <div class="modal-body">
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="row form-group">
@@ -616,7 +616,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="name-actions-modal" id="name-actions-modal" required/>
+                                                        name="name-actions-modal" id="name-actions-modal" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -625,15 +625,14 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-4">
                                             <label for="email-actions-modal"
-                                                   class="col-form-label form-modal-label">Email:</label>
+                                                class="col-form-label form-modal-label">Email:</label>
                                         </div>
 
                                         <div class="col-12 col-sm-8">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="email-actions-modal" id="email-actions-modal"
-                                                           required/>
+                                                        name="email-actions-modal" id="email-actions-modal" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -642,14 +641,14 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-4">
                                             <label for="tel-actions-modal"
-                                                   class="col-form-label form-modal-label">Telefon:</label>
+                                                class="col-form-label form-modal-label">Telefon:</label>
                                         </div>
 
                                         <div class="col-12 col-sm-8">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="tel-actions-modal" id="tel-actions-modal" required/>
+                                                        name="tel-actions-modal" id="tel-actions-modal" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -707,17 +706,17 @@
                                                     </select>
 
                                                     <svg class="select-arrow-svg" id="svg-arrow-1" width="24"
-                                                         height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39"/>
+                                                            fill="#A6CE39" />
                                                     </svg>
                                                 </div>
 
                                                 <div class="col-12 col-sm-6">
                                                     <select class="dropdown-eco4 form-control"
-                                                            id="dropdown-eco4-second-select" required>
+                                                        id="dropdown-eco4-second-select" required>
                                                         <option selected>Selectează</option>
                                                         <option value="1">Alba</option>
                                                         <option value="2">Arad</option>
@@ -764,11 +763,11 @@
                                                     </select>
 
                                                     <svg class="select-arrow-svg" id="svg-arrow-2" width="24"
-                                                         height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39"/>
+                                                            fill="#A6CE39" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -778,20 +777,20 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-4">
                                             <label for="friends-enrolled-actions-modal"
-                                                   class="col-form-label form-modal-label">Mai vin</label>
+                                                class="col-form-label form-modal-label">Mai vin</label>
                                         </div>
 
                                         <div class="col-12 col-sm-8">
                                             <div class="row">
                                                 <div class="col-12 col-sm-6">
                                                     <input type="text"
-                                                           class="input-number-of-friends-eco4 eco-input-text-modal"
-                                                           id="friends-enrolled-actions-modal" required/>
+                                                        class="input-number-of-friends-eco4 eco-input-text-modal"
+                                                        id="friends-enrolled-actions-modal" required />
                                                 </div>
 
                                                 <div class="col-12 col-sm-6">
                                                     <label class="friends-enrolled"
-                                                           style="width: 133px; height: 17px;">prieteni
+                                                        style="width: 133px; height: 17px;">prieteni
                                                         să facem treabă</label>
                                                 </div>
                                             </div>
@@ -805,7 +804,7 @@
 
                                         <div class="col-12 col-sm-4">
                                             <input type="text" class="input-number-of-seats-eco4"
-                                                   id="car-actions-modal" required/>
+                                                id="car-actions-modal" required />
                                         </div>
 
                                         <div class="col-12 col-sm-4">
@@ -861,27 +860,25 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
-
     <!-- Packages For Companies -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="packages" tabindex="-1" aria-labelledby="packagesModalLabel"
-                 aria-hidden="true" role="dialog">
+                aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header close-modal">
                             <h5 class="modal-title">Pachete companii</h5>
 
                             <div class="modal-close-text-container">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                    Close
-                                </button>
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    Close </button>
                             </div>
                         </div>
 
@@ -903,7 +900,7 @@
                                                 </div>
 
                                                 <div class="alert alert-success" id="pachete-alert"
-                                                     style="display: none;" role="alert">
+                                                    style="display: none;" role="alert">
                                                     Te-ai inscris cu succes!
                                                 </div>
                                             </div>
@@ -911,16 +908,16 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="company-name-package-modal"
-                                                           class="col-form-label form-modal-label">Nume companie</label>
+                                                        class="col-form-label form-modal-label">Nume companie</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="text"
-                                                                   class="input-text-eco4 eco-input-text-modal"
-                                                                   name="company-name-package-modal"
-                                                                   id="company-name-package-modal" required/>
+                                                                class="input-text-eco4 eco-input-text-modal"
+                                                                name="company-name-package-modal"
+                                                                id="company-name-package-modal" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -929,7 +926,7 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="contact-person-package-modal"
-                                                           class="col-form-label form-modal-label">Persoana
+                                                        class="col-form-label form-modal-label">Persoana
                                                         contact</label>
                                                 </div>
 
@@ -937,8 +934,8 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="text"
-                                                                   class="input-text-eco4 eco-input-text-modal"
-                                                                   id="contact-person-package-modal" required/>
+                                                                class="input-text-eco4 eco-input-text-modal"
+                                                                id="contact-person-package-modal" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -947,16 +944,16 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="tel-package-modal"
-                                                           class="col-form-label form-modal-label">Telefon</label>
+                                                        class="col-form-label form-modal-label">Telefon</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="tel"
-                                                                   class="input-text-eco4 eco-input-text-modal"
-                                                                   name="tel-package-modal" id="tel-package-modal"
-                                                                   required/>
+                                                                class="input-text-eco4 eco-input-text-modal"
+                                                                name="tel-package-modal" id="tel-package-modal"
+                                                                required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -965,16 +962,16 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="email-package-modal"
-                                                           class="col-form-label form-modal-label">Email</label>
+                                                        class="col-form-label form-modal-label">Email</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="email"
-                                                                   class="input-text-eco4 eco-input-text-modal"
-                                                                   name="email-package-modal" id="email-package-modal"
-                                                                   required/>
+                                                                class="input-text-eco4 eco-input-text-modal"
+                                                                name="email-package-modal" id="email-package-modal"
+                                                                required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -983,15 +980,13 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="observations-packages-modal"
-                                                           class="col-form-label form-modal-label">Observații</label>
+                                                        class="col-form-label form-modal-label">Observații</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <textarea
-                                                                class="company-package-modal-textarea eco-input-text-modal"
-                                                                name="observations-packages-modal"
+                                                            <textarea class="company-package-modal-textarea eco-input-text-modal" name="observations-packages-modal"
                                                                 id="observations-packages-modal" required></textarea>
                                                         </div>
                                                     </div>
@@ -1001,13 +996,13 @@
                                             <div class="row form-group">
                                                 <div class="col-sm-12">
                                                     <input class="form-check-input" type="checkbox"
-                                                           name="check-package-modal" id="check-package-modal"/>
+                                                        name="check-package-modal" id="check-package-modal" />
 
                                                     <div class="terms-conditions-text">
                                                         <label style="display: inline;" for="check-package-modal">Sunt
                                                             de
                                                             acord cu </label><a href="#"
-                                                                                style="color: #A6CE39;">termenii
+                                                            style="color: #A6CE39;">termenii
                                                             și
                                                             condițiile acestui</a> site.
                                                     </div>
@@ -1031,266 +1026,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Eco Action Proposal -->
 
-    <div class="row">
-        <div class="col-12">
-            <div class="modal-window modal-lg modal fade" id="proposalModal" tabindex="-1"
-                 aria-labelledby="proposalModalLabel"
-                 aria-hidden="true" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header close-modal">
-                            <h5 class="modal-title eco-proposal-title">Propunere acțiune ecologizare</h5>
 
-                            <div class="modal-close-text-container ">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close" id="close-modal-4">Close
-                                </button>
-                            </div>
-                        </div>
-
-                        {{--                    asta e modal-ul --}}
-
-                        <div class="modal-body  ">
-                            <div class="container">
-                                <div class=" pop-content">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group row">
-                                                <div class="form-info-text">
-                                                    <h6 class="modal-title text-dark fs-5">Cum funcționează:</h6>
-
-                                                    <br/>
-
-                                                    <ul class="how-it-works ">
-                                                        <li class="text-dark fs-6">
-                                                            Te înscrii, completând formularul de mai jos.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            Noi analizăm propunerea ta. Dacă sunt și alte acțiuni în
-                                                            zonă
-                                                            este posibil să le cumulăm.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            Dacă acțiunea ta a fost selectată, vei semna un contract de
-                                                            voluntariat cu noi, iar ulterior te ținem la curent cu
-                                                            situația
-                                                            acesteia
-                                                            (acte, relația cu operatorul desalubritate, etc.) Între timp
-                                                            tu
-                                                            începi să strângi voluntari. vei primi un link personalizat
-                                                            prin
-                                                            intermediul căruia
-                                                            vom știi că voluntarii au venit din partea ta.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            Vei primi o parolă cu care te vei loga pe
-                                                            platformă
-                                                            pentru a vedea numărul voluntarilor, situația acestora și
-                                                            detalii
-                                                            despre ei.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            Cu câteva zile înainte de acțiune, vei primi saci de gunoi
-                                                            și
-                                                            mănuși.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            În ziua acțiunii, vei scana qr code-urile voluntarilor
-                                                            participanți la acțiune. În baza acestui scan ei vor primi
-                                                            diplomele de participare și
-                                                            punctele de implicare socială.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            Vei face poze la acțiunea pe care o coordonezi, iar acestea
-                                                            se
-                                                            vor posta pe pagina de Facebook și nu numai.
-                                                        </li>
-
-                                                        <li class="text-dark fs-6">
-                                                            Vei primii un număr de puncte de implicare socială,
-                                                            respectiv
-                                                            diploma de coordonator la interval de maxim o săptămână de
-                                                            la
-                                                            încheierea acțiunii.
-                                                        </li>
-
-                                                        <br/>
-                                                        <span class="text-dark fs-5" style="color: #B9B9B9;">Ce părere ai? Te bagi la o treabă de
-                                                            lungă durată?</span>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <strong>Whoops!</strong> There were some problems with your
-                                                input.<br><br>
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                                        <div class="">
-                                            <form id="volunteer_proposal_form" action="{{ route('home.store') }}"
-                                                  method="POST">
-                                                @csrf
-                                                <div class="col-12 col-sm-5">
-                                                    <label for="nume_voluntar_propus"
-                                                           class="col-form-label form-modal-label">Nume,
-                                                        Prenume</label>
-                                                    <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="name" required/>
-                                                </div>
-
-                                                <div class="col-12 col-sm-5">
-                                                    <label for="nume_voluntar_propus"
-                                                           class="col-form-label form-modal-label">Email:</label>
-                                                    <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="email" required/>
-                                                </div>
-
-                                                <div class="col-12 col-sm-5">
-                                                    <label class="col-form-label form-modal-label">Telefon:</label>
-                                                    <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="phone" required/>
-                                                </div>
-
-                                                <div class="row form-group mb-3">
-                                                    <div class="col-12 col-sm-5 ">
-                                                        <label for="judet_voluntar_propus"
-                                                               class="col-form-label form-modal-label">Propune
-                                                            acțiune la:</label>
-
-                                                        <select name="region_id"
-                                                                class="form-control input-normal select-location"
-                                                                id="propose_regions" required>
-                                                            <option value="">Judet</option>
-                                                            @foreach ($regions as $region)
-                                                                <option value="{{ $region->id }}">{{ $region->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6 mb-3">
-                                                    <div class="special-input-wrap">
-                                                        <select required
-                                                                class="form-control input-normal insert-localities"
-                                                                id="region_cities">
-                                                            <option value="">Localitate</option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-4 mb-4">
-                                                    <div id="map"></div>
-                                                </div>
-                                                <div>
-                                                    <input type="text" id="gps_place_selected"
-                                                           name="event_location_id" hidden>
-                                                </div>
-
-                                                <div class="m-4 col-sm-5 col-sm-2">
-
-                                                    <input class="form-control fs-6 text-dark" type="date"
-                                                           name="due_date">
-
-                                                </div>
-
-
-                                                <div class="row m-1">
-                                                    <div class="col-12 terms-conditions-text text-dark fs-6">
-                                                        <span id="eco-proposal-modal-check-1-span"></span>
-                                                        <input type="checkbox" name="terms_site"
-                                                               value="1"/>
-                                                        <label class="text-dark fs-6"
-                                                               for="eco-proposal-modal-check-1">Sunt
-                                                            de acord cu</label>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                           style="color: #A6CE39;">Termenii și Condițiile acestui</a>
-                                                        site.
-                                                    </div>
-                                                </div>
-
-                                                <div id="marker_details">
-
-                                                </div>
-
-                                                <div class="row m-1">
-                                                    <div class="col-12 terms-conditions-text text-dark fs-6">
-                                                        <input type="checkbox"
-                                                               name="terms_workshop" id="eco-proposal-modal-check-2"
-                                                               value="1"/>
-                                                        <label style="display: inline;"
-                                                               for="eco-proposal-modal-check-2">Sunt
-                                                            de acord cu</label>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#workshop" style="color: #A6CE39;">Termenii
-                                                            și
-                                                            Condițiile de
-                                                            participare</a>
-                                                        la workshop-ul de ecologizare.
-                                                    </div>
-                                                </div>
-
-                                                <div class="row m-1">
-                                                    <div class="col-12 terms-conditions-text text-dark fs-6">
-                                                        <span id="eco-proposal-modal-check-3-span"></span>
-                                                        <input type="checkbox" value="1"
-                                                               name="volunteering_contract"
-                                                               id="eco-proposal-modal-check-3"/>
-                                                        <label style="display: inline;" style="display: inline;"
-                                                               for="eco-proposal-modal-check-3">Sunt de acord
-                                                            cu </label>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#contract" style="color: #A6CE39;;">Contractul
-                                                            de voluntariat.</a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="error-messages"></div>
-
-                                                <div class="row form-group">
-                                                    <div class="col-sm-12 text-end">
-                                                        <button type="button" id="showConfirmMessage"
-                                                                data-bs-toggle="modal" data-bs-target="#confirmModalBox"
-                                                                style=""></button>
-                                                        <input type="button" id="voluteer-proposal-add-button"
-                                                               class="form-submit modal-register-button"
-                                                               value="Propune"/>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Enroll Specific Eco Action -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel"
-                 aria-hidden="true" role="dialog">
+                aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content" id="enroll-Movila-Miresei">
                         <div class="modal-header close-modal">
@@ -1298,10 +1044,8 @@
                                 Brăila</h5>
 
                             <div class="modal-close-text-container">
-                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button text fs-5"
-                                        style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
-                                        id="close-modal-4">Close
-                                </button>
+                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button text-dark fs-5"
+                                style="color: #a00404" data-bs-dismiss="modal" aria-label="Close" id="close-modal-4">Close</button>
                             </div>
                         </div>
 
@@ -1310,17 +1054,17 @@
                                 <div class="pop-content">
                                     <form id="volunteer_add" name="volunteer_add" method="POST">
                                         <div class="row form-group">
-                                            <div class="col-12 col-sm-5">
-                                                <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
-                                                    prenume</label>
-                                            </div>
+                                            <div class="col-12 col-sm-5"> --}}
+    {{-- <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
+                                                    prenume</label> --}}
+    {{-- </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <input type="text"
-                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                               name="nume_voluntar" id="nume_voluntar"/>
+                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                            name="nume_voluntar" id="nume_voluntar" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1329,15 +1073,15 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="email_voluntar"
-                                                       class="col-form-label form-modal-label">Email</label>
+                                                    class="col-form-label form-modal-label">Email</label>
                                             </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <input type="email"
-                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                               name="email_voluntar" id="email_voluntar"/>
+                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                            name="email_voluntar" id="email_voluntar" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1346,15 +1090,15 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="tel_voluntar"
-                                                       class="col-form-label form-modal-label">Telefon</label>
+                                                    class="col-form-label form-modal-label">Telefon</label>
                                             </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <input type="tel"
-                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                               name="tel_voluntar" id="tel_voluntar"/>
+                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                            name="tel_voluntar" id="tel_voluntar" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1363,7 +1107,7 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="judet_voluntar_propus"
-                                                       class="col-form-label form-modal-label">Sunt
+                                                    class="col-form-label form-modal-label">Sunt
                                                     din</label>
                                             </div>
 
@@ -1371,32 +1115,32 @@
                                                 <div class="row fix-alignment">
                                                     <div class="col-12 col-sm-5 me-1">
                                                         <select class="dropdown-eco4 form-control select-location"
-                                                                name="judet_voluntar" id="judet_voluntar"
-                                                                onchange="viewLocationsInCounty(this, 1)">
+                                                            name="judet_voluntar" id="judet_voluntar"
+                                                            onchange="viewLocationsInCounty(this, 1)">
                                                             <option value="">Localitate</option>
                                                         </select>
 
                                                         <svg class="select-arrow-svg" id="svg-arrow-1" width="24"
-                                                             height="24" viewBox="0 0 24 24" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                                fill="#A6CE39"/>
+                                                                fill="#A6CE39" />
                                                         </svg>
                                                     </div>
 
                                                     <div class="col-12 col-sm-5">
                                                         <select class="dropdown-eco4 form-control insert-localities"
-                                                                name="localitate_voluntar" id="localitate_voluntar">
+                                                            name="localitate_voluntar" id="localitate_voluntar">
                                                             <option value="">Localitate</option>
                                                         </select>
 
                                                         <svg class="select-arrow-svg" id="svg-arrow-2" width="24"
-                                                             height="24" viewBox="0 0 24 24" fill="none"
-                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                                fill="#A6CE39"/>
+                                                                fill="#A6CE39" />
                                                         </svg>
                                                     </div>
                                                 </div>
@@ -1406,20 +1150,20 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="friends-enrolled-modal-2"
-                                                       class="col-form-label form-modal-label">Mai vin</label>
+                                                    class="col-form-label form-modal-label">Mai vin</label>
                                             </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="fix-alignment-1">
                                                     <div>
                                                         <input type="text"
-                                                               class="input-number-of-friends-eco4 eco-input-text-modal"
-                                                               id="friends-enrolled-modal-2"/>
+                                                            class="input-number-of-friends-eco4 eco-input-text-modal"
+                                                            id="friends-enrolled-modal-2" />
                                                     </div>
 
                                                     <div>
                                                         <label for="friends-enrolled-modal-2" class="friends-enrolled"
-                                                               style="width: 133px; height: 17px;">prieteni să facem
+                                                            style="width: 133px; height: 17px;">prieteni să facem
                                                             treabă</label>
                                                     </div>
                                                 </div>
@@ -1435,7 +1179,7 @@
                                                 <div class="fix-alignment-1">
                                                     <div>
                                                         <input type="text" class="input-number-of-seats-eco4"
-                                                               id="car-modal-2"/>
+                                                            id="car-modal-2" />
                                                     </div>
 
                                                     <div>
@@ -1460,13 +1204,13 @@
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-enroll-modal-check-1-span"></span>
                                                     <input class="form-check-input" value="" type="checkbox"
-                                                           name="eco-action-enroll-modal-check-1"
-                                                           id="eco-action-enroll-modal-check-1"/>
+                                                        name="eco-action-enroll-modal-check-1"
+                                                        id="eco-action-enroll-modal-check-1" />
                                                     <label style="display: inline;" style="display: inline;"
-                                                           for="eco-action-enroll-modal-check-1">Sunt de acord
+                                                        for="eco-action-enroll-modal-check-1">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                       style="color: #A6CE39;">termenii și condițiile acestui</a> site.
+                                                        style="color: #A6CE39;">termenii și condițiile acestui</a> site.
                                                 </div>
                                             </div>
                                         </div>
@@ -1476,13 +1220,13 @@
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-enroll-modal-check-2-span"></span>
                                                     <input class="form-check-input" value="" type="checkbox"
-                                                           name="eco-action-enroll-modal-check-2"
-                                                           id="eco-action-enroll-modal-check-2"/>
+                                                        name="eco-action-enroll-modal-check-2"
+                                                        id="eco-action-enroll-modal-check-2" />
                                                     <label style="display: inline;" style="display: inline;"
-                                                           for="eco-action-enroll-modal-check-2">Sunt de acord
+                                                        for="eco-action-enroll-modal-check-2">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#workshop"
-                                                       style="color: #A6CE39;">termenii și condițiile de participare</a>
+                                                        style="color: #A6CE39;">Termenii și Condițiile de participare</a>
                                                     la
                                                     workshop-ul de ecologizare.
                                                 </div>
@@ -1494,13 +1238,13 @@
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-enroll-modal-check-3-span"></span>
                                                     <input class="form-check-input" value="" type="checkbox"
-                                                           name="eco-action-enroll-modal-check-3"
-                                                           id="eco-action-enroll-modal-check-3"/>
+                                                        name="eco-action-enroll-modal-check-3"
+                                                        id="eco-action-enroll-modal-check-3" />
                                                     <label style="display: inline;" style="display: inline;"
-                                                           for="eco-action-enroll-modal-check-3">Sunt de acord
+                                                        for="eco-action-enroll-modal-check-3">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#contract"
-                                                       style="color: #A6CE39;;">contractul de voluntariat.</a>
+                                                        style="color: #A6CE39;;">contractul de voluntariat.</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1510,7 +1254,7 @@
                                         <div class="row form-group">
                                             <div class="col-12 fix-alignment-2">
                                                 <input type="submit" id="volunteer-enroll-button"
-                                                       class="form-submit modal-register-button" value="Mă inscriu"/>
+                                                    class="form-submit modal-register-button" value="Mă inscriu" />
                                             </div>
                                         </div>
                                     </form>
@@ -1521,64 +1265,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Enroll General Eco Action -->
-
-
-    <!-- Confirm -->
-    <div class="row">
-        <div class="col-12">
-            <div class="modal-window modal fade" id="confirmModalBox" tabindex="-1" aria-labelledby="confirmModalLabel"
-                 aria-hidden="true" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content" id="confirm">
-                        <div class="modal-header close-modal">
-                            <h5 class="modal-title">Confirmare</h5>
-
-                            <div class="col-12 col-sm-6 modal-close-text-container">
-                                <button type="button" type="button" class="close-modal-button text fs-5"
-                                        style="color: #a00404" data-bs-dismiss="modal"
-                                        aria-label="Close" id="close-modal-5">Close
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="confirm-message">
-                                        Felicitări! Formularul a fost trimis către noi. Vom reveni cu amănunte în cel
-                                        mai
-                                        scurt timp, în principal pe email.
-                                        Iar dacă există urgențe, suntem de găsit și telefonic la numărul 0788 419 771
-                                        sau pe
-                                        mail la contact@planteazainromania.ro Vă mulțumim!
-                                    </p>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col-sm-12">
-                                        <div class="text-center">
-                                            <button class="form-submit modal-close-button text fs-5"
-                                                    style="color: #a00404" data-bs-dismiss="modal"
-                                                    aria-label="Close" type="button">Close
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Contact -->
-
-
-    <!-- About Us -->
-
 
     <!-- Donate -->
     <div class="row">
@@ -1592,8 +1281,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close" id="close-modal-8">Close
+                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-8">Close
                                 </button>
                             </div>
                         </div>
@@ -1653,7 +1341,7 @@
                                                     <div class="col-12 col-sm-4">
                                                         <label for="name-donate-modal"
                                                                class="col-form-label form-modal-label">Nume,
-                                                            prenume</label>
+                                                            Prenume</label>
                                                     </div>
 
                                                     <div class="col-12 col-sm-8">
@@ -1847,7 +1535,8 @@
                                                                name="donate-modal-check" id="donate-modal-check"/>
                                                         <label style="display: inline;" style="display: inline;"
                                                                for="donate-modal-check">Sunt de acord cu </label>
-                                                        <a href="#" style="color: #A6CE39;">Termenii și Condițiile
+                                                        <a href="#" style="color: #A6CE39;">Termenii și
+                                                            Condițiile
                                                             acestui</a> site.
                                                     </div>
                                                 </div>
@@ -1879,8 +1568,7 @@
     <!-- Workshop -->
     <div class="row">
         <div class="col-12">
-            <div class="modal fade" id="workshop" tabindex="-1" aria-labelledby="tandcModalLabel"
-                 aria-hidden="true">
+            <div class="modal fade" id="workshop" tabindex="-1" aria-labelledby="tandcModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1889,8 +1577,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close" id="close-modal-10">Close
+                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-10">Close
                                 </button>
                             </div>
                         </div>
@@ -2049,8 +1736,7 @@
     <!-- Contract -->
     <div class="row">
         <div class="col-12">
-            <div class="modal fade" id="contract" tabindex="-1" aria-labelledby="tandcModalLabel"
-                 aria-hidden="true">
+            <div class="modal fade" id="contract" tabindex="-1" aria-labelledby="tandcModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -2058,8 +1744,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close" id="close-modal-11">Close
+                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-11">Close
                                 </button>
                             </div>
                         </div>
@@ -2492,6 +2177,14 @@
             </div>
         </div>
     </div>
+    @if(session('success'))
+        @include('components.modals.confirm-registration-modal')
+        <script>
+            $(document).ready(function () {
+                $('#confirmModalBox').modal('show');
+            });
+        </script>
+    @endif
 
 @endsection
 <style type="text/css">

@@ -77,7 +77,7 @@
 
                         <li class="nav-item">
                             <a style="color:green" class="nav-link"
-                               href="{{ route('admin.propose-locations.home') }}">{{ __('Evenimente propuse') }}</a>
+                               href="{{ route('propose-locations.index') }}">{{ __('Evenimente propuse') }}</a>
                         </li>
 
                         <li class="nav-item dropdown">
