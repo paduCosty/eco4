@@ -32,8 +32,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::resource('event-locations', EventLocationController::class);
 
-        Route::resource('propose-locations', ProposeEventController::class);
-        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
+        Route::resource('propose-locations', ProposeEventController::class)->parameters([
+            'propose-locations' => 'userEventLocation'
+        ]);
+
+//        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
 
 
         /*ajax calls city*/
