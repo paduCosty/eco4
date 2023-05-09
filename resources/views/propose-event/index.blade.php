@@ -1644,9 +1644,9 @@
                                             <div class="col-12 col-sm-6">
                                                 <div class="row form-group">
                                                     <div class="col-12 col-sm-4">
-                                                        {{-- <label for="name-donate-modal"
+                                                        <label for="name-donate-modal"
                                                             class="col-form-label form-modal-label">Nume,
-                                                            Prenume</label> --}}
+                                                            Prenume</label>
                                                     </div>
 
                                                     <div class="col-12 col-sm-8">
