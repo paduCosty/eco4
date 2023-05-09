@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
                 <div class="pull-right mb-5">
-                    <a class="btn btn-default butts fs-5" href="{{ route('home.home') }}"> Propune un eveniment</a>
+                    {{--                    <a class="btn btn-default butts fs-5" href="{{ route('home.home') }}"> Propune un eveniment</a>--}}
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <td>{{ $location->email }}</td>
                     <td>{{ $location->eventLocation->address }}</td>
                     <td>{{ $location->due_date }}</td>
-                    <td id="status_value{{$location->id}}">
+                    <td>
                         @if($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
                             {{ ucfirst($location->status) }}
                         @else
@@ -71,15 +71,10 @@
                         <div class="form-group">
 
                             <div class="d-inline-block">
-{{--                                <form action="{{ route('event-locations.destroy',$location->id) }}" method="POST">--}}
 
                                 <a class="btn btn-default buttons"
                                    href="{{ route('propose-locations.edit',$location->id) }}">Editeaza
                                 </a>
-                                    <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a>
-
-{{--                                    @csrf--}}
-{{--                                </form>--}}
 
                             </div>
                         </div>
