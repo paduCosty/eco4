@@ -241,9 +241,6 @@
 
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">
-                                                    <button type="button" id="showConfirmMessage"
-                                                            data-bs-toggle="modal" data-bs-target="#confirmModalBox"
-                                                            style=""></button>
                                                     <input type="button" id="voluteer-proposal-add-button"
                                                            class="form-submit modal-register-button" value="Propune" />
                                                 </div>
