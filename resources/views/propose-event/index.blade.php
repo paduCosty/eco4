@@ -268,7 +268,7 @@
                 </div> --}}
             </div>
         </div>
-       
+
 
 
         <!-- Eco Actions Cards -->
@@ -277,12 +277,12 @@
 
             <div class="row ">
                 <div class="col-12 mb-3" id="event_card">
-                   
-                        <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span></h2>
-                         <div>
+
+                    <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span></h2>
+                    <div>
                         <ul class="row col-lg-12 slider-wrap" id="eco-actions-container">
                         </ul>
-                        
+
                     </div>
                 </div>
             </div>
@@ -586,7 +586,7 @@
 
     <!-- modals -->
     <!-- Actions In Ialomita -->
-    <div class="row">
+    {{--  <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="nextEventModal" tabindex="-1" aria-labelledby="nextEventModal"
                 aria-hidden="true" role="dialog">
@@ -596,13 +596,13 @@
                             <h5 id="actions-Ialomita-title">Acțiuni in județul Ialomița</h5>
 
                             <div class="modal-close-text-container">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close">
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
+                                    data-bs-dismiss="modal" aria-label="Close">
                                     Close </button>
                             </div>
                         </div>
 
-                        {{-- <div class="modal-body">
+                         <div class="modal-body">
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="row form-group">
@@ -858,12 +858,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div> 
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
-
     <!-- Packages For Companies -->
     {{-- <div class="row">
         <div class="col-12">
@@ -1031,16 +1031,16 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="modal-window modal-lg modal fade" id="proposalModal" tabindex="-1" aria-labelledby="proposalModalLabel"
-                aria-hidden="true" role="dialog">
+            <div class="modal-window modal-lg modal fade" id="proposalModal" tabindex="-1"
+                aria-labelledby="proposalModalLabel" aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header close-modal">
                             <h4 class="modal-title eco-proposal-title">Propunere acțiune ecologizare</h4>
 
                             <div class="modal-close-text-container ">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close" id="close-modal-4">Close</button>
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
+                                    data-bs-dismiss="modal" aria-label="Close" id="close-modal-4">Close</button>
                             </div>
                         </div>
 
@@ -1055,7 +1055,7 @@
                                                 <div class="form-info-text">
                                                     <h6 class="modal-title text-dark fs-5">Cum funcționează:</h6>
 
-                                                    <br/>
+                                                    <br />
 
                                                     <ul class="how-it-works ">
                                                         <li class="text-dark fs-6">
@@ -1117,7 +1117,8 @@
                                                         </li>
 
                                                         <br />
-                                                        <span class="text-dark fs-5" style="color: #B9B9B9;">Ce părere ai? Te bagi la o treabă de
+                                                        <span class="text-dark fs-5" style="color: #B9B9B9;">Ce părere
+                                                            ai? Te bagi la o treabă de
                                                             lungă durată?</span>
                                                     </ul>
                                                 </div>
@@ -1147,38 +1148,50 @@
                                                            name="name" required/>
                                                 </div> --}}
                                                 <div class="row form-group col-12 col-sm-6">
-                                                <div class="mb-3">
-                                                    <label for="nume_voluntar_propus"
-                                                        class="col-form-label form-modal-label">Nume, 
-                                                        Prenume</label> <span id="eroare_nume_voluntar_propus"></span>
-                                                    <input type="text" class="form-control input-normal"
-                                                        name="name" required >
-                                                </div>
+                                                    <div class="mb-3">
+                                                        <label for="nume_voluntar_propus"
+                                                            class="col-form-label form-modal-label text-dark fs-6">Nume,
+                                                            Prenume</label> <span id="eroare_nume_voluntar_propus"></span>
+                                                        <input type="text"
+                                                            class="form-control input-normal text-dark fs-6"
+                                                            name="name" required>
+                                                    </div>
 
-                                                <div class="mb-3">
-                                                    <label for=""
-                                                        class="col-form-label form-modal-label"> Email:</label>
-                                                    <input type="text" class="form-control input-normal"
-                                                        name="email" required >
-                                                </div>
+                                                    <div class="mb-3">
+                                                        <label for=""
+                                                            class="col-form-label form-modal-label text-dark fs-6">
+                                                            Email:</label>
+                                                        <input type="text"
+                                                            class="form-control input-normal text-dark fs-6"
+                                                            name="email" required>
+                                                    </div>
 
-                                                <div class="mb-3">
-                                                    <label for=""
-                                                    class="col-form-label form-modal-label">Telefon:</label>
-                                                    <input type="text" class="form-control input-normal"
-                                                        name="phone" required >
-                                                        
+                                                    <div class="mb-3">
+                                                        <label for=""
+                                                            class="col-form-label form-modal-label text-dark fs-6">Telefon:</label>
+                                                        <input type="text"
+                                                            class="form-control input-normal text-dark fs-6"
+                                                            name="phone" required>
+
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label
+                                                            class="col-form-label form-modal-label text-dark fs-6">Selecteaza
+                                                            Data: </label>
+                                                        <input type="date"
+                                                            class="text-dark fs-6 form-control input-normal"
+                                                            name="due_date" required>
+                                                    </div>
                                                 </div>
-                                            </div>
 
                                                 <div class="row form-group col-12 col-sm-6">
                                                     <div class=" mb-3 ">
                                                         <label for="judet_voluntar_propus"
-                                                            class="col-form-label form-modal-label">Propune
+                                                            class="col-form-label form-modal-label text-dark fs-6">Propune
                                                             acțiune la:</label>
 
                                                         <select name="region_id"
-                                                            class="form-control input-normal select-location"
+                                                            class="form-control input-normal select-location text-dark fs-6"
                                                             id="propose_regions" required>
                                                             <option value="">Judet</option>
                                                             @foreach ($regions as $region)
@@ -1187,42 +1200,39 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                {{-- </div>
-                                                <div class="col-12 col-sm-6 mb-3"> --}}
+
                                                     <div class="special-input-wrap">
                                                         <select required
-                                                            class="form-control input-normal insert-localities"
+                                                            class="form-control input-normal insert-localities text-dark fs-6"
                                                             id="region_cities">
-                                                            <option value="">Localitate</option>
+                                                            <option class="text-dark fs-6">Localitate</option>
                                                         </select>
 
                                                     </div>
+
+
                                                 </div>
                                                 <div class="col-12 col-sm-4 mb-4">
                                                     <div id="map"></div>
                                                 </div>
-                                                <div >
+                                                <div>
                                                     <input type="text" id="gps_place_selected"
                                                         name="event_location_id" hidden>
                                                 </div>
 
-                                                <div class="m-4 col-sm-5 col-sm-2">
-                                                    
-                                                        <input class="form-control fs-6 text-dark" type="date" name="due_date">
-                                                    
-                                                </div>
+
 
 
                                                 <div class="row m-1">
                                                     <div class="col-12 terms-conditions-text text-dark fs-6">
                                                         <span id="eco-proposal-modal-check-1-span"></span>
-                                                        <input type="checkbox" name="terms_site"
-                                                            value="1" />
+                                                        <input type="checkbox" name="terms_site" value="1" />
                                                         <label class="text-dark fs-6"
                                                             for="eco-proposal-modal-check-1">Sunt
                                                             de acord cu</label>
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                         style="color: #A6CE39;">Termenii și Condițiile acestui</a>
+                                                            style="color: #A6CE39;">Termenii
+                                                            și Condițiile acestui</a>
                                                         site.
                                                     </div>
                                                 </div>
@@ -1233,9 +1243,8 @@
 
                                                 <div class="row m-1">
                                                     <div class="col-12 terms-conditions-text text-dark fs-6">
-                                                        <input type="checkbox"
-                                                            name="terms_workshop" id="eco-proposal-modal-check-2"
-                                                            value="1" />
+                                                        <input type="checkbox" name="terms_workshop"
+                                                            id="eco-proposal-modal-check-2" value="1" />
                                                         <label style="display: inline;"
                                                             for="eco-proposal-modal-check-2">Sunt
                                                             de acord cu</label>
@@ -1309,9 +1318,9 @@
                                     <form id="volunteer_add" name="volunteer_add" method="POST">
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5"> --}}
-                                                {{-- <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
+    {{-- <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
                                                     prenume</label> --}}
-                                            {{-- </div>
+    {{-- </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
@@ -1535,8 +1544,9 @@
                             <h5 class="modal-title">Confirmare</h5>
 
                             <div class="col-12 col-sm-6 modal-close-text-container">
-                                <button type="button" type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close" id="close-modal-5">Close</button>
+                                <button type="button" type="button" class="close-modal-button text fs-5"
+                                    style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
+                                    id="close-modal-5">Close</button>
                             </div>
                         </div>
 
@@ -1556,8 +1566,9 @@
                                 <div class="row form-group">
                                     <div class="col-sm-12">
                                         <div class="text-center">
-                                            <button class="form-submit modal-close-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                                aria-label="Close" type="button">Close
+                                            <button class="form-submit modal-close-button text fs-5"
+                                                style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
+                                                type="button">Close
                                             </button>
                                         </div>
                                     </div>
@@ -1586,8 +1597,8 @@
                             <h5 class="modal-title">Donează pentru o țară mai curată:</h5>
 
                             <div class="modal-close-text-container">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close" id="close-modal-8">Close </button>
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
+                                    data-bs-dismiss="modal" aria-label="Close" id="close-modal-8">Close </button>
                             </div>
                         </div>
 
@@ -1830,7 +1841,8 @@
                                                             name="donate-modal-check" id="donate-modal-check" />
                                                         <label style="display: inline;" style="display: inline;"
                                                             for="donate-modal-check">Sunt de acord cu </label>
-                                                        <a href="#" style="color: #A6CE39;">Termenii și Condițiile
+                                                        <a href="#" style="color: #A6CE39;">Termenii și
+                                                            Condițiile
                                                             acestui</a> site.
                                                     </div>
                                                 </div>
@@ -1838,7 +1850,8 @@
                                                 <div class="row form-group">
                                                     <div class="col-12">
                                                         <div class="text-end">
-                                                            <button class="form-submit modal-register-button">Mă inscriu!
+                                                            <button class="form-submit modal-register-button">Mă
+                                                                inscriu!
                                                             </button>
                                                         </div>
                                                     </div>
@@ -1861,17 +1874,16 @@
     <!-- Workshop -->
     <div class="row">
         <div class="col-12">
-            <div class="modal fade" id="workshop" tabindex="-1" aria-labelledby="tandcModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="workshop" tabindex="-1" aria-labelledby="tandcModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Termeni și 
+                            <h5 class="modal-title">Termeni și
                                 Condiții workshop plantare</h5>
 
                             <div class="modal-close-text-container">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close" id="close-modal-10">Close </button>
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
+                                    data-bs-dismiss="modal" aria-label="Close" id="close-modal-10">Close </button>
                             </div>
                         </div>
 
@@ -2029,16 +2041,15 @@
     <!-- Contract -->
     <div class="row">
         <div class="col-12">
-            <div class="modal fade" id="contract" tabindex="-1" aria-labelledby="tandcModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="contract" tabindex="-1" aria-labelledby="tandcModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Contract</h5>
 
                             <div class="modal-close-text-container">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close" id="close-modal-11">Close</button>
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
+                                    data-bs-dismiss="modal" aria-label="Close" id="close-modal-11">Close</button>
                             </div>
                         </div>
 
