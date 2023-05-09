@@ -65,7 +65,7 @@ img, svg {
 }
 
 /* .input-normal, .form-check-input { */
-    /*box-shadow: none!important;*/
+/*box-shadow: none!important;*/
 /* } */
 
 
@@ -134,7 +134,7 @@ img, svg {
 }
 
 #see-next-edition-details {
-    
+
     background: #A6CE39;
     border: 1px solid #EFEFEF;
     border-radius: 7px;
@@ -165,12 +165,12 @@ img, svg {
 }
 
 .add-next-eco-action {
-     font-style: normal;
+    font-style: normal;
     font-weight: 700px;
     font-size: 26px;
     line-height: 120%;
     /* letter-spacing: -0.4px; */
-    color: #023116; 
+    color: #023116;
 }
 
 .previous-event-photo-container {
