@@ -42,7 +42,7 @@
                         @if($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
                             {{ ucfirst($location->status) }}
                         @else
-                            <div class="d-inline-block buttons">
+                            <div class="d-inline-block ">
                                 <div class="switch-toggle switch-3 switch-candy"
                                      style="background-color: transparent">
                                     <input id="on-{{ $i }}" name="state-d-{{ $i }}" type="radio"
