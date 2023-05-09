@@ -7,9 +7,7 @@ use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\UserEventLocation;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProposeEventController extends Controller
 {
@@ -51,12 +49,12 @@ class ProposeEventController extends Controller
     public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
 //        return view('event-locations.show', compact('eventLocation'));
-        dd($location);
+        dd($location->id);
     }
 
-    public function edit(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(UserEventLocation $userEventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        dd($location->id);
+        dd($userEventLocation->id);
 
 //
         $user = EventLocation::first();
@@ -80,8 +78,9 @@ class ProposeEventController extends Controller
         return redirect()->route('event-locations.index');
     }
 
-    public function destroy(EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
+    public function destroy(UserEventLocation $eventLocation): \Illuminate\Http\RedirectResponse
     {
+        dd($eventLocation->id);
         $eventLocation->delete();
 
         return redirect()->route('event-locations.index');
