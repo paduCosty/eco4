@@ -37,9 +37,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::resource('propose-locations', ProposeEventController::class)->parameters([
             'propose-locations' => 'userEventLocation'
         ]);
+        Route::post('propose-locations/update/{userEventLocation}', [ProposeEventController::class, 'update']);
 
 //        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
-
 
         /*ajax calls city*/
         Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
