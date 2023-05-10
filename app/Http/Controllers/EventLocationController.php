@@ -13,9 +13,18 @@ class EventLocationController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $events = EventLocation::paginate(10);
+        $events = EventLocation::withCount('usersEventLocations')
+            ->with('city.region')
+            ->with('city')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
-        return view('admin.event.index', compact('events'));
+        $size_volunteers = SizeVolunteers::all();
+        $regions = Region::all();
+//        dd($events->toArray());
+        return view('admin.event.index',
+            compact('events', 'regions', 'size_volunteers')
+        );
     }
 
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -46,7 +55,8 @@ class EventLocationController extends Controller
         ]);
         $validatedData['user_id'] = $user_id;
         $eventLocation = EventLocation::create($validatedData);
-        return redirect()->route('event-locations.index');
+        return redirect()->route('event-locations.index')
+            ->with('success', 'Locul de ecologizare a fost creat cu succes!');
     }
 
     public function show(EventLocation $eventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -57,7 +67,7 @@ class EventLocationController extends Controller
 
     public function edit(EventLocation $event_location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-//        dd($event_location->id);
+        dd($event_location->id);
         $size_volunteers = SizeVolunteers::all();
         $city = City::select('id', 'name', 'region_id')->where('id', $event_location->cities_id)
             ->first();
@@ -83,7 +93,6 @@ class EventLocationController extends Controller
             redirect()->route('event-locations.index');
         }
         $validatedData = $request->validate([
-            'cities_id' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
             'address' => 'required',
@@ -92,25 +101,30 @@ class EventLocationController extends Controller
         ]);
 
         $validatedData['user_id'] = $user_id;
-        $eventLocation->update($validatedData);
+//        dump($validatedData);
+//        dd($eventLocation->toArray());
 
-        return redirect()->route('event-locations.index');
+        $eventLocation->update($validatedData);
+        return redirect()->route('event-locations.index')
+            ->with('success', 'Locul de ecologizare a fost editat cu succes!');
     }
 
     public function destroy(EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
     {
         $eventLocation->delete();
 
-        return redirect()->route('event-locations.index');
+        return redirect()->route('event-locations.index')
+            ->with('success', 'Locul de ecologizare a fost șters cu succes!');
     }
 
     public function get_event_locations(Request $request)
     {
         if ($request->city_id) {
-            $event_locations = EventLocation::where('cities_id', $request->city_id)
+            $event_locations = EventLocation::with('sizeVolunteer')->where('cities_id', $request->city_id)
                 ->get();
             $city = City::where('id', $request->city_id)->first();
 
+//            dd($event_locations[0]->toArray());
             return response()->json(['event_locations' => $event_locations, 'city' => $city]);
         }
         return response()->json(['message' => false]);

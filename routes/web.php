@@ -31,6 +31,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     /*admin prefix*/
     Route::prefix('admin')->group(function () {
         Route::resource('event-locations', EventLocationController::class);
+        Route::post('event-locations/update/{eventLocation}', [EventLocationController::class, 'update']);
+
 
         Route::resource('propose-locations', ProposeEventController::class)->parameters([
             'propose-locations' => 'userEventLocation'

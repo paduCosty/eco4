@@ -1,3 +1,5 @@
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initMap"></script>
+
 <div class="row">
     <div class="col-12">
         <div class="modal-window modal-lg modal fade" id="proposalModal" tabindex="-1"
@@ -101,18 +103,10 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <div class="">
+                                    <div class="align-content-center">
                                         <form id="volunteer_proposal_form" action="{{ route('home.store') }}"
                                               method="POST">
                                             @csrf
-                                            {{-- <div class="col-12 col-sm-5">
-                                                <label for="nume_voluntar_propus"
-                                                       class="col-form-label form-modal-label">Nume,
-                                                    Prenume</label>
-                                                <input type="text"
-                                                       class="input-text-eco4 eco-input-text-modal"
-                                                       name="name" required/>
-                                            </div> --}}
                                             <div class="row form-group col-12 col-sm-6">
                                                 <div class="mb-3">
                                                     <label for="nume_voluntar_propus"
@@ -186,8 +180,7 @@
                                                        name="event_location_id" hidden>
                                             </div>
 
-
-
+                                            <div id="marker-values"></div>
 
                                             <div class="row m-1">
                                                 <div class="col-12 terms-conditions-text text-dark fs-6">
@@ -241,7 +234,7 @@
 
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">
-                                                    <input type="button" id="voluteer-proposal-add-button"
+                                                    <input type="button" id="volunteer-proposal-add-button"
                                                            class="form-submit modal-register-button" value="Propune" />
                                                 </div>
                                             </div>
