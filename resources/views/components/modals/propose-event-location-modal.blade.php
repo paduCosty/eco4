@@ -167,11 +167,9 @@
                                                             id="region_cities">
                                                         <option class="text-dark fs-6">Localitate</option>
                                                     </select>
-
                                                 </div>
-
-
                                             </div>
+
                                             <div class="col-12 col-sm-4 mb-4">
                                                 <div id="map"></div>
                                             </div>

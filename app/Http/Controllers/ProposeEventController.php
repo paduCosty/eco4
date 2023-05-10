@@ -107,7 +107,7 @@ class ProposeEventController extends Controller
             $userEventLocation = UserEventLocation::where('id', $request->location_id)
                 ->first();
 
-            if ($userEventLocation && $request->val) {
+            if ($userEventLocation && $request->val && $request->val != $userEventLocation->status) {
                 $userEventLocation->status = $request->val;
                 $userEventLocation->save();
 
@@ -120,9 +120,9 @@ class ProposeEventController extends Controller
                 $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
 
                 if ($result) {
-                    $response['emai'] = 'Email-ul a fost trimis cu succes';
+                    $response['email'] = 'Email-ul a fost trimis cu succes';
                 } else {
-                    $response['emai'] = false;
+                    $response['email'] = false;
                 }
                 $response = [
                     'success' => true,
