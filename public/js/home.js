@@ -17,7 +17,7 @@ $(document).ready(function () {
                     $.each(response.data, function (index, value) {
                         console.log(value.event_location.city.region.name);
                         event +=`
-                                <li class="col-12 col-lg-6 remove-card">
+                                <div class="col-12 col-lg-6 remove-card slider-wrap">
                                     <div class="slider-icon float-start">
                                         <div class="slider-svg">
                                             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +47,7 @@ $(document).ready(function () {
                                             Inscriere +
                                         </a>
                                     </div>
-                                </li>`
+                                </div>`
                     });
 
                     $('#eco-actions-container').append(event);

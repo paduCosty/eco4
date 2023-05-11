@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class=" mb-3">
                             <label class="fs-5">Judet:</label>
-                            <select class="form-control fs-6 text-dark" name="region_id" >
+                            <select class="form-control fs-6 text-gray" name="region_id" >
                                 <option  value="{{$region->id}}" selected>{{$region->name}}</option>
                             </select>
 
@@ -42,7 +42,7 @@
 
                     <div class="cmb-4">
                         <label class="fs-5">Localitate:</label>
-                        <select class="form-control fs-6 text-dark" name="cities_id" >
+                        <select class="form-control fs-6 text-gray" name="cities_id" >
                             <option  value="{{$city->id}}" selected>{{$city->name}}</option>
                         </select>
                     </div>
@@ -60,14 +60,14 @@
             <div class="row form-group mb-3" id="address_display">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5 " for="pin_address">Adresa selectata:</label>
-                    <input class="form-control fs-6 text-dark" value="{{$event_location->address}}" readonly name="address" id="pin_address">
+                    <input class="form-control fs-6 text-gray" value="{{$event_location->address}}" readonly name="address" id="pin_address">
                 </div>
             </div>
 
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5">Tip teren:</label>
-                    <select name="relief_type" class="form-control select-location fs-6 text-dark">
+                    <select name="relief_type" class="form-control select-location fs-6 text-gray">
                         <option value="">Selecteaza</option>
                         <option value="Campie" @if($event_location->relief_type == 'Campie') selected @endif>Campie</option>
                         <option value="Deal" @if($event_location->relief_type == 'Deal') selected @endif>Deal</option>
@@ -78,7 +78,7 @@
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5">La fata locului:</label>
-                    <select name="size_volunteer_id" class="form-control select-location fs-6 text-dark">
+                    <select name="size_volunteer_id" class="form-control select-location fs-6text-gray">
                         <option value="">Selecteaza</option>
                         @foreach($size_volunteers as $size_volunteer)
                             <option @if($size_volunteer->id == $event_location->size_volunteer_id)  selected
@@ -98,12 +98,12 @@
 @endsection
 
 
-<style type="text/css">
+{{-- <style type="text/css">
     #map {
-        width:700px;
+        width:900px;
         height: 500px;
     }
-</style>
+</style> --}}
 <script type="text/javascript">
 
     function initMap() {

@@ -32,10 +32,10 @@
             <div class="row">
 
                 <div class="col-12 col-sm-6 mb-5">
-                    <div class="row mb-2 text-dark">
+                    <div class="row mb-2 text-gray">
                         <div>
                             <label class="fs-5">Judet:</label>
-                            <select id="regions" class="form-control select-location fs-6 text-dark">
+                            <select id="regions" class="form-control select-location fs-6 text-gray">
                                 <option>Judet</option>
 
                                 @foreach($regions as $region)
@@ -65,13 +65,13 @@
             <div class="row form-group mb-3" style="display: none" id="address_display">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5 " for="pin_address">Adresa selectata:</label>
-                    <input class="form-control fs-6 text-dark" readonly name="address" id="pin_address">
+                    <input class="form-control fs-6 text-gray" readonly name="address" id="pin_address">
                 </div>
             </div>
             <div class="row form-group mb-3">
                 <div class="col-12 col-sm-6">
                     <label class="fs-5 ">Tip teren:</label>
-                    <select name="relief_type" class="form-control fs-6 text-dark">
+                    <select name="relief_type" class="form-control fs-6 text-gray">
                         <option value="">Selecteaza</option>
                         <option value="Campie">Campie</option>
                         <option value="Deal">Deal</option>
