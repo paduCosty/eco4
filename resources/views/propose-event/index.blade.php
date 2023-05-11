@@ -281,7 +281,7 @@
                         <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span>
                         </h2>
                         <div>
-                            <ul class="row col-lg-12 slider-wrap" id="eco-actions-container">
+                            <ul class="row col-lg-12" id="eco-actions-container">
                             </ul>
 
                         </div>
