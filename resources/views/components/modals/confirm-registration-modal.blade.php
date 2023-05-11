@@ -10,7 +10,7 @@
                         <div class="col-12 col-sm-6 modal-close-text-container">
                             <button type="button" type="button" class="close-modal-button text fs-5"
                                     style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
-                                    id="close-modal-5">X
+                                    id="close-modal-5">Close
                             </button>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                                     <div class="text-center">
                                         <button class="form-submit modal-close-button text fs-5"
                                                 style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
-                                                type="button">X
+                                                type="button">Close
                                         </button>
                                     </div>
                                 </div>
