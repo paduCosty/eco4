@@ -198,6 +198,34 @@
                         <div class="col-12 mb-4">
                             <h2 id="next-edition-title">Următoarea ediție <span id="next-edition-title-interval"></span>
                             </h2>
+<<<<<<< HEAD
+=======
+                        </div>
+                    </div>
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your
+                            input.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
+                    <div class="mb-5 d-flex col-lg-8 mr-3">
+
+                        <div class="col-lg-5 col-sm-3">
+                            <select id="main-select-county" class="form-control fs-6 text-dark">
+                                <option>None</option>
+                                @foreach ($approved_cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
+                            </select>
+>>>>>>> 52fa28edb98cb9746e17e52dc55813699124b276
                         </div>
                     </div>
 
