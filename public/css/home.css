@@ -113,7 +113,7 @@ img, svg {
     line-height: 140%;
     text-align: center;
     letter-spacing: -0.5px;
-    color:rgb(150, 149, 149);
+    color: #171717;
     margin-top: 6px;
     margin-bottom: 31px;
 }
@@ -452,7 +452,7 @@ footer {
     font-size: 16px;
     line-height: 120%;
     letter-spacing: -0.4px;
-    color:rgb(150, 149, 149);
+    color: #171717;
     max-width: 226px;
 }
 
@@ -462,7 +462,7 @@ footer {
     font-size: 12px;
     /* line-height: 140%; */
     /* letter-spacing: -0.3px; */
-    color:rgb(150, 149, 149) /**/
+    color: #171717;
 }
 
 .movila-select-group {
