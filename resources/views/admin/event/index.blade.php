@@ -10,6 +10,9 @@
         </div>
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
+                <div class="pull-right mb-5">
+                    <a class="btn btn-default butts fs-5 text-gray" href="{{ route('event-locations.create') }}"> Creaza o locatie noua</a>
+                </div>
                 @include('admin.event.create')
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Adauga o noua locatie +

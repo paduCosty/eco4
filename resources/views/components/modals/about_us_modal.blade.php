@@ -10,7 +10,7 @@
                         <div class="col-12 col-sm-6 modal-close-text-container">
                             <button type="button" class="close-modal-button" data-bs-dismiss="modal"
                                     aria-label="Close"
-                                    id="close-modal-7">Închide <span style="color: #A6CE39">[X]</span></button>
+                                    id="close-modal-7"> <span style="color: #a00404">X</span></button>
                         </div>
                     </div>
 
