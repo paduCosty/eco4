@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @include('admin.propose-event.edit')
     <div class="container">
         <div class="text-center mb-5">
             <h1>Evenimente Propuse</h1>
@@ -32,6 +32,8 @@
             </tr>
             @php($i = 1)
             @foreach ($eventLocations as $location)
+                {{--                @include('admin.propose-event.edit', $location)--}}
+
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{ $location->name }}</td>
@@ -71,11 +73,10 @@
                         <div class="form-group">
 
                             <div class="d-inline-block">
-
-                                <a class="btn btn-default buttons"
-                                   href="{{ route('propose-locations.edit',$location->id) }}">Editeaza
+                                <a type="button" class="btn btn-primary open_edit_modal" data-bs-toggle="modal"
+                                   data-bs-target="#edit-propose-event-modal" location="{{json_encode($location)}}">
+                                    Edit
                                 </a>
-
                             </div>
                         </div>
                     </td>
@@ -86,11 +87,26 @@
         {!! $eventLocations->withQueryString()->links('pagination::bootstrap-5') !!}
 
     </div>
+
     <script>
+
         $(document).ready(function () {
             const APP_URL = window.location.origin;
+
+            $(".open_edit_modal").on("click", function () {
+                let location = JSON.parse($(this).attr('location'));
+
+                $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' + location.id)
+
+                $('.event_location_name').val(location.name);
+                $('.event_location_email').val(location.email);
+                $('.event_location_due_date').val(location.due_date);
+                $('.event_location_status').val(location.status);
+            });
+
             $(".switch-status-on").on("click", function () {
                 status_active_inactive('aprobat', $(this).attr('location_id'))
+                console.log('asdf');
             });
 
             $(".switch-status-off").on("click", function () {

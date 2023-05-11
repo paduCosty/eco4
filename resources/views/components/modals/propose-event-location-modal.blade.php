@@ -1,3 +1,5 @@
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initMap"></script>
+
 <div class="row">
     <div class="col-12">
         <div class="modal-window modal-lg modal fade" id="proposalModal" tabindex="-1" aria-labelledby="proposalModalLabel"
@@ -100,6 +102,7 @@
                                         </div>
                                     @endif
                                     <div class="container">
+                                    <div class="align-content-center">
                                         <form id="volunteer_proposal_form" action="{{ route('home.store') }}"
                                             method="POST">
                                             @csrf
@@ -113,6 +116,8 @@
                                             </div> --}}
                                             <div class="row form-group">
                                                 <div class="mb-3 col-md-6">
+                                            <div class="row form-group col-12 col-sm-6">
+                                                <div class="mb-3">
                                                     <label for="nume_voluntar_propus"
                                                         class="col-form-label form-modal-label text-gray fs-6">Nume,
                                                         Prenume
@@ -175,17 +180,19 @@
                                                         id="region_cities" required>
                                                         <option value="">Localitate</option>
                                                     </select>
-
                                                 </div>
                                             </div>
 
                                             <div class="col-16 col-sm-6 mb-4">
+                                            <div class="col-12 col-sm-4 mb-4">
                                                 <div id="map"></div>
                                             </div>
                                             <div>
                                                 <input type="text" id="gps_place_selected" name="event_location_id"
                                                     hidden>
                                             </div>
+
+                                            <div id="marker-values"></div>
 
                                             <div class="row m-1">
                                                 <div class="col-12 terms-conditions-text text-dark fs-6">
@@ -239,6 +246,8 @@
                                                 <div class="col-sm-12 text-end">
                                                     <input type="button" id="voluteer-proposal-add-button"
                                                         class="form-submit modal-register-button" value="Propune" />
+                                                    <input type="button" id="volunteer-proposal-add-button"
+                                                           class="form-submit modal-register-button" value="Propune" />
                                                 </div>
                                             </div>
 

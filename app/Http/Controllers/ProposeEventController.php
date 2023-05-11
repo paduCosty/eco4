@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProposeEventMail;
 use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProposeEventController extends Controller
 {
@@ -105,10 +107,28 @@ class ProposeEventController extends Controller
             $userEventLocation = UserEventLocation::where('id', $request->location_id)
                 ->first();
 
-            if ($userEventLocation && $request->val) {
+            if ($userEventLocation && $request->val && $request->val != $userEventLocation->status) {
                 $userEventLocation->status = $request->val;
                 $userEventLocation->save();
-                return response()->json(['success' => true, 'status' => ucfirst($userEventLocation->status)]);
+
+                $mailData = [
+                    'title' => 'Mail from ItSolutionStuff.com',
+                    'body' => 'This is for testing email using smtp.',
+                    'propose_event_status' => $userEventLocation->status
+                ];
+
+                $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
+
+                if ($result) {
+                    $response['email'] = 'Email-ul a fost trimis cu succes';
+                } else {
+                    $response['email'] = false;
+                }
+                $response = [
+                    'success' => true,
+                    'status' => ucfirst($userEventLocation->status)
+                ];
+                return response()->json($response);
             }
         }
         return response()->json(['success' => false]);

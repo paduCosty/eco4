@@ -215,6 +215,45 @@
 
 
                 <div class="mb-5 d-flex col-lg-8 mr-3">
+                        <div class="col-lg-5 col-sm-3">
+                            <select id="main-select-county" class="form-control fs-6 text-dark">
+                                <option>None</option>
+                                @foreach ($approved_cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                        <div class="row form-group col-12 col-sm-6">
+                            <div class=" mb-3 ">
+                                <label for="judet_voluntar_propus"
+                                       class="col-form-label form-modal-label text-dark fs-6">Propune
+                                    acțiune la:</label>
+// trebuie sa fac sa iau toate localitatile din judete care au statusul aprobalt, acum se iau toate indiferent de status.
+                                <select name="region_id"
+                                        class="form-control input-normal select-location text-dark fs-6"
+                                        id="propose_regions" required>
+                                    <option value="">Judet</option>
+                                    @foreach ($regions as $region)
+                                        <option value="{{ $region->id }}">{{ $region->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="special-input-wrap">
+                                <select required
+                                        class="form-control input-normal insert-localities text-dark fs-6"
+                                        id="region_cities">
+                                    <option class="text-dark fs-6">Localitate</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class=" col-sm-6 separated-count-card  white-block">
+                            <button id="see-next-edition-details">Vezi detalii</button>
+                        </div>
 
                     <div class="col-lg-5 col-sm-3">
                         <select id="main-select-county" class="form-control fs-6 text-gray">

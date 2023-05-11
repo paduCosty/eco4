@@ -41,7 +41,7 @@ if (getUrl.pathname == '/') {
         });
 
         /*stop sending propose form*/
-        $("#voluteer-proposal-add-button").on("click", function () {
+        $("#volunteer-proposal-add-button").on("click", function () {
             let form = $('#proposalModal form');
             let place_selected = $('#gps_place_selected').val();
             let isFormValid = true;
@@ -103,8 +103,22 @@ if (getUrl.pathname == '/') {
                     marker.setIcon('https://maps.google.com/mapfiles/kml/paddle/grn-stars.png');
 
                     document.getElementById('gps_place_selected').value = location.id;
-                    // trebuie sa pun sa se afiseze datele fmarker-ului selectat.
 
+                    console.log(location);
+                    $('#gps-elements').remove();
+                    $('#marker-values').append(`
+                         <div id="gps-elements" class="bg-light p-3 rounded">
+                            <p class="font-weight-bold mb-1">Tipul reliefului: <span class="text-secondary">${location.relief_type}</span></p>
+                            <p class="font-weight-bold mb-1">Adresa evenimentului: <span class="text-secondary">${location.address}</span></p>
+                            <p class="font-weight-bold mb-1">Necesarul de voluntari: <span class="text-secondary">${location.size_volunteer.name}</span></p>
+                        </div>
+
+                        <style>
+                            #gps-elements {
+                                border: 1px solid #ddd;
+                            }
+                        </style>
+                    `);
                 });
             }
         }

@@ -31,13 +31,15 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     /*admin prefix*/
     Route::prefix('admin')->group(function () {
         Route::resource('event-locations', EventLocationController::class);
+        Route::post('event-locations/update/{eventLocation}', [EventLocationController::class, 'update']);
+
 
         Route::resource('propose-locations', ProposeEventController::class)->parameters([
             'propose-locations' => 'userEventLocation'
         ]);
+        Route::post('propose-locations/update/{userEventLocation}', [ProposeEventController::class, 'update']);
 
 //        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
-
 
         /*ajax calls city*/
         Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');

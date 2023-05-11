@@ -3,7 +3,7 @@ $(document).ready(function () {
     var APP_URL = window.location.origin;
     console.log(APP_URL)
     $("#see-next-edition-details").on("click", function () {
-        let city_id = $("#main-select-county").val();
+        let city_id = $("#region_cities").val();
         if (city_id) {
             $.ajax({
                 url: APP_URL + '/approved-events/' + city_id,
