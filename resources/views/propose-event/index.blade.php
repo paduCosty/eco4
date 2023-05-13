@@ -2225,9 +2225,3 @@
     @endif
 
 @endsection
-{{-- <style type="text/css">
-    #map {
-        height: 500px;
-        width: 745px;
-    }
-</style> --}}

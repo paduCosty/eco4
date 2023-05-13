@@ -125,6 +125,8 @@ if (getUrl.pathname == '/') {
 
     }
 
-    window.initMap = initMapPropose;
+    function initializeMaps() {
+        initMapPropose()
+    }
 
 }

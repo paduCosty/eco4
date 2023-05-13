@@ -1,3 +1,6 @@
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps"></script>
+
 <div class="row">
     <div class="col-12">
         <div class="modal-window modal-lg modal fade" id="proposalModal" tabindex="-1"
@@ -246,3 +249,4 @@
         </div>
     </div>
 </div>
+
