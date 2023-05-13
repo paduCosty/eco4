@@ -2,6 +2,10 @@ body {
     font-family: 'Inter', sans-serif;
     background: #ffffff;
 }
+#map {
+    height: 500px;
+    width: 745px;
+}
 .butts {
     color: rgb(201, 248, 189);
     font-weight:bolder;
@@ -278,7 +282,7 @@ a{
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    color: #171717;
+    color:rgb(150, 149, 149);
 }
 .common-section{
     margin-bottom: 20px;
@@ -406,7 +410,7 @@ a{
 
     /* Title */
 
-    color: #171717;
+    color:rgb(150, 149, 149);
 
 }
 
@@ -523,13 +527,13 @@ a{
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    color: #171717;
+    color:rgb(150, 149, 149);
 }
 .form-info-text p{
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    color: #B9B9B9;
+    color:rgb(150, 149, 149);
     margin-bottom: 0;
 }
 .form-info-text ul{
@@ -540,20 +544,20 @@ a{
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    color: #B9B9B9;
+    color:rgb(150, 149, 149); /**/
     margin-bottom: 0;
 }
 .col-form-label{
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    color: #171717;
+    color:rgb(150, 149, 149); /**/
 }
 .h6-s{
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    color: #171717;
+    color:rgb(150, 149, 149);
     margin-bottom: 0;
     margin-top: 8px;
 }

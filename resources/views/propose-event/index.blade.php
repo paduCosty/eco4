@@ -56,7 +56,7 @@
         </div>
     </header>
 
-    <main>
+    <div>
         <div class="banner" style="margin-bottom: 30px;">
             <div class="container">
                 <div class="row">
@@ -193,99 +193,85 @@
         {{--        </div> --}}
         <div class="container">
             <div class="slider-wrap">
-                <div>
-                    <div class="row ">
-                        <div class="col-12 mb-4">
-                            <h2 id="next-edition-title">Următoarea ediție <span id="next-edition-title-interval"></span>
-                            </h2>
-<<<<<<< HEAD
-=======
-                        </div>
-                    </div>
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your
-                            input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-
-                    <div class="mb-5 d-flex col-lg-8 mr-3">
-
-                        <div class="col-lg-5 col-sm-3">
-                            <select id="main-select-county" class="form-control fs-6 text-dark">
-                                <option>None</option>
-                                @foreach ($approved_cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                            </select>
->>>>>>> 52fa28edb98cb9746e17e52dc55813699124b276
-                        </div>
-                    </div>
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your
-                            input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-
-                    <div class="mb-5 d-flex col-lg-8 mr-3">
-
-                        <div class="row form-group col-12 col-sm-6">
-                            <div class=" mb-3 ">
-                                <label for="judet_voluntar_propus"
-                                       class="col-form-label form-modal-label text-dark fs-6">Propune
-                                    acțiune la:</label>
-                                <select name="region_id"
-                                        class="form-control input-normal select-location text-dark fs-6"
-                                        id="propose_regions" required>
-                                    <option value="">Judet</option>
-                                    @foreach ($regions as $region)
-                                        <option value="{{ $region->id }}">{{ $region->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="special-input-wrap">
-                                <select required
-                                        class="form-control input-normal insert-localities text-dark fs-6"
-                                        id="region_cities">
-                                    <option class="text-dark fs-6">Localitate</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class=" col-sm-6 separated-count-card  white-block">
-                            <button id="see-next-edition-details">Vezi detalii</button>
-                        </div>
-
-                        @include('components.modals.propose-event-location-modal')
-                        <div class="slider-link add-next-eco-action col-sm-7 ">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
-                                Propune acțiune de ecologizare +
-                            </a>
-                        </div>
-
+                <div class="row ">
+                    <div class="col-12 mb-4 text-gray">
+                        <h2 id="next-edition-title">Următoarea ediție <span id="next-edition-title-interval"></span>
+                        </h2>
                     </div>
                 </div>
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your
+                        input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                {{-- <div class="col-12 col-sm-6 white-block"> --}}
-                {{-- <div class="main-count-action"> -
+
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your
+                        input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+
+                <div class="mb-5 d-flex col-lg-8 mr-3">
+
+                    <div class="row form-group col-12 col-sm-6">
+                        <div class=" mb-3 ">
+                            <label for="judet_voluntar_propus"
+                                   class="col-form-label form-modal-label text-dark fs-6">Propune
+                                acțiune la:</label>
+                            <select name="region_id"
+                                    class="form-control input-normal select-location text-dark fs-6"
+                                    id="propose_regions" required>
+                                <option value="">Judet</option>
+                                @foreach ($regions as $region)
+                                    <option value="{{ $region->id }}">{{ $region->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="special-input-wrap">
+                            <select required
+                                    class="form-control input-normal insert-localities text-dark fs-6"
+                                    id="region_cities">
+                                <option class="text-dark fs-6">Localitate</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class=" col-sm-6 separated-count-card  white-block">
+                        <button id="see-next-edition-details">Vezi detalii</button>
+                    </div>
+
+                    @include('components.modals.propose-event-location-modal')
+                    <div class="slider-link add-next-eco-action col-sm-7">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
+                            Propune acțiune de ecologizare +
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            {{-- <div class="col-12 col-sm-6 white-block"> --}}
+            {{-- <div class="main-count-action"> -
 
 
 
@@ -311,13 +297,12 @@
 
 
                 </div> --}}
-            </div>
-        </div>
+            {{-- </div> --}}
 
 
-        <!-- Eco Actions Cards -->
 
-        <div class="container" id="nextEcoActionListContainer">
+            <!-- Eco Actions Cards -->
+
 
             <div class="row ">
                 <div class="col-12 mb-3" id="event_card">
@@ -325,300 +310,302 @@
                     <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span>
                     </h2>
                     <div>
-                        <ul class="row col-lg-12 slider-wrap" id="eco-actions-container">
+                        <ul class="row col-lg-12" id="eco-actions-container">
                         </ul>
 
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{--        <div class="common-section not-slider get-envolved-section"> --}}
-        {{--            <div class="container"> --}}
-        {{--                <div class="row"> --}}
-        {{--                    <div class="col-lg-6 col-md-6 col-sm-12 col-12"> --}}
-        {{--                        <div class="slider-wrap"> --}}
-        {{--                            <h3 class="how-to-get-involved">Cum te poți implica (persoane fizice)</h3> --}}
-        {{--                            <div class="slider-main"> --}}
-        {{--                                <ul class="row"> --}}
-        {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
-        {{--                                        <div class="slider-icon float-start no-ts"> --}}
-        {{--                                            <div class="slider-svg"> --}}
-        {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
-        {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
-        {{--                                                    <circle cx="18" cy="18" r="18" fill="#FFB648"/> --}}
-        {{--                                                    <path --}}
-        {{--                                                        d="M21.64 15.02C22.19 13.55 23.07 12.24 24.2 11.19C24.58 10.83 24.24 10.19 23.74 10.34C20.42 11.32 17.99 14.39 18 18.03C18.95 16.75 20.2 15.72 21.64 15.02ZM17.42 12.85C16.82 11.29 15.79 9.94004 14.46 8.98004C14.04 8.68004 13.5 9.17004 13.74 9.63004C14.54 11.15 15 12.88 15 14.71C15 14.92 14.97 15.12 14.96 15.32C15.39 15.56 15.79 15.84 16.18 16.14C16.39 14.96 16.83 13.85 17.42 12.85ZM18 24H9C8.45 24 8 23.55 8 23C8 22.45 8.45 22 9 22H13.75C13.18 19.81 11.71 17.98 9.75 16.94C9.59 16.86 9.49 16.69 9.49 16.5C9.49 16.23 9.71 16.01 9.98 16C9.99 16 10 16 10 16C14.42 16 18 19.58 18 24ZM26.26 16.94C24.3 17.98 22.82 19.81 22.26 22H27C27.55 22 28 22.45 28 23C28 23.55 27.55 24 27 24H22H20C20 23.32 19.93 22.65 19.8 22C19.65 21.28 19.42 20.58 19.13 19.93C20.52 17.58 23.07 16 26 16C26.01 16 26.02 16 26.02 16C26.29 16 26.51 16.23 26.51 16.5C26.52 16.69 26.41 16.85 26.26 16.94Z" --}}
-        {{--                                                        fill="white"/> --}}
-        {{--                                                </svg> --}}
-        {{--                                            </div> --}}
-        {{--                                        </div> --}}
 
-        {{--                                        <div class="slider-text float-start"> --}}
-        {{--                                            <h5> --}}
-        {{--                                                <a href="#" style="color: #FFB648;" data-bs-toggle="modal" --}}
-        {{--                                                   data-bs-target="#proposalModal">Coordonează o acțiune</a> --}}
-        {{--                                            </h5> --}}
+            {{--        <div class="common-section not-slider get-envolved-section"> --}}
+            {{--            <div class="container"> --}}
+            {{--                <div class="row"> --}}
+            {{--                    <div class="col-lg-6 col-md-6 col-sm-12 col-12"> --}}
+            {{--                        <div class="slider-wrap"> --}}
+            {{--                            <h3 class="how-to-get-involved">Cum te poți implica (persoane fizice)</h3> --}}
+            {{--                            <div class="slider-main"> --}}
+            {{--                                <ul class="row"> --}}
+            {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
+            {{--                                        <div class="slider-icon float-start no-ts"> --}}
+            {{--                                            <div class="slider-svg"> --}}
+            {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
+            {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
+            {{--                                                    <circle cx="18" cy="18" r="18" fill="#FFB648"/> --}}
+            {{--                                                    <path --}}
+            {{--                                                        d="M21.64 15.02C22.19 13.55 23.07 12.24 24.2 11.19C24.58 10.83 24.24 10.19 23.74 10.34C20.42 11.32 17.99 14.39 18 18.03C18.95 16.75 20.2 15.72 21.64 15.02ZM17.42 12.85C16.82 11.29 15.79 9.94004 14.46 8.98004C14.04 8.68004 13.5 9.17004 13.74 9.63004C14.54 11.15 15 12.88 15 14.71C15 14.92 14.97 15.12 14.96 15.32C15.39 15.56 15.79 15.84 16.18 16.14C16.39 14.96 16.83 13.85 17.42 12.85ZM18 24H9C8.45 24 8 23.55 8 23C8 22.45 8.45 22 9 22H13.75C13.18 19.81 11.71 17.98 9.75 16.94C9.59 16.86 9.49 16.69 9.49 16.5C9.49 16.23 9.71 16.01 9.98 16C9.99 16 10 16 10 16C14.42 16 18 19.58 18 24ZM26.26 16.94C24.3 17.98 22.82 19.81 22.26 22H27C27.55 22 28 22.45 28 23C28 23.55 27.55 24 27 24H22H20C20 23.32 19.93 22.65 19.8 22C19.65 21.28 19.42 20.58 19.13 19.93C20.52 17.58 23.07 16 26 16C26.01 16 26.02 16 26.02 16C26.29 16 26.51 16.23 26.51 16.5C26.52 16.69 26.41 16.85 26.26 16.94Z" --}}
+            {{--                                                        fill="white"/> --}}
+            {{--                                                </svg> --}}
+            {{--                                            </div> --}}
+            {{--                                        </div> --}}
 
-        {{--                                            <p> --}}
-        {{--                                                Știi tu un teren unde vrei --}}
-        {{--                                                să ecologizezi? Noi îți --}}
-        {{--                                                trimitem mănuși, saci, --}}
-        {{--                                                tu cu prietenii tăi --}}
-        {{--                                                vă ocupați de acțiune --}}
-        {{--                                            </p> --}}
-        {{--                                        </div> --}}
+            {{--                                        <div class="slider-text float-start"> --}}
+            {{--                                            <h5> --}}
+            {{--                                                <a href="#" style="color: #FFB648;" data-bs-toggle="modal" --}}
+            {{--                                                   data-bs-target="#proposalModal">Coordonează o acțiune</a> --}}
+            {{--                                            </h5> --}}
 
-        {{--                                        <div class="slider-link text-end"> --}}
-        {{--                                            <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal"> --}}
-        {{--                                                adaugă acțiune + --}}
-        {{--                                            </a> --}}
-        {{--                                        </div> --}}
-        {{--                                    </li> --}}
+            {{--                                            <p> --}}
+            {{--                                                Știi tu un teren unde vrei --}}
+            {{--                                                să ecologizezi? Noi îți --}}
+            {{--                                                trimitem mănuși, saci, --}}
+            {{--                                                tu cu prietenii tăi --}}
+            {{--                                                vă ocupați de acțiune --}}
+            {{--                                            </p> --}}
+            {{--                                        </div> --}}
 
-        {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
-        {{--                                        <div class="slider-icon float-start has-ts"> --}}
-        {{--                                            <div class="slider-svg"> --}}
-        {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
-        {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
-        {{--                                                    <circle cx="18" cy="18" r="18" fill="#F26464"/> --}}
-        {{--                                                    <path --}}
-        {{--                                                        d="M22 10C22 8.89 22.89 8 24 8C25.11 8 26 8.89 26 10C26 11.11 25.11 12 24 12C22.89 12 22 11.11 22 10ZM26 27V22H27.11C27.79 22 28.27 21.33 28.06 20.68L25.96 14.37C25.68 13.55 24.92 13 24.06 13H23.94C23.08 13 22.31 13.55 22.04 14.37L21.18 16.95C22.26 17.55 23 18.68 23 20V28H25C25.55 28 26 27.55 26 27ZM18.5 17.5C19.33 17.5 20 16.83 20 16C20 15.17 19.33 14.5 18.5 14.5C17.67 14.5 17 15.17 17 16C17 16.83 17.67 17.5 18.5 17.5ZM11.5 12C12.61 12 13.5 11.11 13.5 10C13.5 8.89 12.61 8 11.5 8C10.39 8 9.5 8.89 9.5 10C9.5 11.11 10.39 12 11.5 12ZM13.5 27V21H14C14.55 21 15 20.55 15 20V15C15 13.9 14.1 13 13 13H10C8.9 13 8 13.9 8 15V20C8 20.55 8.45 21 9 21H9.5V27C9.5 27.55 9.95 28 10.5 28H12.5C13.05 28 13.5 27.55 13.5 27ZM16 20V23C16 23.55 16.45 24 17 24V27C17 27.55 17.45 28 18 28H19C19.55 28 20 27.55 20 27V24C20.55 24 21 23.55 21 23V20C21 19.18 20.32 18.5 19.5 18.5H17.5C16.68 18.5 16 19.18 16 20Z" --}}
-        {{--                                                        fill="white"/> --}}
-        {{--                                                </svg> --}}
-        {{--                                            </div> --}}
+            {{--                                        <div class="slider-link text-end"> --}}
+            {{--                                            <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal"> --}}
+            {{--                                                adaugă acțiune + --}}
+            {{--                                            </a> --}}
+            {{--                                        </div> --}}
+            {{--                                    </li> --}}
 
-        {{--                                            <div class="slider-icon-text"> --}}
-        {{--                                                <h6>20</h6> --}}
-        {{--                                                <p>puncte</p> --}}
-        {{--                                            </div> --}}
-        {{--                                        </div> --}}
+            {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
+            {{--                                        <div class="slider-icon float-start has-ts"> --}}
+            {{--                                            <div class="slider-svg"> --}}
+            {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
+            {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
+            {{--                                                    <circle cx="18" cy="18" r="18" fill="#F26464"/> --}}
+            {{--                                                    <path --}}
+            {{--                                                        d="M22 10C22 8.89 22.89 8 24 8C25.11 8 26 8.89 26 10C26 11.11 25.11 12 24 12C22.89 12 22 11.11 22 10ZM26 27V22H27.11C27.79 22 28.27 21.33 28.06 20.68L25.96 14.37C25.68 13.55 24.92 13 24.06 13H23.94C23.08 13 22.31 13.55 22.04 14.37L21.18 16.95C22.26 17.55 23 18.68 23 20V28H25C25.55 28 26 27.55 26 27ZM18.5 17.5C19.33 17.5 20 16.83 20 16C20 15.17 19.33 14.5 18.5 14.5C17.67 14.5 17 15.17 17 16C17 16.83 17.67 17.5 18.5 17.5ZM11.5 12C12.61 12 13.5 11.11 13.5 10C13.5 8.89 12.61 8 11.5 8C10.39 8 9.5 8.89 9.5 10C9.5 11.11 10.39 12 11.5 12ZM13.5 27V21H14C14.55 21 15 20.55 15 20V15C15 13.9 14.1 13 13 13H10C8.9 13 8 13.9 8 15V20C8 20.55 8.45 21 9 21H9.5V27C9.5 27.55 9.95 28 10.5 28H12.5C13.05 28 13.5 27.55 13.5 27ZM16 20V23C16 23.55 16.45 24 17 24V27C17 27.55 17.45 28 18 28H19C19.55 28 20 27.55 20 27V24C20.55 24 21 23.55 21 23V20C21 19.18 20.32 18.5 19.5 18.5H17.5C16.68 18.5 16 19.18 16 20Z" --}}
+            {{--                                                        fill="white"/> --}}
+            {{--                                                </svg> --}}
+            {{--                                            </div> --}}
 
-        {{--                                        <div class="slider-text float-start"> --}}
-        {{--                                            <h5> --}}
-        {{--                                                <a href="#" style="color: #F26464;" data-bs-toggle="modal" --}}
-        {{--                                                   data-bs-target="#enrollModalGeneral">Acțiuni de voluntariat</a> --}}
-        {{--                                            </h5> --}}
+            {{--                                            <div class="slider-icon-text"> --}}
+            {{--                                                <h6>20</h6> --}}
+            {{--                                                <p>puncte</p> --}}
+            {{--                                            </div> --}}
+            {{--                                        </div> --}}
 
-        {{--                                            <p> --}}
-        {{--                                                Te invităm alături de noi --}}
-        {{--                                                la acțiunile pe care le --}}
-        {{--                                                organizăm de 2 ori pe an. --}}
-        {{--                                                Lista o ai mai sus --}}
-        {{--                                            </p> --}}
-        {{--                                        </div> --}}
+            {{--                                        <div class="slider-text float-start"> --}}
+            {{--                                            <h5> --}}
+            {{--                                                <a href="#" style="color: #F26464;" data-bs-toggle="modal" --}}
+            {{--                                                   data-bs-target="#enrollModalGeneral">Acțiuni de voluntariat</a> --}}
+            {{--                                            </h5> --}}
 
-        {{--                                        <div class="slider-link text-end"> --}}
-        {{--                                            <a href="#" data-bs-toggle="modal" data-bs-target="#enrollModalGeneral"> --}}
-        {{--                                                înscriere + --}}
-        {{--                                            </a> --}}
-        {{--                                        </div> --}}
-        {{--                                    </li> --}}
-        {{--                                </ul> --}}
-        {{--                            </div> --}}
-        {{--                        </div> --}}
-        {{--                    </div> --}}
+            {{--                                            <p> --}}
+            {{--                                                Te invităm alături de noi --}}
+            {{--                                                la acțiunile pe care le --}}
+            {{--                                                organizăm de 2 ori pe an. --}}
+            {{--                                                Lista o ai mai sus --}}
+            {{--                                            </p> --}}
+            {{--                                        </div> --}}
 
-        {{--                    <div class="col-lg-6 col-md-6 col-sm-12 col-12"> --}}
-        {{--                        <div class="slider-wrap"> --}}
-        {{--                            <h3 class="how-to-get-involved">Cum te poți implica (companii)</h3> --}}
+            {{--                                        <div class="slider-link text-end"> --}}
+            {{--                                            <a href="#" data-bs-toggle="modal" data-bs-target="#enrollModalGeneral"> --}}
+            {{--                                                înscriere + --}}
+            {{--                                            </a> --}}
+            {{--                                        </div> --}}
+            {{--                                    </li> --}}
+            {{--                                </ul> --}}
+            {{--                            </div> --}}
+            {{--                        </div> --}}
+            {{--                    </div> --}}
 
-        {{--                            <div class="slider-main"> --}}
-        {{--                                <ul class="row"> --}}
-        {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
-        {{--                                        <div class="slider-icon float-start no-ts"> --}}
-        {{--                                            <div class="slider-svg"> --}}
-        {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
-        {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
-        {{--                                                    <circle cx="18" cy="18" r="18" fill="#48DEFF"/> --}}
-        {{--                                                    <path --}}
-        {{--                                                        d="M28 15H23.21L18.82 8.43005C18.42 7.84005 17.55 7.84005 17.16 8.43005L12.77 15H8C7.45 15 7 15.45 7 16C7 16.09 7.01 16.18 7.04 16.27L9.58 25.5401C9.81 26.3801 10.58 27 11.5 27H24.5C25.42 27 26.19 26.3801 26.43 25.5401L28.97 16.27L29 16C29 15.45 28.55 15 28 15ZM17.99 10.79L20.8 15H15.18L17.99 10.79ZM18 23C16.9 23 16 22.1 16 21C16 19.9 16.9 19 18 19C19.1 19 20 19.9 20 21C20 22.1 19.1 23 18 23Z" --}}
-        {{--                                                        fill="white"/> --}}
-        {{--                                                </svg> --}}
-        {{--                                            </div> --}}
-        {{--                                        </div> --}}
+            {{--                    <div class="col-lg-6 col-md-6 col-sm-12 col-12"> --}}
+            {{--                        <div class="slider-wrap"> --}}
+            {{--                            <h3 class="how-to-get-involved">Cum te poți implica (companii)</h3> --}}
 
-        {{--                                        <div class="slider-text float-start"> --}}
-        {{--                                            <h5> --}}
-        {{--                                                <a href="#" style="color: #48DEFF;" data-bs-toggle="modal" --}}
-        {{--                                                   data-bs-target="#inscriere2">Implică echipa ta </a> --}}
-        {{--                                            </h5> --}}
+            {{--                            <div class="slider-main"> --}}
+            {{--                                <ul class="row"> --}}
+            {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
+            {{--                                        <div class="slider-icon float-start no-ts"> --}}
+            {{--                                            <div class="slider-svg"> --}}
+            {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
+            {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
+            {{--                                                    <circle cx="18" cy="18" r="18" fill="#48DEFF"/> --}}
+            {{--                                                    <path --}}
+            {{--                                                        d="M28 15H23.21L18.82 8.43005C18.42 7.84005 17.55 7.84005 17.16 8.43005L12.77 15H8C7.45 15 7 15.45 7 16C7 16.09 7.01 16.18 7.04 16.27L9.58 25.5401C9.81 26.3801 10.58 27 11.5 27H24.5C25.42 27 26.19 26.3801 26.43 25.5401L28.97 16.27L29 16C29 15.45 28.55 15 28 15ZM17.99 10.79L20.8 15H15.18L17.99 10.79ZM18 23C16.9 23 16 22.1 16 21C16 19.9 16.9 19 18 19C19.1 19 20 19.9 20 21C20 22.1 19.1 23 18 23Z" --}}
+            {{--                                                        fill="white"/> --}}
+            {{--                                                </svg> --}}
+            {{--                                            </div> --}}
+            {{--                                        </div> --}}
 
-        {{--                                            <p> --}}
-        {{--                                                Vrei să te implici într-o acțiune de CSR cu scop nobil? --}}
-        {{--                                                Împreună suntem mai puternici. --}}
-        {{--                                            </p> --}}
-        {{--                                        </div> --}}
-        {{--                                    </li> --}}
+            {{--                                        <div class="slider-text float-start"> --}}
+            {{--                                            <h5> --}}
+            {{--                                                <a href="#" style="color: #48DEFF;" data-bs-toggle="modal" --}}
+            {{--                                                   data-bs-target="#inscriere2">Implică echipa ta </a> --}}
+            {{--                                            </h5> --}}
 
-        {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
-        {{--                                        <div class="slider-icon float-start has-ts"> --}}
-        {{--                                            <div class="slider-svg"> --}}
-        {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
-        {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
-        {{--                                                    <circle cx="18" cy="18" r="18" fill="#2F49D1"/> --}}
-        {{--                                                    <path --}}
-        {{--                                                        d="M21.0375 14.5L19.2 8.44995C18.8375 7.26245 17.1625 7.26245 16.8125 8.44995L14.9625 14.5H9.40001C8.18751 14.5 7.68751 16.0625 8.67501 16.7625L13.225 20.0124L11.4375 25.775C11.075 26.9375 12.425 27.875 13.3875 27.1374L18 23.6374L22.6125 27.15C23.575 27.8874 24.925 26.9499 24.5625 25.7875L22.775 20.025L27.325 16.775C28.3125 16.0625 27.8125 14.5125 26.6 14.5125H21.0375V14.5Z" --}}
-        {{--                                                        fill="white"/> --}}
-        {{--                                                </svg> --}}
-        {{--                                            </div> --}}
+            {{--                                            <p> --}}
+            {{--                                                Vrei să te implici într-o acțiune de CSR cu scop nobil? --}}
+            {{--                                                Împreună suntem mai puternici. --}}
+            {{--                                            </p> --}}
+            {{--                                        </div> --}}
+            {{--                                    </li> --}}
 
-        {{--                                            <div class="slider-icon-text"> --}}
-        {{--                                                <h6>20</h6> --}}
-        {{--                                                <p>puncte</p> --}}
-        {{--                                            </div> --}}
-        {{--                                        </div> --}}
+            {{--                                    <li class="col-lg-6 col-md-6 col-sm-6 col-12"> --}}
+            {{--                                        <div class="slider-icon float-start has-ts"> --}}
+            {{--                                            <div class="slider-svg"> --}}
+            {{--                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" --}}
+            {{--                                                     xmlns="http://www.w3.org/2000/svg"> --}}
+            {{--                                                    <circle cx="18" cy="18" r="18" fill="#2F49D1"/> --}}
+            {{--                                                    <path --}}
+            {{--                                                        d="M21.0375 14.5L19.2 8.44995C18.8375 7.26245 17.1625 7.26245 16.8125 8.44995L14.9625 14.5H9.40001C8.18751 14.5 7.68751 16.0625 8.67501 16.7625L13.225 20.0124L11.4375 25.775C11.075 26.9375 12.425 27.875 13.3875 27.1374L18 23.6374L22.6125 27.15C23.575 27.8874 24.925 26.9499 24.5625 25.7875L22.775 20.025L27.325 16.775C28.3125 16.0625 27.8125 14.5125 26.6 14.5125H21.0375V14.5Z" --}}
+            {{--                                                        fill="white"/> --}}
+            {{--                                                </svg> --}}
+            {{--                                            </div> --}}
 
-        {{--                                        <div class="slider-text float-start"> --}}
-        {{--                                            <h5> --}}
-        {{--                                                <a href="#" style="color: #2F49D1;" data-bs-toggle="modal" --}}
-        {{--                                                   data-bs-target="#packages">Pachete complete</a> --}}
-        {{--                                            </h5> --}}
+            {{--                                            <div class="slider-icon-text"> --}}
+            {{--                                                <h6>20</h6> --}}
+            {{--                                                <p>puncte</p> --}}
+            {{--                                            </div> --}}
+            {{--                                        </div> --}}
 
-        {{--                                            <p> --}}
-        {{--                                                Cauți modalități de a salva --}}
-        {{--                                                mediul? Cauți moduri de --}}
-        {{--                                                implicare pentru pentru tine --}}
-        {{--                                                și angajații tăi? --}}
-        {{--                                            </p> --}}
-        {{--                                        </div> --}}
+            {{--                                        <div class="slider-text float-start"> --}}
+            {{--                                            <h5> --}}
+            {{--                                                <a href="#" style="color: #2F49D1;" data-bs-toggle="modal" --}}
+            {{--                                                   data-bs-target="#packages">Pachete complete</a> --}}
+            {{--                                            </h5> --}}
 
-        {{--                                        <div class="slider-link text-end"> --}}
-        {{--                                            <a href="#" data-bs-toggle="modal" data-bs-target="#packages"> --}}
-        {{--                                                detalii + --}}
-        {{--                                            </a> --}}
-        {{--                                        </div> --}}
-        {{--                                    </li> --}}
-        {{--                                </ul> --}}
-        {{--                            </div> --}}
-        {{--                        </div> --}}
-        {{--                    </div> --}}
-        {{--                </div> --}}
-        {{--            </div> --}}
-        {{--        </div> --}}
+            {{--                                            <p> --}}
+            {{--                                                Cauți modalități de a salva --}}
+            {{--                                                mediul? Cauți moduri de --}}
+            {{--                                                implicare pentru pentru tine --}}
+            {{--                                                și angajații tăi? --}}
+            {{--                                            </p> --}}
+            {{--                                        </div> --}}
 
-        {{--        <div class="row"> --}}
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5 col-12" style="display: flex;flex-wrap: wrap;">
-                    <div class="slider-wrap">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h2 class="common-titles">Au scris despre noi</h2>
+            {{--                                        <div class="slider-link text-end"> --}}
+            {{--                                            <a href="#" data-bs-toggle="modal" data-bs-target="#packages"> --}}
+            {{--                                                detalii + --}}
+            {{--                                            </a> --}}
+            {{--                                        </div> --}}
+            {{--                                    </li> --}}
+            {{--                                </ul> --}}
+            {{--                            </div> --}}
+            {{--                        </div> --}}
+            {{--                    </div> --}}
+            {{--                </div> --}}
+            {{--            </div> --}}
+            {{--        </div> --}}
+
+            {{--        <div class="row"> --}}
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-12" style="display: flex;flex-wrap: wrap;">
+                        <div class="slider-wrap">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2 class="common-titles text-gray">Au scris despre noi</h2>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
-                                    <div class="single-sponcer-in">
-                                        <img src="assets/img/green-report.png" style="width: 100%; height: auto;">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
+                                        <div class="single-sponcer-in">
+                                            <img src="assets/img/green-report.png" style="width: 100%; height: auto;">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                                    <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
+                                        <div class="single-sponcer-in">
+                                            <img src="assets/img/romania-positiva.png"
+                                                 style="width: 100%; height: auto;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
-                                <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
-                                    <div class="single-sponcer-in">
-                                        <img src="assets/img/romania-positiva.png" style="width: 100%; height: auto;">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
+                                        <div class="single-sponcer-in"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-                                <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
-                                    <div class="single-sponcer-in"></div>
-                                </div>
-                            </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                                    <div class="single-sponcer text-start" style="background:#FFFFFF; height: auto;">
+                                        <div class="single-sponcer-in">
+                                            <svg width="173" height="27" viewBox="0 0 173 27" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_502_1413)">
+                                                    <path
+                                                        d="M26.9774 25.6787C33.9227 26.1383 39.8922 20.9106 40.3514 13.9596C40.8105 7.00849 35.5873 1.03402 28.642 0.574448C28.068 0.517001 27.494 0.517001 26.92 0.574448H12.2833C5.33808 1.03402 0.114789 7.06594 0.57398 13.9596C1.03317 20.2787 6.02687 25.2766 12.2833 25.6787H26.9774ZM26.9774 26.2532H12.2833C5.05109 25.7936 -0.459199 19.5319 0.0573904 12.2361C0.459182 5.68721 5.68247 0.459555 12.2833 -1.9921e-05H26.9774C34.2097 -0.459594 40.4661 4.99785 40.9827 12.2361C41.4993 19.4744 35.9316 25.7936 28.6994 26.2532C28.1254 26.3106 27.5514 26.3106 26.9774 26.2532Z"
+                                                        fill="#02A87C"></path>
+                                                    <path
+                                                        d="M23.4761 17.751C24.0501 17.5213 24.6241 17.1766 25.1407 16.8319C28.355 14.4191 29.0438 9.88083 26.633 6.60636C25.2555 4.76806 23.0743 3.67657 20.721 3.67657H15.3255L11.2502 8.50211V22.3468H16.9326V17.751L21.5245 22.3468H28.068L23.4761 17.751ZM20.721 12.6383H16.9326V9.30636H20.721C21.6393 9.30636 22.3855 10.0532 22.3855 10.9723C22.4429 11.834 21.6967 12.5808 20.8358 12.6383H20.721Z"
+                                                        fill="#02A87C"></path>
+                                                    <path d="M11.3076 8.50211L15.3255 3.67657L17.5066 8.50211"
+                                                          fill="#039E75">
+                                                    </path>
+                                                    <path
+                                                        d="M57.6858 14.4192H55.9638V20.3362H58.3172V22.5766H49.8221V20.3362H50.8553C51.2571 20.2787 51.6015 19.934 51.6589 19.4745V6.72128C51.6015 6.26171 51.2571 5.91703 50.8553 5.85958H49.8221V3.56171H58.0876C62.8517 3.56171 65.7216 5.28511 65.7216 8.90426C65.7216 11.4319 64.1718 12.6383 61.3593 13.2128V13.3277C63.4831 13.7298 64.4588 14.5915 65.2624 17.6936L65.779 19.6468C65.8938 20.1638 66.2382 20.3362 66.4678 20.3362H67.3862V22.5766H61.9333L61.0149 17.4064C60.7279 15.1085 59.9817 14.4192 57.6858 14.4192ZM55.9638 6.03192V12.2936H57.9728C60.7853 12.2936 61.3593 10.9723 61.3593 9.13405C61.3593 7.29575 60.7853 6.03192 57.9728 6.03192H55.9638ZM81.0471 16.2H71.4041C71.5763 19.0149 72.8391 20.3362 75.135 20.3362C76.3978 20.4511 77.6032 19.8192 78.2919 18.7851H80.5879V21.3702C79.3825 22.117 77.8328 22.8064 74.7906 22.8064C69.8543 22.8064 67.3288 19.9915 67.3288 15.5106C67.3288 11.0298 70.1987 8.1 74.561 8.1C78.9233 8.1 81.1045 10.283 81.1045 15.1085C81.1045 15.5681 81.0471 16.0851 81.0471 16.2ZM74.561 10.4553C72.8965 10.4553 71.7485 11.4894 71.4615 13.9596H77.0866C76.9718 11.4319 76.1682 10.4553 74.561 10.4553ZM81.6785 27V24.8745H82.6543C82.9987 24.817 83.2857 24.5298 83.2857 24.1851V11.4319C83.2857 11.1447 82.9413 10.6851 82.6543 10.6851H81.5637V8.27234H86.4426C86.9018 8.27234 87.1888 8.61702 87.2462 9.9383C88.3941 8.73192 90.0013 8.1 91.6659 8.1C94.3636 8.1 97.0614 10.0532 97.0614 15.1085C97.0614 20.1638 93.9044 22.2894 90.8623 22.2894C89.5995 22.3468 88.3367 22.0021 87.3036 21.3128V24.8745H89.1403V27H81.6785ZM89.7143 10.9149C88.9107 10.9723 88.0498 11.1447 87.3036 11.4319V19.417C87.9924 19.8766 88.8533 20.1064 89.6569 20.0489C91.2641 20.0489 92.986 19.3021 92.986 15.5106C92.986 11.7192 91.4363 10.9149 89.7143 10.9149ZM102.916 22.8064C100.907 22.8064 99.0703 22.0021 99.0703 19.2447V11.3745C99.0129 11.0298 98.7259 10.7426 98.3815 10.6851H97.4632V8.27234H103.088V17.9809C103.088 19.5319 103.834 19.9915 105.097 19.9915C106.13 19.934 107.164 19.7043 108.082 19.3021V10.6851H106.245V8.27234H112.1V19.5894C112.157 19.934 112.444 20.2787 112.789 20.3362H113.707V22.5766H108.943C108.484 22.5766 108.254 22.2319 108.139 20.7957C106.762 22.1745 104.868 22.8638 102.916 22.8064ZM122.891 22.8064C120.71 22.8064 119.504 22.117 118.586 21.1979C118.184 21.8872 117.61 22.5766 117.266 22.5766H115.027V6.60639C114.97 6.26171 114.683 5.91703 114.338 5.85958H113.305V3.56171H118.356C118.816 3.56171 119.045 3.84894 119.045 4.48086V10.2255C120.193 8.84681 121.858 8.1 123.637 8.1C126.335 8.1 129.09 9.88085 129.09 15.2234C129.09 20.566 125.933 22.8064 122.891 22.8064ZM121.685 10.9149C120.767 10.9723 119.906 11.2021 119.045 11.5468V19.7043C119.791 20.2787 120.71 20.5085 121.628 20.5085C123.293 20.5085 125.015 19.5894 125.015 15.5681C125.015 11.5468 123.465 10.9149 121.685 10.9149ZM129.549 22.5766H137.126V20.3362H135.978C135.633 20.2787 135.346 19.9915 135.346 19.6468V4.48086C135.346 3.84894 135.117 3.56171 134.658 3.56171H129.492V5.85958H130.64C130.984 5.91703 131.271 6.26171 131.328 6.60639V19.6468C131.271 19.9915 130.984 20.2787 130.64 20.3362H129.549V22.5766ZM137.642 22.5766H145.047V20.3362H144.014C143.669 20.2787 143.382 19.9915 143.325 19.6468V9.82341C143.325 8.73192 143.153 8.27234 142.693 8.27234H137.528V10.6851H138.675C138.962 10.6851 139.307 11.1447 139.307 11.4319V19.6468C139.249 19.9915 139.02 20.2787 138.675 20.3362H137.642V22.5766ZM141.316 7.18085C142.464 7.3532 143.554 6.60639 143.784 5.45745C143.956 4.30851 143.21 3.21703 142.062 2.98724C141.832 2.92979 141.603 2.92979 141.373 2.98724C140.225 2.92979 139.249 3.90639 139.192 5.05532V5.11277C139.135 6.26171 140.11 7.2383 141.316 7.18085ZM152.968 22.7489C154.747 22.8064 156.469 22.4043 158.076 21.6V18.7851H156.125C155.436 19.8192 154.231 20.3936 153.025 20.2787C150.729 20.2787 149.581 18.9 149.581 15.5106C149.581 12.1213 150.901 10.6277 153.083 10.6277C155.264 10.6277 155.092 11.0872 155.608 12.0638H158.019V8.78937C156.469 8.27234 154.805 8.04256 153.14 8.1C148.491 8.1 145.506 10.8575 145.506 15.5106C145.506 20.1638 147.974 22.8064 152.968 22.8064V22.7489ZM163.587 22.7489C160.889 22.7489 158.937 21.2553 158.937 18.4404C158.937 15.6255 161.348 14.0745 164.62 14.0745C165.596 14.0745 166.571 14.1894 167.547 14.4192V12.9255C167.547 11.4894 166.801 10.8 165.079 10.8C163.816 10.7426 162.668 11.2021 161.75 12.0638H159.913V9.19149C161.807 8.38724 163.816 8.04256 165.883 8.1C169.613 8.1 171.565 9.24894 171.565 12.5234V19.6468C171.565 19.9915 171.909 20.3362 172.254 20.3362H173V22.2319C172.254 22.634 171.45 22.8064 170.589 22.7489C168.925 22.7489 168.064 22.117 167.719 20.9681C166.686 22.2894 165.309 22.7489 163.587 22.7489ZM165.022 20.3936C165.94 20.3936 166.858 20.0489 167.547 19.417V16.3723C166.858 16.2575 166.17 16.2 165.481 16.2C163.816 16.2 162.84 16.8319 162.84 18.2681C162.84 19.7043 163.701 20.3936 165.022 20.3936Z"
+                                                        fill="#02A87C"></path>
+                                                </g>
 
-                            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-                                <div class="single-sponcer text-start" style="background:#FFFFFF; height: auto;">
-                                    <div class="single-sponcer-in">
-                                        <svg width="173" height="27" viewBox="0 0 173 27" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_502_1413)">
-                                                <path
-                                                    d="M26.9774 25.6787C33.9227 26.1383 39.8922 20.9106 40.3514 13.9596C40.8105 7.00849 35.5873 1.03402 28.642 0.574448C28.068 0.517001 27.494 0.517001 26.92 0.574448H12.2833C5.33808 1.03402 0.114789 7.06594 0.57398 13.9596C1.03317 20.2787 6.02687 25.2766 12.2833 25.6787H26.9774ZM26.9774 26.2532H12.2833C5.05109 25.7936 -0.459199 19.5319 0.0573904 12.2361C0.459182 5.68721 5.68247 0.459555 12.2833 -1.9921e-05H26.9774C34.2097 -0.459594 40.4661 4.99785 40.9827 12.2361C41.4993 19.4744 35.9316 25.7936 28.6994 26.2532C28.1254 26.3106 27.5514 26.3106 26.9774 26.2532Z"
-                                                    fill="#02A87C"></path>
-                                                <path
-                                                    d="M23.4761 17.751C24.0501 17.5213 24.6241 17.1766 25.1407 16.8319C28.355 14.4191 29.0438 9.88083 26.633 6.60636C25.2555 4.76806 23.0743 3.67657 20.721 3.67657H15.3255L11.2502 8.50211V22.3468H16.9326V17.751L21.5245 22.3468H28.068L23.4761 17.751ZM20.721 12.6383H16.9326V9.30636H20.721C21.6393 9.30636 22.3855 10.0532 22.3855 10.9723C22.4429 11.834 21.6967 12.5808 20.8358 12.6383H20.721Z"
-                                                    fill="#02A87C"></path>
-                                                <path d="M11.3076 8.50211L15.3255 3.67657L17.5066 8.50211"
-                                                      fill="#039E75">
-                                                </path>
-                                                <path
-                                                    d="M57.6858 14.4192H55.9638V20.3362H58.3172V22.5766H49.8221V20.3362H50.8553C51.2571 20.2787 51.6015 19.934 51.6589 19.4745V6.72128C51.6015 6.26171 51.2571 5.91703 50.8553 5.85958H49.8221V3.56171H58.0876C62.8517 3.56171 65.7216 5.28511 65.7216 8.90426C65.7216 11.4319 64.1718 12.6383 61.3593 13.2128V13.3277C63.4831 13.7298 64.4588 14.5915 65.2624 17.6936L65.779 19.6468C65.8938 20.1638 66.2382 20.3362 66.4678 20.3362H67.3862V22.5766H61.9333L61.0149 17.4064C60.7279 15.1085 59.9817 14.4192 57.6858 14.4192ZM55.9638 6.03192V12.2936H57.9728C60.7853 12.2936 61.3593 10.9723 61.3593 9.13405C61.3593 7.29575 60.7853 6.03192 57.9728 6.03192H55.9638ZM81.0471 16.2H71.4041C71.5763 19.0149 72.8391 20.3362 75.135 20.3362C76.3978 20.4511 77.6032 19.8192 78.2919 18.7851H80.5879V21.3702C79.3825 22.117 77.8328 22.8064 74.7906 22.8064C69.8543 22.8064 67.3288 19.9915 67.3288 15.5106C67.3288 11.0298 70.1987 8.1 74.561 8.1C78.9233 8.1 81.1045 10.283 81.1045 15.1085C81.1045 15.5681 81.0471 16.0851 81.0471 16.2ZM74.561 10.4553C72.8965 10.4553 71.7485 11.4894 71.4615 13.9596H77.0866C76.9718 11.4319 76.1682 10.4553 74.561 10.4553ZM81.6785 27V24.8745H82.6543C82.9987 24.817 83.2857 24.5298 83.2857 24.1851V11.4319C83.2857 11.1447 82.9413 10.6851 82.6543 10.6851H81.5637V8.27234H86.4426C86.9018 8.27234 87.1888 8.61702 87.2462 9.9383C88.3941 8.73192 90.0013 8.1 91.6659 8.1C94.3636 8.1 97.0614 10.0532 97.0614 15.1085C97.0614 20.1638 93.9044 22.2894 90.8623 22.2894C89.5995 22.3468 88.3367 22.0021 87.3036 21.3128V24.8745H89.1403V27H81.6785ZM89.7143 10.9149C88.9107 10.9723 88.0498 11.1447 87.3036 11.4319V19.417C87.9924 19.8766 88.8533 20.1064 89.6569 20.0489C91.2641 20.0489 92.986 19.3021 92.986 15.5106C92.986 11.7192 91.4363 10.9149 89.7143 10.9149ZM102.916 22.8064C100.907 22.8064 99.0703 22.0021 99.0703 19.2447V11.3745C99.0129 11.0298 98.7259 10.7426 98.3815 10.6851H97.4632V8.27234H103.088V17.9809C103.088 19.5319 103.834 19.9915 105.097 19.9915C106.13 19.934 107.164 19.7043 108.082 19.3021V10.6851H106.245V8.27234H112.1V19.5894C112.157 19.934 112.444 20.2787 112.789 20.3362H113.707V22.5766H108.943C108.484 22.5766 108.254 22.2319 108.139 20.7957C106.762 22.1745 104.868 22.8638 102.916 22.8064ZM122.891 22.8064C120.71 22.8064 119.504 22.117 118.586 21.1979C118.184 21.8872 117.61 22.5766 117.266 22.5766H115.027V6.60639C114.97 6.26171 114.683 5.91703 114.338 5.85958H113.305V3.56171H118.356C118.816 3.56171 119.045 3.84894 119.045 4.48086V10.2255C120.193 8.84681 121.858 8.1 123.637 8.1C126.335 8.1 129.09 9.88085 129.09 15.2234C129.09 20.566 125.933 22.8064 122.891 22.8064ZM121.685 10.9149C120.767 10.9723 119.906 11.2021 119.045 11.5468V19.7043C119.791 20.2787 120.71 20.5085 121.628 20.5085C123.293 20.5085 125.015 19.5894 125.015 15.5681C125.015 11.5468 123.465 10.9149 121.685 10.9149ZM129.549 22.5766H137.126V20.3362H135.978C135.633 20.2787 135.346 19.9915 135.346 19.6468V4.48086C135.346 3.84894 135.117 3.56171 134.658 3.56171H129.492V5.85958H130.64C130.984 5.91703 131.271 6.26171 131.328 6.60639V19.6468C131.271 19.9915 130.984 20.2787 130.64 20.3362H129.549V22.5766ZM137.642 22.5766H145.047V20.3362H144.014C143.669 20.2787 143.382 19.9915 143.325 19.6468V9.82341C143.325 8.73192 143.153 8.27234 142.693 8.27234H137.528V10.6851H138.675C138.962 10.6851 139.307 11.1447 139.307 11.4319V19.6468C139.249 19.9915 139.02 20.2787 138.675 20.3362H137.642V22.5766ZM141.316 7.18085C142.464 7.3532 143.554 6.60639 143.784 5.45745C143.956 4.30851 143.21 3.21703 142.062 2.98724C141.832 2.92979 141.603 2.92979 141.373 2.98724C140.225 2.92979 139.249 3.90639 139.192 5.05532V5.11277C139.135 6.26171 140.11 7.2383 141.316 7.18085ZM152.968 22.7489C154.747 22.8064 156.469 22.4043 158.076 21.6V18.7851H156.125C155.436 19.8192 154.231 20.3936 153.025 20.2787C150.729 20.2787 149.581 18.9 149.581 15.5106C149.581 12.1213 150.901 10.6277 153.083 10.6277C155.264 10.6277 155.092 11.0872 155.608 12.0638H158.019V8.78937C156.469 8.27234 154.805 8.04256 153.14 8.1C148.491 8.1 145.506 10.8575 145.506 15.5106C145.506 20.1638 147.974 22.8064 152.968 22.8064V22.7489ZM163.587 22.7489C160.889 22.7489 158.937 21.2553 158.937 18.4404C158.937 15.6255 161.348 14.0745 164.62 14.0745C165.596 14.0745 166.571 14.1894 167.547 14.4192V12.9255C167.547 11.4894 166.801 10.8 165.079 10.8C163.816 10.7426 162.668 11.2021 161.75 12.0638H159.913V9.19149C161.807 8.38724 163.816 8.04256 165.883 8.1C169.613 8.1 171.565 9.24894 171.565 12.5234V19.6468C171.565 19.9915 171.909 20.3362 172.254 20.3362H173V22.2319C172.254 22.634 171.45 22.8064 170.589 22.7489C168.925 22.7489 168.064 22.117 167.719 20.9681C166.686 22.2894 165.309 22.7489 163.587 22.7489ZM165.022 20.3936C165.94 20.3936 166.858 20.0489 167.547 19.417V16.3723C166.858 16.2575 166.17 16.2 165.481 16.2C163.816 16.2 162.84 16.8319 162.84 18.2681C162.84 19.7043 163.701 20.3936 165.022 20.3936Z"
-                                                    fill="#02A87C"></path>
-                                            </g>
-
-                                            <defs>
-                                                <clipPath id="clip0_502_1413">
-                                                    <rect width="173" height="27" fill="white"></rect>
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
+                                                <defs>
+                                                    <clipPath id="clip0_502_1413">
+                                                        <rect width="173" height="27" fill="white"></rect>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-7 col-12">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-7 col-sm-12 col-12" style="display: flex;flex-wrap: wrap;">
-                            <div class="slider-wrap">
-                                <h2 class="common-titles">Despre Eco4</h2>
-                                <p>
-                                    <a href="#" style="color: #A6CE39;">Eco4</a> este acțiunea dedicată
-                                    naturii,
-                                    îndemnul la educație adresat oamenilor, expresia unității și este dorința de
-                                    implicare în tot acest proces.
-                                </p><br/>
-                                <p>Facem aceste lucruri pentru a da un semn ca se poate, pentru a arata ca prezenta
-                                    noastra pe acest pământ poate să facă această lume mai bună, mai frumoasă. Și
-                                    da,
-                                    pentru că astfel putem să lăsăm urmașilor noștri un exemplu pozitiv.</p>
+                    <div class="col-sm-7 col-12">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-12 col-12" style="display: flex;flex-wrap: wrap;">
+                                <div class="slider-wrap">
+                                    <h2 class="common-titles">Despre Eco4</h2>
+                                    <p>
+                                        <a href="#" style="color: #A6CE39;">Eco4</a> este acțiunea dedicată
+                                        naturii,
+                                        îndemnul la educație adresat oamenilor, expresia unității și este dorința de
+                                        implicare în tot acest proces.
+                                    </p><br/>
+                                    <p>Facem aceste lucruri pentru a da un semn ca se poate, pentru a arata ca prezenta
+                                        noastra pe acest pământ poate să facă această lume mai bună, mai frumoasă. Și
+                                        da,
+                                        pentru că astfel putem să lăsăm urmașilor noștri un exemplu pozitiv.</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-5 col-md-5 col-sm-12 col-12">
-                            <div class="slider-wrap">
-                                <p>
-                                    Am plantat, plantăm și vom planta.
-                                    Dar avem nevoie de tine pentru a
-                                    ne susține. Iar noi îți trimitem
-                                    diploma de susținător.
-                                </p>
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                                <div class="slider-wrap">
+                                    <p>
+                                        Am plantat, plantăm și vom planta.
+                                        Dar avem nevoie de tine pentru a
+                                        ne susține. Iar noi îți trimitem
+                                        diploma de susținător.
+                                    </p>
 
-                                <div class="donation text-center">
-                                    <div class="donation-svg"
-                                         style="margin-top: 20px; margin-right: 0; margin-bottom: 10px;">
-                                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <circle opacity="0.1" cx="30" cy="30" r="30"
-                                                    fill="#E31E24"></circle>
-                                            <path
-                                                d="M41.49 18.985C37.53 16.285 32.64 17.545 30 20.635C27.36 17.545 22.47 16.27 18.51 18.985C16.41 20.425 15.09 22.855 15 25.42C14.79 31.24 19.95 35.905 27.825 43.06L27.975 43.195C29.115 44.23 30.87 44.23 32.01 43.18L32.175 43.03C40.05 35.89 45.195 31.225 45 25.405C44.91 22.855 43.59 20.425 41.49 18.985V18.985ZM30.15 40.825L30 40.975L29.85 40.825C22.71 34.36 18 30.085 18 25.75C18 22.75 20.25 20.5 23.25 20.5C25.56 20.5 27.81 21.985 28.605 24.04H31.41C32.19 21.985 34.44 20.5 36.75 20.5C39.75 20.5 42 22.75 42 25.75C42 30.085 37.29 34.36 30.15 40.825Z"
-                                                fill="#E31E24"></path>
-                                        </svg>
-                                    </div>
+                                    <div class="donation text-center">
+                                        <div class="donation-svg"
+                                             style="margin-top: 20px; margin-right: 0; margin-bottom: 10px;">
+                                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <circle opacity="0.1" cx="30" cy="30" r="30"
+                                                        fill="#E31E24"></circle>
+                                                <path
+                                                    d="M41.49 18.985C37.53 16.285 32.64 17.545 30 20.635C27.36 17.545 22.47 16.27 18.51 18.985C16.41 20.425 15.09 22.855 15 25.42C14.79 31.24 19.95 35.905 27.825 43.06L27.975 43.195C29.115 44.23 30.87 44.23 32.01 43.18L32.175 43.03C40.05 35.89 45.195 31.225 45 25.405C44.91 22.855 43.59 20.425 41.49 18.985V18.985ZM30.15 40.825L30 40.975L29.85 40.825C22.71 34.36 18 30.085 18 25.75C18 22.75 20.25 20.5 23.25 20.5C25.56 20.5 27.81 21.985 28.605 24.04H31.41C32.19 21.985 34.44 20.5 36.75 20.5C39.75 20.5 42 22.75 42 25.75C42 30.085 37.29 34.36 30.15 40.825Z"
+                                                    fill="#E31E24"></path>
+                                            </svg>
+                                        </div>
 
-                                    <h2 class="common-titles" style="margin-bottom: 0;">Donează acum!</h2>
+                                        <h2 class="common-titles" style="margin-bottom: 0;">Donează acum!</h2>
 
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#donateModal"
-                                       class="donation-text"
-                                       style="font-family: 'Inter';
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#donateModal"
+                                           class="donation-text"
+                                           style="font-family: 'Inter';
                         font-style: normal;
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 17px;
                         align-items: center;
                         color: #A6CE39;">
-                                        Click aici!
-                                    </a>
+                                            Click aici!
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -626,16 +613,15 @@
                 </div>
             </div>
         </div>
-        </div>
-    </main>
+    </div>
 
 
     <!-- modals -->
     <!-- Actions In Ialomita -->
-    {{--  <div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="nextEventModal" tabindex="-1" aria-labelledby="nextEventModal"
-                aria-hidden="true" role="dialog">
+                 aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header close-modal">
@@ -643,12 +629,13 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                    data-bs-dismiss="modal" aria-label="Close">
-                                    Close </button>
+                                        data-bs-dismiss="modal" aria-label="Close">
+                                    X
+                                </button>
                             </div>
                         </div>
 
-                         <div class="modal-body">
+                        <div class="modal-body">
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="row form-group">
@@ -661,7 +648,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                        name="name-actions-modal" id="name-actions-modal" required />
+                                                           name="name-actions-modal" id="name-actions-modal" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -670,14 +657,15 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-4">
                                             <label for="email-actions-modal"
-                                                class="col-form-label form-modal-label">Email:</label>
+                                                   class="col-form-label form-modal-label">Email:</label>
                                         </div>
 
                                         <div class="col-12 col-sm-8">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                        name="email-actions-modal" id="email-actions-modal" required />
+                                                           name="email-actions-modal" id="email-actions-modal"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -686,14 +674,14 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-4">
                                             <label for="tel-actions-modal"
-                                                class="col-form-label form-modal-label">Telefon:</label>
+                                                   class="col-form-label form-modal-label">Telefon:</label>
                                         </div>
 
                                         <div class="col-12 col-sm-8">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                        name="tel-actions-modal" id="tel-actions-modal" required />
+                                                           name="tel-actions-modal" id="tel-actions-modal" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -751,17 +739,17 @@
                                                     </select>
 
                                                     <svg class="select-arrow-svg" id="svg-arrow-1" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
+                                                         height="24" viewBox="0 0 24 24" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39" />
+                                                            fill="#A6CE39"/>
                                                     </svg>
                                                 </div>
 
                                                 <div class="col-12 col-sm-6">
                                                     <select class="dropdown-eco4 form-control"
-                                                        id="dropdown-eco4-second-select" required>
+                                                            id="dropdown-eco4-second-select" required>
                                                         <option selected>Selectează</option>
                                                         <option value="1">Alba</option>
                                                         <option value="2">Arad</option>
@@ -808,11 +796,11 @@
                                                     </select>
 
                                                     <svg class="select-arrow-svg" id="svg-arrow-2" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
+                                                         height="24" viewBox="0 0 24 24" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
                                                             d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39" />
+                                                            fill="#A6CE39"/>
                                                     </svg>
                                                 </div>
                                             </div>
@@ -822,20 +810,20 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-4">
                                             <label for="friends-enrolled-actions-modal"
-                                                class="col-form-label form-modal-label">Mai vin</label>
+                                                   class="col-form-label form-modal-label">Mai vin</label>
                                         </div>
 
                                         <div class="col-12 col-sm-8">
                                             <div class="row">
                                                 <div class="col-12 col-sm-6">
                                                     <input type="text"
-                                                        class="input-number-of-friends-eco4 eco-input-text-modal"
-                                                        id="friends-enrolled-actions-modal" required />
+                                                           class="input-number-of-friends-eco4 eco-input-text-modal"
+                                                           id="friends-enrolled-actions-modal" required/>
                                                 </div>
 
                                                 <div class="col-12 col-sm-6">
                                                     <label class="friends-enrolled"
-                                                        style="width: 133px; height: 17px;">prieteni
+                                                           style="width: 133px; height: 17px;">prieteni
                                                         să facem treabă</label>
                                                 </div>
                                             </div>
@@ -849,7 +837,7 @@
 
                                         <div class="col-12 col-sm-4">
                                             <input type="text" class="input-number-of-seats-eco4"
-                                                id="car-actions-modal" required />
+                                                   id="car-actions-modal" required/>
                                         </div>
 
                                         <div class="col-12 col-sm-4">
@@ -905,25 +893,26 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
+    </div>
     </div>
     <!-- Packages For Companies -->
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="packages" tabindex="-1" aria-labelledby="packagesModalLabel"
-                aria-hidden="true" role="dialog">
+                 aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header close-modal">
                             <h5 class="modal-title">Pachete companii</h5>
 
                             <div class="modal-close-text-container">
-                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404" data-bs-dismiss="modal"
-                                    aria-label="Close">
-                                    Close </button>
+                                <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
+                                        data-bs-dismiss="modal" aria-label="Close">
+                                    X
+                                </button>
                             </div>
                         </div>
 
@@ -945,7 +934,7 @@
                                                 </div>
 
                                                 <div class="alert alert-success" id="pachete-alert"
-                                                    style="display: none;" role="alert">
+                                                     style="display: none;" role="alert">
                                                     Te-ai inscris cu succes!
                                                 </div>
                                             </div>
@@ -953,16 +942,16 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="company-name-package-modal"
-                                                        class="col-form-label form-modal-label">Nume companie</label>
+                                                           class="col-form-label form-modal-label">Nume companie</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="text"
-                                                                class="input-text-eco4 eco-input-text-modal"
-                                                                name="company-name-package-modal"
-                                                                id="company-name-package-modal" required />
+                                                                   class="input-text-eco4 eco-input-text-modal"
+                                                                   name="company-name-package-modal"
+                                                                   id="company-name-package-modal" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -971,7 +960,7 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="contact-person-package-modal"
-                                                        class="col-form-label form-modal-label">Persoana
+                                                           class="col-form-label form-modal-label">Persoana
                                                         contact</label>
                                                 </div>
 
@@ -979,8 +968,8 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="text"
-                                                                class="input-text-eco4 eco-input-text-modal"
-                                                                id="contact-person-package-modal" required />
+                                                                   class="input-text-eco4 eco-input-text-modal"
+                                                                   id="contact-person-package-modal" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -989,16 +978,16 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="tel-package-modal"
-                                                        class="col-form-label form-modal-label">Telefon</label>
+                                                           class="col-form-label form-modal-label">Telefon</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="tel"
-                                                                class="input-text-eco4 eco-input-text-modal"
-                                                                name="tel-package-modal" id="tel-package-modal"
-                                                                required />
+                                                                   class="input-text-eco4 eco-input-text-modal"
+                                                                   name="tel-package-modal" id="tel-package-modal"
+                                                                   required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1007,16 +996,16 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="email-package-modal"
-                                                        class="col-form-label form-modal-label">Email</label>
+                                                           class="col-form-label form-modal-label">Email</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="email"
-                                                                class="input-text-eco4 eco-input-text-modal"
-                                                                name="email-package-modal" id="email-package-modal"
-                                                                required />
+                                                                   class="input-text-eco4 eco-input-text-modal"
+                                                                   name="email-package-modal" id="email-package-modal"
+                                                                   required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1025,13 +1014,15 @@
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-5">
                                                     <label for="observations-packages-modal"
-                                                        class="col-form-label form-modal-label">Observații</label>
+                                                           class="col-form-label form-modal-label">Observații</label>
                                                 </div>
 
                                                 <div class="col-12 col-sm-7">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <textarea class="company-package-modal-textarea eco-input-text-modal" name="observations-packages-modal"
+                                                            <textarea
+                                                                class="company-package-modal-textarea eco-input-text-modal"
+                                                                name="observations-packages-modal"
                                                                 id="observations-packages-modal" required></textarea>
                                                         </div>
                                                     </div>
@@ -1041,13 +1032,13 @@
                                             <div class="row form-group">
                                                 <div class="col-sm-12">
                                                     <input class="form-check-input" type="checkbox"
-                                                        name="check-package-modal" id="check-package-modal" />
+                                                           name="check-package-modal" id="check-package-modal"/>
 
                                                     <div class="terms-conditions-text">
                                                         <label style="display: inline;" for="check-package-modal">Sunt
                                                             de
                                                             acord cu </label><a href="#"
-                                                            style="color: #A6CE39;">termenii
+                                                                                style="color: #A6CE39;">termenii
                                                             și
                                                             condițiile acestui</a> site.
                                                     </div>
@@ -1071,17 +1062,17 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Eco Action Proposal -->
 
 
 
     <!-- Enroll Specific Eco Action -->
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="modal-window modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel"
-                aria-hidden="true" role="dialog">
+                 aria-hidden="true" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content" id="enroll-Movila-Miresei">
                         <div class="modal-header close-modal">
@@ -1089,8 +1080,10 @@
                                 Brăila</h5>
 
                             <div class="modal-close-text-container">
-                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button text-dark fs-5"
-                                style="color: #a00404" data-bs-dismiss="modal" aria-label="Close" id="close-modal-4">Close</button>
+                                <button onclick="unsetEcoAction()" type="button" class="close-modal-button fs-5"
+                                        style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
+                                        id="close-modal-4">X
+                                </button>
                             </div>
                         </div>
 
@@ -1099,17 +1092,17 @@
                                 <div class="pop-content">
                                     <form id="volunteer_add" name="volunteer_add" method="POST">
                                         <div class="row form-group">
-                                            <div class="col-12 col-sm-5"> --}}
-    {{-- <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
-                                                    prenume</label> --}}
-    {{-- </div>
+                                            <div class="col-12 col-sm-5">
+                                                <label for="nume_voluntar" class="col-form-label form-modal-label">Nume,
+                                                    prenume</label>
+                                            </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <input type="text"
-                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                            name="nume_voluntar" id="nume_voluntar" />
+                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                               name="nume_voluntar" id="nume_voluntar"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1118,15 +1111,15 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="email_voluntar"
-                                                    class="col-form-label form-modal-label">Email</label>
+                                                       class="col-form-label form-modal-label">Email</label>
                                             </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <input type="email"
-                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                            name="email_voluntar" id="email_voluntar" />
+                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                               name="email_voluntar" id="email_voluntar"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1135,15 +1128,15 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="tel_voluntar"
-                                                    class="col-form-label form-modal-label">Telefon</label>
+                                                       class="col-form-label form-modal-label">Telefon</label>
                                             </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <input type="tel"
-                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                            name="tel_voluntar" id="tel_voluntar" />
+                                                               class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                               name="tel_voluntar" id="tel_voluntar"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1152,7 +1145,7 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="judet_voluntar_propus"
-                                                    class="col-form-label form-modal-label">Sunt
+                                                       class="col-form-label form-modal-label">Sunt
                                                     din</label>
                                             </div>
 
@@ -1160,32 +1153,32 @@
                                                 <div class="row fix-alignment">
                                                     <div class="col-12 col-sm-5 me-1">
                                                         <select class="dropdown-eco4 form-control select-location"
-                                                            name="judet_voluntar" id="judet_voluntar"
-                                                            onchange="viewLocationsInCounty(this, 1)">
+                                                                name="judet_voluntar" id="judet_voluntar"
+                                                                onchange="viewLocationsInCounty(this, 1)">
                                                             <option value="">Localitate</option>
                                                         </select>
 
                                                         <svg class="select-arrow-svg" id="svg-arrow-1" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                             height="24" viewBox="0 0 24 24" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                                fill="#A6CE39" />
+                                                                fill="#A6CE39"/>
                                                         </svg>
                                                     </div>
 
                                                     <div class="col-12 col-sm-5">
                                                         <select class="dropdown-eco4 form-control insert-localities"
-                                                            name="localitate_voluntar" id="localitate_voluntar">
+                                                                name="localitate_voluntar" id="localitate_voluntar">
                                                             <option value="">Localitate</option>
                                                         </select>
 
                                                         <svg class="select-arrow-svg" id="svg-arrow-2" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                             height="24" viewBox="0 0 24 24" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                                fill="#A6CE39" />
+                                                                fill="#A6CE39"/>
                                                         </svg>
                                                     </div>
                                                 </div>
@@ -1195,20 +1188,20 @@
                                         <div class="row form-group">
                                             <div class="col-12 col-sm-5">
                                                 <label for="friends-enrolled-modal-2"
-                                                    class="col-form-label form-modal-label">Mai vin</label>
+                                                       class="col-form-label form-modal-label">Mai vin</label>
                                             </div>
 
                                             <div class="col-12 col-sm-7">
                                                 <div class="fix-alignment-1">
                                                     <div>
                                                         <input type="text"
-                                                            class="input-number-of-friends-eco4 eco-input-text-modal"
-                                                            id="friends-enrolled-modal-2" />
+                                                               class="input-number-of-friends-eco4 eco-input-text-modal"
+                                                               id="friends-enrolled-modal-2"/>
                                                     </div>
 
                                                     <div>
                                                         <label for="friends-enrolled-modal-2" class="friends-enrolled"
-                                                            style="width: 133px; height: 17px;">prieteni să facem
+                                                               style="width: 133px; height: 17px;">prieteni să facem
                                                             treabă</label>
                                                     </div>
                                                 </div>
@@ -1224,11 +1217,11 @@
                                                 <div class="fix-alignment-1">
                                                     <div>
                                                         <input type="text" class="input-number-of-seats-eco4"
-                                                            id="car-modal-2" />
+                                                               id="car-modal-2"/>
                                                     </div>
 
                                                     <div>
-                                                        <label for="car-modal-2" class="fix-padding">locuri libere in
+                                                        <label for="car-modal-2" class="fix-padding">ocuri libere in
                                                             ea</label>
                                                     </div>
                                                 </div>
@@ -1238,7 +1231,7 @@
                                         <div class="row form-group">
                                             <div class="col-12 text-start" id="field-completion-message">
                                                 <label id="confirmation-for-number-of-people">
-                                                    Atenție: completarea acestui câmp presupune că vei
+                                                    Atenție: Completarea acestui câmp presupune că vei
                                                     lua de la locul de pornire numărul de persoane specificat
                                                 </label>
                                             </div>
@@ -1249,13 +1242,13 @@
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-enroll-modal-check-1-span"></span>
                                                     <input class="form-check-input" value="" type="checkbox"
-                                                        name="eco-action-enroll-modal-check-1"
-                                                        id="eco-action-enroll-modal-check-1" />
+                                                           name="eco-action-enroll-modal-check-1"
+                                                           id="eco-action-enroll-modal-check-1"/>
                                                     <label style="display: inline;" style="display: inline;"
-                                                        for="eco-action-enroll-modal-check-1">Sunt de acord
+                                                           for="eco-action-enroll-modal-check-1">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                        style="color: #A6CE39;">termenii și condițiile acestui</a> site.
+                                                       style="color: #A6CE39;">Termenii și Condițiile acestui</a> site.
                                                 </div>
                                             </div>
                                         </div>
@@ -1265,13 +1258,13 @@
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-enroll-modal-check-2-span"></span>
                                                     <input class="form-check-input" value="" type="checkbox"
-                                                        name="eco-action-enroll-modal-check-2"
-                                                        id="eco-action-enroll-modal-check-2" />
+                                                           name="eco-action-enroll-modal-check-2"
+                                                           id="eco-action-enroll-modal-check-2"/>
                                                     <label style="display: inline;" style="display: inline;"
-                                                        for="eco-action-enroll-modal-check-2">Sunt de acord
+                                                           for="eco-action-enroll-modal-check-2">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#workshop"
-                                                        style="color: #A6CE39;">Termenii și Condițiile de participare</a>
+                                                       style="color: #A6CE39;">Termenii și Condițiile de participare</a>
                                                     la
                                                     workshop-ul de ecologizare.
                                                 </div>
@@ -1283,13 +1276,13 @@
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-enroll-modal-check-3-span"></span>
                                                     <input class="form-check-input" value="" type="checkbox"
-                                                        name="eco-action-enroll-modal-check-3"
-                                                        id="eco-action-enroll-modal-check-3" />
+                                                           name="eco-action-enroll-modal-check-3"
+                                                           id="eco-action-enroll-modal-check-3"/>
                                                     <label style="display: inline;" style="display: inline;"
-                                                        for="eco-action-enroll-modal-check-3">Sunt de acord
+                                                           for="eco-action-enroll-modal-check-3">Sunt de acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#contract"
-                                                        style="color: #A6CE39;;">contractul de voluntariat.</a>
+                                                       style="color: #A6CE39;;">Contractul de voluntariat.</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1299,7 +1292,7 @@
                                         <div class="row form-group">
                                             <div class="col-12 fix-alignment-2">
                                                 <input type="submit" id="volunteer-enroll-button"
-                                                    class="form-submit modal-register-button" value="Mă inscriu" />
+                                                       class="form-submit modal-register-button" value="Mă inscriu"/>
                                             </div>
                                         </div>
                                     </form>
@@ -1310,7 +1303,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Enroll General Eco Action -->
 
@@ -1326,7 +1319,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-8">Close
+                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-8">X
                                 </button>
                             </div>
                         </div>
@@ -1622,7 +1615,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-10">Close
+                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-10">X
                                 </button>
                             </div>
                         </div>
@@ -1789,7 +1782,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-11">Close
+                                        data-bs-dismiss="modal" aria-label="Close" id="close-modal-11"> X
                                 </button>
                             </div>
                         </div>
@@ -2222,7 +2215,7 @@
             </div>
         </div>
     </div>
-    @if(session('success'))
+    @if (session('success'))
         @include('components.modals.confirm-registration-modal')
         <script>
             $(document).ready(function () {
@@ -2232,9 +2225,9 @@
     @endif
 
 @endsection
-<style type="text/css">
+{{-- <style type="text/css">
     #map {
-        height: 400px;
-        width: 600px;
+        height: 500px;
+        width: 745px;
     }
-</style>
+</style> --}}
