@@ -236,8 +236,9 @@
                                    class="col-form-label form-modal-label text-dark fs-6">Propune
                                 acțiune la:</label>
                             <select name="region_id"
-                                    class="form-control input-normal select-location text-dark fs-6"
-                                    id="propose_regions" required>
+                                    class="form-control input-normal select-location text-dark fs-"
+                                    id="propose_regions_home"
+                                    required>
                                 <option value="">Judet</option>
                                 @foreach ($regions as $region)
                                     <option value="{{ $region->id }}">{{ $region->name }}
@@ -249,7 +250,7 @@
                         <div class="special-input-wrap">
                             <select required
                                     class="form-control input-normal insert-localities text-dark fs-6"
-                                    id="region_cities">
+                                    id="region_cities_home">
                                 <option class="text-dark fs-6">Localitate</option>
                             </select>
                         </div>

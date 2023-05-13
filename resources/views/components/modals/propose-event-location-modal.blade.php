@@ -154,7 +154,7 @@
                                                     </label>
                                                     <select name="region_id"
                                                             class="form-control input-normal select-location text-gray fs-6"
-                                                            id="propose_regions" required>
+                                                            id="propose_regions_modal" required>
                                                         <option value="">Judet</option>
                                                         @foreach ($regions as $region)
                                                             <option value="{{ $region->id }}">{{ $region->name }}
@@ -168,14 +168,14 @@
                                                            class="col-form-label form-modal-label text-gray fs-6">Localitate:
                                                     </label>
                                                     <select class="form-control  insert-localities text-gray fs-6"
-                                                            id="region_cities" required>
+                                                            id="region_cities_modal" required>
                                                         <option value="">Localitate</option>
                                                     </select>
 
                                                 </div>
                                             </div>
 
-                                            <div class="col-16 col-sm-6 mb-4">
+                                            <div class="form-group">
                                                 <div id="map"></div>
                                             </div>
                                             <div>

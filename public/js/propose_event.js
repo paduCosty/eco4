@@ -1,10 +1,18 @@
-var getUrl = window.location;
-if (getUrl.pathname == '/') {
+const getUrl = window.location;
+if (getUrl.pathname === '/') {
     $(document).ready(function () {
         var APP_URL = window.location.origin;
-        $('#propose_regions').change(function () {
-            $('.cities_by_event_location').remove();
-            var region_id = $(this).val();
+        $('#propose_regions_home').change(function () {
+            get_cities_by_region(this, 'region_cities_home')
+        });
+
+        $('#propose_regions_modal').change(function () {
+            get_cities_by_region(this, 'region_cities_modal')
+        });
+
+        function get_cities_by_region(element, element_class_name) {
+            $('.' + element_class_name).remove();
+            var region_id = $(element).val();
             $.ajax({
                 url: APP_URL + '/cities-if-event-exists',
                 type: 'Get',
@@ -14,18 +22,17 @@ if (getUrl.pathname == '/') {
                     console.log(response);
                     var options = '';
                     $.each(response.data, function (index, value) {
-                        options += '<option class="cities_by_event_location" lat="' + value.latitude + '" lng="' + value.longitude + '" value="' + value.id + '">' + value.name + '</option>';
+                        options += `<option class="${element_class_name}" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
                     });
 
-                    $('#region_cities').append(options);
+                    $('#' + element_class_name).append(options);
 
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr.responseText);
                 }
             });
-        });
-
+        }
 
         $(document).on('change', '.insert-localities', function () {
             const cityId = $(this).val();

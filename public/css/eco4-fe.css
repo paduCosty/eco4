@@ -4,7 +4,7 @@ body {
 }
 #map {
     height: 500px;
-    width: 745px;
+    width: 100%;
 }
 .butts {
     color: rgb(201, 248, 189);
