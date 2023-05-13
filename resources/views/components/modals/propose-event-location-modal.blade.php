@@ -147,7 +147,7 @@
                                                            name="due_date" required>
                                                 </div>
 
-                                                <div class=" mb-3  col-md-6">
+                                                <div class=" mb-3 col-md-6">
                                                     <label for="judet_voluntar_propus"
                                                            class="col-form-label form-modal-label text-gray fs-6">Propune
                                                         acțiune la:

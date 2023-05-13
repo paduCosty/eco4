@@ -228,43 +228,41 @@
                 @endif
 
 
-                <div class="mb-5 d-flex col-lg-8 mr-3">
+                <div class="d-flex">
 
-                    <div class="row form-group col-12 col-sm-6">
-                        <div class=" mb-3 ">
-                            <label for="judet_voluntar_propus"
-                                   class="col-form-label form-modal-label text-dark fs-6">Propune
-                                acțiune la:</label>
-                            <select name="region_id"
-                                    class="form-control input-normal select-location text-dark fs-"
-                                    id="propose_regions_home"
-                                    required>
+                    @include('components.modals.propose-event-location-modal')
+                    <div class="slider-link add-next-eco-action col-sm-7 float-right">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
+                            Propune acțiune de ecologizare +
+                        </a>
+                    </div>
+
+                    <div class="row form-group">
+
+                        <div class="mb-4 col-md-6 col-lg-4">
+                            <select name="region_id" class="form-control input-normal select-location text-dark fs-"
+                                    id="propose_regions_home" required>
                                 <option value="">Judet</option>
                                 @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}">{{ $region->name }}
-                                    </option>
+                                    <option value="{{ $region->id }}">{{ $region->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="special-input-wrap">
-                            <select required
-                                    class="form-control input-normal insert-localities text-dark fs-6"
-                                    id="region_cities_home">
-                                <option class="text-dark fs-6">Localitate</option>
-                            </select>
+                        <div class="mb-2 col-md-6 col-lg-4">
+                            <div class="special-input-wrap">
+                                <select required class="form-control input-normal text-dark fs-6"
+                                        id="region_cities_home">
+                                    <option class="text-dark fs-6">Localitate</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class=" col-sm-6 separated-count-card  white-block">
-                        <button id="see-next-edition-details">Vezi detalii</button>
-                    </div>
-
-                    @include('components.modals.propose-event-location-modal')
-                    <div class="slider-link add-next-eco-action col-sm-7">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">
-                            Propune acțiune de ecologizare +
-                        </a>
+                        <div class="mb-2 col-md-6 col-lg-2 pl-20">
+                            <div class="col-sm-6 separated-count-card white-block">
+                                <button id="see-next-edition-details">Vezi detalii</button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -311,7 +309,7 @@
                     <h2 id="next-edition-title">Următoarele acțiuni <span id="next-eco-actions-edition-name"></span>
                     </h2>
                     <div>
-                        <ul class="row col-lg-12" id="eco-actions-container">
+                        <ul class="col-lg-12" id="eco-actions-container">
                         </ul>
 
                     </div>
