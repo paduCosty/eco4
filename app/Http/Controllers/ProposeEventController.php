@@ -81,6 +81,7 @@ class ProposeEventController extends Controller
 
         $userEventLocation->update($validatedData);
 
+        session()->flash('success', 'Datele au fost salvate cu succes!');
         return redirect()->route('propose-locations.index');
     }
 

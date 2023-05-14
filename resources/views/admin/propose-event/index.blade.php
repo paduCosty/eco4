@@ -14,10 +14,17 @@
             </div>
         </div>
 
-        @if ($message = Session::get('success'))
+        @if (session('success'))
             <div class="alert alert-success">
-                <p>{{ $message }}</p>
+                {{ session('success') }}
             </div>
+            <script>
+                $(document).ready(function () {
+                    setTimeout(function () {
+                        $('.alert').fadeOut();
+                    }, 5000);
+                });
+            </script>
         @endif
 
         <table class="table table-hover t">
@@ -71,6 +78,10 @@
                     </td>
                     <td>
                         <div class="form-group">
+                            @include('admin.propose-event.enrolled_volunteers ')
+{{--                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#volunteers-modal" data-event-id="{{ $location->id }}">Vezi voluntari</button>--}}
+                            <button type="button" class="btn btn-primary open-volunteers-modal">Vezi voluntari</button>
+
 
                             <div class="d-inline-block">
                                 <a type="button" class="btn btn-primary open_edit_modal" data-bs-toggle="modal"
@@ -106,7 +117,6 @@
 
             $(".switch-status-on").on("click", function () {
                 status_active_inactive('aprobat', $(this).attr('location_id'))
-                console.log('asdf');
             });
 
             $(".switch-status-off").on("click", function () {

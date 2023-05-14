@@ -7,10 +7,24 @@ use Illuminate\Http\Request;
 
 class VolunteerController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(Request $request)
     {
-        $eventLocations = UserEventLocation::all();
-        return view('admin.propose-event.index', compact('eventLocations',));
+        $page = $request->input('page');
+        $perPage = $request->input('perPage');
+
+        // Efectuați interogarea pentru a obține voluntarii în funcție de pagina și numărul de voluntari pe pagină
+        $volunteers = EventRegistration::with('user')
+            ->where('users_event_location_id', $request->input('event_id'))
+            ->skip(($page - 1) * $perPage)
+            ->take($perPage)
+            ->get();
+
+        $totalVolunteers = EventRegistration::where('users_event_location_id', $request->input('event_id'))->count();
+
+        return response()->json([
+            'data' => $volunteers,
+            'totalVolunteers' => $totalVolunteers
+        ]);
     }
 
 //    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
