@@ -59,7 +59,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#edit-event-modal"
                             >
-                                Edit Product
+                                Edit
                             </button>
 
                             @csrf
