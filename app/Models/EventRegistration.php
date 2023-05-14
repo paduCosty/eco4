@@ -27,6 +27,6 @@ class EventRegistration extends Model
 
     public function usersEventLocation(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(UsersEventLocation::class);
+        return $this->belongsTo(UserEventLocation::class);
     }
 }

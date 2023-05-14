@@ -2,9 +2,12 @@
 
 @section('content')
     @include('admin.propose-event.edit')
+    @include('admin.propose-event.enrolled_volunteers')
+
+
     <div class="container">
         <div class="text-center mb-5">
-            <h1>Evenimente Propuse</h1>
+            <h1>Evenimente de ecologizare propuse</h1>
         </div>
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
@@ -78,11 +81,12 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            @include('admin.propose-event.enrolled_volunteers ')
-{{--                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#volunteers-modal" data-event-id="{{ $location->id }}">Vezi voluntari</button>--}}
-                            <button type="button" class="btn btn-primary open-volunteers-modal">Vezi voluntari</button>
+                            @if($location->event_registrations_count > 0)
 
-
+                                <a type="button" class="btn btn-primary open-volunteers-modal" data-bs-toggle="modal"
+                                   data-bs-target="#volunteers-modal" event_location_id="{{$location->id}}">Vezi
+                                    voluntari</a>
+                            @endif
                             <div class="d-inline-block">
                                 <a type="button" class="btn btn-primary open_edit_modal" data-bs-toggle="modal"
                                    data-bs-target="#edit-propose-event-modal" location="{{json_encode($location)}}">
@@ -106,7 +110,6 @@
 
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
-
                 $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' + location.id)
 
                 $('.event_location_name').val(location.name);
@@ -140,6 +143,70 @@
                     }
                 });
             }
+
+
+            $('.open-volunteers-modal').click(function () {
+                loadVolunteers($(this).attr('event_location_id'), 1);
+            });
+
+            function loadVolunteers(event_id, page) {
+                $.ajax({
+                    url: '/api/volunteers/' + event_id,
+                    method: 'GET',
+                    data: {
+                        page: page,
+                    },
+                    success: function (data) {
+                        var tableBody = $('#volunteers-table tbody');
+                        tableBody.empty();
+
+                        for (var i = 0; i < data.data.length; i++) {
+                            var volunteer = data.data[i];
+
+                            var row = '<tr>' +
+                                '<td>' + volunteer.email + '</td>' +
+                                '<td>' + volunteer.name + '</td>' +
+                                '<td>' + volunteer.phone + '</td>' +
+                                '</tr>';
+
+                            tableBody.append(row);
+                        }
+                        // Actualizează paginarea
+                        updatePagination(page, data.total_pages, event_id);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            function updatePagination(currentPage, totalPages, event_id) {
+
+                var paginationContainer = $('#pagination-container');
+                var pageInfoContainer = $('#page-info');
+
+                paginationContainer.empty();
+                pageInfoContainer.empty();
+
+                if (totalPages <= 1) {
+                    return false;
+                }
+                for (var i = 1; i <= totalPages; i++) {
+                    var button = $('<button class="btn btn-link page-link"></button>');
+                    button.text(i);
+                    button.data('page', i);
+
+                    button.click(function () {
+                        var page = $(this).data('page');
+                        loadVolunteers(event_id, page);
+                    });
+
+                    paginationContainer.append(button);
+                }
+                paginationContainer.addClass('pagination');
+                pageInfoContainer.text('Pagina ' + currentPage + ' din ' + totalPages);
+            }
+
         });
     </script>
 @endsection
