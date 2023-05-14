@@ -6,16 +6,11 @@
 
 
     <div class="container">
-        <div class="text-center mb-5">
-            <h1>Evenimente de ecologizare propuse</h1>
+     
+        <div class="text-center  mb-5" style="color:rgb(124, 121, 121)">
+             <h1>Evenimente de ecologizare propuse</h1>
         </div>
-        <div class="row">
-            <div class="col-lg-18 margin-tb mb-5">
-                <div class="pull-right mb-5">
-                    <a class="btn btn-default butts fs-5" href="{{ route('home.home') }}"> Propune un eveniment</a>
-                </div>
-            </div>
-        </div>
+        
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -30,7 +25,7 @@
             </script>
         @endif
 
-        <table class="table table-hover t">
+        <table class="table table-hover t " style="color:rgb(124, 121, 121)">
             <tr>
                 <th>Nr.</th>
                 <th>Nume</th>

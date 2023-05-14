@@ -4,16 +4,21 @@
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps"></script>
 
-    <div class="container">
+    <div class="container" style="color:rgb(124, 121, 121)">
         <div class="text-center mb-5">
             <h1>Evenimente</h1>
         </div>
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
                 @include('admin.event.create')
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="slider-link add-next-eco-action">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Adauga o noua locatie +
+                    </a>
+                </div>
+                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Adauga o noua locatie +
-                </button>
+                </button> --}}
             </div>
         </div>
 
@@ -30,7 +35,7 @@
             </script>
         @endif
 
-        <table class="table table-hover t">
+        <table class="table table-hover t" style="color:rgb(124, 121, 121)">
             <tr>
                 <th>Nr.</th>
                 <th>Adresa</th>
