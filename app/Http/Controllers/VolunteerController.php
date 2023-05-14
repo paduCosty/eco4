@@ -29,15 +29,14 @@ class VolunteerController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'region_id' => 'required',
-            'city_id' => 'required',
+//            'region_id' => 'required',
+//            'city_id' => 'required',
             'terms_site' => 'required',
             'terms_workshop' => 'required',
             'volunteering_contract' => 'required',
             'users_event_location_id' => 'required',
         ]);
-//        dd($request->all());
-//        dd($request->all());
+        session()->flash('success', 'Datele au fost salvate cu succes!');
 
         $eventLocation = EventRegistration::create($validatedData);
         return redirect()->route('home.home');

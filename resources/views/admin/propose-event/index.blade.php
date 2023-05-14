@@ -27,19 +27,19 @@
                 <th>Email</th>
                 <th>Adresa</th>
                 <th>Data limită</th>
+                <th>Voluntari</th>
                 <th>Status</th>
                 <th>Acțiuni</th>
             </tr>
             @php($i = 1)
             @foreach ($eventLocations as $location)
-                {{--                @include('admin.propose-event.edit', $location)--}}
-
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{ $location->name }}</td>
                     <td>{{ $location->email }}</td>
                     <td>{{ $location->eventLocation->address }}</td>
                     <td>{{ $location->due_date }}</td>
+                    <td>{{ $location->event_registrations_count }}</td>
                     <td>
                         @if($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
                             {{ ucfirst($location->status) }}

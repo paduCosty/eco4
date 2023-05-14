@@ -76,54 +76,6 @@
 
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-5">
-                                            <label for="judet_voluntar_general"
-                                                   class="col-form-label form-modal-label">Sunt
-                                                din</label>
-                                        </div>
-
-                                        <div class="col-12 col-sm-7">
-                                            <div class="row fix-alignment" style="margin-left: -8px;">
-                                                <div class="col-12 col-sm-5 me-1" style="margin: initial;">
-                                                    <select class="dropdown-eco4 form-control select-location"
-                                                            name="region_id"
-                                                            id="user_region_address">
-                                                        <option value="">Judet</option>
-                                                        @foreach($regions as $region)
-                                                            <option value="{{$region->id}}">{{$region->name}}</option>
-                                                        @endforeach
-                                                    </select>
-
-                                                    <svg class="select-arrow-svg" id="svg-arrow-1" width="24"
-                                                         height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39"/>
-                                                    </svg>
-                                                </div>
-
-                                                <div class="col-12 col-sm-5" style="margin: auto;">
-                                                    <select class="dropdown-eco4 form-control insert-localities"
-                                                            name="city_id"
-                                                            id="region_volunteer"
-                                                    >
-                                                        <option value="">Localitate</option>
-                                                    </select>
-
-                                                    <svg class="select-arrow-svg" id="svg-arrow-2" width="24"
-                                                         height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
-                                                            fill="#A6CE39"/>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <div class="col-12 col-sm-5">
                                             <label for="friends_enrolled_modal_2_general"
                                                    class="col-form-label form-modal-label">Mai vin</label>
                                         </div>

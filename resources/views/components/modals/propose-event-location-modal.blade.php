@@ -183,10 +183,12 @@
                                                        hidden>
                                             </div>
 
+                                            <div id="marker_details"></div>
+
                                             <div class="row m-1">
                                                 <div class="col-12 terms-conditions-text text-dark fs-6">
                                                     <span id="eco-proposal-modal-check-1-span"></span>
-                                                    <input type="checkbox" name="terms_site" value="1"/>
+                                                    <input type="checkbox" name="terms_site" value="1" required/>
                                                     <label class="text-dark fs-6" for="eco-proposal-modal-check-1">Sunt
                                                         de acord cu</label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
@@ -196,12 +198,10 @@
                                                 </div>
                                             </div>
 
-                                            <div id="marker_details"></div>
-
                                             <div class="row m-1">
                                                 <div class="col-12 terms-conditions-text text-dark fs-6">
                                                     <input type="checkbox" name="terms_workshop"
-                                                           id="eco-proposal-modal-check-2" value="1"/>
+                                                           id="eco-proposal-modal-check-2" value="1" required/>
                                                     <label style="display: inline;"
                                                            for="eco-proposal-modal-check-2">Sunt
                                                         de acord cu</label>
@@ -213,13 +213,12 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="row m-1">
                                                 <div class="col-12 terms-conditions-text text-dark fs-6">
                                                     <span id="eco-proposal-modal-check-3-span"></span>
                                                     <input type="checkbox" value="1"
                                                            name="volunteering_contract"
-                                                           id="eco-proposal-modal-check-3"/>
+                                                           id="eco-proposal-modal-check-3" required/>
                                                     <label style="display: inline;" style="display: inline;"
                                                            for="eco-proposal-modal-check-3">Sunt de acord
                                                         cu </label>
@@ -229,15 +228,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="error-messages"></div>
-
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">
-                                                    <input type="button" id="voluteer-proposal-add-button"
-                                                           class="form-submit modal-register-button" value="Propune"/>
+                                                    <input type="button" id="volunteer-proposal-add-button"
+                                                           class="form-submit modal-register-button" value="Propune" />
                                                 </div>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>

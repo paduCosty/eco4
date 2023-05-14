@@ -14,7 +14,10 @@ class ProposeEventController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $eventLocations = UserEventLocation::paginate(10);
+        $eventLocations = UserEventLocation::withCount('eventRegistrations')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+//        dd($eventLocations->toArray());
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 
@@ -48,11 +51,11 @@ class ProposeEventController extends Controller
         return redirect()->route('home.home');
     }
 
-    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
-    {
-//        return view('event-locations.show', compact('eventLocation'));
-        dd($location->id);
-    }
+//    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+//    {
+////        return view('event-locations.show', compact('eventLocation'));
+//        dd($location->id);
+//    }
 
     public function edit(UserEventLocation $userEventLocation)
     {

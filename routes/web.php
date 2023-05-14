@@ -57,6 +57,8 @@ Route::get('/approved-events/{city_id}', [CityController::class, 'approved_event
 
 Route::get('/cities_by_region_id', [CityController::class, 'get_cities_by_region_id'])
     ->name('cities_by_region_id.get_cities_by_region_id');
+
+Route::get('/get-cities-if-propose-event-exists', [CityController::class, 'get_cities_with_propose_event_by_region_id']);
 /*ajax calls city END*/
 
 

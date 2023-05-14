@@ -2,37 +2,59 @@ const getUrl = window.location;
 if (getUrl.pathname === '/') {
     $(document).ready(function () {
         var APP_URL = window.location.origin;
+        /*get all cities wo has a propose event set*/
         $('#propose_regions_home').change(function () {
-            get_cities_by_region(this, 'region_cities_home')
-        });
-
-        $('#propose_regions_modal').change(function () {
-            get_cities_by_region(this, 'region_cities_modal')
-        });
-
-        function get_cities_by_region(element, element_class_name) {
-            $('.' + element_class_name).remove();
-            var region_id = $(element).val();
+            $('.region_cities_home').remove();
+            var region_id = $(this).val();
             $.ajax({
-                url: APP_URL + '/cities-if-event-exists',
+                url: APP_URL + '/get-cities-if-propose-event-exists',
                 type: 'Get',
-                data: {region_id: region_id},
+                data: {
+                    region_id: region_id,
+                },
 
                 success: function (response) {
                     console.log(response);
                     var options = '';
                     $.each(response.data, function (index, value) {
-                        options += `<option class="${element_class_name}" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
+                        options += `<option class="region_cities_home" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
                     });
 
-                    $('#' + element_class_name).append(options);
+                    $('#region_cities_home').append(options);
 
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr.responseText);
                 }
             });
-        }
+        });
+
+        /*get all cities wo has a marker set*/
+        $('#propose_regions_modal').change(function () {
+            $('.region_cities_modal').remove();
+            var region_id = $(this).val();
+            $.ajax({
+                url: APP_URL + '/cities-if-event-exists',
+                type: 'Get',
+                data: {
+                    region_id: region_id,
+                },
+
+                success: function (response) {
+                    console.log(response);
+                    var options = '';
+                    $.each(response.data, function (index, value) {
+                        options += `<option class="region_cities_modal" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
+                    });
+
+                    $('#region_cities_modal').append(options);
+
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
 
         $(document).on('change', '.insert-localities', function () {
             const cityId = $(this).val();
@@ -53,9 +75,18 @@ if (getUrl.pathname === '/') {
             let place_selected = $('#gps_place_selected').val();
             let isFormValid = true;
             form.find('[required]').each(function () {
-                if (!$(this).val()) {
-                    isFormValid = false;
-                    return false;
+                if ($(this).is(':checkbox')) {
+                    if (!$(this).prop('checked')) {
+                        isFormValid = false;
+                        return false;
+                    }
+                }
+
+                else if ($(this).is(':text')) {
+                    if (!$(this).val()) {
+                        isFormValid = false;
+                        return false;
+                    }
                 }
             });
             if (!place_selected) {
@@ -113,7 +144,7 @@ if (getUrl.pathname === '/') {
 
                     console.log(location);
                     $('#gps-elements').remove();
-                    $('#marker-values').append(`
+                    $('#marker_details').append(`
                          <div id="gps-elements" class="bg-light p-3 rounded">
                             <p class="font-weight-bold mb-1">Tipul reliefului: <span class="text-secondary">${location.relief_type}</span></p>
                             <p class="font-weight-bold mb-1">Adresa evenimentului: <span class="text-secondary">${location.address}</span></p>

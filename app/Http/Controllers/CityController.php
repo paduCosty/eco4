@@ -39,7 +39,8 @@ class CityController extends Controller
             $region_id = $request->region_id;
             $cities = City::whereHas('eventLocations', function ($query) use ($region_id) {
                 $query->where('region_id', $region_id);
-            })->get()->toArray();
+            })->get()
+                ->toArray();
         }
 
         if ($cities) {
@@ -62,7 +63,6 @@ class CityController extends Controller
     {
         $city_id = $request->city_id;
         if ($city_id) {
-            //tre sa fac un query care sa imi ia datele calumea
             $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat')
                 ->whereHas('eventLocation.city', function ($query) use ($city_id) {
                     $query->where('id', $city_id);
@@ -111,6 +111,46 @@ class CityController extends Controller
                 'data' => $cities_by_region
             );
         }
+        return response()->json($response);
+    }
+
+    public function get_cities_with_propose_event_by_region_id(Request $request)
+    {
+        $response = array(
+            'status' => false,
+            'message' => 'Ceva nu a mers',
+        );
+//verifica ruta daca merge
+        // vezi daca ai relationare intre citi si userEventLocation
+        //fa queri-ul sa ia toate orasele unde sunt propuse evenimente
+
+        if ($request->region_id) {
+            $region_id = $request->region_id;
+            $cities = City::whereHas('eventLocations.approvedUsersEventLocations', function ($query) use ($region_id) {
+                $query->where('region_id', $region_id);
+            })->get()
+                ->toArray();
+        }
+
+//        if ($cities) {
+//            $response = array(
+//                'status' => 'success',
+//                'message' => 'Cererea AJAX a fost procesată cu succes!',
+//                'data' => $cities
+//            );
+//        } else {
+            $response = array(
+                'status' => false,
+                'message' => 'Ceva nu a mers',
+                'data' => $cities
+            );
+//        }
+//        $response = array(
+//            'status' => 'success',
+//            'message' => 'Cererea AJAX a fost procesată cu succes!',
+//            'data' => $cities_by_region
+//        );
+
         return response()->json($response);
     }
 
