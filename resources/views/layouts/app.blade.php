@@ -139,7 +139,7 @@
                 </div>
 
                 <div class="footer-copyright">
-                    <p>2016 - 2022 Toate drepturile Creștem România Împreună</p>
+                    <p  style="color:rgb(124, 121, 121)">2016 - 2022 Toate drepturile Creștem România Împreună</p>
                 </div>
             </div>
         </div>
