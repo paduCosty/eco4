@@ -10,20 +10,19 @@ class VolunteerController extends Controller
     public function index(Request $request)
     {
         $page = $request->input('page');
-        $perPage = $request->input('perPage');
+        /*take items by page index*/
+        $volunteers = EventRegistration::where('users_event_location_id', $request->event_location_id)
+            ->skip(($page - 1) * 10)
+            ->take(10)
+            ->get()->toArray();
 
-        // Efectuați interogarea pentru a obține voluntarii în funcție de pagina și numărul de voluntari pe pagină
-        $volunteers = EventRegistration::with('user')
-            ->where('users_event_location_id', $request->input('event_id'))
-            ->skip(($page - 1) * $perPage)
-            ->take($perPage)
-            ->get();
-
-        $totalVolunteers = EventRegistration::where('users_event_location_id', $request->input('event_id'))->count();
+        /*take total pages*/
+        $totalVolunteers = EventRegistration::where('users_event_location_id', $request->event_location_id)
+            ->paginate(10)->toArray();
 
         return response()->json([
             'data' => $volunteers,
-            'totalVolunteers' => $totalVolunteers
+            'total_pages' => $totalVolunteers['last_page']
         ]);
     }
 
