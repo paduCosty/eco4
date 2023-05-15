@@ -2,7 +2,8 @@
 
 @section('content')
     <script defer
-            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps"></script>
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps">
+    </script>
 
     <div class="container" style="color:rgb(124, 121, 121)">
         <div class="text-center mb-5">
@@ -27,8 +28,8 @@
                 {{ session('success') }}
             </div>
             <script>
-                $(document).ready(function () {
-                    setTimeout(function () {
+                $(document).ready(function() {
+                    setTimeout(function() {
                         $('.alert').fadeOut();
                     }, 5000);
                 });
@@ -47,7 +48,6 @@
             </tr>
             @php($i = 0)
             @foreach ($events as $event)
-
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $event->address }}</td>
@@ -56,22 +56,22 @@
                     <td>{{ $event->longitude }}</td>
                     <td>{{ $event->latitude }}</td>
                     <td>
-                        <form action="{{ route('event-locations.destroy',$event->id) }}" method="POST">
-                            {{--                            <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a>--}}
-                            <button type="button"
-                                    event="{{json_encode($event)}}"
-                                    class="btn btn-primary edit_event_button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#edit-event-modal"
-                            >
-                                Edit
-                            </button>
+                        <form action="{{ route('event-locations.destroy', $event->id) }}" method="POST">
+                            {{--                            <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a> --}}
+                            <div class="row ">
+                                <div class="edit-button-create  edit_event_button col mb-3" type="button"
+                                    event="{{ json_encode($event) }}"
+                                    data-bs-toggle="modal" data-bs-target="#edit-event-modal">Edit
+                                </div>
 
-                            @csrf
-                            @if(!$event->users_event_locations_count)
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger buttons">Delete</button>
-                            @endif
+                                <div class="col mb-3">
+                                @csrf
+                                @if (!$event->users_event_locations_count)
+                                    @method('DELETE')
+                                    <div type="submit" class="buttons">Delete</div>
+                                @endif
+                                </div>
+                            </div>
                         </form>
                     </td>
                 </tr>
@@ -82,36 +82,39 @@
     </div>
     @include('admin.event.edit')
     <script>
-
         const APP_URL = {!! json_encode(url('/')) !!};
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             /* get cities and make a select with them*/
-            $('#regions').change(function () {
+            $('#regions').change(function() {
                 $('#cities_by_region').remove();
                 var region_id = $(this).val();
                 $.ajax({
                     url: APP_URL + '/admin/get-cities',
                     type: 'Get',
-                    data: {region_id: region_id},
-                    success: function (response) {
+                    data: {
+                        region_id: region_id
+                    },
+                    success: function(response) {
 
                         var options = `<select name="cities_id" id="cities_by_region" class="form-control select-location" required>
                                             <option value="">Localitatea</option>`;
-                        $.each(response.data, function (index, value) {
-                            options += '<option lat="' + value.latitude + '" lng="' + value.longitude + '" value="' + value.id + '">' + value.name + '</option>';
+                        $.each(response.data, function(index, value) {
+                            options += '<option lat="' + value.latitude + '" lng="' +
+                                value.longitude + '" value="' + value.id + '">' + value
+                                .name + '</option>';
                         });
 
                         $('#city').append(options += '</select>');
 
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.log(xhr.responseText);
                     }
                 });
             });
             /*when a city is select, set google maps lat and lng*/
-            $(document).on('change', '#cities_by_region', function () {
+            $(document).on('change', '#cities_by_region', function() {
                 var lat = $('option:selected', this).attr('lat');
                 var lng = $('option:selected', this).attr('lng');
 
@@ -128,7 +131,10 @@
 
             const map = new google.maps.Map(document.getElementById("create_event_map"), {
                 zoom: zoom,
-                center: {lat: lat, lng: lng},
+                center: {
+                    lat: lat,
+                    lng: lng
+                },
             });
 
             const marker = new google.maps.Marker({
@@ -144,7 +150,9 @@
                 $('#gps_longitude').val(event.latLng.lng());
                 marker.setPosition(event.latLng);
 
-                geocoder.geocode({location: event.latLng}, (results, status) => {
+                geocoder.geocode({
+                    location: event.latLng
+                }, (results, status) => {
                     if (status === "OK" && results[0]) {
                         console.log(results[0].formatted_address);
                         $('#address_display').show();
@@ -159,7 +167,7 @@
         }
 
         /*create edit form*/
-        $('.edit_event_button').click(function () {
+        $('.edit_event_button').click(function() {
 
             let event = JSON.parse($(this).attr('event'));
 
@@ -180,17 +188,23 @@
         });
 
         function initEditEventMap(lat = null, lng = null) {
-                if(!lat && !lng) {
-                   return false;
-                }
+            if (!lat && !lng) {
+                return false;
+            }
 
             const map = new google.maps.Map(document.getElementById("custom_map"), {
                 zoom: 13,
-                center: {lat: lat, lng: lng},
+                center: {
+                    lat: lat,
+                    lng: lng
+                },
             });
 
             const marker = new google.maps.Marker({
-                position: {lat: lat, lng: lng},
+                position: {
+                    lat: lat,
+                    lng: lng
+                },
                 map: map,
             });
             const geocoder = new google.maps.Geocoder();
@@ -200,7 +214,9 @@
                 $('.gps_longitude').val(event.latLng.lng());
                 marker.setPosition(event.latLng);
 
-                geocoder.geocode({location: event.latLng}, (results, status) => {
+                geocoder.geocode({
+                    location: event.latLng
+                }, (results, status) => {
                     if (status === "OK" && results[0]) {
                         console.log(results[0].formatted_address);
                         $('.address_display').show();
