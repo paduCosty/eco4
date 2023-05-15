@@ -198,7 +198,8 @@
 
                 <div class="row">
                     <div class="col-12 mb-4 text-gray">
-                        <h2 id="next-edition-title">Următoarea ediție <span id="next-edition-title-interval"></span>
+                        <h2 id="next-edition-title" class="common-titles">Următoarea ediție <span
+                                id="next-edition-title-interval"></span>
                         </h2>
                     </div>
                 </div>
@@ -289,10 +290,15 @@
 
 
             <!-- Eco Actions Cards -->
-            <h2 id="next-edition-title">Următoarele acțiuni
-                <span id="next-eco-actions-edition-name"></span>
-            </h2>
-            <div class="row gutter" id="eco-actions-container"></div>
+            <div>
+                <h2 id="next-edition-title" class="common-titles">Următoarele acțiuni
+                    <span id="next-eco-actions-edition-name"></span>
+                </h2>
+
+                <div class="row gutter" id="eco-actions-container">
+
+                </div>
+            </div>
 
 
             {{--        <div class="common-section not-slider get-envolved-section"> --}}
@@ -473,7 +479,8 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
                                     <div class="single-sponcer-in">
-                                        <img src="{{ asset('storage/app-images/green-report.png') }}" style="width: 100%; height: auto;">
+                                        <img src="{{ asset('storage/app-images/green-report.png') }}"
+                                             style="width: 100%; height: auto;">
                                     </div>
                                 </div>
                             </div>

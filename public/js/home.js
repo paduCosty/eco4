@@ -17,8 +17,8 @@ $(document).ready(function () {
                     $.each(response.data, function (index, value) {
                         console.log(value.event_location.city.region.name);
                         event +=`
-                                <div class="col-12 col-md-4 mb-3">
-                                <div class="remove-card slider-wrap">
+                                <div class="col-12 col-md-4 mb-3 remove-card ">
+                                <div class="slider-wrap">
                                     <div class="slider-icon float-start">
                                         <div class="slider-svg ">
                                             <svg width="35" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
