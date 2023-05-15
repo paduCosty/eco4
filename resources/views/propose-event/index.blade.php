@@ -95,7 +95,9 @@
                         <div class="text-start" id="bio-logo1">
                             <p style="text-align: center">
                                 <br/> In parteneriat cu <br/><br/>
-                                <a href="https://azm.gov.ro" target="_blank"><img src="assets/img/azm.png"/></a>
+                                <a href="https://azm.gov.ro" target="_blank">
+                                    <img src="{{ asset('storage/app-images/azm.png') }}"/>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -471,7 +473,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
                                     <div class="single-sponcer-in">
-                                        <img src="assets/img/green-report.png" style="width: 100%; height: auto;">
+                                        <img src="{{ asset('storage/app-images/green-report.png') }}" style="width: 100%; height: auto;">
                                     </div>
                                 </div>
                             </div>
@@ -479,7 +481,7 @@
                             <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                 <div class="single-sponcer" style="background:#FFFFFF; height: auto;">
                                     <div class="single-sponcer-in">
-                                        <img src="assets/img/romania-positiva.png"
+                                        <img src="{{ asset('storage/app-images/romania-positiva.png') }}"
                                              style="width: 100%; height: auto;">
                                     </div>
                                 </div>
