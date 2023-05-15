@@ -17,8 +17,8 @@
                 {{ session('success') }}
             </div>
             <script>
-                $(document).ready(function() {
-                    setTimeout(function() {
+                $(document).ready(function () {
+                    setTimeout(function () {
                         $('.alert').fadeOut();
                     }, 5000);
                 });
@@ -52,20 +52,21 @@
                             <div class="d-inline-block buttons-switch">
                                 <div class="switch-toggle switch-3 switch-candy" style="background-color: transparent">
                                     <input id="on-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                        @if ($location->status == 'acceptat') checked="checked" @endif />
+                                           @if ($location->status == 'acceptat') checked="checked" @endif />
                                     <label class="switch-status-on switch-checkbox" for="on-{{ $i }}"
-                                        location_id={{ $location->id }}>
+                                           location_id={{ $location->id }}>
                                         Acceptat
                                     </label>
 
                                     <input id="na-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                        disabled @if ($location->status == 'in asteptare') checked="checked" @endif />
+                                           disabled
+                                           @if ($location->status == 'in asteptare') checked="checked" @endif />
                                     <label for="na-{{ $i }}" class="disabled">Asteapta</label>
 
                                     <input id="off-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                        @if ($location->status == 'refuzat') checked="checked" @endif />
+                                           @if ($location->status == 'refuzat') checked="checked" @endif />
                                     <label class="switch-status-off switch-checkbox" for="off-{{ $i }}"
-                                        style="color:red" location_id={{ $location->id }}>
+                                           style="color:red" location_id={{ $location->id }}>
                                         Refuzat
                                     </label>
                                     <a></a>
@@ -74,19 +75,18 @@
                         @endif
                     </td>
                     <td>
-                        <form>
-                            <div class="d-flex text-center">
-                                <div class="col mr-2">
-                                    @if ($location->event_registrations_count > 0)
-                                        <div class=" col edit-button-event-p open_edit_modal" type="button"
-                                            data-bs-toggle="modal" data-bs-target="#volunteers-modal"
-                                            event_location_id="{{ $location->id }}">
-                                            Voluntari
-                                        </div>
-                                    @endif
-                                </div>
+                        <div class="d-flex text-center">
+                            <div class="col mr-2">
+                                @if ($location->event_registrations_count > 0)
+                                    <a class=" col edit-button-eveniment-Propus open-volunteers-modal" type="button"
+                                         data-bs-toggle="modal" data-bs-target="#volunteers-modal"
+                                         event_location_id="{{ $location->id }}">
+                                        Voluntari
+                                    </a>
+                                @endif
+                            </div>
 
-                                <div class="col edit-button-event-p mr-1" type="button" data-bs-toggle="modal"
+                                <div class="col edit-button-eveniment-Propus mr-1 edit-button-eveniment-Propus-p" type="button" data-bs-toggle="modal"
                                     data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
                                     Edit
                                 </div>
@@ -104,10 +104,10 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const APP_URL = window.location.origin;
 
-            $(".open_edit_modal").on("click", function() {
+            $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
                 $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
                     location.id)
@@ -118,11 +118,11 @@
                 $('.event_location_status').val(location.status);
             });
 
-            $(".switch-status-on").on("click", function() {
+            $(".switch-status-on").on("click", function () {
                 status_active_inactive('aprobat', $(this).attr('location_id'))
             });
 
-            $(".switch-status-off").on("click", function() {
+            $(".switch-status-off").on("click", function () {
                 status_active_inactive('refuzat', $(this).attr('location_id'))
             });
 
@@ -134,20 +134,20 @@
                         val: val
                     },
 
-                    success: function(response) {
+                    success: function (response) {
                         // console.log(response.success);
                         // if (response.success) {
                         //     $('#status_value' + location_id).text(response.status);
                         // }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.log(xhr.responseText);
                     }
                 });
             }
 
 
-            $('.open-volunteers-modal').click(function() {
+            $('.open-volunteers-modal').click(function () {
                 loadVolunteers($(this).attr('event_location_id'), 1);
             });
 
@@ -158,7 +158,7 @@
                     data: {
                         page: page,
                     },
-                    success: function(data) {
+                    success: function (data) {
                         var tableBody = $('#volunteers-table tbody');
                         tableBody.empty();
 
@@ -176,7 +176,7 @@
                         // Actualizează paginarea
                         updatePagination(page, data.total_pages, event_id);
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.log(error);
                     }
                 });
@@ -198,7 +198,7 @@
                     button.text(i);
                     button.data('page', i);
 
-                    button.click(function() {
+                    button.click(function () {
                         var page = $(this).data('page');
                         loadVolunteers(event_id, page);
                     });

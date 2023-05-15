@@ -1,5 +1,5 @@
 const getUrl = window.location;
-if (getUrl.pathname === '/') {
+if (getUrl.pathname === '/' || getUrl.pathname === '/home') {
     $(document).ready(function () {
         var APP_URL = window.location.origin;
         /*get all cities wo has a propose event set*/

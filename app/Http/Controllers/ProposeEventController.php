@@ -48,7 +48,7 @@ class ProposeEventController extends Controller
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
-        return redirect()->route('home.home');
+        return redirect()->route('home');
     }
 
 //    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
