@@ -59,17 +59,17 @@
                         <form action="{{ route('event-locations.destroy', $event->id) }}" method="POST">
                             {{--                            <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a> --}}
                             <div class="row ">
-                                <div class="edit-button-create edit_event_button col mb-3" type="button"
-                                    event="{{ json_encode($event) }}"
-                                    data-bs-toggle="modal" data-bs-target="#edit-event-modal">Edit
-                                </div>
+                                <a class="edit-button-create edit_event_button col mb-3" type="button"
+                                    event="{{ json_encode($event) }}" data-bs-toggle="modal"
+                                    data-bs-target="#edit-event-modal">Edit
+                                </a>
 
                                 <div class="col mb-3">
-                                @csrf
-                                @if (!$event->users_event_locations_count)
-                                    @method('DELETE')
-                                    <button type="submit" class="buttons">Delete</button>
-                                @endif
+                                    @csrf
+                                    @if (!$event->users_event_locations_count)
+                                        @method('DELETE')
+                                        <button type="submit" class="buttons">Delete</button>
+                                    @endif
                                 </div>
                             </div>
                         </form>
