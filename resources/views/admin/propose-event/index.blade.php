@@ -86,10 +86,10 @@
                                 @endif
                             </div>
 
-                                <div class="col edit-button-event-p mr-1" type="button" data-bs-toggle="modal"
+                                <a class="col edit-button-event-p mr-1 open_edit_modal" type="button" data-bs-toggle="modal"
                                     data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
                                     Edit
-                                </div>
+                                </a>
 
                             </div>
 
