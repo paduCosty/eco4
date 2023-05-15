@@ -68,7 +68,7 @@
                                 @csrf
                                 @if (!$event->users_event_locations_count)
                                     @method('DELETE')
-                                    <div type="submit" class="buttons">Delete</div>
+                                    <button type="submit" class="buttons">Delete</button>
                                 @endif
                                 </div>
                             </div>

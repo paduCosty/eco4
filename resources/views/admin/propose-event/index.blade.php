@@ -78,7 +78,7 @@
                             <div class="d-flex text-center">
                                 <div class="col mr-2">
                                     @if ($location->event_registrations_count > 0)
-                                        <div class=" col edit-button-eveniment-Propus open_edit_modal" type="button"
+                                        <div class=" col edit-button-event-p open_edit_modal" type="button"
                                             data-bs-toggle="modal" data-bs-target="#volunteers-modal"
                                             event_location_id="{{ $location->id }}">
                                             Voluntari
@@ -86,7 +86,7 @@
                                     @endif
                                 </div>
 
-                                <div class="col edit-button-eveniment-Propus mr-1 edit-button-eveniment-Propus-p" type="button" data-bs-toggle="modal"
+                                <div class="col edit-button-event-p mr-1" type="button" data-bs-toggle="modal"
                                     data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
                                     Edit
                                 </div>

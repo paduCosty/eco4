@@ -263,11 +263,8 @@ a{
     color: #169627;
     
 }
-/* .edit-button-eveniment-Propus-p{
-    padding: 10px 5px;
-} */
 
-.edit-button-eveniment-Propus{
+.edit-button-event-p{
     background: rgb(226, 250, 242);
     border-radius: 9px;
     text-align: center;
