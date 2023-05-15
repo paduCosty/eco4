@@ -247,11 +247,11 @@ a{
     border-radius: 9px;
     font-style: bold;
     font-weight: 500;
-    font-size: 21px;
+    font-size: 19px;
     color: #169627;
     padding: 4px 7px;
     display: inline-block;
-    margin-top: -5px;
+    margin-top: -3px;
 }
 
 .edit-button-create{
@@ -261,7 +261,20 @@ a{
     height: 34px;
     font-size: 19px;
     color: #169627;
+    
+}
+/* .edit-button-eveniment-Propus-p{
+    padding: 10px 5px;
+} */
 
+.edit-button-eveniment-Propus{
+    background: rgb(226, 250, 242);
+    border-radius: 9px;
+    text-align: center;
+    height: 36px;
+    font-size: 19px;
+    color: #169627;
+    padding: 6px 5px;
 }
 .slide_common_p a {
     padding: 22px;
