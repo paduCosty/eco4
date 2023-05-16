@@ -52,7 +52,7 @@ class VolunteerController extends Controller
         session()->flash('success', 'Datele au fost salvate cu succes!');
 
         $eventLocation = EventRegistration::create($validatedData);
-        return redirect()->route('/home');
+        return redirect()->route('home');
     }
 
 //    public function show(EventLocation $eventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application

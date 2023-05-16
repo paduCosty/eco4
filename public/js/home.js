@@ -11,11 +11,9 @@ $(document).ready(function () {
                 data: {city_id: city_id},
 
                 success: function (response) {
-                    console.log(response.data);
                     $('.remove-card').remove();
                     let event = ``;
                     $.each(response.data, function (index, value) {
-                        console.log(value.event_location.city.region.name);
                         event +=`
                                 <div class="col-12 col-md-4 mb-3 remove-card ">
                                 <div class="slider-wrap">
@@ -39,6 +37,7 @@ $(document).ready(function () {
                                         <p>Când: ${value.due_date}</p>
                                         <p>${value.size_volunteer_name}</p>
                                         <p>Relief: ${value.event_location.relief_type}</p>
+                                        <p>Adresa: ${value.event_location.address}</p>
                                     </div>
 
                                     <div class="slider-link text-end">

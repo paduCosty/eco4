@@ -68,7 +68,7 @@ class CityController extends Controller
                     $query->where('id', $city_id);
                 })
                 ->with([
-                    'eventLocation:id,name,cities_id,size_volunteer_id,relief_type',
+                    'eventLocation:id,name,cities_id,size_volunteer_id,relief_type,address',
                     'eventLocation.city:id,name,region_id',
                     'eventLocation.city.region:id,name',
                     'eventLocation.sizeVolunteer:id,name',
@@ -80,7 +80,6 @@ class CityController extends Controller
                     'size_volunteers.name as size_volunteer_name',
                 )
                 ->get();
-
             $response = array(
                 'status' => 'success',
                 'message' => 'Cererea AJAX a fost procesată cu succes!',
@@ -120,9 +119,6 @@ class CityController extends Controller
             'status' => false,
             'message' => 'Ceva nu a mers',
         );
-//verifica ruta daca merge
-        // vezi daca ai relationare intre citi si userEventLocation
-        //fa queri-ul sa ia toate orasele unde sunt propuse evenimente
 
         if ($request->region_id) {
             $region_id = $request->region_id;
@@ -130,26 +126,13 @@ class CityController extends Controller
                 $query->where('region_id', $region_id);
             })->get()
                 ->toArray();
-        }
 
-//        if ($cities) {
-//            $response = array(
-//                'status' => 'success',
-//                'message' => 'Cererea AJAX a fost procesată cu succes!',
-//                'data' => $cities
-//            );
-//        } else {
             $response = array(
                 'status' => false,
-                'message' => 'Ceva nu a mers',
+                'message' => 'Cererea AJAX a fost procesată cu succes!',
                 'data' => $cities
             );
-//        }
-//        $response = array(
-//            'status' => 'success',
-//            'message' => 'Cererea AJAX a fost procesată cu succes!',
-//            'data' => $cities_by_region
-//        );
+        }
 
         return response()->json($response);
     }
