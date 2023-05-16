@@ -21,7 +21,8 @@
                 <form action="{{ route('event-locations.store') }}" method="POST">
                     @csrf
                     <div class="row form-group">
-                        <div class="mb-3 col-md-6 ">
+
+                        <div class="col-md-6 mb-3">
                             <label class="fs-5">Judet:</label>
                             <select id="regions" class="form-control select-location fs-6" required>
                                 <option value="">Judet</option>
@@ -33,7 +34,7 @@
                             </select>
                         </div>
 
-                        <div class="mb-3 col-md-6 ">
+                        <div class="col-md-6 mb-3">
                             <label class="fs-5">Localitate: </label>
                             <div class="fs-6" id="city"></div>
                         </div>
@@ -41,11 +42,6 @@
                         <div class="mt-4">
                             <input id="gps_longitude" type="hidden" name="longitude" required>
                             <input id="gps_latitude" type="hidden" name="latitude" required>
-                        </div>
-
-                        <div class="mb-3 col-md-6"  id="address_display">
-                            <label class="fs-5" for="pin_address">Adresa selectata:</label>
-                            <input class="form-control fs-6" readonly name="address" id="pin_address">
                         </div>
 
                         <div class="mb-3 col-md-6">
@@ -69,8 +65,13 @@
                             </select>
                         </div>
 
-                        <div class="container mb-2">
+                        <div class="container mb-3">
                             <div id="create_event_map"></div>
+                        </div>
+                        
+                        <div class="mb-3 col-md-6"  id="address_display">
+                            <label class="fs-5" for="pin_address">Adresa selectata:</label>
+                            <input class="form-control fs-6" readonly name="address" id="pin_address">
                         </div>
 
                         <div class="pull-right">

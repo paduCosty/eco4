@@ -65,10 +65,6 @@
                     @else
 
                         <li class="nav-item">
-                            <a class="nav-link" style="color:green" href="{{ route('home.home') }}">{{ __('Home') }}</a>
-                        </li>
-
-                        <li class="nav-item">
                             <a style="color:green" class="nav-link"
                                href="{{ route('event-locations.index') }}">{{ __('Creaza loc Ecologizare') }}</a>
                         </li>

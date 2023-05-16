@@ -230,8 +230,9 @@
 
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">
-                                                    <input type="button" id="volunteer-proposal-add-button"
-                                                           class="form-submit modal-register-button" value="Propune" />
+                                                    <button type="button" id="volunteer-proposal-add-button"
+                                                        class="form-submit modal-register-button" >Propune
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>

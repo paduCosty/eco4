@@ -8,9 +8,7 @@
                         <h5 class="modal-title">Termeni și condiții</h5>
 
                         <div class="modal-close-text-container">
-                            <button type="button" class="close-modal-button" data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                    id="close-modal-9">Închide <span style="color: #A6CE39">[X]</span></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #a00404">X</button>
                         </div>
                     </div>
 

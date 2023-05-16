@@ -34,11 +34,6 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5 " style="color:rgb(124, 121, 121)" for="pin_address">Adresa selectata:</label>
-                            <input class="form-control fs-6 text-gray pin_address" readonly name="address">
-                        </div>
-
-                        <div class="mb-3 col-md-6">
                             <label class="fs-5" style="color:rgb(124, 121, 121)">Tip teren:</label>
                             <select name="relief_type" class="form-control select-location fs-6">
                                 <option  class=" text-gray" value="">Selecteaza</option>
@@ -53,7 +48,6 @@
                             </select>
                         </div>
 
-
                         <div class="mb-3 col-md-6">
                             <label class="fs-5" style="color:rgb(124, 121, 121)">La fata locului:</label>
                             <select name="size_volunteer_id" class="form-control select-location fs-6 text-gray">
@@ -66,8 +60,13 @@
                             <input type="hidden" class="gps_latitude" name="latitude">
                             <input type="hidden" class="gps_longitude" name="longitude">
                         </div>
+
                         <div class="container mb-2">
                             <div id="custom_map"></div>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="fs-5 " style="color:rgb(124, 121, 121)" for="pin_address">Adresa selectata:</label>
+                            <input class="form-control fs-6 text-gray pin_address" readonly name="address">
                         </div>
                     </div>
                     <button type="submit" class="form-submit fs-5"> Send</button>

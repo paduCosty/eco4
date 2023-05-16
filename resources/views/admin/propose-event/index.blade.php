@@ -6,11 +6,11 @@
 
 
     <div class="container">
-     
+
         <div class="text-center  mb-5" style="color:rgb(124, 121, 121)">
-             <h1>Evenimente de ecologizare propuse</h1>
+            <h1>Evenimente de ecologizare propuse</h1>
         </div>
-        
+
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -46,27 +46,27 @@
                     <td>{{ $location->due_date }}</td>
                     <td>{{ $location->event_registrations_count }}</td>
                     <td>
-                        @if($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
+                        @if ($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
                             {{ ucfirst($location->status) }}
                         @else
                             <div class="d-inline-block buttons-switch">
-                                <div class="switch-toggle switch-3 switch-candy"
-                                     style="background-color: transparent">
+                                <div class="switch-toggle switch-3 switch-candy" style="background-color: transparent">
                                     <input id="on-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                           @if($location->status == 'acceptat')  checked="checked" @endif/>
+                                           @if ($location->status == 'acceptat') checked="checked" @endif />
                                     <label class="switch-status-on switch-checkbox" for="on-{{ $i }}"
-                                           location_id= {{$location->id}}>
+                                           location_id={{ $location->id }}>
                                         Acceptat
                                     </label>
 
-                                    <input id="na-{{ $i }}" name="state-d-{{ $i }}" type="radio" disabled
-                                           @if($location->status == 'in asteptare') checked="checked" @endif/>
+                                    <input id="na-{{ $i }}" name="state-d-{{ $i }}" type="radio"
+                                           disabled
+                                           @if ($location->status == 'in asteptare') checked="checked" @endif />
                                     <label for="na-{{ $i }}" class="disabled">Asteapta</label>
 
                                     <input id="off-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                           @if($location->status == 'refuzat') checked="checked" @endif/>
+                                           @if ($location->status == 'refuzat') checked="checked" @endif />
                                     <label class="switch-status-off switch-checkbox" for="off-{{ $i }}"
-                                           style="color:red" location_id= {{$location->id}}>
+                                           style="color:red" location_id={{ $location->id }}>
                                         Refuzat
                                     </label>
                                     <a></a>
@@ -75,20 +75,25 @@
                         @endif
                     </td>
                     <td>
-                        <div class="form-group">
-                            @if($location->event_registrations_count > 0)
+                        <div class="d-flex text-center">
+                            <div class="col mr-2">
+                                @if ($location->event_registrations_count > 0)
+                                    <a class=" col edit-button-event-p open-volunteers-modal" type="button"
+                                         data-bs-toggle="modal" data-bs-target="#volunteers-modal"
+                                         event_location_id="{{ $location->id }}">
+                                        Voluntari
+                                    </a>
+                                @endif
+                            </div>
 
-                                <a type="button" class="btn btn-primary open-volunteers-modal" data-bs-toggle="modal"
-                                   data-bs-target="#volunteers-modal" event_location_id="{{$location->id}}">Vezi
-                                    voluntari</a>
-                            @endif
-                            <div class="d-inline-block">
-                                <a type="button" class="btn btn-primary open_edit_modal" data-bs-toggle="modal"
-                                   data-bs-target="#edit-propose-event-modal" location="{{json_encode($location)}}">
+                                <a class="col edit-button-event-p mr-1 open_edit_modal" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
                                     Edit
                                 </a>
+
                             </div>
-                        </div>
+
+                        <form>
                     </td>
                 </tr>
                 @php($i++)
@@ -99,13 +104,13 @@
     </div>
 
     <script>
-
         $(document).ready(function () {
             const APP_URL = window.location.origin;
 
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
-                $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' + location.id)
+                $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
+                    location.id)
 
                 $('.event_location_name').val(location.name);
                 $('.event_location_email').val(location.email);
@@ -125,7 +130,9 @@
                 $.ajax({
                     url: APP_URL + '/admin/approve-or-decline-propose-event/' + location_id,
                     type: 'Get',
-                    data: {val: val},
+                    data: {
+                        val: val
+                    },
 
                     success: function (response) {
                         // console.log(response.success);
@@ -228,5 +235,4 @@
         /*font-family: 'Inter' !important;*/
         font-family: inherit;
     }
-
 </style>
