@@ -6,15 +6,15 @@ if (getUrl.pathname === '/' || getUrl.pathname === '/home') {
         $('#propose_regions_home').change(function () {
             $('.region_cities_home').remove();
             var region_id = $(this).val();
+            console.log(region_id)
+
             $.ajax({
                 url: APP_URL + '/get-cities-if-propose-event-exists',
                 type: 'Get',
                 data: {
                     region_id: region_id,
                 },
-
                 success: function (response) {
-                    console.log(response);
                     var options = '';
                     $.each(response.data, function (index, value) {
                         options += `<option class="region_cities_home" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;

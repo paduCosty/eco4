@@ -153,7 +153,7 @@
 
             function loadVolunteers(event_id, page) {
                 $.ajax({
-                    url: '/api/volunteers/' + event_id,
+                    url: '/admin/volunteers/' + event_id,
                     method: 'GET',
                     data: {
                         page: page,

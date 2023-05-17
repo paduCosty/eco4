@@ -115,6 +115,7 @@ class CityController extends Controller
 
     public function get_cities_with_propose_event_by_region_id(Request $request)
     {
+//        dd($request->all());
         $response = array(
             'status' => false,
             'message' => 'Ceva nu a mers',
@@ -128,12 +129,11 @@ class CityController extends Controller
                 ->toArray();
 
             $response = array(
-                'status' => false,
+                'status' => true,
                 'message' => 'Cererea AJAX a fost procesată cu succes!',
                 'data' => $cities
             );
         }
-
         return response()->json($response);
     }
 

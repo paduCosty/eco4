@@ -35,6 +35,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
         Route::get('approve-or-decline-propose-event/{location_id}', [ProposeEventController::class, 'approve_or_decline_propose_event'])
             ->name('admin.approve_or_decline_propose_event');
+
+        /*Ajax volunteers*/
+        Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+
     });
 });
 
