@@ -227,9 +227,23 @@ a{
     opacity: 0.5;
     margin-bottom: 0;
 }
+.button-inscriere a{
+    text-align: center;
+    height: 30px;
+    border-radius: 9px;
+    padding: 2px 1px;
+    float: right;
+    background: rgb(226, 250, 242);
+    border-radius: 9px;
+    font: weight 500px;;
+    font-size: 17px;
+    color: #109121;
+    margin-top: -3px;
+
+}
 .slider-link{
     width: 100%;
-    float: left;
+    float:left;
 }
 .slider-icon{
     text-align: center;
@@ -261,7 +275,6 @@ a{
     height: 34px;
     font-size: 19px;
     color: #169627;
-    
 }
 
 .edit-button-event-p{
