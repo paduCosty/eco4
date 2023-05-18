@@ -40,8 +40,8 @@ $(document).ready(function () {
                                         <p>Adresa: ${value.event_location.address}</p>
                                     </div>
 
-                                    <div class="slider-link text-end">
-                                        <a href="#" class="enrol-button" data-bs-toggle="modal" users_event_location_id="${value.id}" data-bs-target="#enrollModalGeneral" >
+                                    <div class="button-inscriere text-end ">
+                                        <a href="#" class="enrol-button " data-bs-toggle="modal" users_event_location_id="${value.id}" data-bs-target="#enrollModalGeneral" >
                                             Inscriere +
                                         </a>
                                     </div>

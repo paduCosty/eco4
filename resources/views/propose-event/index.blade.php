@@ -1415,10 +1415,10 @@
                                                 <div class="row form-group">
                                                     <div class="col-12 col-sm-4">
                                                         <label class="col-form-label form-modal-label">Vreau să
-                                                            donez</label>
+                                                            donez:</label>
                                                     </div>
 
-                                                    <div class="col-12 col-sm-8">
+                                                    <div class="col-12 col-sm-9">
                                                         <div class="row radio-wrap">
                                                             <div class="col-12 col-sm-3">
                                                                 <label class="donate-amount-container">
@@ -1445,7 +1445,7 @@
                                                             </div>
 
                                                             <div class="col-12 col-sm-3">
-                                                                <input id="suma" name="suma" type="text"
+                                                                <input id="suma" name="suma" type="number"
                                                                        class="input-normal" placeholder="Altă sumă"
                                                                        required/>
                                                             </div>
