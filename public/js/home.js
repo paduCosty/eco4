@@ -15,7 +15,7 @@ $(document).ready(function () {
                     let event = ``;
                     $.each(response.data, function (index, value) {
                         event +=`
-                                <div class="col-12 col-md-4 mb-3 remove-card ">
+                            <div class="col-12 col-md-4 mb-3 remove-card ">
                                 <div class="slider-wrap">
                                     <div class="slider-icon float-start">
                                         <div class="slider-svg ">
@@ -32,21 +32,21 @@ $(document).ready(function () {
                                         </div>
                                     </div>
 
-                                    <div class="slider-text float-start">
+                                    <div class="slider-text float-start mb-3">
                                         <a href="#" "=""><h5 style="color: #F26464;">${value.event_location.city.name}, ${value.event_location.city.region.name} </h5></a>
                                         <p>Când: ${value.due_date}</p>
                                         <p>${value.size_volunteer_name}</p>
                                         <p>Relief: ${value.event_location.relief_type}</p>
                                         <p>Adresa: ${value.event_location.address}</p>
                                     </div>
-
-                                    <div class="button-inscriere text-end ">
-                                        <a href="#" class="enrol-button " data-bs-toggle="modal" users_event_location_id="${value.id}" data-bs-target="#enrollModalGeneral" >
-                                            Inscriere +
-                                        </a>
+                                        <div class="button-inscriere text-end ">
+                                            <a href="#" class="enrol-button " data-bs-toggle="modal" users_event_location_id="${value.id}" data-bs-target="#enrollModalGeneral" >
+                                                Inscriere +
+                                            </a>
+                                        </div>
                                     </div>
-                                    </div>
-                                </div>`
+                                </div>
+                            </div>`
                     });
 
                     $('#eco-actions-container').append(event);
