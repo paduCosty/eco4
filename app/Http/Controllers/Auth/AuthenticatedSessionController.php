@@ -65,7 +65,7 @@ class AuthenticatedSessionController extends Controller
                 'email' => 'Autentificarea a esuat.',
             ]);
         }
-//dd($response->json());
+
         if ($response->getStatusCode() == 200) {
             $user_resp = json_decode($response->getBody(), true);
             if ($user_resp && $user_resp[0]) {
