@@ -10,7 +10,9 @@
                             Ecologizare</h5>
 
                         <div class="modal-close-text-container">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #a00404">X</button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    style="color: #a00404">X
+                            </button>
                         </div>
                     </div>
 
@@ -29,7 +31,7 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="text"
+                                                    <input type="text" required
                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
                                                            name="name" id="nume_voluntar_general"/>
                                                 </div>
@@ -46,7 +48,7 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="email"
+                                                    <input type="email" required
                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
                                                            name="email"
                                                            id="email_voluntar_general"/>
@@ -64,13 +66,55 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="tel"
+                                                    <input type="tel" required
                                                            class="input-text-eco4 eco-input-text-modal volunteer-input"
                                                            name="phone" id="tel_voluntar_general"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-12 col-sm-5">
+                                            <label
+                                                class="col-form-label form-modal-label">Judet</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-7">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <select name="region" required>
+                                                        <option value="">selecteaza</option>
+                                                        @foreach($regions as $region)
+                                                            <option>{{$region->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-12 col-sm-5">
+                                            <label
+                                                class="col-form-label form-modal-label">Localitate</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-7">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <select name="region" required>
+                                                        <option value="">selecteaza</option>
+
+                                                        @foreach($cities as $city)
+                                                            <option>{{$city->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-5">
@@ -82,7 +126,7 @@
                                             <div class="row">
                                                 <div class="row">
                                                     <div class="col-12 col-sm-6">
-                                                        <input type="text"
+                                                        <input type="text" required
                                                                class="input-number-of-friends-eco4 eco-input-text-modal"
                                                                name="transport"
                                                                id="friends_enrolled_modal_2_general"/>
@@ -107,7 +151,7 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="fix-alignment-1">
                                                 <div>
-                                                    <input type="text" class="input-number-of-seats-eco4"
+                                                    <input type="text" required class="input-number-of-seats-eco4"
                                                            name="seats_available" id="car_modal_2_general"/>
                                                 </div>
 
@@ -131,7 +175,7 @@
                                             <div class="col-12">
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-general-enroll-modal-check-1-span"></span>
-                                                    <input class="form-check-input" value="1" type="checkbox"
+                                                    <input class="form-check-input" required value="1" type="checkbox"
                                                            name="terms_site"
                                                            id="eco-action-general-enroll-modal-check-1"/>
                                                     <label style="display: inline;" style="display: inline;"
@@ -149,7 +193,7 @@
                                             <div class="col-12">
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-general-enroll-modal-check-2-span"></span>
-                                                    <input class="form-check-input" value="1" type="checkbox"
+                                                    <input class="form-check-input" required value="1" type="checkbox"
                                                            name="terms_workshop"
                                                            id="eco-action-general-enroll-modal-check-2"/>
                                                     <label style="display: inline;" style="display: inline;"
@@ -169,7 +213,7 @@
                                             <div class="col-12">
                                                 <div class="terms-conditions-text">
                                                     <span id="eco-action-general-enroll-modal-check-3-span"></span>
-                                                    <input class="form-check-input" value="1" type="checkbox"
+                                                    <input class="form-check-input" required value="1" type="checkbox"
                                                            name="volunteering_contract"
                                                            id="eco-action-general-enroll-modal-check-3"/>
                                                     <label style="display: inline;" style="display: inline;"
@@ -181,7 +225,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" class="users_event_location_id" name="users_event_location_id">
+                                        <input type="hidden" required class="users_event_location_id"
+                                               name="users_event_location_id">
                                         <div class="error-messages"></div>
 
                                         <div class="row form-group">
