@@ -185,6 +185,15 @@
 
                                             <div id="marker_details"></div>
 
+                                            <div class="mb-3 col-md-12">
+                                                <label for="" class="col-form-label form-modal-label text-gray fs-6">Descriere:
+                                                </label>
+                                                <textarea type="text" maxlength="500"
+                                                          class="form-control input-normal text-gray fs-6" name="description"
+                                                          required>
+                                                </textarea>
+                                            </div>
+
                                             <div class="row m-1">
                                                 <div class="col-12 terms-conditions-text text-dark fs-6">
                                                     <span id="eco-proposal-modal-check-1-span"></span>
@@ -231,7 +240,7 @@
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">
                                                     <button type="button" id="volunteer-proposal-add-button"
-                                                        class="form-submit modal-register-button" >Propune
+                                                            class="form-submit modal-register-button">Propune
                                                     </button>
                                                 </div>
                                             </div>

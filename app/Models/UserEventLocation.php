@@ -12,6 +12,8 @@ class UserEventLocation extends Model
         'user_id',
         'email',
         'name',
+        'description',
+        'crm_propose_event_id',
         'event_location_id',
         'due_date',
         'terms_site',

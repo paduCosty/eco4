@@ -29,7 +29,7 @@ class ProposeEventMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Demo Mail',
+            subject: 'Confirmare actiune ecologizare eco4',
         );
     }
 

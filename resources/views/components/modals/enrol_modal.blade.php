@@ -88,7 +88,7 @@
                                                     <select name="region" class="form-control fs-6" required>
                                                         <option value="">Selecteaza</option>
                                                         @foreach($regions as $region)
-                                                            <option>{{$region->name}}</option>
+                                                            <option value="{{$region->id}}">{{$region->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -105,11 +105,11 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <select name="region" class="form-control fs-6" required>
-                                                        <option value="">Selecteaza</option>
+                                                    <select name="city" required>
+                                                        <option value="">selecteaza</option>
 
                                                         @foreach($cities as $city)
-                                                            <option>{{$city->name}}</option>
+                                                            <option value="{{$city->id}}">{{$city->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
