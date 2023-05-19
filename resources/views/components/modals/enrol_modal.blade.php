@@ -24,15 +24,16 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-5">
                                             <label for="nume_voluntar_general"
-                                                   class="col-form-label form-modal-label">Nume,
-                                                prenume</label>
+                                                   class="col-form-label form-modal-label">Nume, 
+                                                Prenume</label>
                                         </div>
 
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" required
-                                                           class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                           class=" form-control fs-6 volunteer-input"
+                                                           placeholder="Nume"
                                                            name="name" id="nume_voluntar_general"/>
                                                 </div>
                                             </div>
@@ -49,8 +50,8 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="email" required
-                                                           class="input-text-eco4 eco-input-text-modal volunteer-input"
-                                                           name="email"
+                                                           class=" form-control fs-6 volunteer-input"
+                                                           name="email" placeholder="Email"
                                                            id="email_voluntar_general"/>
                                                 </div>
                                             </div>
@@ -67,7 +68,8 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="tel" required
-                                                           class="input-text-eco4 eco-input-text-modal volunteer-input"
+                                                           class=" form-control fs-6 volunteer-input"
+                                                           placeholder="Telefon"
                                                            name="phone" id="tel_voluntar_general"/>
                                                 </div>
                                             </div>
@@ -77,14 +79,14 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-5">
                                             <label
-                                                class="col-form-label form-modal-label">Judet</label>
+                                                class="col-form-label form-modal-label">Judet:</label>
                                         </div>
 
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <select name="region" required>
-                                                        <option value="">selecteaza</option>
+                                                    <select name="region" class="form-control fs-6" required>
+                                                        <option value="">Selecteaza</option>
                                                         @foreach($regions as $region)
                                                             <option value="{{$region->id}}">{{$region->name}}</option>
                                                         @endforeach
@@ -97,7 +99,7 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-5">
                                             <label
-                                                class="col-form-label form-modal-label">Localitate</label>
+                                                class="col-form-label form-modal-label">Localitate:</label>
                                         </div>
 
                                         <div class="col-12 col-sm-7">
@@ -119,26 +121,31 @@
                                     <div class="row form-group">
                                         <div class="col-12 col-sm-5">
                                             <label for="friends_enrolled_modal_2_general"
-                                                   class="col-form-label form-modal-label">Mai vin</label>
+                                                   class="fs-6 col-form-label form-modal-label">Mai vin</label>
+                                                   
                                         </div>
 
-                                        <div class="col-12 col-sm-7">
-                                            <div class="row">
-                                                <div class="row">
+                                        <div class="col-12 col-sm-5">
+
+                                        
                                                     <div class="col-12 col-sm-6">
                                                         <input type="text" required
-                                                               class="input-number-of-friends-eco4 eco-input-text-modal"
-                                                               name="transport"
-                                                               id="friends_enrolled_modal_2_general"/>
+                                                               class=" fs-6 form-control input-number-of-friends-eco4 eco-input-text-modal"
+                                                               name="transport" placeholder="Numar"
+                                                               id="friends_enrolled_modal_2_general"
+                                                               />prieteni să facem
+                                                   treabă
+                                                               <label 
+                                                   class="fs-6"></label>
+                                                               
                                                     </div>
 
-                                                    <div class="col-12 col-sm-6">
+                                                    {{-- <div class="col-12 col-sm-6">
                                                         <label for="friends_enrolled_modal_2_general"
-                                                               class="friends-enrolled"
-                                                               style="width: 133px; height: 17px;">prieteni să facem
-                                                            treabă</label>
-                                                    </div>
-                                                </div>
+                                                               class=" form-control fs-6 friends-enrolled"
+                                                               style="width: 133px; height: 17px;"></label>
+                                                    </div> --}}
+                                               
                                             </div>
                                         </div>
                                     </div>
