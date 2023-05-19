@@ -73,10 +73,8 @@ class ProposeEventController extends Controller
     {
         $events = EventLocation::all();
         $regions = Region::all();
-        $approved_cities = City::has('approvedEventLocations')->select('id', 'name')->get();
-        $cities = City::all();
 
-        return view('propose-event.index', compact('events', 'regions', 'approved_cities', 'cities'));
+        return view('propose-event.index', compact('events', 'regions'));
     }
 
     public function approve_or_decline_propose_event(Request $request)
