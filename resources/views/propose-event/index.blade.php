@@ -1415,7 +1415,7 @@
                                                 <div class="row form-group">
                                                     <div class="col-12 col-sm-4">
                                                         <label class="col-form-label form-modal-label">Vreau să
-                                                            donez:</label>
+                                                            donez</label>
                                                     </div>
 
                                                     <div class="col-12 col-sm-9">
