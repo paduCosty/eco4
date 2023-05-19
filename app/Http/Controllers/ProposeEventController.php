@@ -137,23 +137,23 @@ class ProposeEventController extends Controller
                     } else {
                         return response()->json(['success' => false]);
                     }
+                    $userEventLocation->status = $request->val;
+                    $userEventLocation->save();
+
+                    $mailData = [
+                        'due_date' => $userEventLocation->due_date,
+                        'name' => $userEventLocation->name
+                    ];
+
+                    $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
+
+                    if ($result) {
+                        $response_msg['email'] = 'Email-ul a fost trimis cu succes';
+                    } else {
+                        $response_msg['email'] = false;
+                    }
                 }
-                $userEventLocation->status = $request->val;
-                $userEventLocation->save();
 
-                $mailData = [
-                    'title' => 'Mail from eco4',
-                    'due_date' => $userEventLocation->due_date,
-                    'name' => $userEventLocation->name
-                ];
-
-                $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
-
-                if ($result) {
-                    $response_msg['email'] = 'Email-ul a fost trimis cu succes';
-                } else {
-                    $response_msg['email'] = false;
-                }
                 $response_msg = [
                     'success' => true,
                     'status' => ucfirst($userEventLocation->status)

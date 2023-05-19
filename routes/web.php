@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventLocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposeEventController;
@@ -71,6 +72,9 @@ Route::post('/volunteer_registration', [VolunteerController::class, 'store'])
     ->name('volunteer_registration.store');
 
 /*Ajax volunteer END*/
+
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
+
 
 require __DIR__ . '/auth.php';
 

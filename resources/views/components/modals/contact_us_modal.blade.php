@@ -8,12 +8,15 @@
                         <h5 class="modal-title">Contact</h5>
 
                         <div class="col-12 col-sm-6 modal-close-text-container">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #a00404">X</button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    style="color: #a00404">X
+                            </button>
                         </div>
                     </div>
 
                     <div class="modal-body">
-                        <form id="registration-form" action="" method="POST">
+                        <form action="{{ route('contact.send') }}" method="POST">
+                            @csrf
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="form-group row">
@@ -44,7 +47,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="name-company-modal-contact"
+                                                           name="company_name"
                                                            id="name-company-modal-contact" required/>
                                                 </div>
                                             </div>
@@ -61,7 +64,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="text" class="input-text-eco4 eco-input-text-modal"
-                                                           name="name-contact-person--modal-contact"
+                                                           name="contact_person_name"
                                                            id="name-contact-person--modal-contact" required/>
                                                 </div>
                                             </div>
@@ -77,7 +80,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="tel" class="input-text-eco4 eco-input-text-modal"
-                                                           name="tel-contact-modal" id="tel-contact-modal"
+                                                           name="phone" id="tel-contact-modal"
                                                            required/>
                                                 </div>
                                             </div>
@@ -94,7 +97,7 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <input type="email" class="input-text-eco4 eco-input-text-modal"
-                                                           id="email-contact-modal" required/>
+                                                           id="email-contact-modal" name="email" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +114,7 @@
                                                 <div class="col-12">
                                                     <textarea
                                                         class="company-package-modal-textarea eco-input-text-modal"
-                                                        name="message-contact-modal" id="message-contact-modal"
+                                                        name="message" id="message-contact-modal"
                                                         required></textarea>
                                                 </div>
                                             </div>
@@ -133,7 +136,7 @@
                                     <div class="row form-group">
                                         <div class="col-sm-12">
                                             <div class="text-end">
-                                                <button class="form-submit modal-register-button">Mă inscriu
+                                                <button class="form-submit modal-register-button">Trimite
                                                 </button>
                                             </div>
                                         </div>
