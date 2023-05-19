@@ -19,7 +19,6 @@ class ProposeEventController extends Controller
         $eventLocations = UserEventLocation::withCount('eventRegistrations')
             ->orderBy('id', 'DESC')
             ->paginate(10);
-//        dd($eventLocations->toArray());
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 
@@ -46,31 +45,12 @@ class ProposeEventController extends Controller
             'terms_workshop' => 'required',
             'volunteering_contract' => 'required',
         ]);
-//        dd($request->all());
 
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
         return redirect()->route('home');
     }
-
-//    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
-//    {
-////        return view('event-locations.show', compact('eventLocation'));
-//        dd($location->id);
-//    }
-
-//    public function edit(UserEventLocation $userEventLocation)
-//    {
-//
-////        dd($userEventLocation->id);
-//
-////
-////        $user = EventLocation::first();
-//        return view('admin.propose-event.edit', compact(
-//            'userEventLocation'
-//        ));
-//    }
 
     public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
@@ -89,14 +69,6 @@ class ProposeEventController extends Controller
         return redirect()->route('propose-locations.index');
     }
 
-//    public function destroy(UserEventLocation $eventLocation): \Illuminate\Http\RedirectResponse
-//    {
-//        dd($eventLocation->id);
-//        $eventLocation->delete();
-//
-//        return redirect()->route('event-locations.index');
-//    }
-
     public function home(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $events = EventLocation::all();
@@ -104,8 +76,6 @@ class ProposeEventController extends Controller
         $approved_cities = City::has('approvedEventLocations')->select('id', 'name')->get();
         $cities = City::all();
 
-
-//        dd($cities->toArray());
         return view('propose-event.index', compact('events', 'regions', 'approved_cities', 'cities'));
     }
 

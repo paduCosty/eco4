@@ -90,7 +90,7 @@
                 $('#cities_by_region').remove();
                 var region_id = $(this).val();
                 $.ajax({
-                    url: APP_URL + '/admin/get-cities',
+                    url: APP_URL + '/get-cities',
                     type: 'Get',
                     data: {
                         region_id: region_id
