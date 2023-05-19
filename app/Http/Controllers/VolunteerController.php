@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventRegistration;
+use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class VolunteerController extends Controller
 {
@@ -37,22 +39,40 @@ class VolunteerController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-//dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-//            'region_id' => 'required',
-//            'city_id' => 'required',
             'terms_site' => 'required',
             'terms_workshop' => 'required',
             'volunteering_contract' => 'required',
             'users_event_location_id' => 'required',
         ]);
-        session()->flash('success', 'Datele au fost salvate cu succes!');
+        if ($request->users_event_location_id) {
 
-        $eventLocation = EventRegistration::create($validatedData);
-        return redirect()->route('home');
+            $event_location = UserEventLocation::where('id', $request->users_event_location_id)
+                ->first();
+
+            $response = false;
+            if ($event_location->crm_propose_event_id) {
+                $response = Http::asForm()->post('https://crm.cri.org.ro/api/add.php', [
+                    'type' => 'v',
+                    'name' => $request->name,
+                    'judet' => $request->region,
+                    'localitate' => $request->city,
+                    'telefon' => $request->phone,
+                    'santier' => $event_location->crm_propose_event_id,
+                ]);
+            }
+        }
+
+        if ($response) {
+            $eventLocation = EventRegistration::create($validatedData);
+            session()->flash('success', 'Datele au fost salvate cu succes!');
+            return redirect()->route('home');
+        }
+        return redirect()->route('home')->with('error', 'Inscrierea a esuat, contactatine sau incercati mai tarziu.');
+
     }
 
 //    public function show(EventLocation $eventLocation): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application

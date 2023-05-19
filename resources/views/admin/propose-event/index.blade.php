@@ -116,6 +116,7 @@
                 $('.event_location_email').val(location.email);
                 $('.event_location_due_date').val(location.due_date);
                 $('.event_location_status').val(location.status);
+                $('.event_location_description').val(location.description);
             });
 
             $(".switch-status-on").on("click", function () {
