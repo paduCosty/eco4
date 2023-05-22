@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,9 +17,20 @@ class ProposeEventController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $eventLocations = UserEventLocation::withCount('eventRegistrations')
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $eventLocations = UserEventLocation::withCount('eventRegistrations');
+
+            if (Auth::user()->role == 'user') {
+                $eventLocations = $eventLocations->whereHas('eventLocation', function ($query) use ($user_id) {
+                    $query->where('user_id', $user_id);
+                });
+            }
+
+            $eventLocations = $eventLocations->orderBy('id', 'DESC')
+                ->paginate(10);
+        }
+
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 

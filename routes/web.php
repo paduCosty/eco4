@@ -6,6 +6,7 @@ use App\Http\Controllers\EventLocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware(['auth', 'role:user'])->group(function () {
+
+Route::middleware(['auth', 'user_role'])->group(function () {
     /*admin prefix*/
     Route::prefix('admin')->group(function () {
         Route::resource('event-locations', EventLocationController::class);
@@ -75,7 +77,6 @@ Route::post('/volunteer_registration', [VolunteerController::class, 'store'])
 /*Ajax volunteer END*/
 
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
-
 
 require __DIR__ . '/auth.php';
 
