@@ -127,7 +127,7 @@
                                                    name="contact-check-modal"
                                                    id="contact-check-modal"/>
                                             <label style="display: inline;" for="contact-check-modal">Sunt de acord
-                                                cu </label><a style="color: #A6CE39;">termenii și condițiile
+                                                cu </label><a style="color: #A6CE39;">Termenii și Condițiile
                                                 acestui</a>
                                             site.
                                         </div>

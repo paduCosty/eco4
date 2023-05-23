@@ -120,26 +120,27 @@
                                             <label for="friends_enrolled_modal_2_general"
                                                    class="fs-6 col-form-label form-modal-label">Cati prieteni mai vin cu
                                                 tine?</label>
-
                                         </div>
-                                        <div class="col-12 col-sm-5">
-                                            <div class="col-12 col-sm-6">
-                                                <input type="text" required
-                                                       class="form-control fs-6 input-number-of-friends-eco4 eco-input-text-modal"
+
+                                        <div class="col-12 col-sm-7">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <input type="text" required
+                                                       class="form-control fs-6 "
                                                        name="transport" placeholder="Numar"
                                                        id="friends_enrolled_modal_2_general"/>
-                                                {{--  <label class="fs-6"></label>  --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
 
                                     <div class="row form-group" id="i-have-car-section">
-                                        <div class="col-12 col-sm-5 fs-6" style="color:gray">
+                                        <div class="col-12 col-sm-5 fs-6" style="color:rgb(150, 149, 149)">
                                             <label for="car_modal_2_general">Am mașină și am </label>
                                         </div>
 
-                                        <div class="col-12 col-sm-5">
+                                        <div class="col-12 col-sm-7">
                                             <div class="fix-alignment-1">
                                                 <div>
                                                     <input type="text" placeholder="Locuri" required
@@ -148,25 +149,15 @@
                                                 </div>
 
                                                 <div class="fs-6">
-                                                    <label for="car_modal_2_general" style="color:gray"> locuri
-                                                        libere</label>
+                                                    <label for="car_modal_2_general" style="color:rgb(150, 149, 149)">locuri libere.</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <div class="row form-group mb-3">
                                             <div class="col-12 text-start " id="field-completion-message">
                                                 <label id="confirmation-for-number-of-people"
                                                        style="color:rgb(173, 172, 172); font-size:13px;">
-                                                    Atenție: completarea acestui câmp presupune că vei
-                                                    lua de la locul de pornire numărul de persoane specificat
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col-12 text-start" id="field-completion-message">
-                                                <label id="confirmation-for-number-of-people">
-                                                    Atenție: completarea acestui câmp presupune că vei
+                                                    Atenție: Completarea acestui câmp presupune că vei
                                                     lua de la locul de pornire numărul de persoane specificat
                                                 </label>
                                             </div>
@@ -184,7 +175,7 @@
                                                         acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                       style="color: #A6CE39;">termenii și condițiile acestui</a>
+                                                       style="color: #A6CE39;">Termenii și Condițiile acestui</a>
                                                     site.
                                                 </div>
                                             </div>
@@ -202,7 +193,7 @@
                                                         acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#workshop"
-                                                       style="color: #A6CE39;">termenii și condițiile de
+                                                       style="color: #A6CE39;">Termenii și Condițiile de
                                                         participare</a>
                                                     la
                                                     workshop-ul de ecologizare.
@@ -222,7 +213,7 @@
                                                         acord
                                                         cu </label>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#contract"
-                                                       style="color: #A6CE39;;">contractul de voluntariat.</a>
+                                                       style="color: #A6CE39;;">Contractul de voluntariat.</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -232,9 +223,9 @@
 
                                         <div class="row form-group">
                                             <div class="col-12 fix-alignment-2">
-                                                <input type="submit" id="volunteer-enroll-general-button"
+                                                <button type="submit" id="volunteer-enroll-general-button"
                                                        class="form-submit modal-register-button"
-                                                       value="Mă inscriu"/>
+                                                       value="">Mă inscriu</button>
                                             </div>
                                         </div>
                                     </div>

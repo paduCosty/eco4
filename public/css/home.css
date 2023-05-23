@@ -368,14 +368,14 @@ footer {
     max-width: 80px;
 }
 
-/* .input-number-of-friends-eco4 {
+.input-number-of-friends-eco4 {
     box-sizing: border-box;
     width: 133px;
     height: 24px;
     background: #FFFFFF;
     border: 1px solid #F6F4F4!important;
     border-radius: 4px;
-} */
+}
 
 .input-number-of-seats-eco4 {
     box-sizing: border-box;
@@ -386,17 +386,17 @@ footer {
     height: 24px;
 }
 
-/* .row > input.input-text-eco4,
+.row > input.input-text-eco4,
 .row > input.eco-input-text-modal.input-text-eco4
 {
     width: 275px;
     height: 24px;
-} */
+}
 
-/* .row > input.input-number-of-friends-eco4 {
+.row > input.input-number-of-friends-eco4 {
     width: 133px;
     height: 24px;
-} */
+}
 
 .row > textarea.company-package-modal-textarea {
     width: 275px;
@@ -681,12 +681,12 @@ input, select {
     }
 }
 
-/* @media only screen and (max-width: 575px) {
+@media only screen and (max-width: 575px) {
     .eco-input-text-modal {
         margin-top: 10px;
         margin-left: 0px;
         width: 100%;
-    } */
+    }
 
     .empty-seats {
         margin-top: -74px;
@@ -697,7 +697,7 @@ input, select {
         margin-left: -0;
         margin-top: 8px;
     }
-/* } */
+}
 
 @media only screen and (max-width: 962px) {
     #second-select-Movila-modal {

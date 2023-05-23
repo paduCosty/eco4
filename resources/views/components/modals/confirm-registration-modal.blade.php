@@ -10,7 +10,7 @@
                         <div class="col-12 col-sm-6 modal-close-text-container">
                             <button type="button" type="button" class="close-modal-button text fs-5"
                                     style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
-                                    id="close-modal-5">Close
+                                    id="close-modal-5">X
                             </button>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                 </p>
                             </div>
 
-                            <div class="row form-group">
+                            {{-- <div class="row form-group">
                                 <div class="col-sm-12">
                                     <div class="text-center">
                                         <button class="form-submit modal-close-button text fs-5"
@@ -37,7 +37,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
