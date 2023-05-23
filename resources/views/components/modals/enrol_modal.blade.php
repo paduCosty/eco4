@@ -140,7 +140,7 @@
                                             <label for="car_modal_2_general">Am mașină și am </label>
                                         </div>
 
-                                        <div class="col-12 col-sm-7">
+                                        <div class="col-12 col-sm-7 mb-3">
                                             <div class="fix-alignment-1">
                                                 <div>
                                                     <input type="text" placeholder="Locuri" required
