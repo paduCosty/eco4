@@ -39,6 +39,7 @@ class VolunteerController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required',

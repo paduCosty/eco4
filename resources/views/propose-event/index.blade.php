@@ -616,9 +616,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal" aria-label="Close">
-                                    X
-                                </button>
+                                        data-bs-dismiss="modal" aria-label="Close">X</button>
                             </div>
                         </div>
 
@@ -897,9 +895,7 @@
 
                             <div class="modal-close-text-container">
                                 <button type="button" class="close-modal-button text fs-5" style="color: #a00404"
-                                        data-bs-dismiss="modal" aria-label="Close">
-                                    X
-                                </button>
+                                        data-bs-dismiss="modal" aria-label="Close">X</button>
                             </div>
                         </div>
 
@@ -1069,8 +1065,7 @@
                             <div class="modal-close-text-container">
                                 <button onclick="unsetEcoAction()" type="button" class="close-modal-button fs-5"
                                         style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
-                                        id="close-modal-4">X
-                                </button>
+                                        id="close-modal-4">X</button>
                             </div>
                         </div>
 
@@ -1247,6 +1242,9 @@
                                                     <input class="form-check-input" value="" type="checkbox"
                                                            name="eco-action-enroll-modal-check-2"
                                                            id="eco-action-enroll-modal-check-2"/>
+
+                                        
+
                                                     <label style="display: inline;" style="display: inline;"
                                                            for="eco-action-enroll-modal-check-2">Sunt de acord
                                                         cu </label>

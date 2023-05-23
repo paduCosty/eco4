@@ -78,7 +78,7 @@
                         <div class="d-flex text-center">
                             <div class="col mr-2">
                                 @if ($location->event_registrations_count > 0)
-                                    <a class=" col edit-button-event-p open-volunteers-modal" type="button"
+                                    <a class="col edit-button-event-p open-volunteers-modal" type="button"
                                          data-bs-toggle="modal" data-bs-target="#volunteers-modal"
                                          event_location_id="{{ $location->id }}">
                                         Voluntari
