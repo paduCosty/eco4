@@ -79,7 +79,8 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <select name="region" class="form-control fs-6" required>
+                                                    <select name="region" class="form-control fs-6" required
+                                                            id="propose_regions_enrol">
                                                         <option value="">Selecteaza</option>
                                                         @foreach ($regions as $region)
                                                             <option value="{{ $region->id }}">{{ $region->name }}
@@ -99,13 +100,8 @@
                                         <div class="col-12 col-sm-7">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <select name="city" class="form-control fs-6" required>
-                                                        <option value="">Selecteaza</option>
-
-                                                        @foreach ($cities as $city)
-                                                            <option value="{{ $city->id }}">{{ $city->name }}
-                                                            </option>
-                                                        @endforeach
+                                                    <select name="city" class="form-control fs-6" required id="region_cities_enrol">
+                                                        <option value="">selecteaza</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -128,14 +124,15 @@
                                                            />
                                                             {{--  <label class="fs-6"></label>  --}}
                                                     </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
+                                            </div>
                                     <div class="row form-group" id="i-have-car-section">
                                         <div class="col-12 col-sm-5 fs-6" style="color:gray">
                                             <label for="car_modal_2_general">Am mașină și am </label>
+
                                         </div>
+                                    </div>
+                            </div>
 
                                         <div class="col-12 col-sm-5">
                                             <div class="fix-alignment-1">
@@ -158,6 +155,8 @@
                                                 </label>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
                                         <div class="row form-group m-1">
                                             <div class="col-12">
@@ -196,7 +195,10 @@
                                                     workshop-ul de ecologizare.
                                                 </div>
                                             </div>
+
                                         </div>
+                                    </div>
+                                </div>
 
                                         <div class="row form-group m-1">
                                             <div class="col-12">
@@ -224,10 +226,23 @@
                                                 <button type="submit" id="volunteer-enroll-general-button"
                                                     class="form-submit modal-register-button " value="" >Mă inscriu</button>
                                             </div>
+
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <input type="hidden" required class="users_event_location_id"
+                                       name="users_event_location_id">
+                                <div class="error-messages"></div>
+
+                                <div class="row form-group">
+                                    <div class="col-12 fix-alignment-2">
+                                        <input type="submit" id="volunteer-enroll-general-button"
+                                               class="form-submit modal-register-button"
+                                               value="Mă inscriu"/>
+                                    </div>
+                                </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -235,9 +250,37 @@
         </div>
     </div>
 </div>
+</div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
+        var APP_URL = window.location.origin;
+        /*get all cities wo has a propose event set*/
+        $('#propose_regions_enrol').change(function () {
+            $('.region_cities_enrol').remove();
+            var region_id = $(this).val();
+            console.log(region_id)
 
+            $.ajax({
+                url: APP_URL + '/get-cities',
+                type: 'Get',
+                data: {
+                    region_id: region_id,
+                },
+                success: function (response) {
+                    var options = '';
+                    $.each(response.data, function (index, value) {
+                        options += `<option class="region_cities_enrol" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
+                    });
+
+                    $('#region_cities_enrol').append(options);
+
+
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
     });
 </script>

@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventLocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware(['auth', 'role:user'])->group(function () {
+
+Route::middleware(['auth', 'user_role'])->group(function () {
     /*admin prefix*/
     Route::prefix('admin')->group(function () {
         Route::resource('event-locations', EventLocationController::class);
@@ -32,7 +35,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 //        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
 
         /*ajax calls city*/
-        Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
         Route::get('approve-or-decline-propose-event/{location_id}', [ProposeEventController::class, 'approve_or_decline_propose_event'])
             ->name('admin.approve_or_decline_propose_event');
 
@@ -43,6 +45,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 /*ajax calls city*/
+Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
+
 Route::get('/cities-if-event-exists', [CityController::class, 'get_cities_by_event_locations'])
     ->name('cities-if-event-exists.get_cities_by_event_locations');
 
@@ -71,6 +75,8 @@ Route::post('/volunteer_registration', [VolunteerController::class, 'store'])
     ->name('volunteer_registration.store');
 
 /*Ajax volunteer END*/
+
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 require __DIR__ . '/auth.php';
 

@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,10 +17,20 @@ class ProposeEventController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $eventLocations = UserEventLocation::withCount('eventRegistrations')
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
-//        dd($eventLocations->toArray());
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $eventLocations = UserEventLocation::withCount('eventRegistrations');
+
+            if (Auth::user()->role == 'user') {
+                $eventLocations = $eventLocations->whereHas('eventLocation', function ($query) use ($user_id) {
+                    $query->where('user_id', $user_id);
+                });
+            }
+
+            $eventLocations = $eventLocations->orderBy('id', 'DESC')
+                ->paginate(10);
+        }
+
         return view('admin.propose-event.index', compact('eventLocations',));
     }
 
@@ -46,31 +57,12 @@ class ProposeEventController extends Controller
             'terms_workshop' => 'required',
             'volunteering_contract' => 'required',
         ]);
-//        dd($request->all());
 
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
         return redirect()->route('home');
     }
-
-//    public function show(UserEventLocation $location): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
-//    {
-////        return view('event-locations.show', compact('eventLocation'));
-//        dd($location->id);
-//    }
-
-//    public function edit(UserEventLocation $userEventLocation)
-//    {
-//
-////        dd($userEventLocation->id);
-//
-////
-////        $user = EventLocation::first();
-//        return view('admin.propose-event.edit', compact(
-//            'userEventLocation'
-//        ));
-//    }
 
     public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
@@ -89,24 +81,12 @@ class ProposeEventController extends Controller
         return redirect()->route('propose-locations.index');
     }
 
-//    public function destroy(UserEventLocation $eventLocation): \Illuminate\Http\RedirectResponse
-//    {
-//        dd($eventLocation->id);
-//        $eventLocation->delete();
-//
-//        return redirect()->route('event-locations.index');
-//    }
-
     public function home(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $events = EventLocation::all();
         $regions = Region::all();
-        $approved_cities = City::has('approvedEventLocations')->select('id', 'name')->get();
-        $cities = City::all();
 
-
-//        dd($cities->toArray());
-        return view('propose-event.index', compact('events', 'regions', 'approved_cities', 'cities'));
+        return view('propose-event.index', compact('events', 'regions'));
     }
 
     public function approve_or_decline_propose_event(Request $request)
@@ -137,23 +117,23 @@ class ProposeEventController extends Controller
                     } else {
                         return response()->json(['success' => false]);
                     }
+                    $userEventLocation->status = $request->val;
+                    $userEventLocation->save();
+
+                    $mailData = [
+                        'due_date' => $userEventLocation->due_date,
+                        'name' => $userEventLocation->name
+                    ];
+
+                    $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
+
+                    if ($result) {
+                        $response_msg['email'] = 'Email-ul a fost trimis cu succes';
+                    } else {
+                        $response_msg['email'] = false;
+                    }
                 }
-                $userEventLocation->status = $request->val;
-                $userEventLocation->save();
 
-                $mailData = [
-                    'title' => 'Mail from eco4',
-                    'due_date' => $userEventLocation->due_date,
-                    'name' => $userEventLocation->name
-                ];
-
-                $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
-
-                if ($result) {
-                    $response_msg['email'] = 'Email-ul a fost trimis cu succes';
-                } else {
-                    $response_msg['email'] = false;
-                }
                 $response_msg = [
                     'success' => true,
                     'status' => ucfirst($userEventLocation->status)
