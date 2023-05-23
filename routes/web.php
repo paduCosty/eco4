@@ -3,6 +3,7 @@
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventLocationController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
@@ -77,6 +78,13 @@ Route::post('/volunteer_registration', [VolunteerController::class, 'store'])
 /*Ajax volunteer END*/
 
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
+
+
+/*pay pall routes START*/
+Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
+Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
+/*pay pall routes END*/
 
 require __DIR__ . '/auth.php';
 

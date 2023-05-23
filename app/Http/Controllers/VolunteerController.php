@@ -65,7 +65,7 @@ class VolunteerController extends Controller
                 ]);
             }
         }
-
+//dd($event_location->crm_propose_event_id);
         if ($response) {
             $eventLocation = EventRegistration::create($validatedData);
             session()->flash('success', 'Datele au fost salvate cu succes!');
