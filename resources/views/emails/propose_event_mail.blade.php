@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Confirmare participare - Acțiune de ecologizare</title>
+    <title>Confirmare organizare - Acțiune de ecologizare</title>
 </head>
 <body>
 <div>
