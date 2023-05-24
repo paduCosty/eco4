@@ -153,6 +153,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="row form-group mb-3">
                                             <div class="col-12 text-start " id="field-completion-message">
                                                 <label id="confirmation-for-number-of-people"
