@@ -19,6 +19,19 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="pop-content">
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <div class="form-info-text">
+                                            <h6 class="modal-title mb-2 fs-5">Descriere eveniment:</h6>
+
+                                            <ul class="how-it-works ">
+                                                <p class="text-gray fs-6" id="event-description">
+
+                                                </p>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                                 <form method="POST" action="{{ route('volunteer_registration.store') }}">
                                     @csrf
                                     <div class="row form-group">
@@ -153,7 +166,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row form-group mb-3">
                                             <div class="col-12 text-start " id="field-completion-message">
                                                 <label id="confirmation-for-number-of-people"

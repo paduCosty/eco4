@@ -51,7 +51,7 @@ Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-citi
 Route::get('/cities-if-event-exists', [CityController::class, 'get_cities_by_event_locations'])
     ->name('cities-if-event-exists.get_cities_by_event_locations');
 
-Route::get('/approved-events/{city_id}', [CityController::class, 'approved_events'])
+Route::get('/approved-events/{region_id}', [CityController::class, 'approved_events'])
     ->name('approved-events.approved_events');
 
 Route::get('/cities_by_region_id', [CityController::class, 'get_cities_by_region_id'])

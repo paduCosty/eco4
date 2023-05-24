@@ -192,15 +192,6 @@
                             </select>
                         </div>
 
-                        <div class="mb-2 col-md-6 col-lg-4">
-                            <div class="special-input-wrap">
-                                <select required class="form-control input-normal text-dark fs-6"
-                                        id="region_cities_home">
-                                    <option class="text-dark fs-6">Localitate</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="mb-2 col-md-6 col-lg-2 pl-20">
                             <div class="col-sm-6 separated-count-card white-block">
                                 <button id="see-next-edition-details">Vezi detalii</button>

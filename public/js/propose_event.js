@@ -2,32 +2,6 @@ const getUrl = window.location;
 if (getUrl.pathname === '/' || getUrl.pathname === '/home') {
     $(document).ready(function () {
         var APP_URL = window.location.origin;
-        /*get all cities wo has a propose event set*/
-        $('#propose_regions_home').change(function () {
-            $('.region_cities_home').remove();
-            var region_id = $(this).val();
-            console.log(region_id)
-
-            $.ajax({
-                url: APP_URL + '/get-cities-if-propose-event-exists',
-                type: 'Get',
-                data: {
-                    region_id: region_id,
-                },
-                success: function (response) {
-                    var options = '';
-                    $.each(response.data, function (index, value) {
-                        options += `<option class="region_cities_home" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
-                    });
-
-                    $('#region_cities_home').append(options);
-
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseText);
-                }
-            });
-        });
 
         /*get all cities wo has a marker set*/
         $('#propose_regions_modal').change(function () {

@@ -3,18 +3,19 @@ $(document).ready(function () {
     var APP_URL = window.location.origin;
     console.log(APP_URL)
     $("#see-next-edition-details").on("click", function () {
-        let city_id = $("#region_cities_home").val();
-        if (city_id) {
+        let region_id = $("#propose_regions_home").val();
+        if (region_id) {
             $.ajax({
-                url: APP_URL + '/approved-events/' + city_id,
+                url: APP_URL + '/approved-events/' + region_id,
                 type: 'Get',
-                data: {city_id: city_id},
+                data: {region_id: region_id},
 
                 success: function (response) {
                     $('.remove-card').remove();
                     let event = ``;
-                    $.each(response.data, function (index, value) {
-                        event +=`
+                    if(response.data.length) {
+                        $.each(response.data, function (index, value) {
+                            event += `
                             <div class="col-12 col-md-4 mb-3 remove-card ">
                                 <div class="slider-wrap">
                                     <div class="slider-icon float-start">
@@ -38,17 +39,26 @@ $(document).ready(function () {
                                         <p>${value.size_volunteer_name}</p>
                                         <p>Relief: ${value.event_location.relief_type}</p>
                                         <p>Adresa: ${value.event_location.address}</p>
-                                        <p>Descriere: ${value.description}</p>
+                                         <p>Descriere: ${value.description}</p>
                                     </div>
                                         <div class="button-inscriere text-end ">
-                                            <a href="#" class="enrol-button " data-bs-toggle="modal" users_event_location_id="${value.id}" data-bs-target="#enrollModalGeneral" >
+                                            <a href="#" class="enrol-button "
+                                             data-bs-toggle="modal"
+                                             users_event_location_id="${value.id}"
+                                             event_description="${value.description}"
+                                             data-bs-target="#enrollModalGeneral"
+                                               >
                                                 Inscriere +
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>`
-                    });
+                        });
+
+                    } else {
+                        event += `<h3 id="next-edition-title" class="remove-card common-titles">Nici un eveniment in judetul selectat</h3>`
+                    }
 
                     $('#eco-actions-container').append(event);
 
@@ -62,6 +72,8 @@ $(document).ready(function () {
 
     $(document).on('click', '.enrol-button', function(){
         $('.users_event_location_id').val($(this).attr('users_event_location_id'))
+        $('#event-description').text($(this).attr('event_description'))
+        console.log($(this).attr('event_description'))
     });
 
     $('#user_region_address').change(function () {

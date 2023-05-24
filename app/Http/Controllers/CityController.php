@@ -61,11 +61,11 @@ class CityController extends Controller
 
     public function approved_events(Request $request)
     {
-        $city_id = $request->city_id;
-        if ($city_id) {
+        $region_id = $request->region_id;
+        if ($region_id) {
             $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat')
-                ->whereHas('eventLocation.city', function ($query) use ($city_id) {
-                    $query->where('id', $city_id);
+                ->whereHas('eventLocation.city', function ($query) use ($region_id) {
+                    $query->where('region_id', $region_id);
                 })
                 ->with([
                     'eventLocation:id,name,cities_id,size_volunteer_id,relief_type,address',
@@ -80,6 +80,8 @@ class CityController extends Controller
                     'size_volunteers.name as size_volunteer_name',
                 )
                 ->get();
+
+//            dd($approved_events->toArray());
             $response = array(
                 'status' => 'success',
                 'message' => 'Cererea AJAX a fost procesată cu succes!',
