@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form id="registration-form" action="" method="POST">
+                        <form id="registration-form">
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="row">
@@ -65,60 +65,60 @@
                                         </div>
 
                                         <div class="col-12 col-sm-6">
-                                            <div class="row form-group">
-                                                <div class="col-12 col-sm-4">
-                                                    <label for="name-donate-modal"
-                                                           class="col-form-label form-modal-label">Nume,
-                                                        Prenume</label>
-                                                </div>
+                                            {{--                                            <div class="row form-group">--}}
+                                            {{--                                                <div class="col-12 col-sm-4">--}}
+                                            {{--                                                    <label for="name-donate-modal"--}}
+                                            {{--                                                           class="col-form-label form-modal-label">Nume,--}}
+                                            {{--                                                        Prenume</label>--}}
+                                            {{--                                                </div>--}}
 
-                                                <div class="col-12 col-sm-8">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <input type="text"
-                                                                   class="input-text-eco4 eco-input-text-modal input-text-eco4-donate"
-                                                                   name="name-donate-modal" id="name-donate-modal"
-                                                                   required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {{--                                                <div class="col-12 col-sm-8">--}}
+                                            {{--                                                    <div class="row">--}}
+                                            {{--                                                        <div class="col-12">--}}
+                                            {{--                                                            <input type="text"--}}
+                                            {{--                                                                   class="input-text-eco4 eco-input-text-modal input-text-eco4-donate"--}}
+                                            {{--                                                                   name="name-donate-modal" id="name-donate-modal"--}}
+                                            {{--                                                                   required/>--}}
+                                            {{--                                                        </div>--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            </div>--}}
 
-                                            <div class="row form-group">
-                                                <div class="col-12 col-sm-4">
-                                                    <label for="tel-donate-modal"
-                                                           class="col-form-label form-modal-label">Telefon</label>
-                                                </div>
+                                            {{--                                            <div class="row form-group">--}}
+                                            {{--                                                <div class="col-12 col-sm-4">--}}
+                                            {{--                                                    <label for="tel-donate-modal"--}}
+                                            {{--                                                           class="col-form-label form-modal-label">Telefon</label>--}}
+                                            {{--                                                </div>--}}
 
-                                                <div class="col-12 col-sm-8">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <input type="tel"
-                                                                   class="input-text-eco4 eco-input-text-modal input-text-eco4-donate"
-                                                                   name="tel-donate-modal" id="tel-donate-modal"
-                                                                   required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {{--                                                <div class="col-12 col-sm-8">--}}
+                                            {{--                                                    <div class="row">--}}
+                                            {{--                                                        <div class="col-12">--}}
+                                            {{--                                                            <input type="tel"--}}
+                                            {{--                                                                   class="input-text-eco4 eco-input-text-modal input-text-eco4-donate"--}}
+                                            {{--                                                                   name="tel-donate-modal" id="tel-donate-modal"--}}
+                                            {{--                                                                   required/>--}}
+                                            {{--                                                        </div>--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            </div>--}}
 
-                                            <div class="row form-group">
-                                                <div class="col-12 col-sm-4">
-                                                    <label for="email-donate-modal"
-                                                           class="col-form-label form-modal-label">Email</label>
-                                                </div>
+                                            {{--                                            <div class="row form-group">--}}
+                                            {{--                                                <div class="col-12 col-sm-4">--}}
+                                            {{--                                                    <label for="email-donate-modal"--}}
+                                            {{--                                                           class="col-form-label form-modal-label">Email</label>--}}
+                                            {{--                                                </div>--}}
 
-                                                <div class="col-12 col-sm-8">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <input type="email"
-                                                                   class="input-text-eco4 eco-input-text-modal input-text-eco4-donate"
-                                                                   name="email-donate-modal" id="email-donate-modal"
-                                                                   required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {{--                                                <div class="col-12 col-sm-8">--}}
+                                            {{--                                                    <div class="row">--}}
+                                            {{--                                                        <div class="col-12">--}}
+                                            {{--                                                            <input type="email"--}}
+                                            {{--                                                                   class="input-text-eco4 eco-input-text-modal input-text-eco4-donate"--}}
+                                            {{--                                                                   name="email-donate-modal" id="email-donate-modal"--}}
+                                            {{--                                                                   required/>--}}
+                                            {{--                                                        </div>--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            </div>--}}
 
                                             <div class="row form-group">
                                                 <div class="col-12 col-sm-4">
@@ -130,32 +130,29 @@
                                                     <div class="row radio-wrap">
                                                         <div class="col-12 col-sm-3">
                                                             <label class="donate-amount-container">
-                                                                <input type="radio" id="20"
-                                                                       name="donate-ammmount"/>
+                                                                <input type="radio" id="20" value="20" name="donate_amount"/>
                                                                 <span>20 lei</span>
                                                             </label>
                                                         </div>
 
                                                         <div class="col-12 col-sm-3">
                                                             <label class="donate-amount-container">
-                                                                <input type="radio" id="50"
-                                                                       name="donate-ammmount"/>
+                                                                <input type="radio" id="50" value="50" name="donate_amount"/>
                                                                 <span>50 lei</span>
                                                             </label>
                                                         </div>
 
                                                         <div class="col-12 col-sm-3">
                                                             <label class="donate-amount-container">
-                                                                <input type="radio" id="100"
-                                                                       name="donate-ammmount"/>
+                                                                <input type="radio" id="100" value="100" name="donate_amount"/>
                                                                 <span>100 lei</span>
                                                             </label>
                                                         </div>
 
                                                         <div class="col-12 col-sm-3">
-                                                            <input id="suma" name="suma" type="number"
+                                                            <input id="suma" name="sum" type="number"
                                                                    class="input-normal" placeholder="Altă sumă"
-                                                                   required/>
+                                                                   />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,7 +168,7 @@
                                                         </div>
 
                                                         <div class="col-12 col-sm-4">
-                                                            <div class="row radio-wrap plat">
+                                                            <div class="row radio-wrap plat payment-type">
                                                                 <input type="radio" name="pay_mode"
                                                                        value="1"/>
 
@@ -204,11 +201,11 @@
                                                         </div>
 
                                                         <div class="col-12 col-sm-4">
-                                                            <div class="row radio-wrap plat">
-                                                                <input type="radio" name="pay_mode"
+                                                            <div class="row radio-wrap plat payment-type">
+                                                                <input type="radio" class="" name="pay_mode"
                                                                        value="2"/>
 
-                                                                <span class="money text-center"
+                                                                <span class="money text-center test1234"
                                                                       style="background-color: #FFFFFF;">
                                                                         <svg width="93" height="25"
                                                                              viewBox="0 0 93 25" fill="none"
@@ -251,7 +248,7 @@
                                                                 <textarea id="observations-donate-modal"
                                                                           class="company-package-modal-textarea eco-input-text-modal"
                                                                           name="observations-donate-modal"
-                                                                          required></textarea>
+                                                                          ></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -272,7 +269,7 @@
                                             <div class="row form-group">
                                                 <div class="col-12">
                                                     <div class="text-end">
-                                                        <button class="form-submit modal-register-button">Mă
+                                                        <button type="submit" class="form-submit modal-register-button">Mă
                                                             inscriu!
                                                         </button>
                                                     </div>
@@ -289,3 +286,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.payment-type').click(function () {
+            $('.payment-type').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#registration-form').submit(function (event) {
+
+            const selectedRadioButton = $('input[name="donate_amount"]:checked').val();
+            const enteredSum = $('#suma').val().trim();
+
+            if (!selectedRadioButton && enteredSum === '') {
+                event.preventDefault();
+                alert('Vă rugăm să selectați o sumă sau să introduceți o valoare în câmpul de introducere a sumei.');
+            } else {
+                $(this).attr('action', 'process-transaction')
+            }
+        });
+    });
+</script>
+
+<style>
+    .active {
+        border: 1px solid black;
+    }
+</style>
