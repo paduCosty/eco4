@@ -6,19 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     style="color: #a00404"> X</button>
             </div>
-            {{--            @dd($id) --}}
             <div class="modal-body">
-                {{--                @if ($errors->any()) --}}
-                {{--                    <div class="alert alert-danger"> --}}
-                {{--                        <strong>Whoops!</strong> There were some problems with your input.<br><br> --}}
-                {{--                        <ul> --}}
-                {{--                            @foreach ($errors->all() as $error) --}}
-                {{--                                <li>{{ $error }}</li> --}}
-                {{--                            @endforeach --}}
-                {{--                        </ul> --}}
-                {{--                    </div> --}}
-                {{--                @endif --}}
-
                 <form class="form_edit_event" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('post')
@@ -50,7 +38,7 @@
 
                         <div class="mb-3 col-md-6">
                             <label class="fs-5" style="color:rgb(124, 121, 121)">La fata locului:</label>
-                            <select name="size_volunteer_id" class="form-control select-location fs-6 text-gray">
+                            <select name="size_volunteer_id" class="form-control select-location fs-6 text-gray" id="size_volunteer_id">
                                 <option value="">Selecteaza</option>
 
                             </select>

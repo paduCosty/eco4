@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="create-event-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -60,7 +60,7 @@
                                 required>
                                 <option value="">Selecteaza</option>
                                 @foreach ($size_volunteers as $size_volunteer)
-                                    <option value="{{ $size_volunteer->id }}">{{ $size_volunteer->name }}</option>
+                                    <option class="size-volunteers-create" value="{{ $size_volunteer->id }}">{{ $size_volunteer->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="container mb-3">
                             <div id="create_event_map"></div>
                         </div>
-                        
+
                         <div class="mb-3 col-md-6"  id="address_display">
                             <label class="fs-5" for="pin_address">Adresa selectata:</label>
                             <input class="form-control fs-6" readonly name="address" id="pin_address">
@@ -79,7 +79,7 @@
                                 id="volunteer-proposal-add-button"> Send</button>
 
                         </div>
-                        
+
                     </div>
                 </form>
             </div>

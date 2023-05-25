@@ -246,11 +246,7 @@
         color:rgb(124, 121, 121) !important;
 
     }
-    .action-button {
-        color: green;
-        text-decoration: none;
-        padding-left: 5px;
-    }
+
     .switch-toggle.switch-candy {
         box-shadow:none !important;
     }

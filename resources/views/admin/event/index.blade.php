@@ -14,7 +14,7 @@
                 @if(Auth::user()->role == 'user')
                     @include('admin.event.create')
                     <div class="slider-link add-next-eco-action">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#create-event-modal">
                             Adauga o noua locatie +
                         </a>
                     </div>
@@ -55,22 +55,18 @@
                     <td>{{ $event->longitude }}</td>
                     <td>{{ $event->latitude }}</td>
                     <td>
-                        <form action="{{ route('event-locations.destroy', $event->id) }}" method="POST">
-                            {{--                            <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a> --}}
-                            <div class="row ">
-                                <a class="edit-button-create edit_event_button col mb-3" type="button"
-                                   event="{{ json_encode($event) }}" data-bs-toggle="modal"
-                                   data-bs-target="#edit-event-modal">Edit
-                                </a>
+                        <form action="{{ route('event-locations.destroy', $event->id) }}" class="delete-form"
+                              method="POST">
+                            <a class="action-button edit_event_button col mb-3" type="button"
+                               event="{{ json_encode($event) }}" data-bs-toggle="modal"
+                               data-bs-target="#edit-event-modal">Edit
+                            </a>
 
-                                <div class="col mb-3">
-                                    @csrf
-                                    @if (!$event->users_event_locations_count)
-                                        @method('DELETE')
-                                        <button type="submit" class="buttons">Delete</button>
-                                    @endif
-                                </div>
-                            </div>
+                            @csrf
+                            @if (!$event->users_event_locations_count)
+                                @method('DELETE')
+                                <a type="button" class="action-button" id="delete-button">Delete</a>
+                            @endif
                         </form>
                     </td>
                 </tr>
@@ -80,6 +76,7 @@
 
     </div>
     @include('admin.event.edit')
+
     <script>
         const APP_URL = {!! json_encode(url('/')) !!};
 
@@ -95,7 +92,6 @@
                         region_id: region_id
                     },
                     success: function (response) {
-
                         var options = `<select name="cities_id" id="cities_by_region" class="form-control select-location" required>
                                             <option value="">Localitatea</option>`;
                         $.each(response.data, function (index, value) {
@@ -173,7 +169,7 @@
             let size_volunteers = {!! $size_volunteers !!};
             let html_select = '';
             for (let i = 0; i < size_volunteers.length; ++i) {
-                html_select += `<option value=${size_volunteers[i].id}>${size_volunteers[i].name}</option>`
+                html_select += `<option class="size_volunteers_option" value=${size_volunteers[i].id}>${size_volunteers[i].name}</option>`
             }
             $('.form_edit_event').attr('action', APP_URL + '/admin/event-locations/update/' + event.id)
             $('.region_id').val(event.city.region.name).text(event.city.region.id);
@@ -182,7 +178,8 @@
             $('.gps_latitude').val(event.latitude)
             $('.pin_address').val(event.address).text(event.address);
             $('select[name="relief_type"]').val(event.relief_type);
-            $('select[name="size_volunteer_id"]').append(html_select).val(event.size_volunteer_id);
+            $('.size_volunteers_option').remove();
+            $('#size_volunteer_id').append(html_select).val(event.size_volunteer_id);
             initEditEventMap(event.latitude, event.longitude);
         });
 
@@ -233,5 +230,14 @@
             initCreateEventMap();
             initEditEventMap();
         }
+
+        $('#delete-button').click(function () {
+            if (confirm('Esti sigur ca vrei sa stergi acest Eveniment')) {
+                $(this).closest('.delete-form').submit();
+
+            }
+        });
+
     </script>
+
 @endsection
