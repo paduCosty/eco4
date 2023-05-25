@@ -78,7 +78,7 @@
                         <div class="d-flex text-center">
                             <div class="col mr-2">
                                 @if ($location->event_registrations_count > 0)
-                                    <a class=" col edit-button-event-p open-volunteers-modal" type="button"
+                                    <a class="col open-volunteers-modal action-button" type="button"
                                        data-bs-toggle="modal" data-bs-target="#volunteers-modal"
                                        event_location_id="{{ $location->id }}">
                                         Voluntari
@@ -86,7 +86,7 @@
                                 @endif
                             </div>
 
-                            <a class="col edit-button-event-p mr-1 open_edit_modal" type="button" data-bs-toggle="modal"
+                            <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
                                data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
                                 Edit
                             </a>
@@ -246,6 +246,13 @@
         color:rgb(124, 121, 121) !important;
 
     }
-
+    .action-button {
+        color: green;
+        text-decoration: none;
+        padding-left: 5px;
+    }
+    .switch-toggle.switch-candy {
+        box-shadow:none !important;
+    }
 
 </style>
