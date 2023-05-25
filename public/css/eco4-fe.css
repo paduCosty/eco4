@@ -267,6 +267,13 @@ a{
     display: inline-block;
     margin-top: -3px;
 }
+.edit-button-edit-delete{
+    border-radius: 9px;
+    text-align: center;
+    height: 24px;
+    font-size: 16px;
+    color: #147421;
+}
 
 .edit-button-create{
     background: rgb(226, 250, 242);

@@ -2,7 +2,7 @@
 
 @section('content')
     <script defer
-            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps">
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps">
     </script>
 
     <div class="container" style="color:rgb(124, 121, 121)">
@@ -11,14 +11,15 @@
         </div>
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
-                @if(Auth::user()->role == 'user')
-                    @include('admin.event.create')
-                    <div class="slider-link add-next-eco-action">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Adauga o noua locatie +
-                        </a>
-                    </div>
-                @endif
+                @include('admin.event.create')
+                <div class="slider-link add-next-eco-action">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Adauga o noua locatie +
+                    </a>
+                </div>
+                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Adauga o noua locatie +
+                </button> --}}
             </div>
         </div>
 
@@ -27,8 +28,8 @@
                 {{ session('success') }}
             </div>
             <script>
-                $(document).ready(function () {
-                    setTimeout(function () {
+                $(document).ready(function() {
+                    setTimeout(function() {
                         $('.alert').fadeOut();
                     }, 5000);
                 });
@@ -58,16 +59,16 @@
                         <form action="{{ route('event-locations.destroy', $event->id) }}" method="POST">
                             {{--                            <a class="btn btn-default buttons" href="{{ route('event-locations.edit',$event->id) }}">Edit</a> --}}
                             <div class="row ">
-                                <a class="edit-button-create edit_event_button col mb-3" type="button"
-                                   event="{{ json_encode($event) }}" data-bs-toggle="modal"
-                                   data-bs-target="#edit-event-modal">Edit
+                                <a class="edit-button-edit-delete edit_event_button col mb-3" type="button"
+                                    event="{{ json_encode($event) }}" data-bs-toggle="modal"
+                                    data-bs-target="#edit-event-modal" style="text-decoration: none">Edit
                                 </a>
 
                                 <div class="col mb-3">
                                     @csrf
                                     @if (!$event->users_event_locations_count)
                                         @method('DELETE')
-                                        <button type="submit" class="buttons">Delete</button>
+                                        <a href="" type="submit" class="edit-button-edit-delete" style="text-decoration: none">Delete</a>
                                     @endif
                                 </div>
                             </div>
@@ -83,37 +84,37 @@
     <script>
         const APP_URL = {!! json_encode(url('/')) !!};
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             /* get cities and make a select with them*/
-            $('#regions').change(function () {
+            $('#regions').change(function() {
                 $('#cities_by_region').remove();
                 var region_id = $(this).val();
                 $.ajax({
-                    url: APP_URL + '/get-cities',
+                    url: APP_URL + '/admin/get-cities',
                     type: 'Get',
                     data: {
                         region_id: region_id
                     },
-                    success: function (response) {
+                    success: function(response) {
 
                         var options = `<select name="cities_id" id="cities_by_region" class="form-control select-location" required>
                                             <option value="">Localitatea</option>`;
-                        $.each(response.data, function (index, value) {
+                        $.each(response.data, function(index, value) {
                             options += '<option lat="' + value.latitude + '" lng="' +
                                 value.longitude + '" value="' + value.id + '">' + value
-                                    .name + '</option>';
+                                .name + '</option>';
                         });
 
                         $('#city').append(options += '</select>');
 
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.log(xhr.responseText);
                     }
                 });
             });
             /*when a city is select, set google maps lat and lng*/
-            $(document).on('change', '#cities_by_region', function () {
+            $(document).on('change', '#cities_by_region', function() {
                 var lat = $('option:selected', this).attr('lat');
                 var lng = $('option:selected', this).attr('lng');
 
@@ -166,7 +167,7 @@
         }
 
         /*create edit form*/
-        $('.edit_event_button').click(function () {
+        $('.edit_event_button').click(function() {
 
             let event = JSON.parse($(this).attr('event'));
 
