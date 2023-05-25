@@ -12,7 +12,7 @@ $(document).ready(function () {
 
                 success: function (response) {
                     $('.remove-card').remove();
-                    let event = ``;
+                    let event = `<h2 id="next-edition-title" class="common-titles">Alege locul de desfasurare al actiunii din localitatea selectata</h2>`;
                     if(response.data.length) {
                         $.each(response.data, function (index, value) {
                             event += `

@@ -261,11 +261,13 @@ a{
     border-radius: 9px;
     font-style: bold;
     font-weight: 500;
-    font-size: 19px;
+    font-size: 16px;
     color: #169627;
-    padding: 4px 7px;
+    padding: 3px 7px;
     display: inline-block;
     margin-top: -3px;
+    text-decoration: none;
+
 }
 
 .edit-button-create{
