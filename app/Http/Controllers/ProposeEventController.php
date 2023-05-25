@@ -83,21 +83,21 @@ class ProposeEventController extends Controller
 
     public function home(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $events = EventLocation::all();
+        $count_events = UserEventLocation::where('status', 'aprobat')->count();
         $regions = Region::all();
 
-        return view('propose-event.index', compact('events', 'regions'));
+        return view('propose-event.index', compact('count_events', 'regions'));
     }
 
     public function approve_or_decline_propose_event(Request $request)
     {
-
         if ($request->location_id && $request->val) {
             $userEventLocation = UserEventLocation::with('eventLocation.city')
                 ->where('id', $request->location_id)
                 ->first();
 
             if ($userEventLocation && $request->val && $request->val != $userEventLocation->status) {
+
                 if ($request->val == 'aprobat') {
                     $userEventLocationArray = $userEventLocation->toArray();
                     $response = Http::post(env('LOGIN_URL') . 'add_action', [
@@ -117,8 +117,6 @@ class ProposeEventController extends Controller
                     } else {
                         return response()->json(['success' => false]);
                     }
-                    $userEventLocation->status = $request->val;
-                    $userEventLocation->save();
 
                     $mailData = [
                         'due_date' => $userEventLocation->due_date,
@@ -133,6 +131,10 @@ class ProposeEventController extends Controller
                         $response_msg['email'] = false;
                     }
                 }
+
+                $userEventLocation->status = $request->val;
+                $userEventLocation->save();
+//                dd($request->val);
 
                 $response_msg = [
                     'success' => true,

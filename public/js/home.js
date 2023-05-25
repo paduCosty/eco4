@@ -11,8 +11,8 @@ $(document).ready(function () {
                 data: {region_id: region_id},
 
                 success: function (response) {
-                    $('.remove-card').remove();
-                    let event = `<h2 id="next-edition-title" class="common-titles">Alege locul de desfasurare al actiunii din localitatea selectata</h2>`;
+                    $('.remove-card, .change-event-place-title').remove();
+                    let event = `<h2 id="next-edition-title" class="common-titles change-event-place-title">Alege locul de desfasurare al actiunii din localitatea selectata</h2>`;
                     if(response.data.length) {
                         $.each(response.data, function (index, value) {
                             event += `

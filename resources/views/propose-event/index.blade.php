@@ -193,7 +193,7 @@
                                 </svg>
                             </div>
 
-                            <div class="separated-count-card" id="eco-actions-to-county-count">0</div>
+                            <div class="separated-count-card" id="eco-actions-to-county-count">{{$count_events}}</div>
 
 
                             <div class="separated-count-card">
@@ -213,10 +213,10 @@
 
                     @include('components.modals.propose-event-location-modal')
 
-                        <div class="col-sm-7 slider-link add-next-eco-action">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">Propune acțiune de
-                                ecologizare
-                                +</a>
+                    <div class="col-sm-7 slider-link add-next-eco-action">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">Propune acțiune de
+                            ecologizare
+                            +</a>
                     </div>
                 </div>
 
