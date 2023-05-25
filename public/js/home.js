@@ -39,7 +39,6 @@ $(document).ready(function () {
                                         <p>${value.size_volunteer_name}</p>
                                         <p>Relief: ${value.event_location.relief_type}</p>
                                         <p>Adresa: ${value.event_location.address}</p>
-                                         <p>Descriere: ${value.description}</p>
                                     </div>
                                         <div class="button-inscriere text-end ">
                                             <a href="#" class="enrol-button "
