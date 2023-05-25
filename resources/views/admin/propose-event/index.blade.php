@@ -25,7 +25,7 @@
             </script>
         @endif
 
-        <table class="table table-hover t " style="color:rgb(124, 121, 121)">
+        <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
                 <th>Nr.</th>
                 <th>Nume</th>
@@ -43,7 +43,7 @@
                     <td>{{ $location->name }}</td>
                     <td>{{ $location->email }}</td>
                     <td>{{ $location->eventLocation->address }}</td>
-                    <td>{{ $location->due_date }}</td>
+                    <td width="9%">{{ $location->due_date }}</td>
                     <td>{{ $location->event_registrations_count }}</td>
                     <td>
                         @if ($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
@@ -66,7 +66,7 @@
                                     <input id="off-{{ $i }}" name="state-d-{{ $i }}" type="radio"
                                            @if ($location->status == 'refuzat') checked="checked" @endif />
                                     <label class="switch-status-off switch-checkbox" for="off-{{ $i }}"
-                                           style="color:red" location_id={{ $location->id }}>
+                                           style="color:red !important" location_id={{ $location->id }}>
                                         Refuzat
                                     </label>
                                     <a></a>
@@ -79,21 +79,19 @@
                             <div class="col mr-2">
                                 @if ($location->event_registrations_count > 0)
                                     <a class=" col edit-button-event-p open-volunteers-modal" type="button"
-                                         data-bs-toggle="modal" data-bs-target="#volunteers-modal"
-                                         event_location_id="{{ $location->id }}">
+                                       data-bs-toggle="modal" data-bs-target="#volunteers-modal"
+                                       event_location_id="{{ $location->id }}">
                                         Voluntari
                                     </a>
                                 @endif
                             </div>
 
-                                <a class="col edit-button-event-p mr-1 open_edit_modal" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
-                                    Edit
-                                </a>
+                            <a class="col edit-button-event-p mr-1 open_edit_modal" type="button" data-bs-toggle="modal"
+                               data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
+                                Edit
+                            </a>
 
-                            </div>
-
-                        <form>
+                        </div>
                     </td>
                 </tr>
                 @php($i++)
@@ -215,6 +213,10 @@
 @endsection
 
 <style>
+    th {
+        text-align: left;
+    }
+
     .switch-toggle {
         width: 17em;
 
@@ -222,6 +224,7 @@
 
     .switch-candy {
         height: 100%;
+
     }
 
     .switch-checkbox {
@@ -236,4 +239,13 @@
         /*font-family: 'Inter' !important;*/
         font-family: inherit;
     }
+
+    .switch-light.switch-candy span span, .switch-light.switch-candy input:checked ~ span span:first-child, .switch-toggle.switch-candy label {
+        text-shadow: none !important;
+        font-weight: normal !important;
+        color:rgb(124, 121, 121) !important;
+
+    }
+
+
 </style>
