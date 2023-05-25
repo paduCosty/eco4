@@ -35,7 +35,7 @@
             </script>
         @endif
 
-        <table class="table table-hover t" style="color:rgb(124, 121, 121)">
+        <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
                 <th>Nr.</th>
                 <th>Adresa</th>
