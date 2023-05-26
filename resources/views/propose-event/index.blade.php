@@ -1832,6 +1832,9 @@
         <script>
             $(document).ready(function () {
                 $('#confirmModalBox').modal('show');
+
+
+                $('description-textarea')
             });
         </script>
     @endif

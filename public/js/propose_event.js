@@ -54,14 +54,17 @@ if (getUrl.pathname === '/' || getUrl.pathname === '/home') {
                         isFormValid = false;
                         return false;
                     }
-                }
-
-                else if ($(this).is(':text')) {
+                } else if ($(this).is(':text')) {
                     if (!$(this).val()) {
                         isFormValid = false;
                         return false;
                     }
                 }
+                if(!$('#textarea-details').val()) {
+                    isFormValid = false;
+                    return false;
+                }
+
             });
             if (!place_selected) {
                 alert('Nu ați selectat un punct pe hartă!');

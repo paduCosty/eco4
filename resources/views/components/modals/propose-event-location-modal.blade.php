@@ -188,10 +188,9 @@
                                             <div class="mb-3 col-md-12">
                                                 <label for="" class="col-form-label form-modal-label text-gray fs-6">Descriere:
                                                 </label>
-                                                <textarea type="text" maxlength="500"
+                                                <textarea type="text" maxlength="500" id="textarea-details"
                                                           class="form-control input-normal text-gray fs-6" name="description"
-                                                          required>
-                                                </textarea>
+                                                          required></textarea>
                                             </div>
 
                                             <div class="row m-1">
