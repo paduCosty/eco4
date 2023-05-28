@@ -16,14 +16,18 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-            <script>
-                $(document).ready(function () {
-                    setTimeout(function () {
-                        $('.alert').fadeOut();
-                    }, 5000);
-                });
-            </script>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
         @endif
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('.alert').fadeOut();
+                }, 5000);
+            });
+        </script>
 
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
@@ -107,6 +111,7 @@
 
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
+                console.log(location);
                 $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
                     location.id)
 
