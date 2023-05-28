@@ -107,6 +107,7 @@
 
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
+                console.log(location);
                 $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
                     location.id)
 

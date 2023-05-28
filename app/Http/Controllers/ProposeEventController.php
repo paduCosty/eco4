@@ -66,6 +66,7 @@ class ProposeEventController extends Controller
 
     public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
+
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -96,33 +97,46 @@ class ProposeEventController extends Controller
                 ->where('id', $request->location_id)
                 ->first();
 
-            if ($userEventLocation && $request->val && $request->val != $userEventLocation->status) {
+            // check if event exists in crm or not...
+            $update_crm = false;
+            if (($userEventLocation->crm_propose_event_id && $request->val = 'refuzat') || $request->val == 'aprobat') {
+                $update_crm = true;
+            }
+
+            $userEventLocationArray = $userEventLocation->toArray();
+            if ($userEventLocation && $request->val && $request->val != $userEventLocation->status && $update_crm) {
+                $status = '';
+                if ($request->val == 'aprobat') {
+                    $status = 'Active';
+                } else if ($userEventLocationArray['crm_propose_event_id']) {
+                    $status = 'Inactive';
+                }
+
+                $response = Http::post(env('LOGIN_URL') . 'add_action', [
+                    'id' => $userEventLocationArray['crm_propose_event_id'] ?? '',
+                    'Latitudine' => $userEventLocationArray['event_location']['longitude'],
+                    'Longitudine' => $userEventLocationArray['event_location']['latitude'],
+                    'Description' => $userEventLocationArray['description'],
+                    'JudetID' => $userEventLocationArray['event_location']['city']['region_id'],
+                    'LocationID' => $userEventLocationArray['event_location']['cities_id'],
+                    'Number' => $userEventLocationArray['event_location']['size_volunteer_id'],
+                    'Date' => $userEventLocationArray['due_date'],
+                    'Name' => $userEventLocationArray['name'],
+                    'status' => $status
+                ]);
+
+                if (is_numeric($response->body())) {
+                    $userEventLocation->crm_propose_event_id = intval($response->body());
+                } else {
+                    return response()->json(['success' => false]);
+                }
+
+                $mailData = [
+                    'due_date' => $userEventLocation->due_date,
+                    'name' => $userEventLocation->name
+                ];
 
                 if ($request->val == 'aprobat') {
-                    $userEventLocationArray = $userEventLocation->toArray();
-                    $response = Http::post(env('LOGIN_URL') . 'add_action', [
-                        'id' => $userEventLocationArray['crm_propose_event_id'] ?? '',
-                        'Latitudine' => $userEventLocationArray['event_location']['longitude'],
-                        'Longitudine' => $userEventLocationArray['event_location']['latitude'],
-                        'Description' => $userEventLocationArray['description'],
-                        'JudetID' => $userEventLocationArray['event_location']['city']['region_id'],
-                        'LocationID' => $userEventLocationArray['event_location']['cities_id'],
-                        'Number' => $userEventLocationArray['event_location']['size_volunteer_id'],
-                        'Date' => $userEventLocationArray['due_date'],
-                        'Name' => $userEventLocationArray['name'],
-                    ]);
-
-                    if ($response->body()) {
-                        $userEventLocation->crm_propose_event_id = intval($response->body());
-                    } else {
-                        return response()->json(['success' => false]);
-                    }
-
-                    $mailData = [
-                        'due_date' => $userEventLocation->due_date,
-                        'name' => $userEventLocation->name
-                    ];
-
                     $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
 
                     if ($result) {
@@ -131,17 +145,15 @@ class ProposeEventController extends Controller
                         $response_msg['email'] = false;
                     }
                 }
-
-                $userEventLocation->status = $request->val;
-                $userEventLocation->save();
-//                dd($request->val);
-
-                $response_msg = [
-                    'success' => true,
-                    'status' => ucfirst($userEventLocation->status)
-                ];
-                return response()->json($response_msg);
             }
+            $userEventLocation->status = $request->val;
+            $userEventLocation->save();
+
+            $response_msg = [
+                'success' => true,
+                'status' => ucfirst($userEventLocation->status)
+            ];
+            return response()->json($response_msg);
         }
         return response()->json(['success' => false]);
     }
