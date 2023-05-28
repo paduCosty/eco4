@@ -26,14 +26,18 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-            <script>
-                $(document).ready(function () {
-                    setTimeout(function () {
-                        $('.alert').fadeOut();
-                    }, 5000);
-                });
-            </script>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
         @endif
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('.alert').fadeOut();
+                }, 5000);
+            });
+        </script>
 
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>

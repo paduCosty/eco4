@@ -83,8 +83,8 @@ class ProposeEventController extends Controller
         }
 
         if ($userEventLocation->crm_propose_event_id) {
-            $response = Http::post(env('LOGIN_URL') . 'update_action', [
-                'id' => $userEventLocation->crm_propose_event_id,
+            $response = Http::asForm()->post(env('LOGIN_URL') . 'update_action', [
+                'Id' => $userEventLocation->crm_propose_event_id,
                 'Latitudine' => $userEventLocation->eventLocation->longitude,
                 'Longitudine' => $userEventLocation->eventLocation->latitude,
                 'Description' => $validatedData['description'],
@@ -93,13 +93,18 @@ class ProposeEventController extends Controller
                 'Number' => $userEventLocation->eventLocation->size_volunteer_id,
                 'Date' => $validatedData['due_date'],
                 'Name' => $validatedData['name'],
-                'status' => $status
+                'Status' => $status
             ]);
         }
-//        aici trebuie cum imi returneaza succes-ul sau false.
-        $userEventLocation->update($validatedData);
 
-        session()->flash('success', 'Datele au fost salvate cu succes!');
+        if ($response->body() == "Actiune actualizata cu success!") {
+            $userEventLocation->update($validatedData);
+
+            session()->flash('success', 'Datele au fost salvate cu succes!');
+            return redirect()->route('propose-locations.index');
+        }
+
+        session()->flash('error', 'Datele nu au fost actualizate');
         return redirect()->route('propose-locations.index');
     }
 
