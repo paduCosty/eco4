@@ -120,7 +120,7 @@ class ProposeEventController extends Controller
 
             // check if event exists in crm or not...
             $update_crm = false;
-            if (($userEventLocation->crm_propose_event_id && $request->val = 'refuzat') || $request->val == 'aprobat') {
+            if (($userEventLocation->crm_propose_event_id && $request->val == 'refuzat') || $request->val == 'aprobat') {
                 $update_crm = true;
             }
 
@@ -132,9 +132,16 @@ class ProposeEventController extends Controller
                 } else if ($userEventLocationArray['crm_propose_event_id']) {
                     $status = 'Inactive';
                 }
+                $crm_id = $userEventLocationArray['crm_propose_event_id'];
 
-                $response = Http::post(env('LOGIN_URL') . 'add_action', [
-                    'id' => $userEventLocationArray['crm_propose_event_id'] ?? '',
+                //specify type if is create or update
+                $action_type = 'add_action';
+                if ($crm_id) {
+                    $action_type = 'update_action';
+                }
+
+                $response = Http::asForm()->post(env('LOGIN_URL') . $action_type, [
+                    'Id' => $crm_id ?? '',
                     'Latitudine' => $userEventLocationArray['event_location']['longitude'],
                     'Longitudine' => $userEventLocationArray['event_location']['latitude'],
                     'Description' => $userEventLocationArray['description'],
@@ -143,12 +150,12 @@ class ProposeEventController extends Controller
                     'Number' => $userEventLocationArray['event_location']['size_volunteer_id'],
                     'Date' => $userEventLocationArray['due_date'],
                     'Name' => $userEventLocationArray['name'],
-                    'status' => $status
+                    'Status' => $status
                 ]);
 
                 if (is_numeric($response->body())) {
                     $userEventLocation->crm_propose_event_id = intval($response->body());
-                } else {
+                } else if ($response->body() != 'Actiune actualizata cu success!') {
                     return response()->json(['success' => false]);
                 }
 
