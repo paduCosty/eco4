@@ -76,6 +76,27 @@ class ProposeEventController extends Controller
 
         ]);
 
+        $status = 'Inactive';
+
+        if ($validatedData['status'] == 'aprobat') {
+            $status = "Active";
+        }
+
+        if ($userEventLocation->crm_propose_event_id) {
+            $response = Http::post(env('LOGIN_URL') . 'update_action', [
+                'id' => $userEventLocation->crm_propose_event_id,
+                'Latitudine' => $userEventLocation->eventLocation->longitude,
+                'Longitudine' => $userEventLocation->eventLocation->latitude,
+                'Description' => $validatedData['description'],
+                'JudetID' => $userEventLocation->eventLocation->city->region_id,
+                'LocationID' => $userEventLocation->eventLocation->cities_id,
+                'Number' => $userEventLocation->eventLocation->size_volunteer_id,
+                'Date' => $validatedData['due_date'],
+                'Name' => $validatedData['name'],
+                'status' => $status
+            ]);
+        }
+//        aici trebuie cum imi returneaza succes-ul sau false.
         $userEventLocation->update($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
