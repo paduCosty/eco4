@@ -23,7 +23,7 @@
 
                         <div class="mb-3 col-md-6">
                             <label class="fs-5" style="color:rgb(124, 121, 121)">Tip teren:</label>
-                            <select name="relief_type" class="form-control select-location fs-6">
+                            <select name="relief_type" class="form-control select-location fs-6" required>
                                 <option  class=" text-gray" value="">Selecteaza</option>
                                 <option value="Campie">Campie
                                 </option>
@@ -38,7 +38,7 @@
 
                         <div class="mb-3 col-md-6">
                             <label class="fs-5" style="color:rgb(124, 121, 121)">La fata locului:</label>
-                            <select name="size_volunteer_id" class="form-control select-location fs-6 text-gray" id="size_volunteer_id">
+                            <select name="size_volunteer_id" class="form-control select-location fs-6 text-gray" id="size_volunteer_id" required>
                                 <option value="">Selecteaza</option>
 
                             </select>
