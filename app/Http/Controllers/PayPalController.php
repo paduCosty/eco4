@@ -27,13 +27,13 @@ class PayPalController extends Controller
             "purchase_units" => [
                 0 => [
                     "amount" => [
-                        "currency_code" => "RON",
-                        "value" => $request->donate_amount
+                        "currency_code" => "EUR",
+                        "value" => 1
                     ]
                 ]
             ]
         ]);
-        dd($response);
+//        dd($response);
         if (isset($response['id']) && $response['id'] != null) {
             // redirect to approve href
             foreach ($response['links'] as $links) {
@@ -64,11 +64,11 @@ class PayPalController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             return redirect()
-                ->route('createTransaction')
+                ->route('home')
                 ->with('success', 'Transaction complete.');
         } else {
             return redirect()
-                ->route('createTransaction')
+                ->route('home')
                 ->with('error', $response['message'] ?? 'Something went wrong.');
         }
     }
@@ -81,7 +81,7 @@ class PayPalController extends Controller
     public function cancelTransaction(Request $request)
     {
         return redirect()
-            ->route('createTransaction')
+            ->route('home')
             ->with('error', $response['message'] ?? 'You have canceled the transaction.');
     }
 }
