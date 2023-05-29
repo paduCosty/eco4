@@ -4,10 +4,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventLocationController;
 use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
