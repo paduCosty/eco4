@@ -14,13 +14,19 @@ class PayPalController extends Controller
      */
     public function processTransaction(Request $request)
     {
-        //tre sa fac debugin sa vad ce se intampla aici.
+        $amount = $request->sum ?? '';
+
+        if($request->donate_amount) {
+            $amount = $request->donate_amount;
+        }
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
+
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
+                "brand_name" => "eco4",
                 "return_url" => route('successTransaction'),
                 "cancel_url" => route('cancelTransaction'),
             ],
@@ -28,12 +34,12 @@ class PayPalController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "EUR",
-                        "value" => 1
+                        "value" => $amount / 5
                     ]
                 ]
             ]
         ]);
-//        dd($response);
+
         if (isset($response['id']) && $response['id'] != null) {
             // redirect to approve href
             foreach ($response['links'] as $links) {
@@ -62,10 +68,11 @@ class PayPalController extends Controller
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
+//        dd($response);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             return redirect()
                 ->route('home')
-                ->with('success', 'Transaction complete.');
+                ->with('transaction_success', 'Transaction complete.');
         } else {
             return redirect()
                 ->route('home')
