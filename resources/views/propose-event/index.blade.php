@@ -163,11 +163,22 @@
                 </div>
             @endif
 
-            @if (session('error'))
+            @if (session('transaction_success'))
+                <div class="alert alert-success">
+                    {{ session('transaction_success') }}
+                </div>
+            @elseif (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
+            <script>
+                $(document).ready(function () {
+                    setTimeout(function () {
+                        $('.alert').fadeOut();
+                    }, 5000);
+                });
+            </script>
 
             <div class="form-group row">
                 <div class="row justify-content-center">
