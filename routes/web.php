@@ -3,6 +3,7 @@
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventLocationController;
+use App\Http\Controllers\NetopiaController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposeEventController;
@@ -85,6 +86,10 @@ Route::get('process-transaction', [PayPalController::class, 'processTransaction'
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 /*pay pall routes END*/
+
+/*NETOPIA Payments START*/
+Route::get('process-netopia-transaction', [NetopiaController::class, 'index'])->name('netopiaTransaction');
+/*NETOPIA Payments END*/
 
 require __DIR__ . '/auth.php';
 
