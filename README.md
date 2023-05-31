@@ -1,5 +1,14 @@
 # Eco4
 
+# O copie a bazei de date goala se afla in [eco4/database/db_eco4-bcp]
+
+# Pentru ca paypal-ul sa functioneze trebuie instalate bibliotecile acestuia:
+ - composer require srmklive/paypal:~3.0
+ - tutorial configurare paypal [https://medium.com/geekculture/paypal-payment-gateway-integration-with-laravel-ebebc7ccf470]
+
+# Pentru NETOPIA trebuie rulata comanda conform documentatiei oficiale [https://github.com/mobilpay/composer/tree/master]:
+ - composer require netopia/payment 
+
 
 
 ## Getting started

@@ -636,9 +636,9 @@ a{
     display: block;
     padding: 3px;
 }
-.radio-wrap input[type="radio"]:checked~span{
-    border: 1px solid #000000;
-}
+/*.radio-wrap input[type="radio"]:checked~span{*/
+/*    border: 1px solid #000000;*/
+/*}*/
 label{
     display: block;
 }
