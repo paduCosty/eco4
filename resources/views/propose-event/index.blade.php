@@ -187,11 +187,20 @@
                                 id="propose_regions_home" required>
                             <option value="">Judet</option>
                             @foreach ($regions as $region)
-                                <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                <option value="{{ $region->id }}"
+                                        @if(isset($share_link_data['region_id']) && $region->id == $share_link_data['region_id']) selected @endif>{{ $region->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
+                    @if(isset($share_link_data['event_id']))
+                        <script>
+                            var regionId = $("#propose_regions_home").val();
+                            if (regionId) {
+                                get_region_events(regionId, {{$share_link_data['event_id']}});
+                            }
+                        </script>
+                    @endif
                     <div class="col-md-6 col-lg-4">
                         <div class="main-count-action">
                             <div class="separated-count-card">

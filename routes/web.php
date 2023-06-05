@@ -33,7 +33,6 @@ Route::middleware(['auth', 'user_role'])->group(function () {
         Route::post('propose-locations/update/{userEventLocation}', [ProposeEventController::class, 'update']);
 
 //        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('admin.propose-locations.home');
-
         /*ajax calls city*/
         Route::get('approve-or-decline-propose-event/{location_id}', [ProposeEventController::class, 'approve_or_decline_propose_event'])
             ->name('admin.approve_or_decline_propose_event');
@@ -60,14 +59,21 @@ Route::get('/get-cities-if-propose-event-exists', [CityController::class, 'get_c
 /*ajax calls city END*/
 
 
-/*ajax calls  event locations*/
-Route::get('get-event-locations/{city_id}', [EventLocationController::class, 'get_event_locations'])
-    ->name('get-event-locations.get_event_locations');
 
 Route::get('/home', [ProposeEventController::class, 'home'])->name('home');
 Route::get('/', [ProposeEventController::class, 'home']);
+Route::get('/event/{id}', [ProposeEventController::class, 'home'])->name('share_link.modal');
 
+
+
+/*ajax calls  event locations*/
+Route::get('get-event-locations/{city_id}', [EventLocationController::class, 'get_event_locations'])
+    ->name('get-event-locations.get_event_locations');
 Route::post('/home/store', [ProposeEventController::class, 'store'])->name('home.store');
+
+Route::get('get-event-location/{userEventLocation}', [EventLocationController::class, 'get_event_location_by_id']);
+Route::get('/generate-represent-unique-url/{userEventLocation}', [ProposeEventController::class, 'generate_unique_url']);
+
 /*ajax calls  event locations END*/
 
 /*Ajax volunteer*/

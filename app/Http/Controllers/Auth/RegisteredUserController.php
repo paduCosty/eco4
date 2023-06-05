@@ -56,6 +56,7 @@ class RegisteredUserController extends Controller
                 'country' => $request['country'],
                 'city' => $request['city'],
                 'pass' => $request['password'],
+                'userType' => 'admin'
             ]);
 
         } catch (Exception) {

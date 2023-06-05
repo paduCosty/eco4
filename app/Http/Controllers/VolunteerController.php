@@ -39,6 +39,7 @@ class VolunteerController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -48,6 +49,7 @@ class VolunteerController extends Controller
             'volunteering_contract' => 'required',
             'users_event_location_id' => 'required',
         ]);
+
         if ($request->users_event_location_id) {
 
             $event_location = UserEventLocation::where('id', $request->users_event_location_id)
