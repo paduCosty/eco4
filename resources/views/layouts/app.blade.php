@@ -22,7 +22,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     {{--initialize file if is in this url--}}
-    @if( Route::currentRouteName() === '/' ||  Route::currentRouteName() === '/home' || Route::currentRouteName() == 'share_link.modal')
+    @if( Route::currentRouteName() === '/' ||  Route::currentRouteName() === 'home' || Route::currentRouteName() == 'share_link.modal')
         <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
     @endif
 
