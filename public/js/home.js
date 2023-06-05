@@ -1,5 +1,4 @@
 const APP_URL = window.location.origin;
-
 $(document).ready(function () {
 
     console.log(APP_URL)
@@ -13,8 +12,7 @@ $(document).ready(function () {
 
 
     $(document).on('click', '.enrol-button', function () {
-        // $('.users_event_location_id').val($(this).attr('users_event_location_id'))
-        // $('#event-description').text($(this).attr('event_description'))
+        enrol_event_data($(this).attr('users_event_location_id'))
     });
 
     $('#user_region_address').change(function () {
@@ -113,22 +111,22 @@ function get_region_events(region_id, event_id = null) {
                 }
             });
         }
-        function enrol_event_data(event_id) {
-            $.ajax({
-                url: APP_URL + '/get-event-location/' + event_id,
-                type: 'Get',
+    });
+}
+function enrol_event_data(event_id) {
+    $.ajax({
+        url: APP_URL + '/get-event-location/' + event_id,
+        type: 'Get',
 
-                success: function (response) {
-                    $('.users_event_location_id').val(response.event.id)
-                    $('#event-description').text(response.event.description)
-                    $('#event_region_name').text(response.event.region_name)
-                    $('#event_city_name').text(response.event.city_name)
+        success: function (response) {
+            $('.users_event_location_id').val(response.event.id)
+            $('#event-description').text(response.event.description)
+            $('#event_region_name').text(response.event.region_name)
+            $('#event_city_name').text(response.event.city_name)
 
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseText);
-                }
-            });
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
         }
     });
 }

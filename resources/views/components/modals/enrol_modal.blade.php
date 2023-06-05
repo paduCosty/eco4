@@ -173,14 +173,15 @@
                                                 <span id="eco-action-general-enroll-modal-check-2-span"></span>
                                                 <input type="checkbox" value="1"
                                                        class="form-check-input"
-                                                       name="volunteering_contract"
+                                                       name="terms_site"
                                                        id="eco-proposal-modal-check-3" required/>
                                                 <label style="display: inline;" style="display: inline;"
                                                        for="eco-proposal-modal-check-3">Sunt de acord
                                                     cu </label>
                                                 <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#contract" style="color: #A6CE39;;">Contractul
-                                                    de voluntariat.</a>
+                                                   data-bs-target="#workshop" style="color: #A6CE39;;">Termenii și
+                                                    Condițiile acestui</a>
+                                                site.
                                             </div>
                                         </div>
                                     </div>
