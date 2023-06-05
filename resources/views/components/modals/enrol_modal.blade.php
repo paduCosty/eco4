@@ -6,8 +6,11 @@
             <div class="modal-dialog">
                 <div class="modal-content" id="enroll-Movila-Miresei">
                     <div class="modal-header close-modal">
-                        <h5 class="modal-title" id="enroll-action-title">Înscriere pentru o acțiune de
-                            Ecologizare</h5>
+                        <h5 class="modal-title" id="enroll-action-title">
+                            Înscriere la acțiunea de Ecologizare din
+                            <span id="event_region_name"></span>,
+                            <span id="event_city_name"></span>
+                        </h5>
 
                         <div class="modal-close-text-container">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
@@ -22,7 +25,7 @@
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="form-info-text">
-                                            <h6 class="modal-title mb-2 fs-5">Descriere eveniment:</h6>
+                                            <h6 class="modal-title mb-2 fs-6">Descriere eveniment:</h6>
 
                                             <ul class="how-it-works ">
                                                 <p class="text-gray fs-6" id="event-description">
@@ -160,6 +163,25 @@
                                                 <div class="col-7 fs-6" style="color:rgb(150, 149, 149)">
                                                     <label for="car_modal_2_general">locuri libere.</label>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group m-1">
+                                        <div class="col-12">
+                                            <div class="terms-conditions-text">
+                                                <span id="eco-action-general-enroll-modal-check-2-span"></span>
+                                                <input type="checkbox" value="1"
+                                                       class="form-check-input"
+                                                       name="terms_site"
+                                                       id="eco-proposal-modal-check-3" required/>
+                                                <label style="display: inline;" style="display: inline;"
+                                                       for="eco-proposal-modal-check-3">Sunt de acord
+                                                    cu </label>
+                                                <a href="#" data-bs-toggle="modal"
+                                                   data-bs-target="#workshop" style="color: #A6CE39;;">Termenii și
+                                                    Condițiile acestui</a>
+                                                site.
                                             </div>
                                         </div>
                                     </div>

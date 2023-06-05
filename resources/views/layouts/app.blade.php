@@ -20,9 +20,13 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <script src="{{ asset('js/propose_event.js') }}"></script>
-    <script src="{{ asset('js/home.js') }}"></script>
 
+    {{--initialize file if is in this url--}}
+    @if( Route::currentRouteName() === '/' ||  Route::currentRouteName() === 'home' || Route::currentRouteName() == 'share_link.modal')
+        <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
+    @endif
+
+    <script src="{{ asset('js/home.js') }}"></script>
 
 </head>
 <body class="d-flex flex-column min-vh-100">

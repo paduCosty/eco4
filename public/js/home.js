@@ -1,9 +1,47 @@
+const APP_URL = window.location.origin;
 $(document).ready(function () {
 
-    var APP_URL = window.location.origin;
     console.log(APP_URL)
+
     $("#see-next-edition-details").on("click", function () {
-        let region_id = $("#propose_regions_home").val();
+        var regionId = $("#propose_regions_home").val();
+        if (regionId) {
+            get_region_events(regionId);
+        }
+    });
+
+
+    $(document).on('click', '.enrol-button', function () {
+        enrol_event_data($(this).attr('users_event_location_id'))
+    });
+
+    $('#user_region_address').change(function () {
+        $(".cities_by_event_location").remove();
+        var region_id = $(this).val();
+        $.ajax({
+            url: APP_URL + '/cities_by_region_id',
+            type: 'Get',
+            data: {region_id: region_id},
+
+            success: function (response) {
+                var options = '';
+                $.each(response.data, function (index, value) {
+                    options += '<option class="cities_by_event_location" value="' + value.id + '">' + value.name + '</option>';
+                });
+
+                $('#region_volunteer').append(options);
+
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    });
+});
+
+function get_region_events(region_id, event_id = null) {
+    $(document).ready(function () {
+
         if (region_id) {
             $.ajax({
                 url: APP_URL + '/approved-events/' + region_id,
@@ -13,7 +51,7 @@ $(document).ready(function () {
                 success: function (response) {
                     $('.remove-card, .change-event-place-title').remove();
                     let event = `<h2 id="next-edition-title" class="common-titles change-event-place-title">Alege locul de desfasurare al actiunii din localitatea selectata</h2>`;
-                    if(response.data.length) {
+                    if (response.data.length) {
                         $.each(response.data, function (index, value) {
                             event += `
                             <div class="col-12 col-md-4 mb-3 remove-card ">
@@ -41,7 +79,7 @@ $(document).ready(function () {
                                         <p>Adresa: ${value.event_location.address}</p>
                                     </div>
                                         <div class="button-inscriere text-end ">
-                                            <a href="#" class="enrol-button "
+                                            <a href="#" class="enrol-button"
                                              data-bs-toggle="modal"
                                              users_event_location_id="${value.id}"
                                              event_description="${value.description}"
@@ -53,7 +91,13 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             </div>`
+                            if (event_id === value.id) {
+                                $('#enrollModalGeneral').modal('show');
+                                enrol_event_data(value.id);
+                            }
+
                         });
+
 
                     } else {
                         event += `<h3 id="next-edition-title" class="remove-card common-titles">Nici un eveniment in judetul selectat</h3>`
@@ -67,34 +111,23 @@ $(document).ready(function () {
                 }
             });
         }
-    })
-
-    $(document).on('click', '.enrol-button', function(){
-        $('.users_event_location_id').val($(this).attr('users_event_location_id'))
-        $('#event-description').text($(this).attr('event_description'))
-        console.log($(this).attr('event_description'))
     });
+}
+function enrol_event_data(event_id) {
+    $.ajax({
+        url: APP_URL + '/get-event-location/' + event_id,
+        type: 'Get',
 
-    $('#user_region_address').change(function () {
-        $(".cities_by_event_location").remove();
-        var region_id = $(this).val();
-        $.ajax({
-            url: APP_URL + '/cities_by_region_id',
-            type: 'Get',
-            data: {region_id: region_id},
+        success: function (response) {
+            $('.users_event_location_id').val(response.event.id)
+            $('#event-description').text(response.event.description)
+            $('#event_region_name').text(response.event.region_name)
+            $('#event_city_name').text(response.event.city_name)
 
-            success: function (response) {
-                var options = '';
-                $.each(response.data, function (index, value) {
-                    options += '<option class="cities_by_event_location" value="' + value.id + '">' + value.name + '</option>';
-                });
-
-                $('#region_volunteer').append(options);
-
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr.responseText);
-            }
-        });
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
     });
-});
+}
+

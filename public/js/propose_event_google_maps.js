@@ -1,6 +1,4 @@
-const getUrl = window.location;
-if (getUrl.pathname === '/' || getUrl.pathname === '/home') {
-    $(document).ready(function () {
+$(document).ready(function () {
         var APP_URL = window.location.origin;
 
         /*get all cities wo has a marker set*/
@@ -144,4 +142,3 @@ if (getUrl.pathname === '/' || getUrl.pathname === '/home') {
         initMapPropose()
     }
 
-}

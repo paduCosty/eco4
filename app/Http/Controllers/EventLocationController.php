@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
+use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -112,6 +113,20 @@ class EventLocationController extends Controller
             $city = City::where('id', $request->city_id)->first();
 
             return response()->json(['event_locations' => $event_locations, 'city' => $city]);
+        }
+        return response()->json(['message' => false]);
+    }
+
+    public function get_event_location_by_id(UserEventLocation $userEventLocation)
+    {
+        if ($userEventLocation) {
+            $location_event = [
+                'id' => $userEventLocation->id,
+                'description' => $userEventLocation->description,
+                'region_name' => $userEventLocation->eventLocation->city->region->name,
+                'city_name' => $userEventLocation->eventLocation->city->name,
+            ];
+            return response()->json(['message' => true, 'event' => $location_event]);
         }
         return response()->json(['message' => false]);
     }

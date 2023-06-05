@@ -82,7 +82,6 @@
     @include('admin.event.edit')
 
     <script>
-        const APP_URL = {!! json_encode(url('/')) !!};
 
         $(document).ready(function () {
             /* get cities and make a select with them*/

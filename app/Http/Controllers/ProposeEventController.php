@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ProposeEventMail;
-use App\Models\City;
-use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ProposeEventController extends Controller
 {
@@ -108,12 +109,26 @@ class ProposeEventController extends Controller
         return redirect()->route('propose-locations.index');
     }
 
-    public function home(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function home(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
+        $share_link_data = array();
+        if ($request->id) {
+            $decrypted = base64_decode(trim($request->id));
+            $decrypted = (int)$decrypted;
+
+            $event = UserEventLocation::where('id', $decrypted)
+                ->first();
+
+            $share_link_data = [
+                'event_id' => $decrypted,
+                'region_id' => $event->eventLocation->city->region->id,
+            ];
+        }
+
         $count_events = UserEventLocation::where('status', 'aprobat')->count();
         $regions = Region::all();
 
-        return view('propose-event.index', compact('count_events', 'regions'));
+        return view('propose-event.index', compact('count_events', 'regions', 'share_link_data'));
     }
 
     public function approve_or_decline_propose_event(Request $request)
@@ -189,6 +204,19 @@ class ProposeEventController extends Controller
             return response()->json($response_msg);
         }
         return response()->json(['success' => false]);
+    }
+
+    public function generate_unique_url(UserEventLocation $userEventLocation)
+    {
+        if ($userEventLocation->id) {
+
+            $encrypted = base64_encode((string)$userEventLocation->id);
+
+            $uniqueUrl = url('/event') . '/' . $encrypted;
+            return response()->json(['message' => true, 'uniqueUrl' => $uniqueUrl]);
+        }
+
+        return response()->json(['message' => false]);
     }
 
 }

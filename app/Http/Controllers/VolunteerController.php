@@ -48,6 +48,7 @@ class VolunteerController extends Controller
             'volunteering_contract' => 'required',
             'users_event_location_id' => 'required',
         ]);
+
         if ($request->users_event_location_id) {
 
             $event_location = UserEventLocation::where('id', $request->users_event_location_id)

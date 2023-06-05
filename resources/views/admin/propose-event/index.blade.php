@@ -11,6 +11,7 @@
             <h1>Evenimente de ecologizare propuse</h1>
         </div>
 
+        <div class="alert-success-link"></div>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -94,6 +95,11 @@
                                data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
                                 Edit
                             </a>
+
+                            @if($location->status == 'aprobat')
+                                <a type="button" class="col action-button generate-representation-link"
+                                   data-event_id="{{ $location->id }}">Reprezentati</a>
+                            @endif
 
                         </div>
                     </td>
@@ -213,6 +219,54 @@
                 pageInfoContainer.text('Pagina ' + currentPage + ' din ' + totalPages);
             }
 
+
+            // $('.generate-representation-link').on('click', function () {
+            //     var link = $(this).data('link');
+            //
+            //     var tempInput = $('<input>');
+            //     $('body').append(tempInput);
+            //     tempInput.val(link).select();
+            //     document.execCommand('copy');
+            //     tempInput.remove();
+            //
+            //     // Afișează mesajul de succes instantaneu
+            //     var successMessage = 'Link copiat cu succes!';
+            //     var successAlert = $('<div class="alert alert-success">' + successMessage + '</div>');
+            //     $('.alert-success-link').append(successAlert);
+            //     setTimeout(function () {
+            //         successAlert.remove();
+            //     }, 3000);
+
+            $('.generate-representation-link').click(function () {
+                var event_id = $(this).data('event_id');
+                $.ajax({
+                    url: '/generate-represent-unique-url/' + event_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        var uniqueUrl = response.uniqueUrl;
+                        copyToClipboard(uniqueUrl);
+
+                        var successMessage = 'URL-ul a fost generat și copiat în clipboard!';
+                        var successAlert = $('<div class="alert alert-success">' + successMessage + '</div>');
+                        $('.alert-success-link').append(successAlert);
+                        setTimeout(function () {
+                            successAlert.remove();
+                        }, 3000);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Eroare la generarea URL-ului.');
+                    }
+                });
+            });
+
+            function copyToClipboard(text) {
+                var $tempInput = $('<input>');
+                $('body').append($tempInput);
+                $tempInput.val(text).select();
+                document.execCommand('copy');
+                $tempInput.remove();
+            }
         });
     </script>
 @endsection
@@ -248,12 +302,12 @@
     .switch-light.switch-candy span span, .switch-light.switch-candy input:checked ~ span span:first-child, .switch-toggle.switch-candy label {
         text-shadow: none !important;
         font-weight: normal !important;
-        color:rgb(124, 121, 121) !important;
+        color: rgb(124, 121, 121) !important;
 
     }
 
     .switch-toggle.switch-candy {
-        box-shadow:none !important;
+        box-shadow: none !important;
     }
 
 </style>
