@@ -61,7 +61,7 @@ Route::get('/get-cities-if-propose-event-exists', [CityController::class, 'get_c
 
 
 Route::get('/home', [ProposeEventController::class, 'home'])->name('home');
-Route::get('/', [ProposeEventController::class, 'home']);
+Route::get('/', [ProposeEventController::class, 'home'])->name('/');
 Route::get('/event/{id}', [ProposeEventController::class, 'home'])->name('share_link.modal');
 
 
