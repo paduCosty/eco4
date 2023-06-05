@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['super-admin', 'admin', 'partener', 'coordonator'])
-                ->default('partener')
-                ->change();
+            $table->dropColumn('role');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            /*admin = all access*/
+            /* partner = conturile de tip primarii*/
+            /* coordinator = coordonatorul evenimentelor peroanele care propun un eveniment*/
+            $table->enum('role', ['admin', 'partner', 'coordinator'])
+                ->default('coordinator');
         });
     }
 
@@ -23,6 +29,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 };

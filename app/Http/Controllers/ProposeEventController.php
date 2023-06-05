@@ -113,13 +113,14 @@ class ProposeEventController extends Controller
     {
         $share_link_data = array();
         if ($request->id) {
-            $decryptedId = Crypt::decryptString($request->id);
+            $decrypted = base64_decode(trim($request->id));
+            $decrypted = (int)$decrypted;
 
-            $event = UserEventLocation::where('id', $decryptedId)
+            $event = UserEventLocation::where('id', $decrypted)
                 ->first();
 
             $share_link_data = [
-                'event_id' => $decryptedId,
+                'event_id' => $decrypted,
                 'region_id' => $event->eventLocation->city->region->id,
             ];
         }
@@ -207,10 +208,11 @@ class ProposeEventController extends Controller
 
     public function generate_unique_url(UserEventLocation $userEventLocation)
     {
+        if ($userEventLocation->id) {
 
-        $id = $userEventLocation->id;
-        if ($id) {
-            $uniqueUrl = url('/event') . '/' . Crypt::encryptString($id);
+            $encrypted = base64_encode((string)$userEventLocation->id);
+
+            $uniqueUrl = url('/event') . '/' . $encrypted;
             return response()->json(['message' => true, 'uniqueUrl' => $uniqueUrl]);
         }
 
