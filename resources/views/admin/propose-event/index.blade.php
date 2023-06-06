@@ -44,10 +44,12 @@
             @php($i = 1)
             @foreach ($eventLocations as $location)
                 <tr>
-                    <td>{{ $location->eventLocation->user_id }}</td>
+                    <td>{{ $i }}</td>
                     <td>{{ $location->name }}</td>
                     <td>{{ $location->email }}</td>
-                    <td>{{ $location->eventLocation->address }}</td>
+                    <td>
+                        {{$location->eventLocation->city->region->name}},
+                        {{ $location->eventLocation->city->name }}</td>
                     <td width="9%">{{ $location->due_date }}</td>
                     <td>
                         @if ($location->event_registrations_count > 0)
@@ -155,86 +157,11 @@
                 });
             }
 
-
+            // load data when volunteers modal is open
             $('.open-volunteers-modal').click(function () {
                 loadVolunteers($(this).attr('event_location_id'), 1);
             });
 
-            function loadVolunteers(event_id, page) {
-                $.ajax({
-                    url: '/admin/volunteers/' + event_id,
-                    method: 'GET',
-                    data: {
-                        page: page,
-                    },
-                    success: function (data) {
-                        var tableBody = $('#volunteers-table tbody');
-                        tableBody.empty();
-
-                        for (var i = 0; i < data.data.length; i++) {
-                            var volunteer = data.data[i];
-
-                            var row = '<tr>' +
-                                '<td>' + volunteer.email + '</td>' +
-                                '<td>' + volunteer.name + '</td>' +
-                                '<td>' + volunteer.phone + '</td>' +
-                                '</tr>';
-
-                            tableBody.append(row);
-                        }
-                        // Actualizează paginarea
-                        updatePagination(page, data.total_pages, event_id);
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            function updatePagination(currentPage, totalPages, event_id) {
-
-                var paginationContainer = $('#pagination-container');
-                var pageInfoContainer = $('#page-info');
-
-                paginationContainer.empty();
-                pageInfoContainer.empty();
-
-                if (totalPages <= 1) {
-                    return false;
-                }
-                for (var i = 1; i <= totalPages; i++) {
-                    var button = $('<button class="btn btn-link page-link"></button>');
-                    button.text(i);
-                    button.data('page', i);
-
-                    button.click(function () {
-                        var page = $(this).data('page');
-                        loadVolunteers(event_id, page);
-                    });
-
-                    paginationContainer.append(button);
-                }
-                paginationContainer.addClass('pagination');
-                pageInfoContainer.text('Pagina ' + currentPage + ' din ' + totalPages);
-            }
-
-
-            // $('.generate-representation-link').on('click', function () {
-            //     var link = $(this).data('link');
-            //
-            //     var tempInput = $('<input>');
-            //     $('body').append(tempInput);
-            //     tempInput.val(link).select();
-            //     document.execCommand('copy');
-            //     tempInput.remove();
-            //
-            //     // Afișează mesajul de succes instantaneu
-            //     var successMessage = 'Link copiat cu succes!';
-            //     var successAlert = $('<div class="alert alert-success">' + successMessage + '</div>');
-            //     $('.alert-success-link').append(successAlert);
-            //     setTimeout(function () {
-            //         successAlert.remove();
-            //     }, 3000);
 
             $('.generate-representation-link').click(function () {
                 var event_id = $(this).data('event_id');
