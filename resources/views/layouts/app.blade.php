@@ -86,7 +86,7 @@
 
                         <li class="nav-item">
                             <a style="color:green" class="nav-link"
-                               href="{{ route('propose-locations.index') }}">{{ __('Evenimente propuse') }}</a>
+                               href="{{ route('propose-locations.index') }}">{{ __('Evenimentele Mele') }}</a>
                         </li>
 
                         <li class="nav-item dropdown">

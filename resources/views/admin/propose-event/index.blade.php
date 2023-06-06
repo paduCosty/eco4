@@ -49,7 +49,15 @@
                     <td>{{ $location->email }}</td>
                     <td>{{ $location->eventLocation->address }}</td>
                     <td width="9%">{{ $location->due_date }}</td>
-                    <td>{{ $location->event_registrations_count }}</td>
+                    <td>
+                        @if ($location->event_registrations_count > 0)
+                            <a class="col open-volunteers-modal" type="button"
+                               data-bs-toggle="modal" data-bs-target="#volunteers-modal"
+                               event_location_id="{{ $location->id }}">
+                                {{ $location->event_registrations_count }}
+                            </a>
+                        @endif
+                    </td>
                     <td>
                         @if ($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
                             {{ ucfirst($location->status) }}
@@ -81,15 +89,6 @@
                     </td>
                     <td>
                         <div class="d-flex text-center">
-                            <div class="col mr-2">
-                                @if ($location->event_registrations_count > 0)
-                                    <a class="col open-volunteers-modal action-button" type="button"
-                                       data-bs-toggle="modal" data-bs-target="#volunteers-modal"
-                                       event_location_id="{{ $location->id }}">
-                                        Voluntari
-                                    </a>
-                                @endif
-                            </div>
 
                             <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
                                data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
