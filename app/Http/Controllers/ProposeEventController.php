@@ -20,9 +20,10 @@ class ProposeEventController extends Controller
     {
         if (Auth::check()) {
             $user_id = Auth::id();
+//            dd($user_id);
             $eventLocations = UserEventLocation::withCount('eventRegistrations');
 
-            if (Auth::user()->role == 'user') {
+            if (Auth::user()->role != 'admin' && Auth::user()->role == 'partner') {
                 $eventLocations = $eventLocations->whereHas('eventLocation', function ($query) use ($user_id) {
                     $query->where('user_id', $user_id);
                 });

@@ -10,7 +10,7 @@ class CheckUserRole
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        if ($user && ($user->role == 'user' || $user->role == 'admin')) {
+        if ($user && ($user->role == 'partner' || $user->role == 'admin')) {
             return $next($request);
         }
 

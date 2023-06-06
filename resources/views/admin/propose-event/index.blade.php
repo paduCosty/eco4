@@ -44,7 +44,7 @@
             @php($i = 1)
             @foreach ($eventLocations as $location)
                 <tr>
-                    <td>{{ $i }}</td>
+                    <td>{{ $location->eventLocation->user_id }}</td>
                     <td>{{ $location->name }}</td>
                     <td>{{ $location->email }}</td>
                     <td>{{ $location->eventLocation->address }}</td>

@@ -14,14 +14,13 @@ class EventLocationController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-//        dd(Auth::user()->role);
         if (Auth::check()) {
             $user_id = Auth::id();
             $events = EventLocation::withCount('usersEventLocations')
                 ->with('city.region')
                 ->with('city');
 
-            if (Auth::user()->role == 'user') {
+            if (Auth::user()->role != 'admin' && Auth::user()->role == 'partner') {
                 $events = $events->where('user_id', $user_id);
             }
             $events = $events
