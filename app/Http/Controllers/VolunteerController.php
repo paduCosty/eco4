@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VolunteersMail;
 use App\Models\EventRegistration;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class VolunteerController extends Controller
 {
@@ -116,9 +120,35 @@ class VolunteerController extends Controller
 //        return redirect()->route('event-locations.index');
 //    }
 
-    public function mail_to_volunteers(Request $request)
+    public function mail_to_volunteers(Request $request, UserEventLocation $event_location_id)
     {
+        $validatedData = $request->validate([
+            'volunteers_selected' => 'required|array',
+            'volunteers_selected.*' => 'exists:event_registrations,id',
+            'message' => 'required|string'
+        ]);
 
+        $volunteersIds = $request->volunteers_selected;
+        $i = 1;
+
+        foreach ($volunteersIds as $volunteerId) {
+            $volunteer = EventRegistration::select('id', 'email', 'name')
+                ->findOrFail($volunteerId);
+
+            $result = Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
+
+            if (count($result) > 0) {
+
+                Log::error('Eroare la trimiterea emailului către voluntarul cu ID-ul: ' . $volunteer->id);
+            }
+
+            if ($i % 25 === 0) {
+                sleep(30);
+            }
+            ++$i;
+        }
+
+        return response()->json(['status' => true, 'message' => 'Acțiunea a fost efectuată cu succes!']);
     }
 
 

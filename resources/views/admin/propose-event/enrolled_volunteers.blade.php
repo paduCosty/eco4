@@ -33,22 +33,24 @@
                 </div>
                 <br>
                 <div class="container" id="send-email-btn">
-                    <div class="border p-3">
-                        <div class="row">
-                            <div class="col-12 col-sm-8">
-                                <div class="row mb-3">
-                                    <div class="col-12">
-                                        <label for="observations-donate-modal" class="form-label">Scrie aici email-ul
-                                            tău și se va trimite la toți cei selectați.</label>
-                                        <textarea id="observations-donate-modal" class="form-control"
-                                                  name="observations-donate-modal" rows="3"></textarea>
+                    <form id="send_email_to_volunteers">
+                        @csrf
+                        <div class="border p-3">
+                            <div class="row">
+                                <div class="col-12 col-sm-8">
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <label for="message" class="form-label">Scrie aici
+                                                email-ul
+                                                tău și se va trimite la toți cei selectați.</label>
+                                            <textarea id="email-body" class="form-control"
+                                                      name="message" rows="3"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <form>
                                 <div class="col-12 col-sm-4 mt-auto">
                                     <div class="d-grid">
-                                        <button id="" class="btn btn-primary">
+                                        <button id="send-email-button" class="btn btn-primary" name="sendd">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                                                 <path
@@ -58,10 +60,9 @@
                                         </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -71,8 +72,10 @@
 <script>
 
     var volunteers_selected = {};
+    var event_location_id;
 
     function loadVolunteers(event_id, page) {
+        event_location_id = event_id;
         $.ajax({
             url: '/admin/volunteers/' + event_id,
             method: 'GET',
@@ -185,6 +188,30 @@
 
         }
     }
+
+    $('#send_email_to_volunteers').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: 'mail_to_volunteers/' + event_location_id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                volunteers_selected: volunteers_selected,
+                message:  $('#email-body').val(),
+            },
+
+            success: function (data) {
+
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    })
+
 
 </script>
 

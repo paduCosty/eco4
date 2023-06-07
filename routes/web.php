@@ -39,9 +39,13 @@ Route::middleware(['auth', 'user_role'])->group(function () {
 
         /*Ajax volunteers*/
         Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+        Route::post('/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers'])->name('send-mail');
+
 
     });
 });
+
+
 
 /*ajax calls city*/
 Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
