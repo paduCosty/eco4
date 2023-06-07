@@ -115,4 +115,11 @@ class VolunteerController extends Controller
 //
 //        return redirect()->route('event-locations.index');
 //    }
+
+    public function mail_to_volunteers(Request $request)
+    {
+
+    }
+
+
 }
