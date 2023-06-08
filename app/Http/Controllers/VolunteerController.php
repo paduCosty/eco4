@@ -122,33 +122,57 @@ class VolunteerController extends Controller
 
     public function mail_to_volunteers(Request $request, UserEventLocation $event_location_id)
     {
-        $validatedData = $request->validate([
-            'volunteers_selected' => 'required|array',
-            'volunteers_selected.*' => 'exists:event_registrations,id',
-            'message' => 'required|string'
-        ]);
+        $email_success = true;
+        if ($request->volunteers_selected) {
+            $volunteersIds = $request->volunteers_selected;
+            $i = 1;
 
-        $volunteersIds = $request->volunteers_selected;
-        $i = 1;
+            foreach ($volunteersIds as $volunteerId) {
+                $volunteer = EventRegistration::select('id', 'email', 'name')
+                    ->where('users_event_location_id', $event_location_id->id)
+                    ->findOrFail($volunteerId);
 
-        foreach ($volunteersIds as $volunteerId) {
-            $volunteer = EventRegistration::select('id', 'email', 'name')
-                ->findOrFail($volunteerId);
+                $result = Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
 
-            $result = Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
+                if (!$result) {
+                    $email_success = false;
+                    Log::error('Eroare la trimiterea emailului către voluntarul cu ID-ul: ' . $volunteer->id);
+                }
 
-            if (count($result) > 0) {
+                if ($i % 25 === 0) {
+                    sleep(30);
+                }
+                ++$i;
+            }
+        } else if ($request->to_all) {
 
-                Log::error('Eroare la trimiterea emailului către voluntarul cu ID-ul: ' . $volunteer->id);
+            $volunteers = EventRegistration::select('id', 'email', 'name')
+                ->where('users_event_location_id', $event_location_id->id)
+                ->get();
+
+            $i = 0;
+            foreach ($volunteers as $volunteer) {
+                $result = Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
+
+                if (!$result) {
+                    $email_success = false;
+                    Log::error('Eroare la trimiterea emailului către voluntarul cu ID-ul: ' . $volunteer->id);
+                }
+
+                if ($i % 25 === 0) {
+                    sleep(30);
+                }
+                ++$i;
             }
 
-            if ($i % 25 === 0) {
-                sleep(30);
-            }
-            ++$i;
         }
 
-        return response()->json(['status' => true, 'message' => 'Acțiunea a fost efectuată cu succes!']);
+        if ($email_success) {
+            return response()->json(['status' => true, 'message' => 'Acțiunea a fost efectuată cu succes!']);
+        }
+
+        return response()->json(['status' => false, 'error' => 'Acțiunea a fost efectuată va rog contactati echipa de suport!']);
+
     }
 
 

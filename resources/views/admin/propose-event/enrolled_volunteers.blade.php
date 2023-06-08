@@ -192,6 +192,10 @@
     $('#send_email_to_volunteers').submit(function (e) {
         e.preventDefault();
 
+        let to_all = false;
+        if ($('#select_all_volunteers').is(':checked')) {
+            to_all = true;
+        }
         $.ajax({
             type: 'POST',
             url: 'mail_to_volunteers/' + event_location_id,
@@ -200,11 +204,28 @@
             },
             data: {
                 volunteers_selected: volunteers_selected,
-                message:  $('#email-body').val(),
+                message: $('#email-body').val(),
+                to_all: to_all,
             },
 
             success: function (data) {
+                let successMessage = '';
+                let successAlert = '';
+                if (data.status) {
 
+                    successMessage = data.message;
+                    successAlert = $('<div class="alert alert-success">' + successMessage + '</div>');
+
+                } else {
+                    successMessage = data.error;
+                    successAlert = $('<div class="alert alert-error">' + successMessage + '</div>');
+                }
+                $('#volunteers-modal').modal('hide');
+
+                $('.alert-success-link').append(successAlert);
+                setTimeout(function () {
+                    successAlert.remove();
+                }, 3000);
             },
             error: function (xhr, status, error) {
                 console.log(error);
