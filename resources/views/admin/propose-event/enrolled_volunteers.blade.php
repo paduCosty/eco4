@@ -228,7 +228,8 @@
                 }, 3000);
             },
             error: function (xhr, status, error) {
-                console.log(error);
+                var errorMessage = xhr.responseJSON.error;
+                alert(errorMessage);
             }
         });
     })

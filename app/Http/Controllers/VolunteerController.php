@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Mail\VolunteersMail;
 use App\Models\EventRegistration;
+use App\Models\User;
 use App\Models\UserEventLocation;
+use Error;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class VolunteerController extends Controller
 {
@@ -122,6 +126,15 @@ class VolunteerController extends Controller
 
     public function mail_to_volunteers(Request $request, UserEventLocation $event_location_id)
     {
+
+
+        // Cod care poate arunca o excepție
+        // De exemplu, o interogare către baza de date care poate eșua
+//        $user = User::findOrFail(12223);
+
+        // Tratarea excepției și afișarea unui mesaj de eroare personalizat
+
+
         $email_success = true;
         if ($request->volunteers_selected) {
             $volunteersIds = $request->volunteers_selected;
@@ -132,15 +145,17 @@ class VolunteerController extends Controller
                     ->where('users_event_location_id', $event_location_id->id)
                     ->findOrFail($volunteerId);
 
-                $result = Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
-
-                if (!$result) {
-                    $email_success = false;
+                try {
+                    Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
+                } catch (Exception $e) {
                     Log::error('Eroare la trimiterea emailului către voluntarul cu ID-ul: ' . $volunteer->id);
+                    $errorMessage = 'A apărut o eroare la trimiterea emailului, pentru mai multe detalii contactati echipa de suprot!';
+                    return response()->json(['error' => $errorMessage], 500);
                 }
 
-                if ($i % 25 === 0) {
+                if ($i === 25) {
                     sleep(30);
+                    $i = 1;
                 }
                 ++$i;
             }
@@ -152,15 +167,17 @@ class VolunteerController extends Controller
 
             $i = 0;
             foreach ($volunteers as $volunteer) {
-                $result = Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
-
-                if (!$result) {
-                    $email_success = false;
+                try {
+                    Mail::to($volunteer->email)->send(new VolunteersMail($request->message, $event_location_id->name));
+                } catch (Exception $e) {
                     Log::error('Eroare la trimiterea emailului către voluntarul cu ID-ul: ' . $volunteer->id);
+                    $errorMessage = 'A apărut o eroare la trimiterea emailului, pentru mai multe detalii contactati echipa de suprot!';
+                    return response()->json(['error' => $errorMessage], 500);
                 }
 
-                if ($i % 25 === 0) {
+                if ($i === 25) {
                     sleep(30);
+                    $i = 1;
                 }
                 ++$i;
             }
