@@ -115,6 +115,31 @@ class ProposeEventController extends Controller
         return redirect()->route('propose-locations.index');
     }
 
+    public function show(UserEventLocation $userEventLocation)
+    {
+
+        if ($userEventLocation) {
+            $data = [
+                'name' => $userEventLocation->name,
+                'email' => $userEventLocation->email,
+                'due_date' => $userEventLocation->due_date,
+                'description' => $userEventLocation->description,
+                'address' => $userEventLocation->eventLocation->address,
+                'relief_type' => $userEventLocation->eventLocation->relief_type,
+                'size_volunteer_id' => $userEventLocation->eventLocation->sizeVolunteer->name,
+                'institution_name' => $userEventLocation->eventLocation->user->name,
+                'institution_email' => $userEventLocation->eventLocation->user->email,
+                'institution_phone' => $userEventLocation->eventLocation->user->phone,
+                'status' => $userEventLocation->status,
+
+            ];
+            return response()->json(['status' => true, 'data' => $data]);
+
+        }
+        return response()->json(['status' => false]);
+
+    }
+
     public function home(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $share_link_data = array();

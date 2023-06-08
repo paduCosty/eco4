@@ -3,6 +3,7 @@
 @section('content')
     @include('admin.propose-event.edit')
     @include('admin.propose-event.enrolled_volunteers')
+    @include('admin.propose-event.details_modal')
 
 
     <div class="container">
@@ -102,6 +103,11 @@
                                    data-event_id="{{ $location->id }}">Reprezentati</a>
                             @endif
 
+                            <a class="col action-button open_description_modal" type="button" data-bs-toggle="modal"
+                               data-bs-target="#details-event-modal" event_location_id="{{ $location->id }}">
+                                Detalii
+                            </a>
+
                         </div>
                     </td>
                 </tr>
@@ -194,6 +200,11 @@
                 $tempInput.remove();
             }
         });
+        $('.open_description_modal').on('click', function () {
+            let location_id = $(this).attr('event_location_id')
+            event_details(location_id);
+        });
+
     </script>
 @endsection
 
