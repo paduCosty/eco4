@@ -97,11 +97,16 @@ class ProposeEventController extends Controller
                 'Name' => $validatedData['name'],
                 'Status' => $status
             ]);
-        }
 
-        if ($response->body() == "Actiune actualizata cu success!") {
+            if ($response && $response->body() == "Actiune actualizata cu success!") {
+                $userEventLocation->update($validatedData);
+
+                session()->flash('success', 'Datele au fost salvate cu succes!');
+                return redirect()->route('propose-locations.index');
+            }
+
+        } else {
             $userEventLocation->update($validatedData);
-
             session()->flash('success', 'Datele au fost salvate cu succes!');
             return redirect()->route('propose-locations.index');
         }

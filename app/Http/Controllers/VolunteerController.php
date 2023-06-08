@@ -128,13 +128,6 @@ class VolunteerController extends Controller
     {
 
 
-        // Cod care poate arunca o excepție
-        // De exemplu, o interogare către baza de date care poate eșua
-//        $user = User::findOrFail(12223);
-
-        // Tratarea excepției și afișarea unui mesaj de eroare personalizat
-
-
         $email_success = true;
         if ($request->volunteers_selected) {
             $volunteersIds = $request->volunteers_selected;
