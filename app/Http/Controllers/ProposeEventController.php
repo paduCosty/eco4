@@ -70,7 +70,7 @@ class ProposeEventController extends Controller
             $validatedData['coordinator_id'] = Auth::user()->id;
         } else {
 
-            $validatedData = $request->validate([
+            $validatedData += $request->validate([
                 'name' => 'required',
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
                 'phone' => ['required', 'string', 'max:255'],
@@ -86,11 +86,13 @@ class ProposeEventController extends Controller
                 ]);
 
             } catch (\PharIo\Version\Exception) {
-                return redirect()->route('login')->withErrors([
-                    'password' => 'Inregistrarea a esuat.',
+                return redirect()->route('home')->withErrors([
+                    'error' => 'Inregistrarea a esuat.',
                 ]);
             }
+            dd($response->body());
         }
+//        dd($validatedData);
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
@@ -174,8 +176,6 @@ class ProposeEventController extends Controller
             }
 
             $data += [
-                'name' => $userEventLocation->name,
-                'email' => $userEventLocation->email,
                 'due_date' => $userEventLocation->due_date,
                 'description' => $userEventLocation->description,
                 'address' => $userEventLocation->eventLocation->address,
@@ -241,9 +241,9 @@ class ProposeEventController extends Controller
                 if ($crm_id) {
                     $action_type = 'update_action';
                 }
-//dump($userEventLocationArray['coordinator_id']);
                 $response = Http::asForm()->post(env('LOGIN_URL') . $action_type, [
-                    'User_id' => $userEventLocationArray['coordinator_id'],
+                    'id' => $userEventLocationArray['crm_propose_event_id'],
+                    'Coordinator' => json_encode(array($userEventLocationArray['coordinator_id'])),
                     'Latitudine' => $userEventLocationArray['event_location']['longitude'],
                     'Longitudine' => $userEventLocationArray['event_location']['latitude'],
                     'Description' => $userEventLocationArray['description'],
@@ -254,7 +254,7 @@ class ProposeEventController extends Controller
                     'Name' => $userEventLocationArray['name'],
                     'Status' => $status
                 ]);
-//dd($response);
+
                 if (is_numeric($response->body())) {
                     $userEventLocation->crm_propose_event_id = intval($response->body());
                 } else if ($response->body() != 'Actiune actualizata cu success!') {
@@ -267,7 +267,7 @@ class ProposeEventController extends Controller
                 ];
 
                 if ($request->val == 'aprobat') {
-                    $result = Mail::to($userEventLocation->email)->send(new ProposeEventMail($mailData));
+                    $result = Mail::to($userEventLocation->user->email)->send(new ProposeEventMail($mailData));
 
                     if ($result) {
                         $response_msg['email'] = 'Email-ul a fost trimis cu succes';

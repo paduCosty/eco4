@@ -19,8 +19,6 @@
                     </div>
                     <div class="event-details">
                         <h2>Detalii eveniment</h2>
-                        <p><strong>Nume:</strong> <span id="event-name"></span></p>
-                        <p><strong>Email:</strong> <span id="event-email"></span></p>
                         <p><strong>Adresă:</strong> <span id="event-address"></span></p>
                         <p><strong>Status:</strong> <span id="event-status"></span></p>
                         <p><strong>Data limită:</strong> <span id="event-due-date"></span></p>
@@ -42,8 +40,6 @@
             type: 'GET',
             success: function (response) {
                 response = response.data;
-                $('#event-name').text(response.name);
-                $('#event-email').text(response.email);
                 $('#event-description').text(response.description);
                 $('#event-address').text(response.address);
                 $('#event-status').text(response.status);

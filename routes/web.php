@@ -39,17 +39,22 @@ Route::middleware(['auth', 'user_role'])->group(function () {
 
         /*Ajax volunteers*/
         Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+        Route::post('/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers']);
 
 
     });
 });
 
 Route::middleware('coordinator')->group(function () {
-    Route::get('/coordinator/propose-locations', [ProposeEventController::class, 'index'])->name('coordinator.event');
-    Route::get('/coordinator/propose-locations/{userEventLocation}', [ProposeEventController::class, 'show'])
-        ->name('coordinator.show');
-    Route::post('/coordinator/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers'])->name('send-mail');
-    Route::get('/admin/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+    Route::prefix('coordinator')->group(function () {
+
+        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('coordinator.event');
+        Route::get('/propose-locations/{userEventLocation}', [ProposeEventController::class, 'show'])
+            ->name('coordinator.show');
+        Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+        Route::post('/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers']);
+    });
+
 });
 
 

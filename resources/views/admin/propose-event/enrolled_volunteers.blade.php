@@ -77,7 +77,7 @@
     function loadVolunteers(event_id, page) {
         event_location_id = event_id;
         $.ajax({
-            url: '/admin/volunteers/' + event_id,
+            url: 'volunteers/' + event_id,
             method: 'GET',
             data: {
                 page: page,

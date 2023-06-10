@@ -24,7 +24,7 @@ class UserEventLocation extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'coordinator_id');
     }
 
     public function eventLocation(): \Illuminate\Database\Eloquent\Relations\BelongsTo

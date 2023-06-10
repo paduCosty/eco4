@@ -63,7 +63,7 @@ class RegisteredUserController extends Controller
                 'password' => 'Inregistrarea a esuat.',
             ]);
         }
-
+//dd($response->body());
         if ($response->json() == '1') {
             $user = User::create([
                 'name' => $request->name,
@@ -75,7 +75,7 @@ class RegisteredUserController extends Controller
 
             Auth::login($user);
         } else {
-            return redirect()->route('login')->withErrors([
+            return redirect()->route('register')->withErrors([
                 'password' => 'Inregistrarea a esuat.',
             ]);
         }

@@ -13,6 +13,7 @@ class CheckUserRole
         if ($user && ($user->role == 'partner' || $user->role == 'admin')) {
             return $next($request);
         }
+        dd($user->role);
 
         return redirect()->route('home');
     }
