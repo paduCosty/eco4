@@ -34,8 +34,6 @@
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
                 <th>Nr.</th>
-                <th>Nume</th>
-                <th>Email</th>
                 <th>Adresa</th>
                 <th>Data limită</th>
                 <th>Voluntari</th>
@@ -46,8 +44,6 @@
             @foreach ($eventLocations as $location)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ $location->name }}</td>
-                    <td>{{ $location->email }}</td>
                     <td>
                         {{$location->eventLocation->city->region->name}},
                         {{ $location->eventLocation->city->name }}</td>
@@ -91,7 +87,7 @@
                         @endif
                     </td>
                     <td>
-                        <div class="d-flex text-center">
+                        <div class="d-flex">
 
                             @if(auth()->user()->role !== 'coordinator')
                                 <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
@@ -123,20 +119,19 @@
     <script>
         $(document).ready(function () {
             const APP_URL = window.location.origin;
-
+            /*open edit modal*/
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
                 console.log(location);
                 $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
                     location.id)
 
-                $('.event_location_name').val(location.name);
-                $('.event_location_email').val(location.email);
                 $('.event_location_due_date').val(location.due_date);
                 $('.event_location_status').val(location.status);
                 $('.event_location_description').val(location.description);
             });
 
+            /* Update status */
             $(".switch-status-on").on("click", function () {
                 status_active_inactive('aprobat', $(this).attr('location_id'))
             });
@@ -154,13 +149,23 @@
                     },
 
                     success: function (response) {
-                        // console.log(response.success);
-                        // if (response.success) {
-                        //     $('#status_value' + location_id).text(response.status);
-                        // }
+                        let successAlert;
+
+                        if (response.success) {
+                            successAlert = $('<div class="alert alert-success">' + response.message + '</div>');
+
+                        } else {
+                            successAlert = $('<div class="alert alert-danger">' + response.message  + '</div>')
+                        }
+
+                        $('.alert-success-link').append(successAlert);
+                        setTimeout(function () {
+                            successAlert.remove();
+                        }, 3000);
                     },
                     error: function (xhr, status, error) {
                         console.log(xhr.responseText);
+                        alert(status);
                     }
                 });
             }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ProposeEventMail;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
+use App\Models\User;
 use App\Models\UserEventLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -21,18 +22,25 @@ class ProposeEventController extends Controller
     {
         if (Auth::check()) {
             $user_id = Auth::id();
-//            dd($user_id);
             $eventLocations = UserEventLocation::withCount('eventRegistrations');
 
-            if (Auth::user()->role === 'coordinator' || Auth::user()->role == 'partner') {
+            if (Auth::user()->role == 'partner') {
                 $eventLocations = $eventLocations->whereHas('eventLocation', function ($query) use ($user_id) {
                     $query->where('user_id', $user_id);
                 });
             }
 
+            if (Auth::user()->role == 'coordinator') {
+                $eventLocations = $eventLocations->where('coordinator_id', $user_id);
+            }
+
             $eventLocations = $eventLocations->orderBy('id', 'DESC')
                 ->paginate(10);
         }
+//         dd($eventLocations);
+
+//tre sa modific in model
+//        dd($eventLocations->toArray());
 
         return view('admin.propose-event.index', compact('eventLocations',));
     }
@@ -48,11 +56,8 @@ class ProposeEventController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+
             'description' => 'required',
             'event_location_id' => 'required',
             'due_date' => 'required',
@@ -61,6 +66,31 @@ class ProposeEventController extends Controller
             'volunteering_contract' => 'required',
         ]);
 
+        if (Auth::check()) {
+            $validatedData['coordinator_id'] = Auth::user()->id;
+        } else {
+
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+                'phone' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'max:255'],
+            ]);
+
+            try {
+                $response = Http::asForm()->post(env('LOGIN_URL') . 'register', [
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'phone' => $request['phone'],
+                    'password' => $request['password']
+                ]);
+
+            } catch (\PharIo\Version\Exception) {
+                return redirect()->route('login')->withErrors([
+                    'password' => 'Inregistrarea a esuat.',
+                ]);
+            }
+        }
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
@@ -131,7 +161,7 @@ class ProposeEventController extends Controller
                 return response()->json(['status' => false, 'error', 'Eroarea la conectare']);
 
             }
-// tre sa fac sa apara datele de le eveniment chiar si daca nu se incarca cele de de la crm
+
             if ($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
                 $partner = json_decode($partner_resp->getBody(), true)[0];
 
@@ -142,7 +172,7 @@ class ProposeEventController extends Controller
 
                 ];
             }
-//            dd($userEventLocation);
+
             $data += [
                 'name' => $userEventLocation->name,
                 'email' => $userEventLocation->email,
@@ -211,9 +241,9 @@ class ProposeEventController extends Controller
                 if ($crm_id) {
                     $action_type = 'update_action';
                 }
-
+//dump($userEventLocationArray['coordinator_id']);
                 $response = Http::asForm()->post(env('LOGIN_URL') . $action_type, [
-                    'Id' => $crm_id ?? '',
+                    'User_id' => $userEventLocationArray['coordinator_id'],
                     'Latitudine' => $userEventLocationArray['event_location']['longitude'],
                     'Longitudine' => $userEventLocationArray['event_location']['latitude'],
                     'Description' => $userEventLocationArray['description'],
@@ -224,11 +254,11 @@ class ProposeEventController extends Controller
                     'Name' => $userEventLocationArray['name'],
                     'Status' => $status
                 ]);
-
+//dd($response);
                 if (is_numeric($response->body())) {
                     $userEventLocation->crm_propose_event_id = intval($response->body());
                 } else if ($response->body() != 'Actiune actualizata cu success!') {
-                    return response()->json(['success' => false]);
+                    return response()->json(['success' => false, 'message' => 'Actiunea nu a reusit contacteaza echipa de suport pentru mai multe detalii!']);
                 }
 
                 $mailData = [
@@ -251,11 +281,12 @@ class ProposeEventController extends Controller
 
             $response_msg = [
                 'success' => true,
-                'status' => ucfirst($userEventLocation->status)
+                'status' => ucfirst($userEventLocation->status),
+                'message' => 'Statusul a fost modificat cu success'
             ];
             return response()->json($response_msg);
         }
-        return response()->json(['success' => false]);
+        return response()->json(['success' => false, 'message' => 'Actiunea nu a reusit']);
     }
 
     public function generate_unique_url(UserEventLocation $userEventLocation)

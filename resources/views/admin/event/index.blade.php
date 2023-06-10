@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
-                @if(Auth::user()->role == 'user')
+                @if(Auth::user()->role == 'partner')
                     @include('admin.event.create')
                     <div class="slider-link add-next-eco-action">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#create-event-modal">

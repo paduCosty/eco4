@@ -15,35 +15,6 @@
                     <div class="form-group row">
 
                         <div class="mb-3 col-md-6">
-                            <label for="name" class="col-form-label text-md-right">{{ __('Name') }}</label>
-                            <input id="name" type="text"
-                                   class="form-control @error('name') is-invalid @enderror event_location_name"
-                                   name="name" required autocomplete="name" autofocus>
-
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3 col-md-6">
-                            <label for="email"
-                                   class="col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-
-                            <input id="email" type="email"
-                                   class="form-control @error('email') is-invalid @enderror event_location_email"
-                                   name="email" required autocomplete="email">
-
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3 col-md-6">
                             <label for="due_date" class="col-form-label text-md-right">{{ __('Due Date') }}</label>
                             <input id="due_date" type="date"
                                    class="form-control @error('due_date') is-invalid @enderror event_location_due_date"

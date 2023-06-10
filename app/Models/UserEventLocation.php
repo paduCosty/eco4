@@ -9,7 +9,7 @@ class UserEventLocation extends Model
 {
     protected $table = 'users_event_locations';
     protected $fillable = [
-        'user_id',
+        'coordinator_id',
         'email',
         'name',
         'description',
