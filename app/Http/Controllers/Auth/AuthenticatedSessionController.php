@@ -5,17 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use GuzzleHttp\Client;
-use Illuminate\Auth\Events\Registered;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
-use mysql_xdevapi\Exception;
-use PHPUnit\Framework\Error;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -67,9 +63,12 @@ class AuthenticatedSessionController extends Controller
                 ]);
             }
         }
-
-        if($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
+//        dd($partner_data);
+        if ($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
             $user_data['userType'] = 'partner';
+        } else if ($user_data['userType'] != 'admin') {
+            $user_data['userType'] = 'coordinator';
+
         }
 
         if ($user_resp->getStatusCode() == 200) {
@@ -93,6 +92,7 @@ class AuthenticatedSessionController extends Controller
                     $user->password = Hash::make($user_data['password']);
                     $user->role = $user_data['userType'];
                     $user->save();
+
                 }
 
                 Auth::login($user);

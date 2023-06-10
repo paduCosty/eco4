@@ -39,12 +39,18 @@ Route::middleware(['auth', 'user_role'])->group(function () {
 
         /*Ajax volunteers*/
         Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
-        Route::post('/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers'])->name('send-mail');
 
 
     });
 });
 
+Route::middleware('coordinator')->group(function () {
+    Route::get('/coordinator/propose-locations', [ProposeEventController::class, 'index'])->name('coordinator.event');
+    Route::get('/coordinator/propose-locations/{userEventLocation}', [ProposeEventController::class, 'show'])
+        ->name('coordinator.show');
+    Route::post('/coordinator/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers'])->name('send-mail');
+    Route::get('/admin/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+});
 
 
 /*ajax calls city*/
@@ -63,11 +69,9 @@ Route::get('/get-cities-if-propose-event-exists', [CityController::class, 'get_c
 /*ajax calls city END*/
 
 
-
 Route::get('/home', [ProposeEventController::class, 'home'])->name('home');
 Route::get('/', [ProposeEventController::class, 'home'])->name('/');
 Route::get('/event/{id}', [ProposeEventController::class, 'home'])->name('share_link.modal');
-
 
 
 /*ajax calls  event locations*/

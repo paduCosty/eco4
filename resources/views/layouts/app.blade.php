@@ -79,15 +79,23 @@
                         @endif
                     @else
 
-                        <li class="nav-item">
-                            <a style="color:green" class="nav-link"
-                               href="{{ route('event-locations.index') }}">{{ __('Creaza loc Ecologizare') }}</a>
-                        </li>
+                        @if(auth()->check() && (auth()->user()->role == 'partner' || auth()->user()->role == 'admin'))
+                            <li class="nav-item">
+                                <a style="color:green" class="nav-link"
+                                   href="{{ route('event-locations.index') }}">{{ __('Creaza loc Ecologizare') }}</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a style="color:green" class="nav-link"
-                               href="{{ route('propose-locations.index') }}">{{ __('Evenimentele Mele') }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a style="color:green" class="nav-link"
+                                   href="{{ route('propose-locations.index') }}">{{ __('Actiuni Ecologizare') }}</a>
+                            </li>
+
+                        @elseif(auth()->check() && (auth()->user()->role == 'coordinator'))
+                            <li class="nav-item">
+                                <a style="color:green" class="nav-link"
+                                   href="{{ route('coordinator.event') }}">{{ __('Actiuni Ecologizare') }}</a>
+                            </li>
+                        @endif
 
                         <li class="nav-item dropdown">
                             <a style="color:green" id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
@@ -95,7 +103,6 @@
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

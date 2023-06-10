@@ -9,7 +9,7 @@
     <div class="container">
 
         <div class="text-center  mb-5" style="color:rgb(124, 121, 121)">
-            <h4>Evenimente de ecologizare propuse</h4>
+            <h4>Evenimentele mele</h4>
         </div>
 
         <div class="alert-success-link"></div>
@@ -62,7 +62,7 @@
                         @endif
                     </td>
                     <td>
-                        @if ($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
+                        @if (($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat') || auth()->user()->role === 'coordinator')
                             {{ ucfirst($location->status) }}
                         @else
                             <div class="d-inline-block buttons-switch">
@@ -93,9 +93,15 @@
                     <td>
                         <div class="d-flex text-center">
 
-                            <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
-                               data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
-                                Edit
+                            @if(auth()->user()->role !== 'coordinator')
+                                <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
+                                   data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
+                                    Edit
+                                </a>
+                            @endif
+                            <a class="col action-button open_description_modal" type="button" data-bs-toggle="modal"
+                               data-bs-target="#details-event-modal" event_location_id="{{ $location->id }}">
+                                Detalii
                             </a>
 
                             @if($location->status == 'aprobat')
@@ -103,10 +109,6 @@
                                    data-event_id="{{ $location->id }}">Reprezentati</a>
                             @endif
 
-                            <a class="col action-button open_description_modal" type="button" data-bs-toggle="modal"
-                               data-bs-target="#details-event-modal" event_location_id="{{ $location->id }}">
-                                Detalii
-                            </a>
 
                         </div>
                     </td>

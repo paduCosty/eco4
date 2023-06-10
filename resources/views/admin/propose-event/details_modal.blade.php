@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="edit-product-modal-label">Detalii institutie</h5>
+                <h5 class="modal-title" id="edit-product-modal-label">Detalii eveniment ecologizare</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="color: #a00404">X
                 </button>
@@ -37,7 +37,6 @@
 
 <script>
     function event_details(location_id) {
-        console.log(location_id)
         $.ajax({
             url: 'propose-locations/' + location_id,
             type: 'GET',

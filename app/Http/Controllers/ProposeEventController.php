@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use mysql_xdevapi\Exception;
 use Vinkla\Hashids\Facades\Hashids;
 
 class ProposeEventController extends Controller
@@ -23,7 +24,7 @@ class ProposeEventController extends Controller
 //            dd($user_id);
             $eventLocations = UserEventLocation::withCount('eventRegistrations');
 
-            if (Auth::user()->role != 'admin' && Auth::user()->role == 'partner') {
+            if (Auth::user()->role === 'coordinator' || Auth::user()->role == 'partner') {
                 $eventLocations = $eventLocations->whereHas('eventLocation', function ($query) use ($user_id) {
                     $query->where('user_id', $user_id);
                 });
@@ -118,8 +119,31 @@ class ProposeEventController extends Controller
     public function show(UserEventLocation $userEventLocation)
     {
 
-        if ($userEventLocation) {
-            $data = [
+        if ($userEventLocation && Auth::check()) {
+
+            $data = [];
+
+            $user_id = $userEventLocation->eventLocation->user->id;
+            try {
+                $partner_resp = Http::post(env('LOGIN_URL') . '/get_partners/' . $user_id . '/' . 0 . '/' . 0);
+            } catch (Exception) {
+
+                return response()->json(['status' => false, 'error', 'Eroarea la conectare']);
+
+            }
+// tre sa fac sa apara datele de le eveniment chiar si daca nu se incarca cele de de la crm
+            if ($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
+                $partner = json_decode($partner_resp->getBody(), true)[0];
+
+                $data = [
+                    'institution_name' => $partner['name'] ?? '',
+                    'institution_phone' => $partner['phone'] ?? '',
+                    'institution_email' => $partner['email'] ?? '',
+
+                ];
+            }
+//            dd($userEventLocation);
+            $data += [
                 'name' => $userEventLocation->name,
                 'email' => $userEventLocation->email,
                 'due_date' => $userEventLocation->due_date,
@@ -127,12 +151,9 @@ class ProposeEventController extends Controller
                 'address' => $userEventLocation->eventLocation->address,
                 'relief_type' => $userEventLocation->eventLocation->relief_type,
                 'size_volunteer_id' => $userEventLocation->eventLocation->sizeVolunteer->name,
-                'institution_name' => $userEventLocation->eventLocation->user->name,
-                'institution_email' => $userEventLocation->eventLocation->user->email,
-                'institution_phone' => $userEventLocation->eventLocation->user->phone,
                 'status' => $userEventLocation->status,
-
             ];
+
             return response()->json(['status' => true, 'data' => $data]);
 
         }
