@@ -19,7 +19,11 @@ class PayPalController extends Controller
         if($request->donate_amount) {
             $amount = $request->donate_amount;
         }
-        $provider = new PayPalClient;
+        try {
+            $provider = new PayPalClient;
+        } catch(\Exception) {
+            return redirect('/')->withErrors('Conectarea cu PayPal nu a reusit, contacteaza un membru al echipei de suport!');
+        }
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
 
