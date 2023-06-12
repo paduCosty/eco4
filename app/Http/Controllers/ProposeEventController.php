@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\ProposeEventMail;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
@@ -71,10 +73,11 @@ class ProposeEventController extends Controller
         } else {
 
             $validatedData += $request->validate([
-                'name' => 'required',
+                'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
                 'phone' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'max:255'],
+                'gender' => 'required',
             ]);
 
             try {
@@ -82,17 +85,34 @@ class ProposeEventController extends Controller
                     'name' => $request['name'],
                     'email' => $request['email'],
                     'phone' => $request['phone'],
-                    'password' => $request['password']
+                    'password' => $request['password'],
+                    'gender' => $request['gender']
                 ]);
 
             } catch (\PharIo\Version\Exception) {
                 return redirect()->route('home')->withErrors([
-                    'error' => 'Inregistrarea a esuat.',
+                    'error' => 'Inregistrarea  ta a esuat.',
                 ]);
             }
-            dd($response->body());
+            if ($response->body() === "1") {
+
+                /*login in created user and update propose event with coordinator_id */
+                $auth_controller = new AuthenticatedSessionController;
+                $data = [
+                    'email' => $request['email'],
+                    'password' => $request['password']
+                ];
+                $login_request = new LoginRequest($data);
+                $auth_controller->store($login_request);
+
+                $validatedData += ['coordinator_id' => Auth::user()->id];
+                $eventLocation = UserEventLocation::create($validatedData);
+
+                session()->flash('success', 'Datele au fost salvate cu succes!');
+                return redirect()->route('home');
+            }
         }
-//        dd($validatedData);
+
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');

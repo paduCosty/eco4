@@ -52,6 +52,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         $user_data = json_decode($user_resp->getBody(), true);
+//        dd($user_data);
         if ($user_data) {
             $user_data = $user_data[0];
         } else {

@@ -110,48 +110,47 @@
                                             <div class="row form-group">
                                                 @if(!auth()->check())
                                                     <div class="mb-3 col-md-6">
-                                                        <label for="nume_voluntar_propus"
+                                                        <label for="name"
                                                                class="col-form-label form-modal-label text-gray fs-6">Nume,
-                                                            Prenume
-                                                        </label> <span id="eroare_nume_voluntar_propus"></span>
+                                                            Prenume</label>
+                                                        <span id="eroare_nume_voluntar_propus"></span>
                                                         <input type="text"
                                                                class="form-control input-normal text-gray fs-6"
-                                                               name="name"
-                                                               required
-                                                        >
+                                                               name="name" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label for=""
-                                                               class="col-form-label form-modal-label text-gray fs-6">Email:
-                                                        </label>
+                                                        <label for="email"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Email:</label>
                                                         <input type="text"
                                                                class="form-control input-normal text-gray fs-6"
-                                                               name="email"
-                                                               required
-                                                        >
+                                                               name="email" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label for=""
-                                                               class="col-form-label form-modal-label text-gray fs-6">Telefon:
-                                                        </label>
+                                                        <label for="phone"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Telefon:</label>
                                                         <input type="text"
                                                                class="form-control input-normal text-gray fs-6"
-                                                               name="phone"
-                                                               required
-                                                        >
+                                                               name="phone" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
-                                                        <label for=""
-                                                               class="col-form-label form-modal-label text-gray fs-6">Password:
-                                                        </label>
-                                                        <input type="text"
+                                                        <label for="password"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Password:</label>
+                                                        <input type="password"
                                                                class="form-control input-normal text-gray fs-6"
-                                                               name="password"
-                                                               required
-                                                        >
+                                                               name="password" required>
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="gender"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Gen:</label>
+                                                        <select name="gender"
+                                                                class="form-control input-normal text-gray fs-6">
+                                                            <option value="masculin">Masculin</option>
+                                                            <option value="feminin">Feminin</option>
+                                                        </select>
                                                     </div>
                                                 @endif
 
@@ -182,14 +181,14 @@
 
                                                 </div>
 
-                                                    <div class="mb-3 col-md-6">
-                                                        <label
-                                                            class="col-form-label form-modal-label text-gray fs-6">Selecteaza
-                                                            Data: </label>
-                                                        <input type="date"
-                                                               class="text-gray fs-6 form-control input-normal "
-                                                               name="due_date" required>
-                                                    </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label
+                                                        class="col-form-label form-modal-label text-gray fs-6">Selecteaza
+                                                        Data: </label>
+                                                    <input type="date"
+                                                           class="text-gray fs-6 form-control input-normal "
+                                                           name="due_date" required>
+                                                </div>
 
                                             </div>
 

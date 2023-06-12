@@ -99,13 +99,13 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 
 
 /*pay pall routes START*/
-Route::post('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 /*pay pall routes END*/
 
 /*NETOPIA Payments START*/
-Route::post('process-netopia-transaction', [NetopiaController::class, 'index'])->name('netopiaTransaction');
+Route::get('process-netopia-transaction', [NetopiaController::class, 'index'])->name('netopiaTransaction');
 /*NETOPIA Payments END*/
 
 require __DIR__ . '/auth.php';
