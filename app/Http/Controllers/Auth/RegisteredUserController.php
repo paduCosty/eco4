@@ -56,8 +56,8 @@ class RegisteredUserController extends Controller
                 'country' => $request['country'],
                 'city' => $request['city'],
                 'pass' => $request['password'],
+                'gender' => 'F'
             ]);
-
         } catch (Exception) {
             return redirect()->route('login')->withErrors([
                 'password' => 'Inregistrarea a esuat.',

@@ -52,7 +52,13 @@ class AuthenticatedSessionController extends Controller
         }
 
         $user_data = json_decode($user_resp->getBody(), true);
-        $user_data = $user_data[0];
+        if ($user_data) {
+            $user_data = $user_data[0];
+        } else {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Au aparut probleme la authentificare!',
+            ]);
+        }
         /*check user if is partner*/
         if ($user_data['id']) {
             try {
