@@ -8,6 +8,9 @@ use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Sitemap\SitemapGenerator;
+use Illuminate\Support\Facades\Response;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/sitemap.xml', [ProposeEventController::class, 'sitemap_xml']);
+
 
 Route::middleware(['auth', 'user_role'])->group(function () {
     /*admin prefix*/

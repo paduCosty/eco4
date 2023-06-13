@@ -27,7 +27,7 @@
 
                                                 <ul class="how-it-works ">
                                                     <li class="text-gray fs-6">
-                                                        Te înscrii, completând formularul de mai jos.
+                                                        Pentru a participa la acțiunea de ecologizare, te poți înscrie completând formularul de mai jos. În cazul în care nu ai un cont, poți crea unul chiar acum.
                                                     </li>
 
                                                     <li class="text-gray fs-6">
@@ -153,6 +153,17 @@
                                                         </select>
                                                     </div>
                                                 @endif
+                                                <div class="mb-3 col-md-6">
+                                                    <label
+                                                        class="col-form-label form-modal-label text-gray fs-6">Selecteaza
+                                                        Data: </label>
+                                                    <input type="date"
+                                                           class="text-gray fs-6 form-control input-normal "
+                                                           name="due_date" required>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+
 
                                                 <div class=" mb-3 col-md-6">
                                                     <label for="judet_voluntar_propus"
@@ -180,17 +191,8 @@
                                                     </select>
 
                                                 </div>
-
-                                                <div class="mb-3 col-md-6">
-                                                    <label
-                                                        class="col-form-label form-modal-label text-gray fs-6">Selecteaza
-                                                        Data: </label>
-                                                    <input type="date"
-                                                           class="text-gray fs-6 form-control input-normal "
-                                                           name="due_date" required>
-                                                </div>
-
                                             </div>
+
 
                                             <div class="form-group">
                                                 <div id="map"></div>

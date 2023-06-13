@@ -55,15 +55,15 @@ class RegisteredUserController extends Controller
                 'data' => $request['data'],
                 'country' => $request['country'],
                 'city' => $request['city'],
+                'gender' => $request['gender'],
                 'pass' => $request['password'],
-                'gender' => 'F'
             ]);
         } catch (Exception) {
             return redirect()->route('login')->withErrors([
                 'password' => 'Inregistrarea a esuat.',
             ]);
         }
-//dd($response->body());
+
         if ($response->json() == '1') {
             $user = User::create([
                 'name' => $request->name,

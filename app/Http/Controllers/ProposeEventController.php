@@ -20,6 +20,18 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class ProposeEventController extends Controller
 {
+
+    public function sitemap_xml()
+    {
+
+        $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat')->get();
+        dump($approved_events[0]->url);
+
+        return response()->view('index', [
+            'posts' => $approved_events
+        ])->header('Content-Type', 'text/xml');
+    }
+
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         if (Auth::check()) {
