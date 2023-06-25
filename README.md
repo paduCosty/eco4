@@ -1,6 +1,16 @@
 # Eco4
 
-# O copie a bazei de date goala se afla in [eco4/database/db_eco4_bcp.sql]
+# Versions
+    -  PHP 8.1.2
+    - Laravel 10.8.0
+
+# Installation
+ - composer install
+ - php artisan key:generate
+ - npm install
+ - composer require spatie/laravel-sitemap
+
+# Empty db bcp [eco4/database/db_eco4_bcp.sql]
 
 # Pentru ca paypal-ul sa functioneze trebuie instalate bibliotecile acestuia:
  - composer require srmklive/paypal:~3.0
