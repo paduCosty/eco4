@@ -27,7 +27,7 @@
 
                                                 <ul class="how-it-works ">
                                                     <li class="text-gray fs-6">
-                                                        Te înscrii, completând formularul de mai jos.
+                                                        Pentru a participa la acțiunea de ecologizare, te poți înscrie completând formularul de mai jos. În cazul în care nu ai un cont, poți crea unul chiar acum.
                                                     </li>
 
                                                     <li class="text-gray fs-6">
@@ -108,36 +108,51 @@
                                               method="POST">
                                             @csrf
                                             <div class="row form-group">
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="nume_voluntar_propus"
-                                                           class="col-form-label form-modal-label text-gray fs-6">Nume,
-                                                        Prenume
-                                                    </label> <span id="eroare_nume_voluntar_propus"></span>
-                                                    <input type="text"
-                                                           class="form-control input-normal text-gray fs-6" name="name"
-                                                           required
-                                                    >
-                                                </div>
+                                                @if(!auth()->check())
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="name"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Nume,
+                                                            Prenume</label>
+                                                        <span id="eroare_nume_voluntar_propus"></span>
+                                                        <input type="text"
+                                                               class="form-control input-normal text-gray fs-6"
+                                                               name="name" required>
+                                                    </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label for=""
-                                                           class="col-form-label form-modal-label text-gray fs-6">Email:
-                                                    </label>
-                                                    <input type="text"
-                                                           class="form-control input-normal text-gray fs-6" name="email"
-                                                           required
-                                                    >
-                                                </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="email"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Email:</label>
+                                                        <input type="text"
+                                                               class="form-control input-normal text-gray fs-6"
+                                                               name="email" required>
+                                                    </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label for=""
-                                                           class="col-form-label form-modal-label text-gray fs-6">Telefon:
-                                                    </label>
-                                                    <input type="text"
-                                                           class="form-control input-normal text-gray fs-6" name="phone"
-                                                           required
-                                                    >
-                                                </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="phone"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Telefon:</label>
+                                                        <input type="text"
+                                                               class="form-control input-normal text-gray fs-6"
+                                                               name="phone" required>
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="password"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Password:</label>
+                                                        <input type="password"
+                                                               class="form-control input-normal text-gray fs-6"
+                                                               name="password" required>
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="gender"
+                                                               class="col-form-label form-modal-label text-gray fs-6">Gen:</label>
+                                                        <select name="gender"
+                                                                class="form-control input-normal text-gray fs-6">
+                                                            <option value="masculin">Masculin</option>
+                                                            <option value="feminin">Feminin</option>
+                                                        </select>
+                                                    </div>
+                                                @endif
                                                 <div class="mb-3 col-md-6">
                                                     <label
                                                         class="col-form-label form-modal-label text-gray fs-6">Selecteaza
@@ -146,6 +161,9 @@
                                                            class="text-gray fs-6 form-control input-normal "
                                                            name="due_date" required>
                                                 </div>
+                                            </div>
+                                            <div class="row form-group">
+
 
                                                 <div class=" mb-3 col-md-6">
                                                     <label for="judet_voluntar_propus"
@@ -175,6 +193,7 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="form-group">
                                                 <div id="map"></div>
                                             </div>
@@ -189,12 +208,14 @@
                                                 <label for="" class="col-form-label form-modal-label text-gray fs-6">Descriere:
                                                 </label>
                                                 <textarea type="text" maxlength="500" id="textarea-details"
-                                                          class="form-control input-normal text-gray fs-6" name="description"
+                                                          class="form-control input-normal text-gray fs-6"
+                                                          name="description"
                                                           required></textarea>
                                             </div>
 
                                             <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text  fs-6" style="color:rgb(150, 149, 149)">
+                                                <div class="col-12 terms-conditions-text  fs-6"
+                                                     style="color:rgb(150, 149, 149)">
                                                     <span id="eco-proposal-modal-check-1-span"></span>
                                                     <input type="checkbox" name="terms_site" value="1" required/>
                                                     <label class="fs-6" for="eco-proposal-modal-check-1">Sunt
@@ -207,7 +228,8 @@
                                             </div>
 
                                             <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text fs-6" style="color:rgb(150, 149, 149)">
+                                                <div class="col-12 terms-conditions-text fs-6"
+                                                     style="color:rgb(150, 149, 149)">
                                                     <input type="checkbox" name="terms_workshop"
                                                            id="eco-proposal-modal-check-2" value="1" required/>
                                                     <label style="display: inline;"
@@ -222,7 +244,8 @@
                                             </div>
 
                                             <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text  fs-6" style="color:rgb(150, 149, 149)">
+                                                <div class="col-12 terms-conditions-text  fs-6"
+                                                     style="color:rgb(150, 149, 149)">
                                                     <span id="eco-proposal-modal-check-3-span"></span>
                                                     <input type="checkbox" value="1"
                                                            name="volunteering_contract"

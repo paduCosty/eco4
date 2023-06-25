@@ -8,6 +8,9 @@ use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Sitemap\SitemapGenerator;
+use Illuminate\Support\Facades\Response;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/sitemap.xml', [ProposeEventController::class, 'sitemap_xml']);
+
 
 Route::middleware(['auth', 'user_role'])->group(function () {
     /*admin prefix*/
@@ -39,9 +45,24 @@ Route::middleware(['auth', 'user_role'])->group(function () {
 
         /*Ajax volunteers*/
         Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+        Route::post('/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers']);
+
 
     });
 });
+
+Route::middleware('coordinator')->group(function () {
+    Route::prefix('coordinator')->group(function () {
+
+        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('coordinator.event');
+        Route::get('/propose-locations/{userEventLocation}', [ProposeEventController::class, 'show'])
+            ->name('coordinator.show');
+        Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);
+        Route::post('/mail_to_volunteers/{event_location_id}', [VolunteerController::class, 'mail_to_volunteers']);
+    });
+
+});
+
 
 /*ajax calls city*/
 Route::get('get-cities', [CityController::class, 'index'])->name('admin.get-cities.index');
@@ -59,11 +80,9 @@ Route::get('/get-cities-if-propose-event-exists', [CityController::class, 'get_c
 /*ajax calls city END*/
 
 
-
 Route::get('/home', [ProposeEventController::class, 'home'])->name('home');
 Route::get('/', [ProposeEventController::class, 'home'])->name('/');
 Route::get('/event/{id}', [ProposeEventController::class, 'home'])->name('share_link.modal');
-
 
 
 /*ajax calls  event locations*/
@@ -86,13 +105,13 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 
 
 /*pay pall routes START*/
-Route::post('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
 /*pay pall routes END*/
 
 /*NETOPIA Payments START*/
-Route::post('process-netopia-transaction', [NetopiaController::class, 'index'])->name('netopiaTransaction');
+Route::get('process-netopia-transaction', [NetopiaController::class, 'index'])->name('netopiaTransaction');
 /*NETOPIA Payments END*/
 
 require __DIR__ . '/auth.php';

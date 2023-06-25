@@ -5,17 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use GuzzleHttp\Client;
-use Illuminate\Auth\Events\Registered;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
-use mysql_xdevapi\Exception;
-use PHPUnit\Framework\Error;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -43,8 +39,9 @@ class AuthenticatedSessionController extends Controller
 
     public function store(LoginRequest $request): RedirectResponse
     {
+        /*check if user exists*/
         try {
-            $response = Http::asForm()->post(env('LOGIN_URL') . 'login', [
+            $user_resp = Http::asForm()->post(env('LOGIN_URL') . 'login', [
                 'user' => $request['email'],
                 'pass' => $request['password']
             ]);
@@ -54,30 +51,55 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        if ($response->getStatusCode() == 200) {
-            $user_resp = json_decode($response->getBody(), true);
-            if ($user_resp && $user_resp[0]) {
-                $user_resp = $user_resp[0];
+        $user_data = json_decode($user_resp->getBody(), true);
+//        dd($user_data);
+        if ($user_data) {
+            $user_data = $user_data[0];
+        } else {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Au aparut probleme la authentificare!',
+            ]);
+        }
+        /*check user if is partner*/
+        if ($user_data['id']) {
+            try {
+                $partner_resp = Http::post(env('LOGIN_URL') . '/get_partners/' . $user_data['id'] . '/' . 0 . '/' . 0);
+            } catch (Exception) {
+                return redirect()->route('login')->withErrors([
+                    'email' => 'Autentificarea a esuat.',
+                ]);
+            }
+        }
+//        dd($partner_data);
+        if ($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
+            $user_data['userType'] = 'partner';
+        } else if ($user_data['userType'] != 'admin') {
+            $user_data['userType'] = 'coordinator';
 
-                $user = User::where('email', $user_resp['email'])->first();
+        }
+
+        if ($user_resp->getStatusCode() == 200) {
+            if ($user_data) {
+                $user = User::where('email', $user_data['email'])->first();
 
                 if ($user) {
                     // User already exists, update their record
-                    $user->id = $user_resp['id'] ?? '';
-                    $user->name = $user_resp['name'] ?? '';
-                    $user->password = Hash::make($user_resp['password'] ?? '');
-                    $user->role = $user_resp['userType'] ?? '';
+                    $user->id = $user_data['id'] ?? '';
+                    $user->name = $user_data['name'] ?? '';
+                    $user->password = Hash::make($user_data['password'] ?? '');
+                    $user->role = $user_data['userType'] ?? '';
                     $user->save();
 
                 } else {
                     // User does not exist, create a new record
                     $user = new User;
-                    $user->id = $user_resp['id'];
-                    $user->name = $user_resp['name'];
-                    $user->email = $user_resp['email'];
-                    $user->password = Hash::make($user_resp['password']);
-                    $user->role = $user_resp['userType'];
+                    $user->id = $user_data['id'];
+                    $user->name = $user_data['name'];
+                    $user->email = $user_data['email'];
+                    $user->password = Hash::make($user_data['password']);
+                    $user->role = $user_data['userType'];
                     $user->save();
+
                 }
 
                 Auth::login($user);

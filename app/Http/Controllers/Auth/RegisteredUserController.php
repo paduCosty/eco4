@@ -55,10 +55,9 @@ class RegisteredUserController extends Controller
                 'data' => $request['data'],
                 'country' => $request['country'],
                 'city' => $request['city'],
+                'gender' => $request['gender'],
                 'pass' => $request['password'],
-                'userType' => 'admin'
             ]);
-
         } catch (Exception) {
             return redirect()->route('login')->withErrors([
                 'password' => 'Inregistrarea a esuat.',
@@ -76,7 +75,7 @@ class RegisteredUserController extends Controller
 
             Auth::login($user);
         } else {
-            return redirect()->route('login')->withErrors([
+            return redirect()->route('register')->withErrors([
                 'password' => 'Inregistrarea a esuat.',
             ]);
         }

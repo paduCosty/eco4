@@ -77,7 +77,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="data" class="col-md-4 col-form-label text-md-end">{{ __('Data Nasterii') }}</label>
+                                <label for="data"
+                                       class="col-md-4 col-form-label text-md-end">{{ __('Data Nasterii') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="data" type="date"
@@ -92,7 +93,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="country" class="col-md-4 col-form-label text-md-end">{{ __('Tara') }}</label>
+                                <label for="country"
+                                       class="col-md-4 col-form-label text-md-end">{{ __('Tara') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="country" type="text"
@@ -108,12 +110,12 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="city" class="col-md-4 col-form-label text-md-end">{{ __('city') }}</label>
+                                <label for="city" class="col-md-4 col-form-label text-md-end">{{ __('City') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="city" type="text"
                                            class="form-control @error('city') is-invalid @enderror" name="city"
-                                           value="{{ old('city') }}" required autocomplete="city" autofocus>
+                                           value="{{ old('city') }}" required autocomplete="ity" autofocus>
 
                                     @error('city')
                                     <span class="invalid-feedback" role="alert">
@@ -123,6 +125,20 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="gender"
+                                       class="col-md-4 col-form-label text-md-end">Gen:</label>
+                                <div class="col-md-6">
+
+                                    <select name="gender"
+                                            class="form-control" required>
+                                        <option value="">Selecteaza</option>
+
+                                        <option value="M">Masculin</option>
+                                        <option value="F">Feminin</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="row mb-3">
                                 <label for="password"

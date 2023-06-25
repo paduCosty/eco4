@@ -3,12 +3,13 @@
 @section('content')
     @include('admin.propose-event.edit')
     @include('admin.propose-event.enrolled_volunteers')
+    @include('admin.propose-event.details_modal')
 
 
     <div class="container">
 
         <div class="text-center  mb-5" style="color:rgb(124, 121, 121)">
-            <h1>Evenimente de ecologizare propuse</h1>
+            <h4>Evenimentele mele</h4>
         </div>
 
         <div class="alert-success-link"></div>
@@ -33,8 +34,6 @@
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
                 <th>Nr.</th>
-                <th>Nume</th>
-                <th>Email</th>
                 <th>Adresa</th>
                 <th>Data limită</th>
                 <th>Voluntari</th>
@@ -45,13 +44,21 @@
             @foreach ($eventLocations as $location)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ $location->name }}</td>
-                    <td>{{ $location->email }}</td>
-                    <td>{{ $location->eventLocation->address }}</td>
-                    <td width="9%">{{ $location->due_date }}</td>
-                    <td>{{ $location->event_registrations_count }}</td>
                     <td>
-                        @if ($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat')
+                        {{$location->eventLocation->city->region->name}},
+                        {{ $location->eventLocation->city->name }}</td>
+                    <td width="9%">{{ $location->due_date }}</td>
+                    <td>
+                        @if ($location->event_registrations_count > 0)
+                            <a class="col open-volunteers-modal" type="button"
+                               data-bs-toggle="modal" data-bs-target="#volunteers-modal"
+                               event_location_id="{{ $location->id }}">
+                                {{ $location->event_registrations_count }}
+                            </a>
+                        @endif
+                    </td>
+                    <td>
+                        @if (($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat') || auth()->user()->role === 'coordinator')
                             {{ ucfirst($location->status) }}
                         @else
                             <div class="d-inline-block buttons-switch">
@@ -80,26 +87,24 @@
                         @endif
                     </td>
                     <td>
-                        <div class="d-flex text-center">
-                            <div class="col mr-2">
-                                @if ($location->event_registrations_count > 0)
-                                    <a class="col open-volunteers-modal action-button" type="button"
-                                       data-bs-toggle="modal" data-bs-target="#volunteers-modal"
-                                       event_location_id="{{ $location->id }}">
-                                        Voluntari
-                                    </a>
-                                @endif
-                            </div>
+                        <div class="d-flex">
 
-                            <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
-                               data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
-                                Edit
+                            @if(auth()->user()->role !== 'coordinator')
+                                <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
+                                   data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
+                                    Edit
+                                </a>
+                            @endif
+                            <a class="col action-button open_description_modal" type="button" data-bs-toggle="modal"
+                               data-bs-target="#details-event-modal" event_location_id="{{ $location->id }}">
+                                Detalii
                             </a>
 
                             @if($location->status == 'aprobat')
                                 <a type="button" class="col action-button generate-representation-link"
                                    data-event_id="{{ $location->id }}">Reprezentati</a>
                             @endif
+
 
                         </div>
                     </td>
@@ -114,20 +119,19 @@
     <script>
         $(document).ready(function () {
             const APP_URL = window.location.origin;
-
+            /*open edit modal*/
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
                 console.log(location);
                 $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
                     location.id)
 
-                $('.event_location_name').val(location.name);
-                $('.event_location_email').val(location.email);
                 $('.event_location_due_date').val(location.due_date);
                 $('.event_location_status').val(location.status);
                 $('.event_location_description').val(location.description);
             });
 
+            /* Update status */
             $(".switch-status-on").on("click", function () {
                 status_active_inactive('aprobat', $(this).attr('location_id'))
             });
@@ -145,97 +149,32 @@
                     },
 
                     success: function (response) {
-                        // console.log(response.success);
-                        // if (response.success) {
-                        //     $('#status_value' + location_id).text(response.status);
-                        // }
+                        let successAlert;
+
+                        if (response.success) {
+                            successAlert = $('<div class="alert alert-success">' + response.message + '</div>');
+
+                        } else {
+                            successAlert = $('<div class="alert alert-danger">' + response.message  + '</div>')
+                        }
+
+                        $('.alert-success-link').append(successAlert);
+                        setTimeout(function () {
+                            successAlert.remove();
+                        }, 3000);
                     },
                     error: function (xhr, status, error) {
                         console.log(xhr.responseText);
+                        alert(status);
                     }
                 });
             }
 
-
+            // load data when volunteers modal is open
             $('.open-volunteers-modal').click(function () {
                 loadVolunteers($(this).attr('event_location_id'), 1);
             });
 
-            function loadVolunteers(event_id, page) {
-                $.ajax({
-                    url: '/admin/volunteers/' + event_id,
-                    method: 'GET',
-                    data: {
-                        page: page,
-                    },
-                    success: function (data) {
-                        var tableBody = $('#volunteers-table tbody');
-                        tableBody.empty();
-
-                        for (var i = 0; i < data.data.length; i++) {
-                            var volunteer = data.data[i];
-
-                            var row = '<tr>' +
-                                '<td>' + volunteer.email + '</td>' +
-                                '<td>' + volunteer.name + '</td>' +
-                                '<td>' + volunteer.phone + '</td>' +
-                                '</tr>';
-
-                            tableBody.append(row);
-                        }
-                        // Actualizează paginarea
-                        updatePagination(page, data.total_pages, event_id);
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            function updatePagination(currentPage, totalPages, event_id) {
-
-                var paginationContainer = $('#pagination-container');
-                var pageInfoContainer = $('#page-info');
-
-                paginationContainer.empty();
-                pageInfoContainer.empty();
-
-                if (totalPages <= 1) {
-                    return false;
-                }
-                for (var i = 1; i <= totalPages; i++) {
-                    var button = $('<button class="btn btn-link page-link"></button>');
-                    button.text(i);
-                    button.data('page', i);
-
-                    button.click(function () {
-                        var page = $(this).data('page');
-                        loadVolunteers(event_id, page);
-                    });
-
-                    paginationContainer.append(button);
-                }
-                paginationContainer.addClass('pagination');
-                pageInfoContainer.text('Pagina ' + currentPage + ' din ' + totalPages);
-            }
-
-
-            // $('.generate-representation-link').on('click', function () {
-            //     var link = $(this).data('link');
-            //
-            //     var tempInput = $('<input>');
-            //     $('body').append(tempInput);
-            //     tempInput.val(link).select();
-            //     document.execCommand('copy');
-            //     tempInput.remove();
-            //
-            //     // Afișează mesajul de succes instantaneu
-            //     var successMessage = 'Link copiat cu succes!';
-            //     var successAlert = $('<div class="alert alert-success">' + successMessage + '</div>');
-            //     $('.alert-success-link').append(successAlert);
-            //     setTimeout(function () {
-            //         successAlert.remove();
-            //     }, 3000);
 
             $('.generate-representation-link').click(function () {
                 var event_id = $(this).data('event_id');
@@ -268,6 +207,11 @@
                 $tempInput.remove();
             }
         });
+        $('.open_description_modal').on('click', function () {
+            let location_id = $(this).attr('event_location_id')
+            event_details(location_id);
+        });
+
     </script>
 @endsection
 
