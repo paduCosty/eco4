@@ -87,7 +87,7 @@ class AuthenticatedSessionController extends Controller
                     $user->id = $user_data['id'] ?? '';
                     $user->name = $user_data['name'] ?? '';
                     $user->password = Hash::make($user_data['password'] ?? '');
-                    $user->role = $user_data['userType'] ?? '';
+                    $user->role = $user_data['userType'] ?? 'coordinator';
                     $user->save();
 
                 } else {
@@ -97,7 +97,11 @@ class AuthenticatedSessionController extends Controller
                     $user->name = $user_data['name'];
                     $user->email = $user_data['email'];
                     $user->password = Hash::make($user_data['password']);
-                    $user->role = $user_data['userType'];
+                    $role = $user_resp['userType'];
+                    if($user_resp['userType'] == "User" || $user_resp['userType'] == "user") {
+                        $role = 'coordinator';
+                    }
+                    $user->role = $role;
                     $user->save();
 
                 }
