@@ -25,15 +25,26 @@
                                 <div class="col-12">
                                     <div class="form-group row">
                                         <div class="form-info-text">
-                                            <h6 class="modal-title mb-2 fs-6">Descriere eveniment:</h6>
+                                            <label class="modal-title mb-2 fs-6">Descriere eveniment:</label>
 
                                             <ul class="how-it-works ">
-                                                <p class="text-gray fs-6" id="event-description">
-
-                                                </p>
+                                                <p class="text-gray fs-6" id="event-description"></p>
                                             </ul>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div id="enrol_map" style=" height: 500px; width: 100%;"></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="form-info-text">
+                                                <label class="modal-title mb-2 fs-6">Adresa evenimentului:</label>
+
+                                                <ul class="how-it-works ">
+                                                    <p class="text-gray fs-6" id="event-address"></p>
+                                                </ul>
+                                            </div>
+                                        </div>
                                 </div>
                                 <form method="POST" action="{{ route('volunteer_registration.store') }}">
                                     @csrf

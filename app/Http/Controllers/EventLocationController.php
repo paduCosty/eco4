@@ -124,6 +124,9 @@ class EventLocationController extends Controller
                 'description' => $userEventLocation->description,
                 'region_name' => $userEventLocation->eventLocation->city->region->name,
                 'city_name' => $userEventLocation->eventLocation->city->name,
+                'lng' => $userEventLocation->eventLocation->longitude,
+                'lat' => $userEventLocation->eventLocation->latitude,
+                'address' => $userEventLocation->eventLocation->address,
             ];
             return response()->json(['message' => true, 'event' => $location_event]);
         }

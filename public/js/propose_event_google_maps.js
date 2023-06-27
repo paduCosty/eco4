@@ -140,5 +140,7 @@ $(document).ready(function () {
 
     function initializeMaps() {
         initMapPropose()
+        initMapEnrol()
+
     }
 

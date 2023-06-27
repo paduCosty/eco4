@@ -1,15 +1,12 @@
 const APP_URL = window.location.origin;
 $(document).ready(function () {
 
-    console.log(APP_URL)
-
     $("#see-next-edition-details").on("click", function () {
         var regionId = $("#propose_regions_home").val();
         if (regionId) {
             get_region_events(regionId);
         }
     });
-
 
     $(document).on('click', '.enrol-button', function () {
         enrol_event_data($(this).attr('users_event_location_id'))
@@ -121,6 +118,7 @@ function get_region_events(region_id, event_id = null) {
         }
     });
 }
+
 function enrol_event_data(event_id) {
     $.ajax({
         url: APP_URL + '/get-event-location/' + event_id,
@@ -131,7 +129,9 @@ function enrol_event_data(event_id) {
             $('#event-description').text(response.event.description)
             $('#event_region_name').text(response.event.region_name)
             $('#event_city_name').text(response.event.city_name)
+            $('#event-address').text(response.event.address)
 
+            initMapEnrol(response.event.lat, response.event.lng);
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -139,3 +139,28 @@ function enrol_event_data(event_id) {
     });
 }
 
+function initMapEnrol(lat, lng) {
+    let zoom = 14;
+
+    if (!lat || !lng) {
+        lat = 44.439663;
+        lng = 26.096306;
+    }
+
+    const map = new google.maps.Map(document.getElementById("enrol_map"), {
+        zoom: zoom,
+        center: {
+            lat: lat,
+            lng: lng
+        },
+    });
+
+    const marker = new google.maps.Marker({
+        position: {
+            lat: lat,
+            lng: lng
+        },
+        map: map,
+    });
+
+}
