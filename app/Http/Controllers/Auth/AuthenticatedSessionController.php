@@ -52,12 +52,11 @@ class AuthenticatedSessionController extends Controller
         }
 
         $user_data = json_decode($user_resp->getBody(), true);
-//        dd($user_data);
-        if ($user_data) {
+        if (is_array($user_data)) {
             $user_data = $user_data[0];
         } else {
             return redirect()->route('login')->withErrors([
-                'email' => 'Au aparut probleme la authentificare!',
+                'email' =>  $user_data,
             ]);
         }
         /*check user if is partner*/
@@ -70,7 +69,7 @@ class AuthenticatedSessionController extends Controller
                 ]);
             }
         }
-//        dd($partner_data);
+
         if ($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
             $user_data['userType'] = 'partner';
         } else if ($user_data['userType'] != 'admin') {
@@ -97,8 +96,8 @@ class AuthenticatedSessionController extends Controller
                     $user->name = $user_data['name'];
                     $user->email = $user_data['email'];
                     $user->password = Hash::make($user_data['password']);
-                    $role = $user_resp['userType'];
-                    if($user_resp['userType'] == "User" || $user_resp['userType'] == "user") {
+                    $role = $user_data['userType'] ?? '';
+                    if($user_data['userType'] == "User" || $user_data['userType'] == "user") {
                         $role = 'coordinator';
                     }
                     $user->role = $role;
