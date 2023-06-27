@@ -97,7 +97,7 @@ class ProposeEventController extends Controller
                     'name' => $request['name'],
                     'email' => $request['email'],
                     'phone' => $request['phone'],
-                    'password' => $request['password'],
+                    'pass' => $request['password'],
                     'gender' => $request['gender']
                 ]);
 
