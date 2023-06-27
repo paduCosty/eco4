@@ -17,11 +17,10 @@ h1, h2, h3 {
 }
 
 input[type='text'], input[type='email'], input[type='checkbox'] {
-    border: 1px solid #F6F4F4!important;
+    border: 1px solid #F6F4F4 !important;
 }
 
-.partner-logo
-{
+.partner-logo {
     background: #F8F8F8;
     border-radius: 6px;
 }
@@ -85,6 +84,7 @@ img, svg {
     margin-top: -21px;
     padding-top: 7px;
 }
+
 #bio-logo1 {
     max-width: 414px;
     font-style: normal;
@@ -113,7 +113,7 @@ img, svg {
     line-height: 140%;
     text-align: center;
     letter-spacing: -0.5px;
-    color:rgb(150, 149, 149);
+    color: rgb(150, 149, 149);
     margin-top: 6px;
     margin-bottom: 31px;
 }
@@ -304,7 +304,7 @@ footer {
     font-size: 17px;
     line-height: 120%;
     /* letter-spacing: -0.4px; */
-    color: #FFFFFF!important;
+    color: #FFFFFF !important;
     display: inline-block;
     max-width: 133px;
     max-height: 34px;
@@ -353,7 +353,7 @@ footer {
     width: 275px;
     height: 24px;
     background: #FFFFFF;
-    border: 1px solid #F6F4F4!important;
+    border: 1px solid #F6F4F4 !important;
     border-radius: 4px;
     margin-bottom: 11px;
     box-sizing: border-box;
@@ -373,22 +373,21 @@ footer {
     width: 133px;
     height: 24px;
     background: #FFFFFF;
-    border: 1px solid #F6F4F4!important;
+    border: 1px solid #F6F4F4 !important;
     border-radius: 4px;
 }
 
 .input-number-of-seats-eco4 {
     box-sizing: border-box;
     background: #FFFFFF;
-    border: 1px solid #F6F4F4!important;
+    border: 1px solid #F6F4F4 !important;
     border-radius: 4px;
     width: 100px;
     height: 24px;
 }
 
 .row > input.input-text-eco4,
-.row > input.eco-input-text-modal.input-text-eco4
-{
+.row > input.eco-input-text-modal.input-text-eco4 {
     width: 275px;
     height: 24px;
 }
@@ -452,7 +451,7 @@ footer {
     font-size: 16px;
     line-height: 120%;
     letter-spacing: -0.4px;
-    color:rgb(150, 149, 149);
+    color: rgb(150, 149, 149);
     max-width: 226px;
 }
 
@@ -462,7 +461,7 @@ footer {
     font-size: 12px;
     /* line-height: 140%; */
     /* letter-spacing: -0.3px; */
-    color:rgb(150, 149, 149) /**/
+    color: rgb(150, 149, 149) /**/
 }
 
 .movila-select-group {
@@ -487,7 +486,7 @@ footer {
 .company-package-modal-textarea {
     box-sizing: border-box;
     background: #FFFFFF;
-    border: 1px solid #F6F4F4!important;
+    border: 1px solid #F6F4F4 !important;
     border-radius: 4px;
     width: 275px;
     height: 102px;
@@ -496,7 +495,7 @@ footer {
 .donations-message-input {
     box-sizing: border-box;
     background: #FFFFFF;
-    border: 1px solid #F6F4F4!important;
+    border: 1px solid #F6F4F4 !important;
     border-radius: 4px;
 }
 
@@ -587,7 +586,7 @@ footer {
     border: 1px solid #EFEFEF;
     border-radius: 7px;
     margin: 5px;
-    font-size:  12px;
+    font-size: 12px;
     /*  font-weight: bolder; */
     display: none;
 }

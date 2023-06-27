@@ -9,7 +9,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header close-modal">
-                        <h3 class="modal-title eco-proposal-title form-info-text">Propunere acțiune de ecologizare</h3>
+                        <h3 class="modal-title form-info-text">Propunere acțiune de ecologizare</h3>
                         <div class="modal-close-text-container ">
                             <button type="button" class="close-modal-button fs-5" style="color: #a00404"
                                     data-bs-dismiss="modal" aria-label="Close" id="close-modal-4">X
@@ -195,6 +195,7 @@
                                                 </div>
                                             </div>
 
+                                            <h3 class="modal-title form-info-text">Selecteaza unul din punctele existente pe harta, unde iti propunem organizarea unei actiuni de ecologizare.</h3>
 
                                             <div class="form-group">
                                                 <div id="map"></div>
