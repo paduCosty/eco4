@@ -144,13 +144,13 @@
         {{--            </div> --}}
         {{--        </div> --}}
         <div class="container">
-            <div class="row">
-                <div class="col-12 mb-4 text-gray">
-                    <h2 id="next-edition-title" class="common-titles">Următoarea ediție <span
-                            id="next-edition-title-interval"></span>
-                    </h2>
-                </div>
-            </div>
+{{--            <div class="row">--}}
+{{--                <div class="col-12 mb-4 text-gray">--}}
+{{--                    <h2 id="next-edition-title" class="common-titles">Următoarea ediție <span--}}
+{{--                            id="next-edition-title-interval"></span>--}}
+{{--                    </h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -186,7 +186,7 @@
                     <div class="mb-3 col-md-3">
                         <select name="region_id" class="form-control input-normal select-location text-dark fs-"
                                 id="propose_regions_home" required>
-                            <option value="">Judet</option>
+                            <option value="">Selecteaza Judet</option>
                             @foreach ($accepted_regions as $region)
                                 <option value="{{ $region->id }}"
                                         @if(isset($share_link_data['region_id']) && $region->id == $share_link_data['region_id']) selected @endif>{{ $region->name }}</option>

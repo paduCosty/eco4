@@ -17,6 +17,14 @@
                         <p><strong>Email instituție:</strong> <span id="institution-email"></span></p>
                         <p><strong>Telefon instituție:</strong> <span id="institution-phone"></span></p>
                     </div>
+
+                    <div class="coordinator-details">
+                        <h2>Detalii coordonator</h2>
+                        <p><strong>Nume coordonator:</strong> <span id="coordinator-name"></span></p>
+                        <p><strong>Email coordonator:</strong> <span id="coordinator-email"></span></p>
+                        <p><strong>Telefon coordonator:</strong> <span id="coordinator-phone"></span></p>
+                    </div>
+
                     <div class="event-details">
                         <h2>Detalii eveniment</h2>
                         <p><strong>Adresă:</strong> <span id="event-address"></span></p>
@@ -40,15 +48,24 @@
             type: 'GET',
             success: function (response) {
                 response = response.data;
+                /*institution data*/
+                $('#institution-name').text(response.institution_name);
+                $('#institution-email').text(response.institution_email);
+                $('#institution-phone').text(response.institution_phone)
+
+                /*coordinator data*/
+                $('#coordinator-name').text(response.coordinator_name);
+                $('#coordinator-email').text(response.coordinator_email);
+                $('#coordinator-phone').text(response.coordinator_phone)
+                /*event data*/
                 $('#event-description').text(response.description);
                 $('#event-address').text(response.address);
                 $('#event-status').text(response.status);
                 $('#event-due-date').text(response.due_date);
                 $('#event-relief-type').text(response.relief_type);
                 $('#event-volunteer-size').text(response.size_volunteer_id);
-                $('#institution-name').text(response.institution_name);
-                $('#institution-email').text(response.institution_email);
-                $('#institution-phone').text(response.institution_phone);
+
+;
             },
             error: function (xhr, status, error) {
 

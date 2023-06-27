@@ -201,11 +201,13 @@ class ProposeEventController extends Controller
                     'institution_name' => $partner['name'] ?? '',
                     'institution_phone' => $partner['phone'] ?? '',
                     'institution_email' => $partner['email'] ?? '',
-
                 ];
             }
 
             $data += [
+                'coordinator_name' => $userEventLocation->user->name,
+                'coordinator_phone' => $userEventLocation->user->phone,
+                'coordinator_email' => $userEventLocation->user->email,
                 'due_date' => $userEventLocation->due_date,
                 'description' => $userEventLocation->description,
                 'address' => $userEventLocation->eventLocation->address,

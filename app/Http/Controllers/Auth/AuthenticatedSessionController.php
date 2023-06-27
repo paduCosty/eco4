@@ -85,6 +85,7 @@ class AuthenticatedSessionController extends Controller
                     // User already exists, update their record
                     $user->id = $user_data['id'] ?? '';
                     $user->name = $user_data['name'] ?? '';
+                    $user->phone = $user_data['phone'] ?? '';
                     $user->password = Hash::make($user_data['password'] ?? '');
                     $user->role = $user_data['userType'] ?? 'coordinator';
                     $user->save();
@@ -94,6 +95,7 @@ class AuthenticatedSessionController extends Controller
                     $user = new User;
                     $user->id = $user_data['id'];
                     $user->name = $user_data['name'];
+                    $user->phone = $user_data['phone'];
                     $user->email = $user_data['email'];
                     $user->password = Hash::make($user_data['password']);
                     $role = $user_data['userType'] ?? '';
