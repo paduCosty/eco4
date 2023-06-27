@@ -27,7 +27,9 @@
 
                                                 <ul class="how-it-works ">
                                                     <li class="text-gray fs-6">
-                                                        Pentru a participa la acțiunea de ecologizare, te poți înscrie completând formularul de mai jos. În cazul în care nu ai un cont, poți crea unul chiar acum.
+                                                        Pentru a participa la acțiunea de ecologizare, te poți înscrie
+                                                        completând formularul de mai jos. În cazul în care nu ai un
+                                                        cont, poți crea unul chiar acum.
                                                     </li>
 
                                                     <li class="text-gray fs-6">
@@ -220,8 +222,10 @@
                                                     <input type="checkbox" name="terms_site" value="1" required/>
                                                     <label class="fs-6" for="eco-proposal-modal-check-1">Sunt
                                                         de acord cu</label>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#tandc"
-                                                       style="color: #A6CE39;">Termenii
+                                                    <a href="#"
+                                                       id="term_from_prop_modal"
+                                                       style="color: #A6CE39;"
+                                                    >Termenii
                                                         și Condițiile acestui</a>
                                                     site.
                                                 </div>
@@ -235,10 +239,14 @@
                                                     <label style="display: inline;"
                                                            for="eco-proposal-modal-check-2">Sunt
                                                         de acord cu</label>
-                                                    <a href="#" data-bs-toggle="modal"
-                                                       data-bs-target="#workshop" style="color: #A6CE39;">Termenii și
+                                                    <a href="#"
+                                                       style="color: #A6CE39;"
+                                                       id="workshop-propose-modal"
+                                                    >
+                                                        Termenii și
                                                         Condițiile de
-                                                        participare</a>
+                                                        participare
+                                                    </a>
                                                     la workshop-ul de ecologizare.
                                                 </div>
                                             </div>
@@ -253,9 +261,11 @@
                                                     <label style="display: inline;" style="display: inline;"
                                                            for="eco-proposal-modal-check-3">Sunt de acord
                                                         cu </label>
-                                                    <a href="#" data-bs-toggle="modal"
-                                                       data-bs-target="#contract" style="color: #A6CE39;;">Contractul
-                                                        de voluntariat.</a>
+                                                    <a href="#"
+                                                            id="volunteering_from_prop_modal"
+                                                       style="color: #A6CE39;;">
+                                                        Contractul de voluntariat.
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -278,3 +288,49 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        //open terms and hidde propose modal
+        $("#term_from_prop_modal").click(function () {
+            $("#proposalModal").modal("hide");
+            $("#tandc").addClass("show-propose-modal");
+            $("#tandc").modal("show");
+        });
+
+        $("#tandc").on("hidden.bs.modal", function () {
+            if ($("#tandc").hasClass("show-propose-modal")) {
+                $("#proposalModal").modal("show");
+                $("#tandc").removeClass("show-propose-modal");
+            }
+        });
+
+        /*open workshop contract*/
+        $("#workshop-propose-modal").click(function () {
+            $("#proposalModal").modal("hide");
+            $("#workshop").addClass("show-propose-modal");
+            $("#workshop").modal("show");
+        });
+
+        $("#workshop").on("hidden.bs.modal", function () {
+            if ($("#workshop").hasClass("show-propose-modal")) {
+                $("#proposalModal").modal("show");
+                $("#workshop").removeClass("show-propose-modal");
+            }
+        });
+
+
+        /*open volunteering contract*/
+        $("#volunteering_from_prop_modal").click(function () {
+            $("#proposalModal").modal("hide");
+            $("#contract").addClass("show-propose-modal");
+            $("#contract").modal("show");
+        });
+
+        $("#contract").on("hidden.bs.modal", function () {
+            if ($("#contract").hasClass("show-propose-modal")) {
+                $("#proposalModal").modal("show");
+                $("#contract").removeClass("show-propose-modal");
+            }
+        });
+    });
+</script>
