@@ -237,7 +237,7 @@ class ProposeEventController extends Controller
             ];
         }
 
-        $count_events = UserEventLocation::where('status')->count();
+        $count_events = UserEventLocation::where('status', 'aprobat')->count();
 
         $events_regions = EventLocation::with(['city.region', 'usersEventLocations'])
             ->select('cities_id')
