@@ -186,7 +186,7 @@
                         <select name="region_id" class="form-control input-normal select-location text-dark fs-"
                                 id="propose_regions_home" required>
                             <option value="">Judet</option>
-                            @foreach ($regions as $region)
+                            @foreach ($accepted_regions as $region)
                                 <option value="{{ $region->id }}"
                                         @if(isset($share_link_data['region_id']) && $region->id == $share_link_data['region_id']) selected @endif>{{ $region->name }}</option>
                             @endforeach

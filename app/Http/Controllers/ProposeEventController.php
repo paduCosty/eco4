@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\ProposeEventMail;
+use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\User;
@@ -51,10 +52,7 @@ class ProposeEventController extends Controller
             $eventLocations = $eventLocations->orderBy('id', 'DESC')
                 ->paginate(10);
         }
-//         dd($eventLocations);
 
-//tre sa modific in model
-//        dd($eventLocations->toArray());
 
         return view('admin.propose-event.index', compact('eventLocations',));
     }
@@ -239,10 +237,26 @@ class ProposeEventController extends Controller
             ];
         }
 
-        $count_events = UserEventLocation::where('status', 'aprobat')->count();
+        $count_events = UserEventLocation::where('status')->count();
+
+        $events_regions = EventLocation::with(['city.region', 'usersEventLocations'])
+            ->select('cities_id')
+            ->get()
+            ->pluck('city.region')
+            ->unique();
+
+        $accepted_regions = EventLocation::with(['city.region', 'usersEventLocations'])
+            ->select('cities_id')
+            ->whereHas('usersEventLocations', function ($query) {
+                $query->where('status', 'aprobat');
+            })
+            ->get()
+            ->pluck('city.region')
+            ->unique();
+
         $regions = Region::all();
 
-        return view('propose-event.index', compact('count_events', 'regions', 'share_link_data'));
+        return view('propose-event.index', compact('count_events', 'regions', 'events_regions', 'accepted_regions', 'share_link_data'));
     }
 
     public function approve_or_decline_propose_event(Request $request)

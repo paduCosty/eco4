@@ -174,7 +174,7 @@
                                                             class="form-control input-normal select-location text-gray fs-6"
                                                             id="propose_regions_modal" required>
                                                         <option value="">Judet</option>
-                                                        @foreach ($regions as $region)
+                                                        @foreach ($events_regions as $region)
                                                             <option value="{{ $region->id }}">{{ $region->name }}
                                                             </option>
                                                         @endforeach
