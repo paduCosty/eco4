@@ -169,19 +169,19 @@
                     <ul>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#aboutUsModal">Despre proiect</a>
+                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#aboutUsModal">Despre proiect</a>
                         </li>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#contactModal">Contact</a>
                         </li>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#tandc">Termeni și condiții</a>
+                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#tandc">Termeni și condiții</a>
                         </li>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#pandc">Politica de
+                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#pandc">Politica de
                                 confidențialitate</a>
                         </li>
                     </ul>

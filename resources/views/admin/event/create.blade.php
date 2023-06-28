@@ -74,10 +74,12 @@
                             <input class="form-control fs-6" readonly name="address" id="pin_address">
                         </div>
 
-                        <div class="pull-right">
-                            <button type="submit" class="form-submit fs-5"
-                                id="volunteer-proposal-add-button"> Send</button>
-
+                        <div class="row form-group">
+                            <div class="col-sm-12 text-end">
+                                <button type="submit" id="volunteer-proposal-add-button"
+                                        class="form-submit modal-register-button">Salveaza loc
+                                </button>
+                            </div>
                         </div>
 
                     </div>

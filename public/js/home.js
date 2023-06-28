@@ -149,9 +149,20 @@ function initMapEnrol(lat, lng) {
 
     const map = new google.maps.Map(document.getElementById("enrol_map"), {
         zoom: zoom,
+        mapTypeId: google.maps.MapTypeId.HYBRID, // Setarea modului hibrid (satelit cu străzi și etichete)
         center: {
             lat: lat,
             lng: lng
+        },
+        mapTypeControl: true, // Afișarea controlului pentru selectarea modului de vizualizare
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_RIGHT,
+            mapTypeIds: [
+                google.maps.MapTypeId.HYBRID,
+                google.maps.MapTypeId.SATELLITE,
+                google.maps.MapTypeId.ROADMAP
+            ]
         },
     });
 
@@ -162,5 +173,5 @@ function initMapEnrol(lat, lng) {
         },
         map: map,
     });
-
 }
+

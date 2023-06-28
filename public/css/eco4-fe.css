@@ -1,6 +1,7 @@
 body {
     font-family: 'Inter', sans-serif;
-    background: #ffffff;
+    background: #ffffff !important;
+    overflow-x: hidden;
 }
 
 .spacing {
@@ -482,10 +483,7 @@ a {
 }
 
 .footer-menu ul li a {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    color: #A6CE39;
+    font-size: 12px !important;
 }
 
 .footer-copyright p {
@@ -1058,4 +1056,14 @@ label {
     color: green;
     text-decoration: none;
     padding-left: 5px;
+}
+
+.link-style {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    align-items: center;
+    color: #A6CE39;
 }

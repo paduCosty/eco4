@@ -129,15 +129,24 @@
 
             const map = new google.maps.Map(document.getElementById("create_event_map"), {
                 zoom: zoom,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
                 center: {
                     lat: lat,
                     lng: lng
                 },
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_RIGHT,
+                    mapTypeIds: [
+                        google.maps.MapTypeId.HYBRID,
+                        google.maps.MapTypeId.SATELLITE,
+                        google.maps.MapTypeId.ROADMAP
+                    ]
+                },
             });
 
             const marker = new google.maps.Marker({
-                // remove marker
-                // position: {lat: lat, lng: lng},
                 map: map,
             });
 
@@ -161,8 +170,8 @@
                     }
                 });
             });
-
         }
+
 
         /*create edit form*/
         $('.edit_event_button').click(function () {
@@ -193,9 +202,20 @@
 
             const map = new google.maps.Map(document.getElementById("custom_map"), {
                 zoom: 13,
+                mapTypeId: google.maps.MapTypeId.HYBRID, // Setarea modului hibrid (satelit cu străzi și etichete)
                 center: {
                     lat: lat,
                     lng: lng
+                },
+                mapTypeControl: true, // Afișarea controlului pentru selectarea modului de vizualizare
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_RIGHT,
+                    mapTypeIds: [
+                        google.maps.MapTypeId.HYBRID,
+                        google.maps.MapTypeId.SATELLITE,
+                        google.maps.MapTypeId.ROADMAP
+                    ]
                 },
             });
 
@@ -206,6 +226,7 @@
                 },
                 map: map,
             });
+
             const geocoder = new google.maps.Geocoder();
 
             map.addListener("click", (event) => {
@@ -226,7 +247,6 @@
                     }
                 });
             });
-
         }
 
         function initializeMaps() {

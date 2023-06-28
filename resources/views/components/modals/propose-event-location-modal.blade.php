@@ -157,8 +157,7 @@
                                                 @endif
                                                 <div class="mb-3 col-md-6">
                                                     <label
-                                                        class="col-form-label form-modal-label text-gray fs-6">Selecteaza
-                                                        Data: </label>
+                                                        class="col-form-label form-modal-label text-gray fs-6">Propune data pentru actiunea de ecologizare: </label>
                                                     <input type="date"
                                                            class="text-gray fs-6 form-control input-normal "
                                                            name="due_date" required>
@@ -195,7 +194,7 @@
                                                 </div>
                                             </div>
 
-                                            <h3 class="modal-title form-info-text">Selecteaza unul din punctele existente pe harta, unde iti propunem organizarea unei actiuni de ecologizare.</h3>
+                                            <label class="col-form-label form-modal-label text-gray fs-6">Selecteaza unul din punctele existente pe harta, unde iti propunem organizarea unei actiuni de ecologizare.</label>
 
                                             <div class="form-group">
                                                 <div id="map"></div>

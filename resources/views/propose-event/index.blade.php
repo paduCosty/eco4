@@ -26,7 +26,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-12 text-warp">
                         <div class="text-start" id="bio-logo">
                             <p>
-                                <a class="common-link" href="#">eco4</a> este acțiunea dedicată naturii,
+                                <a class="link-style" href="#">eco4</a> este acțiunea dedicată naturii,
                                 îndemnul la educație adresat oamenilor, expresia unității și este dorința de implicare
                                 in
                                 comunitate. <br/><br/>
@@ -489,7 +489,7 @@
                             <div class="slider-wrap">
                                 <h2 class="common-titles">Despre Eco4</h2>
                                 <p>
-                                    <a href="#" style="color: #A6CE39;">Eco4</a> este acțiunea dedicată
+                                    <a href="#" class="link-style">Eco4</a> este acțiunea dedicată
                                     naturii,
                                     îndemnul la educație adresat oamenilor, expresia unității și este dorința de
                                     implicare în tot acest proces.
@@ -526,14 +526,8 @@
                                     <h2 class="common-titles" style="margin-bottom: 0;">Donează acum!</h2>
 
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#donateModal"
-                                       class="donation-text"
-                                       style="font-family: 'Inter';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 14px;
-                        line-height: 17px;
-                        align-items: center;
-                        color: #A6CE39;">
+                                       class="donation-text link-style"
+                                    >
                                         Click aici!
                                     </a>
                                 </div>

@@ -56,11 +56,16 @@
                                 </span>
                             @enderror
                         </div>
-
-
                     </div>
 
-                    <button type="submit" class="form-submit fs-5"> Send</button>
+                    <div class="row form-group">
+                        <div class="col-sm-12 text-end">
+                            <button type="submit" id="volunteer-proposal-add-button"
+                                    class="form-submit modal-register-button">Salveaza
+                            </button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
