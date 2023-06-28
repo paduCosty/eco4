@@ -23,10 +23,10 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-12 text-warp">
                         <div class="text-start" id="bio-logo">
                             <p>
-                                <a class="common-link" href="https://eco4.ro">eco4</a> este acțiunea dedicată naturii,
+                                <a class="common-link" href="#">eco4</a> este acțiunea dedicată naturii,
                                 îndemnul la educație adresat oamenilor, expresia unității și este dorința de implicare
                                 in
                                 comunitate. <br/><br/>
