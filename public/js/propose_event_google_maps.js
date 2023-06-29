@@ -13,7 +13,6 @@ $(document).ready(function () {
             },
 
             success: function (response) {
-                console.log(response);
                 var options = '';
                 $.each(response.data, function (index, value) {
                     options += `<option class="region_cities_modal" lat="${value.latitude}" lng="${value.longitude}" value="${value.id}">${value.name}</option>`;
@@ -24,6 +23,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.log(xhr.responseText);
+                alert(error);
             }
         });
     });
@@ -83,6 +83,7 @@ function initMapPropose(data) {
     let lat = 44.439663;
     let lng = 26.096306;
     let zoom = 7;
+    let markers = [];
 
     if (data) {
         zoom = 12;
@@ -116,6 +117,8 @@ function initMapPropose(data) {
                 position: new google.maps.LatLng(location.latitude, location.longitude)
             });
 
+            markers.push(marker);
+
             marker.addListener('click', function () {
                 if (selectedMarker !== null) {
                     selectedMarker.setIcon(null);
@@ -142,6 +145,14 @@ function initMapPropose(data) {
                     </style>
                 `);
             });
+        }
+
+        if (markers.length > 0) {
+            const bounds = new google.maps.LatLngBounds();
+            markers.forEach(marker => {
+                bounds.extend(marker.getPosition());
+            });
+            map.fitBounds(bounds);
         }
     }
 }
