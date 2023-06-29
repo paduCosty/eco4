@@ -612,6 +612,7 @@ input, select {
     font-weight: 400 !important;
     font-size: 12px !important;
     color: #B9B9B9 !important;
+    background-color: #FFFFFF !important;
 }
 
 @media only screen and (max-width: 575px) {
@@ -833,4 +834,7 @@ input, select {
     .main-count-action div {
         width: 100%;
     }
+}
+.custom-modal-width .modal-dialog {
+    max-width: 650px;
 }
