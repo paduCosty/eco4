@@ -62,26 +62,28 @@ class CityController extends Controller
     public function approved_events(Request $request)
     {
         $region_id = $request->region_id;
+        $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat');
         if ($region_id) {
-            $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat')
-                ->whereHas('eventLocation.city', function ($query) use ($region_id) {
-                    $query->where('region_id', $region_id);
-                })
-                ->with([
-                    'eventLocation:id,name,cities_id,size_volunteer_id,relief_type,address',
-                    'eventLocation.city:id,name,region_id',
-                    'eventLocation.city.region:id,name',
-                    'eventLocation.sizeVolunteer:id,name',
-                ])
-                ->join('event_locations', 'users_event_locations.event_location_id', '=', 'event_locations.id')
-                ->join('size_volunteers', 'event_locations.size_volunteer_id', '=', 'size_volunteers.id')
-                ->select(
-                    'users_event_locations.*',
-                    'size_volunteers.name as size_volunteer_name',
-                )
-                ->get();
+            $approved_events = $approved_events->whereHas('eventLocation.city', function ($query) use ($region_id) {
+                $query->where('region_id', $region_id);
+            });
+        }
 
-//            dd($approved_events->toArray());
+        $approved_events = $approved_events->with([
+            'eventLocation:id,name,cities_id,size_volunteer_id,relief_type,address',
+            'eventLocation.city:id,name,region_id',
+            'eventLocation.city.region:id,name',
+            'eventLocation.sizeVolunteer:id,name',
+        ])
+            ->join('event_locations', 'users_event_locations.event_location_id', '=', 'event_locations.id')
+            ->join('size_volunteers', 'event_locations.size_volunteer_id', '=', 'size_volunteers.id')
+            ->select(
+                'users_event_locations.*',
+                'size_volunteers.name as size_volunteer_name',
+            )
+            ->get();
+
+        if ($approved_events) {
             $response = array(
                 'status' => 'success',
                 'message' => 'Cererea AJAX a fost procesată cu succes!',
@@ -93,7 +95,6 @@ class CityController extends Controller
                 'message' => 'Ceva nu a mers',
             );
         }
-
         return response()->json($response);
     }
 

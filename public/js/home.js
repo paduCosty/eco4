@@ -35,22 +35,21 @@ $(document).ready(function () {
         });
     });
 });
+get_region_events();
 
-function get_region_events(region_id, event_id = null) {
+function get_region_events(region_id = null, event_id = null) {
     $(document).ready(function () {
+        $.ajax({
+            url: APP_URL + '/approved-events/' + region_id,
+            type: 'Get',
+            data: {region_id: region_id},
 
-        if (region_id) {
-            $.ajax({
-                url: APP_URL + '/approved-events/' + region_id,
-                type: 'Get',
-                data: {region_id: region_id},
-
-                success: function (response) {
-                    $('.remove-card, .change-event-place-title').remove();
-                    let event = `<h2 id="next-edition-title" class="common-titles change-event-place-title">Alege locul de desfasurare al actiunii din localitatea selectata</h2>`;
-                    if (response.data.length) {
-                        $.each(response.data, function (index, value) {
-                            event += `
+            success: function (response) {
+                $('.remove-card, .change-event-place-title').remove();
+                let event = `<h2 id="next-edition-title" class="common-titles change-event-place-title">Alege locul de desfasurare al actiunii din localitatea selectata</h2>`;
+                if (response.data.length) {
+                    $.each(response.data, function (index, value) {
+                        event += `
                             <div class="col-12 col-md-4 mb-3 remove-card ">
                                 <div class="slider-wrap">
                                     <div class="slider-icon float-start">
@@ -96,26 +95,25 @@ function get_region_events(region_id, event_id = null) {
                                     </div>
                                 </div>
                             </div>`
-                            if (event_id === value.id) {
-                                $('#enrollModalGeneral').modal('show');
-                                enrol_event_data(value.id);
-                            }
+                        if (event_id === value.id) {
+                            $('#enrollModalGeneral').modal('show');
+                            enrol_event_data(value.id);
+                        }
 
-                        });
+                    });
 
 
-                    } else {
-                        event += `<h3 id="next-edition-title" class="remove-card common-titles">Nici un eveniment in judetul selectat</h3>`
-                    }
-
-                    $('#eco-actions-container').append(event);
-
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseText);
+                } else {
+                    event += `<h3 id="next-edition-title" class="remove-card common-titles">Nici un eveniment in judetul selectat</h3>`
                 }
-            });
-        }
+
+                $('#eco-actions-container').append(event);
+
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
     });
 }
 
