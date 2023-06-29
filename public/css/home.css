@@ -113,7 +113,6 @@ img, svg {
     line-height: 140%;
     text-align: center;
     letter-spacing: -0.5px;
-    color: rgb(150, 149, 149);
     margin-top: 6px;
     margin-bottom: 31px;
 }
@@ -606,7 +605,7 @@ footer {
     margin-top: -2px;
 }
 
-input, select {
+select {
     font-family: 'Inter' !important;
     font-style: normal !important;
     font-weight: 400 !important;
@@ -771,6 +770,7 @@ input, select {
     .donate-amount-container {
         width: 100%;
         text-align: center;
+        background-color: red !important;
     }
 
     .step-card {
@@ -835,6 +835,7 @@ input, select {
         width: 100%;
     }
 }
+
 .custom-modal-width .modal-dialog {
     max-width: 650px;
 }

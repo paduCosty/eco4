@@ -183,8 +183,8 @@
 
             <div class="form-group row">
                 <div class="row justify-content-center">
-                    <div class="mb-3 col-md-3">
-                        <select name="region_id" class="form-control input-normal select-location text-dark fs-"
+                    <div class="mb-3 col-md-3 special-input-wrap">
+                        <select name="region_id" class="form-control input-normal select-locatio fs-"
                                 id="propose_regions_home" required>
                             <option value="">Selecteaza Judet</option>
                             @foreach ($accepted_regions as $region)
@@ -192,6 +192,14 @@
                                         @if(isset($share_link_data['region_id']) && $region->id == $share_link_data['region_id']) selected @endif>{{ $region->name }}</option>
                             @endforeach
                         </select>
+                        <div class="svg-wrap-input">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
+                                    fill="#A6CE39"></path>
+                            </svg>
+                        </div>
                     </div>
 
                     @if(isset($share_link_data['event_id']))

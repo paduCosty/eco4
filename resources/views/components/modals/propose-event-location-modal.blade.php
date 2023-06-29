@@ -26,19 +26,19 @@
                                                 <h6 class="modal-title mb-2 fs-5">Cum funcționează:</h6>
 
                                                 <ul class="how-it-works ">
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         Pentru a participa la acțiunea de ecologizare, te poți înscrie
                                                         completând formularul de mai jos. În cazul în care nu ai un
                                                         cont, poți crea unul chiar acum.
                                                     </li>
 
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         Noi analizăm propunerea ta. Dacă sunt și alte acțiuni în
                                                         zonă
                                                         este posibil să le cumulăm.
                                                     </li>
 
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         Dacă acțiunea ta a fost selectată, vei semna un contract de
                                                         voluntariat cu noi, iar ulterior te ținem la curent cu
                                                         situația
@@ -51,7 +51,7 @@
                                                         vom știi că voluntarii au venit din partea ta.
                                                     </li>
 
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         Vei primi o parolă cu care te vei loga pe
                                                         platformă
                                                         pentru a vedea numărul voluntarilor, situația acestora și
@@ -59,26 +59,26 @@
                                                         despre ei.
                                                     </li>
 
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         Cu câteva zile înainte de acțiune, vei primi saci de gunoi
                                                         și
                                                         mănuși.
                                                     </li>
 
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         În ziua acțiunii, vei scana qr code-urile voluntarilor
                                                         participanți la acțiune. În baza acestui scan ei vor primi
                                                         diplomele de participare și
                                                         punctele de implicare socială.
                                                     </li>
 
-                                                    <li class="text-gray fs-6">
+                                                    <li class="">
                                                         Vei face poze la acțiunea pe care o coordonezi, iar acestea
                                                         se
                                                         vor posta pe pagina de Facebook și nu numai.
                                                     </li>
 
-                                                    <li class="text-gray fs-6 mb-2">
+                                                    <li class=" mb-2">
                                                         Vei primii un număr de puncte de implicare socială,
                                                         respectiv
                                                         diploma de coordonator la interval de maxim o săptămână de
@@ -87,7 +87,7 @@
                                                     </li>
 
 
-                                                    <span class="text-gray fs-5">Ce părere
+                                                    <span >Ce părere
                                                         ai? Te bagi la o treabă de
                                                         lungă durată?</span>
                                                 </ul>
@@ -113,43 +113,44 @@
                                                 @if(!auth()->check())
                                                     <div class="mb-3 col-md-6">
                                                         <label for="name"
-                                                               class="col-form-label form-modal-label text-gray fs-6">Nume,
+                                                               class="col-form-label form-modal-label">Nume,
                                                             Prenume</label>
                                                         <span id="eroare_nume_voluntar_propus"></span>
                                                         <input type="text"
-                                                               class="form-control input-normal text-gray fs-6"
+                                                               class="form-control-plaintext input-normal"
                                                                name="name" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
                                                         <label for="email"
-                                                               class="col-form-label form-modal-label text-gray fs-6">Email:</label>
+                                                               class="col-form-label form-modal-label">Email:</label>
                                                         <input type="text"
-                                                               class="form-control input-normal text-gray fs-6"
+                                                               class="form-control-plaintext input-normal"
                                                                name="email" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
                                                         <label for="phone"
-                                                               class="col-form-label form-modal-label text-gray fs-6">Telefon:</label>
+                                                               class="col-form-label form-modal-label ">Telefon:</label>
                                                         <input type="text"
-                                                               class="form-control input-normal text-gray fs-6"
+                                                               class="form-control-plaintext input-normal"
                                                                name="phone" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
                                                         <label for="password"
-                                                               class="col-form-label form-modal-label text-gray fs-6">Password:</label>
+                                                               class="col-form-label form-modal-label ">Password:</label>
                                                         <input type="password"
-                                                               class="form-control input-normal text-gray fs-6"
+                                                               class="form-control-plaintext input-normal"
                                                                name="password" required>
                                                     </div>
 
                                                     <div class="mb-3 col-md-6">
                                                         <label for="gender"
-                                                               class="col-form-label form-modal-label text-gray fs-6">Gen:</label>
+                                                               class="col-form-label form-modal-label ">Gen:</label>
                                                         <select name="gender"
-                                                                class="form-control input-normal text-gray fs-6">
+                                                                class="form-control input-normal">
+                                                            <option value="">Selecteaza Genul</option>
                                                             <option value="masculin">Masculin</option>
                                                             <option value="feminin">Feminin</option>
                                                         </select>
@@ -157,9 +158,9 @@
                                                 @endif
                                                 <div class="mb-3 col-md-6">
                                                     <label
-                                                        class="col-form-label form-modal-label text-gray fs-6">Propune data pentru actiunea de ecologizare: </label>
+                                                        class="col-form-label form-modal-label ">Propune data pentru actiunea de ecologizare: </label>
                                                     <input type="date"
-                                                           class="text-gray fs-6 form-control input-normal "
+                                                           class="form-control-plaintext input-normal"
                                                            name="due_date" required>
                                                 </div>
                                             </div>
@@ -168,13 +169,13 @@
 
                                                 <div class=" mb-3 col-md-6">
                                                     <label for="judet_voluntar_propus"
-                                                           class="col-form-label form-modal-label text-gray fs-6">Propune
+                                                           class="col-form-label form-modal-label ">Propune
                                                         acțiune la:
                                                     </label>
                                                     <select name="region_id"
-                                                            class="form-control input-normal select-location text-gray fs-6"
+                                                            class="form-control input-normal select-location"
                                                             id="propose_regions_modal" required>
-                                                        <option value="">Judet</option>
+                                                        <option value="">Selecteaza Judet</option>
                                                         @foreach ($events_regions as $region)
                                                             <option value="{{ $region->id }}">{{ $region->name }}
                                                             </option>
@@ -184,9 +185,9 @@
 
                                                 <div class=" col-md-6 ">
                                                     <label for="judet_voluntar_propus"
-                                                           class="col-form-label form-modal-label text-gray fs-6">Localitate:
+                                                           class="col-form-label form-modal-label ">Selecteaza Localitate:
                                                     </label>
-                                                    <select class="form-control  insert-localities text-gray fs-6"
+                                                    <select class="form-control input-normal  insert-localities"
                                                             id="region_cities_modal" required>
                                                         <option value="">Localitate</option>
                                                     </select>
@@ -194,7 +195,7 @@
                                                 </div>
                                             </div>
 
-                                            <label class="col-form-label form-modal-label text-gray fs-6">Selecteaza unul din punctele existente pe harta, unde iti propunem organizarea unei actiuni de ecologizare.</label>
+                                            <label class="col-form-label form-modal-label ">Selecteaza unul din punctele existente pe harta, unde iti propunem organizarea unei actiuni de ecologizare.</label>
 
                                             <div class="form-group">
                                                 <div id="map"></div>
@@ -207,10 +208,10 @@
                                             <div id="marker_details"></div>
 
                                             <div class="mb-3 col-md-12">
-                                                <label for="" class="col-form-label form-modal-label text-gray fs-6">Descriere:
+                                                <label for="" class="col-form-label form-modal-label ">Descriere:
                                                 </label>
                                                 <textarea type="text" maxlength="500" id="textarea-details"
-                                                          class="form-control input-normal text-gray fs-6"
+                                                          class="form-control input-normal"
                                                           name="description"
                                                           required></textarea>
                                             </div>
@@ -272,7 +273,7 @@
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">
                                                     <button type="button" id="volunteer-proposal-add-button"
-                                                            class="form-submit modal-register-button">Propune
+                                                            class="form-submit">Propune
                                                     </button>
                                                 </div>
                                             </div>

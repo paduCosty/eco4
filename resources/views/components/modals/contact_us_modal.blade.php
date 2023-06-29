@@ -136,7 +136,7 @@
                                     <div class="row form-group">
                                         <div class="col-sm-12">
                                             <div class="text-end">
-                                                <button class="form-submit modal-register-button">Trimite
+                                                <button class="form-submit">Trimite
                                                 </button>
                                             </div>
                                         </div>

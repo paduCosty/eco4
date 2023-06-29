@@ -297,7 +297,7 @@
                                             <div class="row form-group">
                                                 <div class="col-12">
                                                     <div class="text-end">
-                                                        <button type="submit" class="form-submit modal-register-button">
+                                                        <button type="submit" class="form-submit">
                                                             Mă inscriu!
                                                         </button>
                                                     </div>

@@ -57,7 +57,14 @@
                             <input class="form-control fs-6 text-gray pin_address" readonly name="address">
                         </div>
                     </div>
-                    <button type="submit" class="form-submit fs-5"> Send</button>
+
+                    <div class="row form-group">
+                        <div class="col-sm-12 text-end">
+                            <button type="submit"
+                                    class="form-submit">Editeaza loc
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
