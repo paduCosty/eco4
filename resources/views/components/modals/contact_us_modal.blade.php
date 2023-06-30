@@ -127,7 +127,8 @@
                                                    name="contact-check-modal"
                                                    id="contact-check-modal"/>
                                             <label style="display: inline;" for="contact-check-modal">Sunt de acord
-                                                cu </label><a style="color: #A6CE39;">Termenii și Condițiile
+                                                cu </label><a href="#" style="color: #A6CE39;" id="term_contact_modal">Termenii
+                                                și Condițiile
                                                 acestui</a>
                                             site.
                                         </div>
@@ -150,3 +151,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        //open terms and hidde propose modal
+        $("#term_contact_modal").click(function () {
+            $("#contactModal").modal("hide");
+            $("#tandc").addClass("show-contact-modal");
+            $("#tandc").modal("show");
+        });
+
+        $("#tandc").on("hidden.bs.modal", function () {
+            if ($("#tandc").hasClass("show-contact-modal")) {
+                $("#contactModal").modal("show");
+                $("#tandc").removeClass("show-contact-modal");
+            }
+        });
+    });
+</script>

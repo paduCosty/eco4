@@ -200,7 +200,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="with_child" class="col-sm-5 col-form-label">Vin cu copii
-                                                &nbsp;<a class="add_button" title="Adauga camp"
+                                                &nbsp;<a href="#" class="add_button" title="Adauga camp"
                                                          style="text-align:right; color:#A6CE39">(Adauga
                                                     camp)</a></label>
                                             <div class="col-sm-7">
@@ -230,8 +230,8 @@
                                                     <label style="display: inline;" style="display: inline;"
                                                            for="eco-proposal-modal-check-3">Sunt de acord
                                                         cu </label>
-                                                    <a href="#" data-bs-toggle="modal"
-                                                       data-bs-target="#workshop" style="color: #A6CE39;;">Termenii și
+                                                    <a href="#" id="term_enrol_modal"
+                                                       style="color: #A6CE39;;">Termenii și
                                                         Condițiile acestui</a>
                                                     site.
                                                 </div>
@@ -249,7 +249,7 @@
                                                            for="eco-action-general-enroll-modal-check-2">Sunt de
                                                         acord
                                                         cu </label>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#workshop"
+                                                    <a href="#" id="workshop-enrol-modal"
                                                        style="color: #A6CE39;">Termenii și Condițiile de
                                                         participare</a>
                                                     la
@@ -269,7 +269,7 @@
                                                            for="eco-action-general-enroll-modal-check-3">Sunt de
                                                         acord
                                                         cu </label>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#contract"
+                                                    <a href="#" id="volunteering_from_enrol_modal"
                                                        style="color: #A6CE39;;">Contractul de voluntariat.</a>
                                                 </div>
                                             </div>
@@ -351,6 +351,49 @@
 
             dynamicFields.append(newField);
             counter++;
+        });
+
+        //open terms and hidde propose modal
+        $("#term_enrol_modal").click(function () {
+            $("#enrollModalGeneral").modal("hide");
+            $("#tandc").addClass("show-enrol-modal");
+            $("#tandc").modal("show");
+        });
+
+        $("#tandc").on("hidden.bs.modal", function () {
+            if ($("#tandc").hasClass("show-enrol-modal")) {
+                $("#enrollModalGeneral").modal("show");
+                $("#tandc").removeClass("show-enrol-modal");
+            }
+        });
+
+        /*open workshop contract*/
+        $("#workshop-enrol-modal").click(function () {
+            $("#enrollModalGeneral").modal("hide");
+            $("#workshop").addClass("show-enrol-modal");
+            $("#workshop").modal("show");
+        });
+
+        $("#workshop").on("hidden.bs.modal", function () {
+            if ($("#workshop").hasClass("show-enrol-modal")) {
+                $("#enrollModalGeneral").modal("show");
+                $("#workshop").removeClass("show-enrol-modal");
+            }
+        });
+
+
+        /*open volunteering contract*/
+        $("#volunteering_from_enrol_modal").click(function () {
+            $("#enrollModalGeneral").modal("hide");
+            $("#contract").addClass("show-enrol-modal");
+            $("#contract").modal("show");
+        });
+
+        $("#contract").on("hidden.bs.modal", function () {
+            if ($("#contract").hasClass("show-enrol-modal")) {
+                $("#enrollModalGeneral").modal("show");
+                $("#contract").removeClass("show-enrol-modal");
+            }
         });
     });
 </script>

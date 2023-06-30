@@ -288,7 +288,7 @@
                                                            name="donate-modal-check" id="donate-modal-check" required/>
                                                     <label style="display: inline;" style="display: inline;"
                                                            for="donate-modal-check">Sunt de acord cu </label>
-                                                    <a href="#" style="color: #A6CE39;">Termenii și
+                                                    <a href="#" style="color: #A6CE39;" id="term_donate_modal">Termenii și
                                                         Condițiile
                                                         acestui</a> site.
                                                 </div>
@@ -362,9 +362,22 @@
             $('.amount_box').prop('checked', false);
         });
 
+        //open terms and hidde propose modal
+        $("#term_donate_modal").click(function () {
+            $("#donateModal").modal("hide");
+            $("#tandc").addClass("show-donate-modal");
+            $("#tandc").modal("show");
+        });
+
+        $("#tandc").on("hidden.bs.modal", function () {
+            if ($("#tandc").hasClass("show-donate-modal")) {
+                $("#donateModal").modal("show");
+                $("#tandc").removeClass("show-donate-modal");
+            }
+        });
+
     });
 </script>
-{{--tre sa fac cumva cu checkbox-urile sa se trimita doar una din valorile selectate--}}
 <style>
     .active {
         border: 1px solid black !important;
