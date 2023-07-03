@@ -52,11 +52,14 @@ class AuthenticatedSessionController extends Controller
         }
 
         $user_data = json_decode($user_resp->getBody(), true);
-        if (is_array($user_data)) {
+        if (is_array($user_data) && !empty($user_data)) {
             $user_data = $user_data[0];
         } else {
+            if(empty($user_data)) {
+                $user_data = null;
+            }
             return redirect()->route('login')->withErrors([
-                'email' =>  $user_data,
+                'email' =>  $user_data ?? 'Parola incorecta sau contul nu este activ!',
             ]);
         }
         /*check user if is partner*/
