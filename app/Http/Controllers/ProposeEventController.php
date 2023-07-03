@@ -116,13 +116,14 @@ class ProposeEventController extends Controller
                 $auth_controller->store($login_request);
 
                 $validatedData += ['coordinator_id' => Auth::user()->id];
+                $validatedData['name'] = 'Propunere actiune';
                 $eventLocation = UserEventLocation::create($validatedData);
 
                 session()->flash('success', 'Datele au fost salvate cu succes!');
                 return redirect()->route('home');
             }
         }
-
+        $validatedData['name'] = 'Propunere actiune';
         $eventLocation = UserEventLocation::create($validatedData);
 
         session()->flash('success', 'Datele au fost salvate cu succes!');
@@ -300,7 +301,9 @@ class ProposeEventController extends Controller
                     'Number' => $userEventLocationArray['event_location']['size_volunteer_id'],
                     'Date' => $userEventLocationArray['due_date'],
                     'Name' => $userEventLocationArray['name'],
-                    'Status' => $status
+                    'Status' => $status,
+                    'ProjectID' => 10,
+                    'EditionID' => 25
                 ]);
 
                 if (is_numeric($response->body())) {
