@@ -73,8 +73,8 @@ Route::get('/cities-if-event-exists', [CityController::class, 'get_cities_by_eve
 Route::get('/approved-events/{region_id}', [CityController::class, 'approved_events'])
     ->name('approved-events.approved_events');
 
-Route::get('/approved-events', [CityController::class, 'approved_events'])
-    ->name('approved-events');
+//Route::get('/approved-events', [CityController::class, 'approved_events'])
+//    ->name('approved-events');
 
 Route::get('/cities_by_region_id', [CityController::class, 'get_cities_by_region_id'])
     ->name('cities_by_region_id.get_cities_by_region_id');
