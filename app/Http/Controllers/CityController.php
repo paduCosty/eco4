@@ -88,7 +88,6 @@ class CityController extends Controller
                 'status' => 'success',
                 'message' => 'Cererea AJAX a fost procesată cu succes!',
                 'data' => $approved_events,
-                'cont_data' => $approved_events->count()
             );
         } else {
             $response = array(

@@ -354,4 +354,26 @@ class ProposeEventController extends Controller
         return response()->json(['message' => false]);
     }
 
+    public function count_events_by_regions_id(Request $request)
+    {
+        $region_id = $request->region_id;
+        if ($region_id) {
+            $count_data = UserEventLocation::where('status', 'aprobat')
+                ->whereHas('eventLocation.city.region', function ($query) use ($region_id) {
+                    $query->where('id', $region_id);
+                })
+                ->count();
+
+            return response()->json([
+                'message'=> '200 success',
+                'status'=> true,
+                'count_data' => $count_data
+            ]);
+        }
+        return response()->json([
+            'message'=> '203 success',
+            'status'=> false,
+        ]);
+    }
+
 }

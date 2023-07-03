@@ -96,6 +96,8 @@ Route::post('/home/store', [ProposeEventController::class, 'store'])->name('home
 Route::get('get-event-location/{userEventLocation}', [EventLocationController::class, 'get_event_location_by_id']);
 Route::get('/generate-represent-unique-url/{userEventLocation}', [ProposeEventController::class, 'generate_unique_url']);
 
+Route::get('/take-number-of-events-by-region/{region_id}', [ProposeEventController::class, 'count_events_by_regions_id']);
+
 /*ajax calls  event locations END*/
 
 /*Ajax volunteer*/

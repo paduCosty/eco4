@@ -34,6 +34,25 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#propose_regions_home").change(function () {
+        var region_id = $(this).val();
+        if (region_id) {
+            $.ajax({
+                url: '/take-number-of-events-by-region/' + region_id,
+                type: 'Get',
+                data: {region_id: region_id},
+
+                success: function (response) {
+                    $("#eco-actions-to-county-count").html(response.count_data);
+
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    });
 });
 
 function get_region_events(region_id, event_id = null) {
@@ -106,7 +125,6 @@ function get_region_events(region_id, event_id = null) {
                     } else {
                         event += `<h3 id="next-edition-title" class="remove-card common-titles">Nici un eveniment in judetul selectat</h3>`
                     }
-                    $("#eco-actions-to-county-count").html(response.cont_data);
                     $('#eco-actions-container').append(event);
 
                 },
