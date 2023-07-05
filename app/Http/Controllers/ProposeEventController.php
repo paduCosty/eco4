@@ -290,6 +290,11 @@ class ProposeEventController extends Controller
                 if ($crm_id) {
                     $action_type = 'update_action';
                 }
+                $size = SizeVolunteers::select('required_volunteer_level')
+                    ->where('id', $userEventLocationArray['event_location']['size_volunteer_id'])
+                    ->first()
+                    ->toArray();
+
                 $response = Http::asForm()->post(env('LOGIN_URL') . $action_type, [
                     'id' => $userEventLocationArray['crm_propose_event_id'],
                     'Coordinator' => json_encode(array($userEventLocationArray['coordinator_id'])),
@@ -298,12 +303,13 @@ class ProposeEventController extends Controller
                     'Description' => $userEventLocationArray['description'],
                     'JudetID' => $userEventLocationArray['event_location']['city']['region_id'],
                     'LocationID' => $userEventLocationArray['event_location']['cities_id'],
-                    'Number' => $userEventLocationArray['event_location']['size_volunteer_id'],
+                    'Number' => $size['required_volunteer_level'],
                     'Date' => $userEventLocationArray['due_date'],
-                    'Name' => $userEventLocationArray['name'],
+                    'Name' => $userEventLocation->eventLocation->address,
                     'Status' => $status,
                     'ProjectID' => 10,
-                    'EditionID' => 25
+                    'EditionID' => 25,
+                    'Radius' => 2
                 ]);
 
                 if (is_numeric($response->body())) {

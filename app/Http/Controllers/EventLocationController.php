@@ -7,8 +7,10 @@ use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\UserEventLocation;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class EventLocationController extends Controller
 {
@@ -62,6 +64,14 @@ class EventLocationController extends Controller
             'relief_type' => 'required',
             'size_volunteer_id' => 'required',
         ]);
+
+        $crm_size_volunteers = json_decode(Http::get(env('LOGIN_URL') . '/get_volunteer_options')->getBody());
+        if ($crm_size_volunteers) {
+            foreach ($crm_size_volunteers as $key => $seize) {
+                SizeVolunteers::where('required_volunteer_level', $key)->update(['name' => $seize]);
+            }
+        }
+
         $validatedData['user_id'] = $user_id;
 
         EventLocation::create($validatedData);
