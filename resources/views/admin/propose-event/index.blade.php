@@ -33,7 +33,7 @@
 
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
-                <th>Nr.</th>
+                <th>Nr./id</th>
                 <th>Adresa</th>
                 <th>Data limită</th>
                 <th>Voluntari</th>
@@ -41,44 +41,46 @@
                 <th>Acțiuni</th>
             </tr>
             @php($i = 1)
-            @foreach ($eventLocations as $location)
+            @foreach ($eventLocations as $event)
                 <tr>
-                    <td>{{ $i }}</td>
+                    <td>{{ $i }} <a href="#" data-location_id="{{$event->event_location_id}}" class="action-button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#locations-details-modal">A#{{$event->id}}/L#{{$event->event_location_id}}</a> </td>
                     <td>
-                        {{$location->eventLocation->city->region->name}},
-                        {{ $location->eventLocation->city->name }}</td>
-                    <td width="9%">{{ $location->due_date }}</td>
+                        {{$event->eventLocation->city->region->name}},
+                        {{ $event->eventLocation->city->name }}</td>
+                    <td width="9%">{{ $event->due_date }}</td>
                     <td>
-                        @if ($location->event_registrations_count > 0)
+                        @if ($event->event_registrations_count > 0)
                             <a class="col open-volunteers-modal" type="button"
                                data-bs-toggle="modal" data-bs-target="#volunteers-modal"
-                               event_location_id="{{ $location->id }}">
-                                {{ $location->event_registrations_count }}
+                               event_location_id="{{ $event->id }}">
+                                {{ $event->event_registrations_count }}
                             </a>
                         @endif
                     </td>
                     <td>
-                        @if (($location->status != 'aprobat' && $location->status != 'in asteptare' && $location->status != 'refuzat') || auth()->user()->role === 'coordinator')
-                            {{ ucfirst($location->status) }}
+                        @if (($event->status != 'aprobat' && $event->status != 'in asteptare' && $event->status != 'refuzat') || auth()->user()->role === 'coordinator')
+                            {{ ucfirst($event->status) }}
                         @else
                             <div class="d-inline-block buttons-switch">
                                 <div class="switch-toggle switch-3 switch-candy" style="background-color: transparent">
                                     <input id="on-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                           @if ($location->status == 'acceptat') checked="checked" @endif />
+                                           @if ($event->status == 'acceptat') checked="checked" @endif />
                                     <label class="switch-status-on switch-checkbox" for="on-{{ $i }}"
-                                           location_id={{ $location->id }}>
+                                           location_id={{ $event->id }}>
                                         Acceptat
                                     </label>
 
                                     <input id="na-{{ $i }}" name="state-d-{{ $i }}" type="radio"
                                            disabled
-                                           @if ($location->status == 'in asteptare') checked="checked" @endif />
+                                           @if ($event->status == 'in asteptare') checked="checked" @endif />
                                     <label for="na-{{ $i }}" class="disabled">Asteapta</label>
 
                                     <input id="off-{{ $i }}" name="state-d-{{ $i }}" type="radio"
-                                           @if ($location->status == 'refuzat') checked="checked" @endif />
+                                           @if ($event->status == 'refuzat') checked="checked" @endif />
                                     <label class="switch-status-off switch-checkbox" for="off-{{ $i }}"
-                                           style="color:red !important" location_id={{ $location->id }}>
+                                           style="color:red !important" location_id={{ $event->id }}>
                                         Refuzat
                                     </label>
                                     <a></a>
@@ -91,18 +93,18 @@
 
                             @if(auth()->user()->role !== 'coordinator')
                                 <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
-                                   data-bs-target="#edit-propose-event-modal" location="{{ json_encode($location) }}">
+                                   data-bs-target="#edit-propose-event-modal" location="{{ json_encode($event) }}">
                                     Edit
                                 </a>
                             @endif
                             <a class="col action-button open_description_modal" type="button" data-bs-toggle="modal"
-                               data-bs-target="#details-event-modal" event_location_id="{{ $location->id }}">
+                               data-bs-target="#details-event-modal" event_location_id="{{ $event->id }}">
                                 Detalii
                             </a>
 
-                            @if($location->status == 'aprobat')
+                            @if($event->status == 'aprobat')
                                 <a type="button" class="col action-button generate-representation-link"
-                                   data-event_id="{{ $location->id }}">Reprezentati</a>
+                                   data-event_id="{{ $event->id }}">Reprezentati</a>
                             @endif
 
 

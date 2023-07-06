@@ -78,7 +78,13 @@ $(document).ready(function () {
 });
 
 let selectedMarker = null;
+$(document).ready(function () {
 
+    $('#propose-action-modal').on('shown.bs.modal', function (e) {
+        console.log('sdaf');
+        initMapPropose();
+    });
+});
 function initMapPropose(data) {
     let lat = 44.439663;
     let lng = 26.096306;
@@ -156,9 +162,147 @@ function initMapPropose(data) {
         }
     }
 }
-function initializeMaps() {
-    initMapPropose();
-    initMapEnrol();
+
+function initEditEventMap(lat = null, lng = null) {
+
+    if (!lat && !lng) {
+        return false;
+    }
+    const map = new google.maps.Map(document.getElementById("custom_map"), {
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
+        center: {
+            lat: lat,
+            lng: lng
+        },
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_RIGHT,
+            mapTypeIds: [
+                google.maps.MapTypeId.HYBRID,
+                google.maps.MapTypeId.SATELLITE,
+                google.maps.MapTypeId.ROADMAP
+            ]
+        },
+    });
+
+    const marker = new google.maps.Marker({
+        position: {
+            lat: lat,
+            lng: lng
+        },
+        map: map,
+    });
+
+    const geocoder = new google.maps.Geocoder();
+
+    map.addListener("click", (event) => {
+        $('.gps_latitude').val(event.latLng.lat());
+        $('.gps_longitude').val(event.latLng.lng());
+        marker.setPosition(event.latLng);
+
+        geocoder.geocode({
+            location: event.latLng
+        }, (results, status) => {
+            if (status === "OK" && results[0]) {
+                console.log(results[0].formatted_address);
+                $('.address_display').show();
+                $('.pin_address').val(results[0].formatted_address);
+
+            } else {
+                console.log("Geocoding failed: " + status);
+            }
+        });
+    });
 }
 
+function initCreateEventMap(lat = null, lng = null, zoom = 8) {
+    if (!lat || !lng) {
+        // return false
+        //set lat and lng to Bucharest
+        lat = 44.439663;
+        lng = 26.096306;
+    }
+
+    const map = new google.maps.Map(document.getElementById("create_event_map"), {
+        zoom: zoom,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
+        center: {
+            lat: lat,
+            lng: lng
+        },
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_RIGHT,
+            mapTypeIds: [
+                google.maps.MapTypeId.HYBRID,
+                google.maps.MapTypeId.SATELLITE,
+                google.maps.MapTypeId.ROADMAP
+            ]
+        },
+    });
+
+    const marker = new google.maps.Marker({
+        map: map,
+    });
+
+    const geocoder = new google.maps.Geocoder();
+
+    map.addListener("click", (event) => {
+        $('#gps_latitude').val(event.latLng.lat());
+        $('#gps_longitude').val(event.latLng.lng());
+        marker.setPosition(event.latLng);
+
+        geocoder.geocode({
+            location: event.latLng
+        }, (results, status) => {
+            if (status === "OK" && results[0]) {
+                console.log(results[0].formatted_address);
+                $('#address_display').show();
+                $('#pin_address').val(results[0].formatted_address);
+
+            } else {
+                console.log("Geocoding failed: " + status);
+            }
+        });
+    });
+}
+
+function initLocationDetailsMap(lat = null, lng = null) {
+    if (!lat && !lng) {
+        return false;
+    }
+    const map = new google.maps.Map(document.getElementById("details_map"), {
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
+        center: {
+            lat: lat,
+            lng: lng
+        },
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_RIGHT,
+            mapTypeIds: [
+                google.maps.MapTypeId.HYBRID,
+                google.maps.MapTypeId.SATELLITE,
+                google.maps.MapTypeId.ROADMAP
+            ]
+        },
+    });
+
+    const marker = new google.maps.Marker({
+        position: {
+            lat: lat,
+            lng: lng
+        },
+        map: map,
+        draggable: false
+    });
+
+    const geocoder = new google.maps.Geocoder();
+
+}
 

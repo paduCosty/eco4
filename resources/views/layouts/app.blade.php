@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+<!--google maps api-->
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps">
+    </script>
+<script>
+    function initializeMaps() {
+
+    }
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,12 +30,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    {{--initialize file if is in this url--}}
-    @if( Route::currentRouteName() === '/' ||  Route::currentRouteName() === 'home' || Route::currentRouteName() == 'share_link.modal')
         <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
-    @endif
 
     <script src="{{ asset('js/home.js') }}"></script>
+    @include('components.modals.location_details_modal')
 
 </head>
 <body class="d-flex flex-column min-vh-100">

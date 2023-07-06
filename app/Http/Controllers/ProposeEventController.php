@@ -38,7 +38,6 @@ class ProposeEventController extends Controller
         if (Auth::check()) {
             $user_id = Auth::id();
             $eventLocations = UserEventLocation::withCount('eventRegistrations');
-
             if (Auth::user()->role == 'partner') {
                 $eventLocations = $eventLocations->whereHas('eventLocation', function ($query) use ($user_id) {
                     $query->where('user_id', $user_id);
@@ -52,7 +51,6 @@ class ProposeEventController extends Controller
             $eventLocations = $eventLocations->orderBy('id', 'DESC')
                 ->paginate(10);
         }
-
 
         return view('admin.propose-event.index', compact('eventLocations',));
     }

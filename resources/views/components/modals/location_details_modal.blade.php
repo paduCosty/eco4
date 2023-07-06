@@ -58,7 +58,6 @@
 </style>
 
 <script>
-    $(document).ready(function () {
 
         $('#locations-details-modal').on('shown.bs.modal', function (e) {
             var button = $(e.relatedTarget);
@@ -68,7 +67,6 @@
                 url: '/admin/event-locations/' + location_id,
                 type: 'Get',
                 success: function (response) {
-                    console.log(response.data);
                     $('#details_region').val(response.data.region_name)
                     $('#details_city').val(response.data.city_name)
                     $('#details_relief_type').val(response.data.relief_type)
@@ -83,42 +81,5 @@
             });
 
         })
-
-        function initLocationDetailsMap(lat = null, lng = null) {
-            if (!lat && !lng) {
-                return false;
-            }
-            const map = new google.maps.Map(document.getElementById("details_map"), {
-                zoom: 13,
-                mapTypeId: google.maps.MapTypeId.HYBRID,
-                center: {
-                    lat: lat,
-                    lng: lng
-                },
-                mapTypeControl: true,
-                mapTypeControlOptions: {
-                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                    position: google.maps.ControlPosition.TOP_RIGHT,
-                    mapTypeIds: [
-                        google.maps.MapTypeId.HYBRID,
-                        google.maps.MapTypeId.SATELLITE,
-                        google.maps.MapTypeId.ROADMAP
-                    ]
-                },
-            });
-
-            const marker = new google.maps.Marker({
-                position: {
-                    lat: lat,
-                    lng: lng
-                },
-                map: map,
-                draggable: false
-            });
-
-            const geocoder = new google.maps.Geocoder();
-
-        }
-    });
 
 </script>

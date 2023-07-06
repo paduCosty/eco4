@@ -243,13 +243,14 @@
                     @include('components.modals.propose-event-location-modal')
 
                     <div class="col-sm-7 slider-link add-next-eco-action">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#proposalModal">Propune acțiune de
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#propose-action-modal">Propune acțiune de
                             ecologizare
                             +</a>
                     </div>
                 </div>
 
             </div>
+
 
             <!-- Eco Actions Cards -->
             <div class="form-group my-5">
