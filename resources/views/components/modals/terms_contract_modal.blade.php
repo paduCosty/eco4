@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form id="registration-form">
+                        <form id="$event">
                             <div class="container">
                                 <div class="pop-content">
                                     <div class="form-group row">

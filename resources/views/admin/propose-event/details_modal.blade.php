@@ -29,7 +29,7 @@
                         <h2>Detalii eveniment</h2>
                         <p><strong>Adresă:</strong> <span id="event-address"></span></p>
                         <p><strong>Status:</strong> <span id="event-status"></span></p>
-                        <p><strong>Data limită:</strong> <span id="event-due-date"></span></p>
+                        <p><strong>Data acțiune:</strong> <span id="event-due-date"></span></p>
                         <p><strong>Tip teren:</strong> <span id="event-relief-type"></span></p>
                         <p><strong>Număr nevoi de voluntari:</strong> <span id="event-volunteer-size"></span></p>
                         <p><strong>Descriere:</strong> <span id="event-description"></span></p>

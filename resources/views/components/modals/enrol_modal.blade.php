@@ -226,9 +226,9 @@
                                                     <input type="checkbox" value="1"
                                                            class="form-check-input"
                                                            name="terms_site"
-                                                           id="eco-proposal-modal-check-3" required/>
+                                                           id="" required/>
                                                     <label style="display: inline;" style="display: inline;"
-                                                           for="eco-proposal-modal-check-3">Sunt de acord
+                                                           for="">Sunt de acord
                                                         cu </label>
                                                     <a href="#" id="term_enrol_modal"
                                                        style="color: #A6CE39;;">Termenii și

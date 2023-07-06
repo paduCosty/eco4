@@ -35,8 +35,8 @@
             <tr>
                 <th>Nr./id</th>
                 <th>Adresa</th>
-                <th>Data limită</th>
-                <th>Voluntari</th>
+                <th>Data acțiune</th>
+                <th>Inscrisi</th>
                 <th>Status</th>
                 <th>Acțiuni</th>
             </tr>
@@ -47,15 +47,15 @@
                         data-bs-toggle="modal"
                         data-bs-target="#locations-details-modal">A#{{$event->id}}/L#{{$event->event_location_id}}</a> </td>
                     <td>
-                        {{$event->eventLocation->city->region->name}},
-                        {{ $event->eventLocation->city->name }}</td>
+                        {{ $event->eventLocation->city->name }},
+                    {{$event->eventLocation->city->region->name}}</td>
                     <td width="9%">{{ $event->due_date }}</td>
                     <td>
                         @if ($event->event_registrations_count > 0)
-                            <a class="col open-volunteers-modal" type="button"
+                            <a class="col open-volunteers-modal action-button" type="button"
                                data-bs-toggle="modal" data-bs-target="#volunteers-modal"
                                event_location_id="{{ $event->id }}">
-                                {{ $event->event_registrations_count }}
+                                {{ $event->event_registrations_count }} Voluntari
                             </a>
                         @endif
                     </td>

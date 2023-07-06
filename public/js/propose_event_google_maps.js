@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     /*stop sending propose form*/
     $("#volunteer-proposal-add-button").on("click", function () {
-        let form = $('#proposalModal form');
+        let form = $('#propose-action-modal form');
         let place_selected = $('#gps_place_selected').val();
         let isFormValid = true;
         form.find('[required]').each(function () {
@@ -71,6 +71,8 @@ $(document).ready(function () {
             alert('Completați toate câmpurile obligatorii!');
             return false;
         } else {
+            console.log(isFormValid);
+
             form.submit();
         }
     });
@@ -81,7 +83,6 @@ let selectedMarker = null;
 $(document).ready(function () {
 
     $('#propose-action-modal').on('shown.bs.modal', function (e) {
-        console.log('sdaf');
         initMapPropose();
     });
 });
@@ -305,4 +306,3 @@ function initLocationDetailsMap(lat = null, lng = null) {
     const geocoder = new google.maps.Geocoder();
 
 }
-

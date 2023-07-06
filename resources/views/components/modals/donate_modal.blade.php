@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form id="registration-form" method="put">
+                        <form id="donate-form" method="put">
                             @csrf
                             <div class="container">
                                 <div class="pop-content">
@@ -328,7 +328,7 @@
             }
         });
 
-        $('#registration-form').submit(function (event) {
+        $('#donate-form').submit(function (event) {
 
             const selectedRadioButton = $('input[name="donate_amount"]:checked').val();
             const enteredSum = $('#suma').val().trim();
