@@ -87,7 +87,7 @@
                                                     </li>
 
 
-                                                    <span >Ce părere
+                                                    <span>Ce părere
                                                         ai? Te bagi la o treabă de
                                                         lungă durată?</span>
                                                 </ul>
@@ -158,7 +158,8 @@
                                                 @endif
                                                 <div class="mb-3 col-md-6">
                                                     <label
-                                                        class="col-form-label form-modal-label ">Propune data pentru actiunea de ecologizare: </label>
+                                                        class="col-form-label form-modal-label ">Propune data pentru
+                                                        actiunea de ecologizare: </label>
                                                     <input type="date"
                                                            class="form-control-plaintext input-normal"
                                                            name="due_date" required>
@@ -172,30 +173,54 @@
                                                            class="col-form-label form-modal-label ">Propune
                                                         acțiune la:
                                                     </label>
-                                                    <select name="region_id"
-                                                            class="form-control input-normal select-location"
-                                                            id="propose_regions_modal" required>
-                                                        <option value="">Selecteaza Judet</option>
-                                                        @foreach ($events_regions as $region)
-                                                            <option value="{{ $region->id }}">{{ $region->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <div class="special-input-wrap">
+                                                        <select name="region_id"
+                                                                class="form-control input-normal select-location"
+                                                                id="propose_regions_modal" required>
+                                                            <option value="">Selecteaza Judet</option>
+                                                            @foreach ($events_regions as $region)
+                                                                <option value="{{ $region->id }}">
+                                                                    {{ $region->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        <div class="svg-wrap-input">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
+                                                                    fill="#A6CE39"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class=" col-md-6 ">
                                                     <label for="judet_voluntar_propus"
-                                                           class="col-form-label form-modal-label ">Selecteaza Localitate:
+                                                           class="col-form-label form-modal-label ">Selecteaza
+                                                        Localitate:
                                                     </label>
-                                                    <select class="form-control input-normal  insert-localities"
-                                                            id="region_cities_modal" required>
-                                                        <option value="">Localitate</option>
-                                                    </select>
+                                                    <div class="special-input-wrap">
+                                                        <select class="form-control input-normal  insert-localities"
+                                                                id="region_cities_modal" required>
+                                                            <option value="">Localitate</option>
+                                                        </select>
+                                                        <div class="svg-wrap-input">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M16.59 8.59L12 13.17L7.41 8.59L6 10L12 16L18 10L16.59 8.59Z"
+                                                                    fill="#A6CE39"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
 
                                                 </div>
                                             </div>
 
-                                            <label class="col-form-label form-modal-label ">Selecteaza unul din punctele existente pe harta, unde iti propunem organizarea unei actiuni de ecologizare.</label>
+                                            <label class="col-form-label form-modal-label ">Selecteaza unul din punctele
+                                                existente pe harta, unde iti propunem organizarea unei actiuni de
+                                                ecologizare.</label>
 
                                             <div class="form-group">
                                                 <div id="map"></div>
@@ -263,7 +288,7 @@
                                                            for="eco-proposal-modal-check-3">Sunt de acord
                                                         cu </label>
                                                     <a href="#"
-                                                            id="volunteering_from_prop_modal"
+                                                       id="volunteering_from_prop_modal"
                                                        style="color: #A6CE39;;">
                                                         Contractul de voluntariat.
                                                     </a>

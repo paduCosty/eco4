@@ -135,7 +135,7 @@ function initMapPropose(data) {
                      <div id="gps-elements" class="bg-light p-3 rounded">
                         <p class="font-weight-bold mb-1">Tipul reliefului: <span class="text-secondary">${location.relief_type}</span></p>
                         <p class="font-weight-bold mb-1">Adresa evenimentului: <span class="text-secondary">${location.address}</span></p>
-                        <p class="font-weight-bold mb-1">Necesarul de voluntari: <span class="text-secondary">${location.size_volunteer.name}</span></p>
+                        <p class="font-weight-bold mb-1">Necesarul de voluntari: <span class="text-secondary">${location.size_volunteer.name} (${location.size_volunteer.required_volunteer_level})</span></p>
                     </div>
 
                     <style>

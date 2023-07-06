@@ -112,6 +112,25 @@ class EventLocationController extends Controller
             ->with('error', 'Nu ai acces pentru a face aceasta actiune');
     }
 
+    public function show(EventLocation $eventLocation)
+    {
+        if ($eventLocation) {
+            $data = [
+                'id' => $eventLocation->id,
+                'longitude' => $eventLocation->longitude,
+                'latitude' => $eventLocation->latitude,
+                'address' => $eventLocation->address,
+                'relief_type' => $eventLocation->relief_type,
+                'city_name' => $eventLocation->city->name,
+                'region_name' => $eventLocation->city->region->name,
+                'size_volunteer_name' => $eventLocation->sizeVolunteer->name . '(' . $eventLocation->sizeVolunteer->required_volunteer_level . ')',
+                'status' => $eventLocation->status,
+            ];
+            return response()->json(['message' => 'success', 'status' => true, 'data' => $data]);
+        }
+        return response()->json(['message' => 'A lcatia nu a fost gasita', 'status' => false]);
+    }
+
     public function get_event_locations(Request $request)
     {
         if ($request->city_id) {

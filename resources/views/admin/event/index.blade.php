@@ -41,33 +41,39 @@
 
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
-                <th>Nr.</th>
+                <th width="95px">Nr.</th>
+                <th>Judet</th>
                 <th>Adresa</th>
                 <th>Relief</th>
                 <th>Voluntari</th>
                 <th>Longitudine</th>
                 <th>Latitudine</th>
-                <th width="170px">Action</th>
+                <th width="110px">Action</th>
             </tr>
             @php($i = 0)
-            @foreach ($events as $event)
+            @foreach ($events as $location)
                 <tr>
-                    <td>{{ ++$i }}</td>
-                    <td>{{ $event->address }}</td>
-                    <td>{{ $event->relief_type }}</td>
-                    <td>{{ $event->sizeVolunteer->name }}</td>
-                    <td>{{ $event->longitude }}</td>
-                    <td>{{ $event->latitude }}</td>
+                    <td>{{ ++$i }}
+                        <a href="#" data-location_id="{{$location->id}}" class="action-button"
+                           data-bs-toggle="modal"
+                           data-bs-target="#locations-details-modal">L#id {{$location->id}}</a>
+                    </td>
+                    <td>{{ $location->city->region->name }}</td>
+                    <td>{{ $location->address }}</td>
+                    <td>{{ $location->relief_type }}</td>
+                    <td>{{ $location->sizeVolunteer->name }}</td>
+                    <td>{{ $location->longitude }}</td>
+                    <td>{{ $location->latitude }}</td>
                     <td>
-                        <form action="{{ route('event-locations.destroy', $event->id) }}" class="delete-form"
+                        <form action="{{ route('event-locations.destroy', $location->id) }}" class="delete-form"
                               method="POST">
                             <a class="action-button edit_event_button col mb-3" type="button"
-                               event="{{ json_encode($event) }}" data-bs-toggle="modal"
+                               event="{{ json_encode($location) }}" data-bs-toggle="modal"
                                data-bs-target="#edit-event-modal">Edit
                             </a>
 
                             @csrf
-                            @if (!$event->users_event_locations_count)
+                            @if (!$location->users_event_locations_count)
                                 @method('DELETE')
                                 <a type="button" class="action-button" id="delete-button">Delete</a>
                             @endif
@@ -80,6 +86,7 @@
 
     </div>
     @include('admin.event.edit')
+    @include('components.modals.location_details_modal')
 
     <script>
 
@@ -202,12 +209,12 @@
 
             const map = new google.maps.Map(document.getElementById("custom_map"), {
                 zoom: 13,
-                mapTypeId: google.maps.MapTypeId.HYBRID, // Setarea modului hibrid (satelit cu străzi și etichete)
+                mapTypeId: google.maps.MapTypeId.HYBRID,
                 center: {
                     lat: lat,
                     lng: lng
                 },
-                mapTypeControl: true, // Afișarea controlului pentru selectarea modului de vizualizare
+                mapTypeControl: true,
                 mapTypeControlOptions: {
                     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
                     position: google.maps.ControlPosition.TOP_RIGHT,
@@ -252,6 +259,7 @@
         function initializeMaps() {
             initCreateEventMap();
             initEditEventMap();
+            // initLocationDetailsMap()
         }
 
         $('#delete-button').click(function () {

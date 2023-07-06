@@ -246,7 +246,8 @@ class ProposeEventController extends Controller
             ->select('cities_id')
             ->get()
             ->pluck('city.region')
-            ->unique();
+            ->unique()
+            ->sort();
 
         $accepted_regions = EventLocation::with(['city.region', 'usersEventLocations'])
             ->select('cities_id')
@@ -255,7 +256,8 @@ class ProposeEventController extends Controller
             })
             ->get()
             ->pluck('city.region')
-            ->unique();
+            ->unique()
+            ->sort();
 
         $regions = Region::all();
 

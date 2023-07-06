@@ -1067,7 +1067,7 @@ label {
 }
 
 .action-button {
-    color: green;
+    color: #A6CE39 !important;
     text-decoration: none;
     padding-left: 5px;
 }
