@@ -33,7 +33,11 @@
 
         <table class="table table-hover" style="color:rgb(124, 121, 121)">
             <tr>
-                <th>Nr./id</th>
+                <th>Nr.
+                    @if(auth()->user()->role !== 'coordinator')
+                        /id
+                    @endif
+                </th>
                 <th>Adresa</th>
                 <th>Data acțiune</th>
                 <th>Inscrisi</th>
@@ -43,12 +47,16 @@
             @php($i = 1)
             @foreach ($eventLocations as $event)
                 <tr>
-                    <td>{{ $i }} <a href="#" data-location_id="{{$event->event_location_id}}" class="action-button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#locations-details-modal">A#{{$event->id}}/L#{{$event->event_location_id}}</a> </td>
+                    <td>{{ $i }}
+                        @if(auth()->user()->role !== 'coordinator')
+                            <a href="#" data-location_id="{{$event->event_location_id}}" class="action-button"
+                               data-bs-toggle="modal"
+                               data-bs-target="#locations-details-modal">A#{{$event->id}}
+                                /L#{{$event->event_location_id}}</a></td>
+                    @endif
                     <td>
                         {{ $event->eventLocation->city->name }},
-                    {{$event->eventLocation->city->region->name}}</td>
+                        {{$event->eventLocation->city->region->name}}</td>
                     <td width="9%">{{ $event->due_date }}</td>
                     <td>
                         @if ($event->event_registrations_count > 0)
@@ -157,7 +165,7 @@
                             successAlert = $('<div class="alert alert-success">' + response.message + '</div>');
 
                         } else {
-                            successAlert = $('<div class="alert alert-danger">' + response.message  + '</div>')
+                            successAlert = $('<div class="alert alert-danger">' + response.message + '</div>')
                         }
 
                         $('.alert-success-link').append(successAlert);

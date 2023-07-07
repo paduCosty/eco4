@@ -98,7 +98,7 @@
 
                         @elseif(auth()->check() && (auth()->user()->role == 'coordinator'))
                             <li class="nav-item action-button">
-                                <a style="color:green" class="nav-link"
+                                <a class="nav-link action-button"
                                    href="{{ route('coordinator.event') }}">{{ __('Actiuni Ecologizare') }}</a>
                             </li>
                         @endif

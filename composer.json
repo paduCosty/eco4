@@ -15,7 +15,8 @@
         "laravel/ui": "^4.2",
         "netopia/payment": "^1.0",
         "spatie/laravel-sitemap": "^6.3",
-        "srmklive/paypal": "~3.0"
+        "srmklive/paypal": "~3.0",
+      "ext-mysql_xdevapi": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
