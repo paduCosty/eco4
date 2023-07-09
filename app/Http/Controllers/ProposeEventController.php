@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\MailToPartner;
 use App\Mail\ProposeEventMail;
+use App\Mail\VolunteersMail;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\User;
 use App\Models\UserEventLocation;
+use App\Services\ApiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\URL;
@@ -22,11 +25,17 @@ use Vinkla\Hashids\Facades\Hashids;
 class ProposeEventController extends Controller
 {
 
+    protected $apiService;
+
+    public function __construct(ApiService $apiService)
+    {
+        $this->apiService = $apiService;
+    }
+
     public function sitemap_xml()
     {
 
         $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat')->get();
-        dump($approved_events[0]->url);
 
         return response()->view('index', [
             'posts' => $approved_events
@@ -114,62 +123,56 @@ class ProposeEventController extends Controller
                 $auth_controller->store($login_request);
 
                 $validatedData += ['coordinator_id' => Auth::user()->id];
-                $validatedData['name'] = 'Propunere actiune';
-                $eventLocation = UserEventLocation::create($validatedData);
-
-                session()->flash('success', 'Datele au fost salvate cu succes!');
-                return redirect()->route('home');
             }
         }
-        $validatedData['name'] = 'Propunere actiune';
-        $eventLocation = UserEventLocation::create($validatedData);
 
+        $event = UserEventLocation::create($validatedData);
+        /*take partner email and name form crm*/
+        $partner_data = $this->apiService->getPartnersFromCrm($event->eventLocation->user->id);
+
+        if ($event && isset($partner_data['institution_email'])) {
+            /*send mail to partner*/
+            Mail::to($partner_data['institution_email'])
+                ->send(new MailToPartner(
+                    $partner_data['institution_name'] ?? '',
+                    $event->due_date,
+                    $event->eventLocation->address,
+                    $event->user->name, /*coordinator name*/
+                    url('/admin/propose-locations')
+                ));
+
+        }
         session()->flash('success', 'Datele au fost salvate cu succes!');
         return redirect()->route('home');
     }
 
     public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
-
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
             'description' => 'required',
             'due_date' => 'required',
             'status' => 'required',
-
         ]);
 
         $status = 'Inactive';
-
         if ($validatedData['status'] == 'aprobat') {
             $status = "Active";
         }
+        /*add to event updated data*/
+        $userEventLocation->due_date = $validatedData['due_date'];
+        $userEventLocation->description = $validatedData['description'];
+        $userEventLocation->status = $validatedData['status'];
+
+        $crm_response = ['status' => false];
 
         if ($userEventLocation->crm_propose_event_id) {
-            $response = Http::asForm()->post(env('LOGIN_URL') . 'update_action', [
-                'Id' => $userEventLocation->crm_propose_event_id,
-                'Latitudine' => $userEventLocation->eventLocation->longitude,
-                'Longitudine' => $userEventLocation->eventLocation->latitude,
-                'Description' => $validatedData['description'],
-                'JudetID' => $userEventLocation->eventLocation->city->region_id,
-                'LocationID' => $userEventLocation->eventLocation->cities_id,
-                'Number' => $userEventLocation->eventLocation->size_volunteer_id,
-                'Date' => $validatedData['due_date'],
-                'Name' => $validatedData['name'],
-                'Status' => $status
-            ]);
+            /*send data to crm*/
+            $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $status);
+        }
 
-            if ($response && $response->body() == "Actiune actualizata cu success!") {
-                $userEventLocation->update($validatedData);
-
-                session()->flash('success', 'Datele au fost salvate cu succes!');
-                return redirect()->route('propose-locations.index');
-            }
-
-        } else {
-            $userEventLocation->update($validatedData);
-            session()->flash('success', 'Datele au fost salvate cu succes!');
+        if ($crm_response['status'] || !$userEventLocation->crm_propose_event_id) {
+            $userEventLocation->update();
+            session()->flash('success', $crm_response['message'] ?? 'Datele au fost salvate cu succes!');
             return redirect()->route('propose-locations.index');
         }
 
@@ -182,26 +185,7 @@ class ProposeEventController extends Controller
 
         if ($userEventLocation && Auth::check()) {
 
-            $data = [];
-
-            $user_id = $userEventLocation->eventLocation->user->id;
-            try {
-                $partner_resp = Http::post(env('LOGIN_URL') . '/get_partners/' . $user_id . '/' . 0 . '/' . 0);
-            } catch (Exception) {
-
-                return response()->json(['status' => false, 'error', 'Eroarea la conectare']);
-
-            }
-
-            if ($partner_resp->getStatusCode() == 200 && json_decode($partner_resp->getBody(), true)) {
-                $partner = json_decode($partner_resp->getBody(), true)[0];
-
-                $data = [
-                    'institution_name' => $partner['name'] ?? '',
-                    'institution_phone' => $partner['phone'] ?? '',
-                    'institution_email' => $partner['email'] ?? '',
-                ];
-            }
+            $data = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
 
             $data += [
                 'coordinator_name' => $userEventLocation->user->name,
@@ -265,8 +249,7 @@ class ProposeEventController extends Controller
     public function approve_or_decline_propose_event(Request $request)
     {
         if ($request->location_id && $request->val) {
-            $userEventLocation = UserEventLocation::with('eventLocation.city')
-                ->where('id', $request->location_id)
+            $userEventLocation = UserEventLocation::where('id', $request->location_id)
                 ->first();
 
             // check if event exists in crm or not...
@@ -274,73 +257,45 @@ class ProposeEventController extends Controller
             if (($userEventLocation->crm_propose_event_id && $request->val == 'refuzat') || $request->val == 'aprobat') {
                 $update_crm = true;
             }
-
-            $userEventLocationArray = $userEventLocation->toArray();
+            $crm_response['status'] = false;
             if ($userEventLocation && $request->val && $request->val != $userEventLocation->status && $update_crm) {
-                $status = '';
-                if ($request->val == 'aprobat') {
-                    $status = 'Active';
-                } else if ($userEventLocationArray['crm_propose_event_id']) {
-                    $status = 'Inactive';
-                }
-                $crm_id = $userEventLocationArray['crm_propose_event_id'];
-
-                //specify type if is create or update
-                $action_type = 'add_action';
-                if ($crm_id) {
-                    $action_type = 'update_action';
-                }
-                $size = SizeVolunteers::select('required_volunteer_level')
-                    ->where('id', $userEventLocationArray['event_location']['size_volunteer_id'])
-                    ->first()
-                    ->toArray();
-
-                $response = Http::asForm()->post(env('LOGIN_URL') . $action_type, [
-                    'id' => $userEventLocationArray['crm_propose_event_id'],
-                    'Coordinator' => json_encode(array($userEventLocationArray['coordinator_id'])),
-                    'Latitudine' => $userEventLocationArray['event_location']['longitude'],
-                    'Longitudine' => $userEventLocationArray['event_location']['latitude'],
-                    'Description' => $userEventLocationArray['description'],
-                    'JudetID' => $userEventLocationArray['event_location']['city']['region_id'],
-                    'LocationID' => $userEventLocationArray['event_location']['cities_id'],
-                    'Number' => $size['required_volunteer_level'],
-                    'Date' => $userEventLocationArray['due_date'],
-                    'Name' => $userEventLocation->eventLocation->address,
-                    'Status' => $status,
-                    'ProjectID' => 10,
-                    'EditionID' => 25,
-                    'Radius' => 2
-                ]);
-
-                if (is_numeric($response->body())) {
-                    $userEventLocation->crm_propose_event_id = intval($response->body());
-                } else if ($response->body() != 'Actiune actualizata cu success!') {
-                    return response()->json(['success' => false, 'message' => 'Actiunea nu a reusit contacteaza echipa de suport pentru mai multe detalii!']);
+                $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $request->val);
+                if (!$crm_response['status']) {
+                    return response()->json(['success' => false, 'message' => $crm_response['message']]);
                 }
 
-                $mailData = [
-                    'due_date' => $userEventLocation->due_date,
-                    'name' => $userEventLocation->name
-                ];
+                if ($crm_response['status'] && isset($crm_response['crm_id'])) {
+                    //add crm id
+                    $userEventLocation->crm_propose_event_id = $crm_response['crm_id'];
+                }
 
-                if ($request->val == 'aprobat') {
-                    /* pana se rezolva problema cu mail-ul*/
-//                    $result = Mail::to($userEventLocation->user->email)->send(new ProposeEventMail($mailData));
-                    $result = true;
+                if ($request->val == 'aprobat' && $crm_response['status']) {
+                    $mailData = [
+                        'due_date' => $userEventLocation->due_date,
+                        'name' => $userEventLocation->name
+                    ];
+
+                    $result = Mail::to($userEventLocation->user->email)->send(new ProposeEventMail($mailData));
                     if ($result) {
                         $response_msg['email'] = 'Email-ul a fost trimis cu succes';
                     } else {
                         $response_msg['email'] = false;
                     }
                 }
+
             }
-            $userEventLocation->status = $request->val;
-            $userEventLocation->save();
+
+            $resp_success = false;
+            if ((isset($crm_response['message']) && $crm_response['status']) || !$update_crm) {
+                $userEventLocation->status = $request->val;
+                $userEventLocation->save();
+                $resp_success = true;
+            }
 
             $response_msg = [
-                'success' => true,
+                'success' => $resp_success,
                 'status' => ucfirst($userEventLocation->status),
-                'message' => 'Statusul a fost modificat cu success'
+                'message' => $crm_response['message'] ?? 'Statusul a fost modificat cu success',
             ];
             return response()->json($response_msg);
         }
@@ -371,14 +326,14 @@ class ProposeEventController extends Controller
                 ->count();
 
             return response()->json([
-                'message'=> '200 success',
-                'status'=> true,
+                'message' => '200 success',
+                'status' => true,
                 'count_data' => $count_data
             ]);
         }
         return response()->json([
-            'message'=> '203 success',
-            'status'=> false,
+            'message' => '203 success',
+            'status' => false,
         ]);
     }
 

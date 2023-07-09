@@ -178,7 +178,7 @@
                             <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#aboutUsModal">Despre proiect</a>
                         </li>
 
-                        <li>border
+                        <li>
                             <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#contactModal">Contact</a>
                         </li>
 

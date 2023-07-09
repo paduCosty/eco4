@@ -1,4 +1,4 @@
-<div class="modal fade" id="details-event-modal" tabindex="-1" aria-labelledby="details-event-modal-label"
+<div class="modal fade" id="add-details-to-event-modal" tabindex="-1" aria-labelledby="add-details-to-event-label"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -8,38 +8,29 @@
                         style="color: #a00404">X
                 </button>
             </div>
-
             <div class="modal-body">
-                <div class="container">
-                    <div class="institution-details">
-                        <h2>Detalii instituție</h2>
-                        <p><strong>Nume instituție:</strong> <span id="institution-name"></span></p>
-                        <p><strong>Email instituție:</strong> <span id="institution-email"></span></p>
-                        <p><strong>Telefon instituție:</strong> <span id="institution-phone"></span></p>
+                <form>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Cantitatea de deșeuri (kg):</label>
+                        <input type="number" class="form-control" id="quantity" required>
                     </div>
-
-                    <div class="coordinator-details">
-                        <h2>Detalii coordonator</h2>
-                        <p><strong>Nume coordonator:</strong> <span id="coordinator-name"></span></p>
-                        <p><strong>Email coordonator:</strong> <span id="coordinator-email"></span></p>
-                        <p><strong>Telefon coordonator:</strong> <span id="coordinator-phone"></span></p>
+                    <div class="mb-3">
+                        <label for="sack-number" class="form-label">Numărul de saci de deșeuri:</label>
+                        <input type="number" class="form-control" id="sack-number" required>
                     </div>
-
-                    <div class="event-details">
-                        <h2>Detalii eveniment</h2>
-                        <p><strong>Adresă:</strong> <span id="event-address"></span></p>
-                        <p><strong>Status:</strong> <span id="event-status"></span></p>
-                        <p><strong>Data acțiune:</strong> <span id="event-due-date"></span></p>
-                        <p><strong>Tip teren:</strong> <span id="event-relief-type"></span></p>
-                        <p><strong>Număr nevoi de voluntari:</strong> <span id="event-volunteer-size"></span></p>
-                        <p><strong>Descriere:</strong> <span id="event-description"></span></p>
-
+                    <div class="mb-3">
+                        <label for="photos" class="form-label">Adaugă poze:</label>
+                        <input type="file" class="form-control" id="photos" multiple>
                     </div>
-                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Salvează</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     function event_details(location_id) {
@@ -64,6 +55,7 @@
                 $('#event-due-date').text(response.due_date);
                 $('#event-relief-type').text(response.relief_type);
                 $('#event-volunteer-size').text(response.size_volunteer_id);
+
             },
             error: function (xhr, status, error) {
 
