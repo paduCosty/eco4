@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-<!--google maps api-->
+    <!--google maps api-->
     <script defer
             src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&libraries=places&callback=initializeMaps">
     </script>
-<script>
-    function initializeMaps() {
+    <script>
+        function initializeMaps() {
 
-    }
-</script>
+        }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,9 +30,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-        <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
-
+    <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
     <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/applications_tersm_service.js') }}"></script>
+
     @include('components.modals.location_details_modal')
 
 </head>
@@ -80,7 +81,8 @@
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link action-button" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link action-button"
+                                   href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
@@ -175,15 +177,18 @@
                     <ul>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#aboutUsModal">Despre proiect</a>
+                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#aboutUsModal">Despre
+                                proiect</a>
                         </li>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#contactModal">Contact</a>
+                            <a href="#" data-bs-toggle="modal" class="link-style"
+                               data-bs-target="#contactModal">Contact</a>
                         </li>
 
                         <li>
-                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#tandc">Termeni și condiții</a>
+                            <a href="#" data-bs-toggle="modal" class="link-style" data-bs-target="#tandc">Termeni și
+                                condiții</a>
                         </li>
 
                         <li>

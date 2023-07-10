@@ -269,8 +269,7 @@
                                                            for="eco-action-general-enroll-modal-check-3">Sunt de
                                                         acord
                                                         cu </label>
-                                                    <a href="#" id="volunteering_from_enrol_modal"
-                                                       style="color: #A6CE39;;">Contractul de voluntariat.</a>
+                                                    <x-terms-contract></x-terms-contract>
                                                 </div>
                                             </div>
                                         </div>
@@ -329,7 +328,7 @@
         var dynamicFields = $('#dynamic_fields');
         var counter = 1;
 
-        $('.add_button').click(function(e) {
+        $('.add_button').click(function (e) {
             e.preventDefault();
             var newField = `
                 <div class="form-group row">
@@ -351,49 +350,6 @@
 
             dynamicFields.append(newField);
             counter++;
-        });
-
-        //open terms and hidde propose modal
-        $("#term_enrol_modal").click(function () {
-            $("#enrollModalGeneral").modal("hide");
-            $("#tandc").addClass("show-enrol-modal");
-            $("#tandc").modal("show");
-        });
-
-        $("#tandc").on("hidden.bs.modal", function () {
-            if ($("#tandc").hasClass("show-enrol-modal")) {
-                $("#enrollModalGeneral").modal("show");
-                $("#tandc").removeClass("show-enrol-modal");
-            }
-        });
-
-        /*open workshop contract*/
-        $("#workshop-enrol-modal").click(function () {
-            $("#enrollModalGeneral").modal("hide");
-            $("#workshop").addClass("show-enrol-modal");
-            $("#workshop").modal("show");
-        });
-
-        $("#workshop").on("hidden.bs.modal", function () {
-            if ($("#workshop").hasClass("show-enrol-modal")) {
-                $("#enrollModalGeneral").modal("show");
-                $("#workshop").removeClass("show-enrol-modal");
-            }
-        });
-
-
-        /*open volunteering contract*/
-        $("#volunteering_from_enrol_modal").click(function () {
-            $("#enrollModalGeneral").modal("hide");
-            $("#contract").addClass("show-enrol-modal");
-            $("#contract").modal("show");
-        });
-
-        $("#contract").on("hidden.bs.modal", function () {
-            if ($("#contract").hasClass("show-enrol-modal")) {
-                $("#enrollModalGeneral").modal("show");
-                $("#contract").removeClass("show-enrol-modal");
-            }
         });
     });
 </script>

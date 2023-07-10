@@ -275,7 +275,7 @@
                                             </div>
 
                                             <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text  fs-6"
+                                                <div class="col-12 terms-conditions-text  fs-6" id="tessssttt"
                                                      style="color:rgb(150, 149, 149)">
                                                     <span id="eco-proposal-modal-check-3-span"></span>
                                                     <input type="checkbox" value="1"
@@ -284,11 +284,7 @@
                                                     <label style="display: inline;" style="display: inline;"
                                                            for="eco-proposal-modal-check-3">Sunt de acord
                                                         cu </label>
-                                                    <a href="#"
-                                                       id="volunteering_from_prop_modal"
-                                                       style="color: #A6CE39;;">
-                                                        Contractul de voluntariat.
-                                                    </a>
+                                                    <x-terms-contract></x-terms-contract>
                                                 </div>
                                             </div>
 
@@ -342,18 +338,18 @@
         });
 
 
-        /*open volunteering contract*/
-        $("#volunteering_from_prop_modal").click(function () {
-            $("#proposalModal").modal("hide");
-            $("#contract").addClass("show-propose-modal");
-            $("#contract").modal("show");
-        });
-
-        $("#contract").on("hidden.bs.modal", function () {
-            if ($("#contract").hasClass("show-propose-modal")) {
-                $("#proposalModal").modal("show");
-                $("#contract").removeClass("show-propose-modal");
-            }
-        });
+        // /*open volunteering contract*/
+        // $("#volunteering_from_prop_modal").click(function () {
+        //     $("#proposalModal").modal("hide");
+        //     $("#contract").addClass("show-propose-modal");
+        //     $("#contract").modal("show");
+        // });
+        //
+        // $("#contract").on("hidden.bs.modal", function () {
+        //     if ($("#contract").hasClass("show-propose-modal")) {
+        //         $("#proposalModal").modal("show");
+        //         $("#contract").removeClass("show-propose-modal");
+        //     }
+        // });
     });
 </script>
