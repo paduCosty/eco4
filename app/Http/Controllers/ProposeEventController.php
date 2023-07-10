@@ -154,37 +154,31 @@ class ProposeEventController extends Controller
             'status' => 'required',
         ]);
 
-        $status = 'Inactive';
-        if ($validatedData['status'] == 'aprobat') {
-            $status = "Active";
-        }
+
         /*add to event updated data*/
         $userEventLocation->due_date = $validatedData['due_date'];
         $userEventLocation->description = $validatedData['description'];
         $userEventLocation->status = $validatedData['status'];
 
-        $crm_response = ['status' => false];
-        dd('asdfas');
-
-        if ($userEventLocation->crm_propose_event_id || ($validatedData['status'] == 'aprobat')) {
+        $status = 'Inactive';
+        if ($validatedData['status'] == 'aprobat' || $validatedData['status'] == 'in desfasurare') {
+            $status = "Active";
+        }
+        $crm_response['status'] = false;
+        if ($userEventLocation->crm_propose_event_id || (!$userEventLocation->crm_propose_event_id && $status === 'Active')) {
             /*send data to crm*/
             $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $status);
         }
-
-        if ($crm_response['status'] || !$userEventLocation->crm_propose_event_id) {
+        if ((isset($crm_response['message']) && $crm_response['status']) || !$userEventLocation->crm_propose_event_id) {
 
             $userEventLocation->crm_propose_event_id = $crm_response['crm_id'] ?? $userEventLocation->crm_propose_event_id;
             $userEventLocation->update();
             session()->flash('success', $crm_response['message'] ?? 'Datele au fost salvate cu succes!');
-
             if (Auth::user()->role === 'coordinator')
                 return redirect()->route('coordinator.event');
             return redirect()->route('propose-locations.index');
-
-
         }
-
-        session()->flash('error', 'Datele nu au fost actualizate');
+        session()->flash('error', $crm_response['messsage'] ?? 'Datele nu au fost actualizate');
         if (Auth::user()->role === 'coordinator')
             return redirect()->route('coordinator.event');
         return redirect()->route('propose-locations.index');
