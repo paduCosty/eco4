@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\SizeVolunteers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use mysql_xdevapi\Exception;
 
@@ -44,18 +45,15 @@ class ApiService
         } else {
             $status = 'Inactive';
         }
-
         //specify type if is create or update
         $action_type = 'add_action';
         if ($userEventLocation->crm_propose_event_id) {
             $action_type = 'update_action';
         }
-
         $volunteers_size = SizeVolunteers::select('required_volunteer_level')
             ->where('id', $userEventLocation->eventLocation->size_volunteer_id)
             ->first();
-
-        $response = Http::asForm()->post(env('LOGIN_URL') . $action_type, [
+        $data = [
             'id' => $userEventLocation->crm_propose_event_id,
             'Coordinator' => json_encode(array($userEventLocation->coordinator_id)),
             'Longitudine' => $userEventLocation->eventLocation->longitude,
@@ -66,12 +64,16 @@ class ApiService
             'Number' => $volunteers_size->required_volunteer_level,
             'Date' => $userEventLocation->due_date,
             'Name' => $userEventLocation->eventLocation->address,
-            'Status' => $status,
             'ProjectID' => 10,
             'EditionID' => 25,
             'Radius' => 2000,
             'Action' => "Ecologizare"
-        ]);
+        ];
+
+        if(Auth::user()->role === 'partner' || Auth::user()->role == 'admin') {
+            $data['Status'] = $status;
+        }
+        $response = Http::asForm()->post($this->crmUrl . $action_type, $data);
 
         $message = 'Actiune actualizata cu success!';
 

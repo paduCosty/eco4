@@ -53,8 +53,9 @@ Route::middleware(['auth', 'user_role'])->group(function () {
 
 Route::middleware('coordinator')->group(function () {
     Route::prefix('coordinator')->group(function () {
+        Route::post('propose-locations/update/{userEventLocation}', [ProposeEventController::class, 'update']);
 
-        Route::get('/propose-locations', [ProposeEventController::class, 'index'])->name('coordinator.event');
+        Route::get('/propose-locations/', [ProposeEventController::class, 'index'])->name('coordinator.event');
         Route::get('/propose-locations/{userEventLocation}', [ProposeEventController::class, 'show'])
             ->name('coordinator.show');
         Route::get('/volunteers/{event_location_id}', [VolunteerController::class, 'index']);

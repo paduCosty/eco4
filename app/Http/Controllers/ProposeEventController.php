@@ -164,19 +164,29 @@ class ProposeEventController extends Controller
         $userEventLocation->status = $validatedData['status'];
 
         $crm_response = ['status' => false];
+        dd('asdfas');
 
-        if ($userEventLocation->crm_propose_event_id) {
+        if ($userEventLocation->crm_propose_event_id || ($validatedData['status'] == 'aprobat')) {
             /*send data to crm*/
             $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $status);
         }
 
         if ($crm_response['status'] || !$userEventLocation->crm_propose_event_id) {
+
+            $userEventLocation->crm_propose_event_id = $crm_response['crm_id'] ?? $userEventLocation->crm_propose_event_id;
             $userEventLocation->update();
             session()->flash('success', $crm_response['message'] ?? 'Datele au fost salvate cu succes!');
+
+            if (Auth::user()->role === 'coordinator')
+                return redirect()->route('coordinator.event');
             return redirect()->route('propose-locations.index');
+
+
         }
 
         session()->flash('error', 'Datele nu au fost actualizate');
+        if (Auth::user()->role === 'coordinator')
+            return redirect()->route('coordinator.event');
         return redirect()->route('propose-locations.index');
     }
 
@@ -248,6 +258,7 @@ class ProposeEventController extends Controller
 
     public function approve_or_decline_propose_event(Request $request)
     {
+
         if ($request->location_id && $request->val) {
             $userEventLocation = UserEventLocation::where('id', $request->location_id)
                 ->first();

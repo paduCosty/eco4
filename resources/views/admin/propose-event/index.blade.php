@@ -112,8 +112,7 @@
                     </td>
                     <td>
                         <div class="d-flex">
-
-                            @if(auth()->user()->role !== 'coordinator' && $event->status != 'desfasurat')
+                            @if((auth()->user()->role === 'coordinator' && $event->status != 'aprobat') || $event->status != 'desfasurat')
                                 <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
                                    data-bs-target="#edit-propose-event-modal" location="{{ json_encode($event) }}">
                                     Edit
@@ -146,8 +145,8 @@
             /*open edit modal*/
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
-                console.log(location);
-                $('.form_edit_propose_event').attr('action', APP_URL + '/admin/propose-locations/update/' +
+
+                $('.form_edit_propose_event').attr('action',  'propose-locations/update/' +
                     location.id)
 
                 $('.event_location_due_date').val(location.due_date);
