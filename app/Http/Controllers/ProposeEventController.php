@@ -138,7 +138,7 @@ class ProposeEventController extends Controller
                     $partner_data['institution_name'] ?? '',
                     $event->due_date,
                     $event->eventLocation->address,
-                    $event->user->name, /*coordinator name*/
+                    $event->coordinator->name,
                     url('/admin/propose-locations')
                 ));
 

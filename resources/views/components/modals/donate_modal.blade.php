@@ -281,19 +281,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="col-12 terms-conditions-text">
-                                                    <input class="form-check-input" type="checkbox"
-                                                           name="donate-modal-check" id="donate-modal-check" required/>
-                                                    <label style="display: inline;" style="display: inline;"
-                                                           for="donate-modal-check">Sunt de acord cu </label>
-                                                    <a href="#" style="color: #A6CE39;" id="term_donate_modal">Termenii și
-                                                        Condițiile
-                                                        acestui</a> site.
-                                                </div>
-                                            </div>
-
+                                            <x-terms_site></x-terms_site>
                                             <div class="row form-group">
                                                 <div class="col-12">
                                                     <div class="text-end">
@@ -360,20 +348,6 @@
 
         $('.another_sum').click(function () {
             $('.amount_box').prop('checked', false);
-        });
-
-        //open terms and hidde propose modal
-        $("#term_donate_modal").click(function () {
-            $("#donateModal").modal("hide");
-            $("#tandc").addClass("show-donate-modal");
-            $("#tandc").modal("show");
-        });
-
-        $("#tandc").on("hidden.bs.modal", function () {
-            if ($("#tandc").hasClass("show-donate-modal")) {
-                $("#donateModal").modal("show");
-                $("#tandc").removeClass("show-donate-modal");
-            }
         });
 
     });

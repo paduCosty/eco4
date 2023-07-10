@@ -219,60 +219,15 @@
 
                                         <div id="dynamic_fields"></div>
 
-                                        <div class="row form-group m-1">
-                                            <div class="col-12">
-                                                <div class="terms-conditions-text">
-                                                    <span id="eco-action-general-enroll-modal-check-2-span"></span>
-                                                    <input type="checkbox" value="1"
-                                                           class="form-check-input"
-                                                           name="terms_site"
-                                                           id="" required/>
-                                                    <label style="display: inline;" style="display: inline;"
-                                                           for="">Sunt de acord
-                                                        cu </label>
-                                                    <a href="#" id="term_enrol_modal"
-                                                       style="color: #A6CE39;;">Termenii și
-                                                        Condițiile acestui</a>
-                                                    site.
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--terms and conditions site-->
+                                        <x-terms_site></x-terms_site>
 
-                                        <div class="row form-group m-1">
-                                            <div class="col-12">
-                                                <div class="terms-conditions-text">
-                                                    <span id="eco-action-general-enroll-modal-check-2-span"></span>
-                                                    <input class="form-check-input" required value="1" type="checkbox"
-                                                           name="terms_workshop"
-                                                           id="eco-action-general-enroll-modal-check-2"/>
-                                                    <label style="display: inline;" style="display: inline;"
-                                                           for="eco-action-general-enroll-modal-check-2">Sunt de
-                                                        acord
-                                                        cu </label>
-                                                    <a href="#" id="workshop-enrol-modal"
-                                                       style="color: #A6CE39;">Termenii și Condițiile de
-                                                        participare</a>
-                                                    la
-                                                    workshop-ul de ecologizare.
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- privacy_policy -->
+                                        <x-privacy_policy></x-privacy_policy>
 
-                                        <div class="row form-group m-1">
-                                            <div class="col-12">
-                                                <div class="terms-conditions-text">
-                                                    <span id="eco-action-general-enroll-modal-check-3-span"></span>
-                                                    <input class="form-check-input" required value="1" type="checkbox"
-                                                           name="volunteering_contract"
-                                                           id="eco-action-general-enroll-modal-check-3"/>
-                                                    <label style="display: inline;" style="display: inline;"
-                                                           for="eco-action-general-enroll-modal-check-3">Sunt de
-                                                        acord
-                                                        cu </label>
-                                                    <x-terms-contract></x-terms-contract>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--   terms and conditions for contract -->
+                                        <x-terms-contract></x-terms-contract>
+
                                         <input type="hidden" required class="users_event_location_id"
                                                name="users_event_location_id">
                                         <div class="error-messages"></div>
