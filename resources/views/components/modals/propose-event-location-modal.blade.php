@@ -238,55 +238,14 @@
                                                           required></textarea>
                                             </div>
 
-                                            <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text  fs-6"
-                                                     style="color:rgb(150, 149, 149)">
-                                                    <span id="eco-proposal-modal-check-1-span"></span>
-                                                    <input type="checkbox" name="terms_site" value="1" required/>
-                                                    <label class="fs-6" for="eco-proposal-modal-check-1">Sunt
-                                                        de acord cu</label>
-                                                    <a href="#"
-                                                       id="term_from_prop_modal"
-                                                       style="color: #A6CE39;"
-                                                    >Termenii
-                                                        și Condițiile acestui</a>
-                                                    site.
-                                                </div>
-                                            </div>
+                                            <!--terms and conditions site-->
+                                            <x-terms_site></x-terms_site>
 
-                                            <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text fs-6"
-                                                     style="color:rgb(150, 149, 149)">
-                                                    <input type="checkbox" name="terms_workshop"
-                                                           id="eco-proposal-modal-check-2" value="1" required/>
-                                                    <label style="display: inline;"
-                                                           for="eco-proposal-modal-check-2">Sunt
-                                                        de acord cu</label>
-                                                    <a href="#"
-                                                       style="color: #A6CE39;"
-                                                       id="workshop-propose-modal"
-                                                    >
-                                                        Termenii și
-                                                        Condițiile de
-                                                        participare
-                                                    </a>
-                                                    la workshop-ul de ecologizare.
-                                                </div>
-                                            </div>
+                                            <!-- privacy_policy -->
+                                            <x-privacy_policy></x-privacy_policy>
 
-                                            <div class="row m-1">
-                                                <div class="col-12 terms-conditions-text  fs-6" id="tessssttt"
-                                                     style="color:rgb(150, 149, 149)">
-                                                    <span id="eco-proposal-modal-check-3-span"></span>
-                                                    <input type="checkbox" value="1"
-                                                           name="volunteering_contract"
-                                                           id="eco-proposal-modal-check-3" required/>
-                                                    <label style="display: inline;" style="display: inline;"
-                                                           for="eco-proposal-modal-check-3">Sunt de acord
-                                                        cu </label>
-                                                    <x-terms-contract></x-terms-contract>
-                                                </div>
-                                            </div>
+                                            <!--   terms and conditions for contract -->
+                                            <x-terms-contract></x-terms-contract>
 
                                             <div class="row form-group">
                                                 <div class="col-sm-12 text-end">

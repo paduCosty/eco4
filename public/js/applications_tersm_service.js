@@ -17,3 +17,41 @@ function get_contract() {
         }
     });
 }
+
+function get_privacy_policy() {
+    $.ajax({
+        url: '/get-privacy-terms',
+        method: 'GET',
+        beforeSend: function() {
+            $('.loading_indicator').show();
+        },
+        success: function(response) {
+            $('#privacy-policy-modal-body').html(response.data);
+        },
+        complete: function() {
+            $('.loading_indicator').hide();
+        },
+        error: function(xhr, status, error) {
+            alert('A apărut o eroare: ' + error);
+        }
+    });
+}
+
+function get_terms_site() {
+    $.ajax({
+        url: '/get-terms-site',
+        method: 'GET',
+        beforeSend: function () {
+            $('.loading_indicator').show();
+        },
+        success: function (response) {
+            $('#terms_site_body').html(response.data);
+        },
+        complete: function () {
+            $('.loading_indicator').hide();
+        },
+        error: function (xhr, status, error) {
+            alert('A apărut o eroare: ' + error);
+        }
+    });
+}

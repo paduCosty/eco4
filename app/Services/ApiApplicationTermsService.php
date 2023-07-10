@@ -18,15 +18,26 @@ class ApiApplicationTermsService
 
     }
 
-//    public static function get_contract_terms()
-//    {
-//        $client = new Client();
-//        $response = $client->get(env('LOGIN_URL') . '/contract');
-//        $data = json_decode($response->getBody()->getContents());
-//        if ($data) {
-//            return response()->json(['status' => true, 'data' => $data[0]->Name]);
-//        }
-//        return response()->json(['status' => false, 'message' => 'Server error!']);
-//
-//    }
+    public static function get_privacy_terms()
+    {
+        $client = new Client();
+        $response = $client->get(env('LOGIN_URL') . '/privacy');
+        $data = json_decode($response->getBody()->getContents());
+        if ($data) {
+            return response()->json(['status' => true, 'data' => $data[0]->Name]);
+        }
+        return response()->json(['status' => false, 'message' => 'Server error!']);
+
+    }
+    public static function get_terms_site()
+    {
+        $client = new Client();
+        $response = $client->get(env('LOGIN_URL') . '/terms');
+        $data = json_decode($response->getBody()->getContents());
+        if ($data) {
+            return response()->json(['status' => true, 'data' => $data[0]->Name]);
+        }
+        return response()->json(['status' => false, 'message' => 'Server error!']);
+
+    }
 }

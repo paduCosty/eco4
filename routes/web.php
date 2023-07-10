@@ -123,8 +123,8 @@ Route::get('process-netopia-transaction', [NetopiaController::class, 'index'])->
 
 /*TERMS AND CONDITIONS START*/
 Route::get('get-contract-terms',[ApiApplicationTermsService::class, 'get_contract_terms']);
-//Route::get('get-contract-terms',[ApiApplicationTermsService::class, 'get_contract_terms']);
-//Route::get('get-contract-terms',[ApiApplicationTermsService::class, 'get_contract_terms']);
+Route::get('get-privacy-terms',[ApiApplicationTermsService::class, 'get_privacy_terms']);
+Route::get('get-terms-site',[ApiApplicationTermsService::class, 'get_terms_site']);
 /*TERMS AND CONDITIONS END*/
 
 require __DIR__ . '/auth.php';

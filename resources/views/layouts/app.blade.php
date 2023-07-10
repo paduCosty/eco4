@@ -167,7 +167,7 @@
 @include('components.modals.about_us_modal')
 @include('components.modals.contact_us_modal')
 @include('components.modals.terms_and_conditions_modal')
-@include('components.modals.privacy_policy')
+@include('components.modals.privacy_policy_modal')
 
 <footer class="mt-auto">
     <div class="container footer-container mt-1">
