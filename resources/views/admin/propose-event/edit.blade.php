@@ -26,7 +26,7 @@
                                 </span>
                             @enderror
                         </div>
-
+                        @if(auth()->check() && auth()->user()->role !== 'coordinator')
                         <div class="mb-3 col-md-6">
                             <label for="status" class="col-form-label text-md-right">{{ __('Status') }}</label>
                             <select id="status"
@@ -40,7 +40,7 @@
                                 <option value="desfasurat">Desfasurat</option>
                             </select>
                         </div>
-
+                        @endif
                         <div class="mb-3 col-md-12">
                             <label for="email"
                                    class="col-form-label text-md-right">{{ __('Description') }}</label>

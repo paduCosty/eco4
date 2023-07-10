@@ -41,11 +41,7 @@ class ApiService
 
     public function sendEventToCrm($userEventLocation, $status): array
     {
-        if ($status == 'aprobat' || $status == 'in asteptare') {
-            $status = 'Active';
-        } else {
-            $status = 'Inactive';
-        }
+
         //specify type if is create or update
         $action_type = 'add_action';
         if ($userEventLocation->crm_propose_event_id) {
@@ -74,7 +70,12 @@ class ApiService
             'EditionID' => 25,
             'Radius' => 2000,
             'Action' => "Ecologizare",
-            'Timeframe' => 120
+            'Timeframe' => 120,
+            'Points' => 20,
+            'Type' => 9,
+            'Deseuri' => $userEventLocation->waste,
+            'Saci' => $userEventLocation->bags
+
         ];
 
         if(Auth::user()->role === 'partner' || Auth::user()->role == 'admin') {

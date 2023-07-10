@@ -152,8 +152,14 @@ class ProposeEventController extends Controller
         $validatedData = $request->validate([
             'description' => 'required',
             'due_date' => 'required',
-            'status' => 'required',
+
         ]);
+
+        if (Auth::user()->role !== 'coordinator') {
+            $validatedData += $request->validate([
+                'status' => 'required',
+            ]);
+        }
 
         $data_modified = false;
         if ($userEventLocation->due_date != $validatedData['due_date']) {
@@ -163,10 +169,13 @@ class ProposeEventController extends Controller
         /*add to event updated data*/
         $userEventLocation->due_date = $validatedData['due_date'];
         $userEventLocation->description = $validatedData['description'];
-        $userEventLocation->status = $validatedData['status'];
+
+        if (isset($validatedData['status'])) {
+            $userEventLocation->status = $validatedData['status'];
+        }
 
         $status = 'Inactive';
-        if ($validatedData['status'] == 'aprobat' || $validatedData['status'] == 'in desfasurare') {
+        if ($userEventLocation->status == 'aprobat' ||$userEventLocation->status == 'in desfasurare') {
             $status = "Active";
         }
         $crm_response['status'] = false;
@@ -285,7 +294,12 @@ class ProposeEventController extends Controller
             }
             $crm_response['status'] = false;
             if ($userEventLocation && $request->val && $request->val != $userEventLocation->status && $update_crm) {
-                $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $request->val);
+                if ($request->val == 'aprobat' || $request->val == 'in asteptare') {
+                    $status = 'Active';
+                } else {
+                    $status = 'Inactive';
+                }
+                $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $status);
                 if (!$crm_response['status']) {
                     return response()->json(['success' => false, 'message' => $crm_response['message']]);
                 }
@@ -301,7 +315,7 @@ class ProposeEventController extends Controller
                         'name' => $userEventLocation->name
                     ];
 
-                    $result = Mail::to($userEventLocation->coordinatror->email)->send(new ProposeEventMail($mailData));
+                    $result = Mail::to($userEventLocation->coordinator->email)->send(new ProposeEventMail($mailData));
                     if ($result) {
                         $response_msg['email'] = 'Email-ul a fost trimis cu succes';
                     } else {
