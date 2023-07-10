@@ -88,7 +88,7 @@
                         @if(auth()->check() && (auth()->user()->role == 'partner' || auth()->user()->role == 'admin'))
                             <li class="nav-item">
                                 <a class="nav-link action-button"
-                                   href="{{ route('event-locations.index') }}">{{ __('Creaza loc Ecologizare') }}</a>
+                                   href="{{ route('event-locations.index') }}">{{ __('Locatii propuse') }}</a>
                             </li>
 
                             <li class="nav-item">

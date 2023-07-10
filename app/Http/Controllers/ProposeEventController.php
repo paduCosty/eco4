@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\EventDateChangePartnerEmail;
 use App\Mail\MailToPartner;
 use App\Mail\ProposeEventMail;
 use App\Mail\VolunteersMail;
@@ -154,6 +155,10 @@ class ProposeEventController extends Controller
             'status' => 'required',
         ]);
 
+        $data_modified = false;
+        if ($userEventLocation->due_date != $validatedData['due_date']) {
+            $data_modified = true;
+        }
 
         /*add to event updated data*/
         $userEventLocation->due_date = $validatedData['due_date'];
@@ -168,7 +173,23 @@ class ProposeEventController extends Controller
         if ($userEventLocation->crm_propose_event_id || (!$userEventLocation->crm_propose_event_id && $status === 'Active')) {
             /*send data to crm*/
             $crm_response = $this->apiService->sendEventToCrm($userEventLocation, $status);
+            if ($crm_response['status'] && $data_modified) {
+
+                $partner = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
+                if ($partner['institution_email']) {
+                    /*Send Mail to Partner to inform that the due date was changed*/
+                    $result = Mail::to($userEventLocation->coordinator->email)->send(new EventDateChangePartnerEmail(
+                        $userEventLocation->coordinator->name,
+                        $userEventLocation->eventLocation->address,
+                        $validatedData['due_date'],
+                        $userEventLocation->coordinator->phone,
+                    ));
+
+                }
+
+            }
         }
+
         if ((isset($crm_response['message']) && $crm_response['status']) || !$userEventLocation->crm_propose_event_id) {
 
             $userEventLocation->crm_propose_event_id = $crm_response['crm_id'] ?? $userEventLocation->crm_propose_event_id;
@@ -192,9 +213,9 @@ class ProposeEventController extends Controller
             $data = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
 
             $data += [
-                'coordinator_name' => $userEventLocation->user->name,
-                'coordinator_phone' => $userEventLocation->user->phone,
-                'coordinator_email' => $userEventLocation->user->email,
+                'coordinator_name' => $userEventLocation->coordinator->name,
+                'coordinator_phone' => $userEventLocation->coordinator->phone,
+                'coordinator_email' => $userEventLocation->coordinator->email,
                 'due_date' => $userEventLocation->due_date,
                 'description' => $userEventLocation->description,
                 'address' => $userEventLocation->eventLocation->address,
@@ -280,7 +301,7 @@ class ProposeEventController extends Controller
                         'name' => $userEventLocation->name
                     ];
 
-                    $result = Mail::to($userEventLocation->user->email)->send(new ProposeEventMail($mailData));
+                    $result = Mail::to($userEventLocation->coordinatror->email)->send(new ProposeEventMail($mailData));
                     if ($result) {
                         $response_msg['email'] = 'Email-ul a fost trimis cu succes';
                     } else {

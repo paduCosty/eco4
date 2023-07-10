@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\SizeVolunteers;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use mysql_xdevapi\Exception;
@@ -53,6 +54,10 @@ class ApiService
         $volunteers_size = SizeVolunteers::select('required_volunteer_level')
             ->where('id', $userEventLocation->eventLocation->size_volunteer_id)
             ->first();
+
+        /*add end date to event 15:00*/
+        $end_date = Carbon::parse($userEventLocation->due_date)->setTime(15, 0, 0);
+        $end_date = $end_date->format('Y-m-d H:i:s');
         $data = [
             'id' => $userEventLocation->crm_propose_event_id,
             'Coordinator' => json_encode(array($userEventLocation->coordinator_id)),
@@ -63,11 +68,13 @@ class ApiService
             'LocationID' => $userEventLocation->eventLocation->cities_id,
             'Number' => $volunteers_size->required_volunteer_level,
             'Date' => $userEventLocation->due_date,
+            'Dataend' =>$end_date,
             'Name' => $userEventLocation->eventLocation->address,
             'ProjectID' => 10,
             'EditionID' => 25,
             'Radius' => 2000,
-            'Action' => "Ecologizare"
+            'Action' => "Ecologizare",
+            'Timeframe' => 120
         ];
 
         if(Auth::user()->role === 'partner' || Auth::user()->role == 'admin') {

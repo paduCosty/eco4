@@ -9,7 +9,7 @@
     <div class="container">
 
         <div class="text-center  mb-5" style="color:rgb(124, 121, 121)">
-            <h4>Evenimentele mele</h4>
+            <h4>Actiuni Ecologizare</h4>
         </div>
 
         <div class="alert-success-link"></div>

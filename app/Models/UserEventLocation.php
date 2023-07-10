@@ -22,7 +22,7 @@ class UserEventLocation extends Model
         'status'
     ];
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function coordinator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'coordinator_id');
     }

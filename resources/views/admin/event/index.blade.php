@@ -4,7 +4,7 @@
 
     <div class="container" style="color:rgb(124, 121, 121)">
         <div class="text-center mb-5">
-            <h1>Evenimente</h1>
+            <h4>Locatii propuse</h4>
         </div>
         <div class="row">
             <div class="col-lg-18 margin-tb mb-5">
