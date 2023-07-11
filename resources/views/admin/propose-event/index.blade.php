@@ -96,8 +96,9 @@
                             </div>
                         @endif
                         @if($event->status === 'desfasurat')
-                            <a class="" data-bs-toggle="modal"
-                                    data-bs-target="#add-details-to-event-modal">
+                            <a href="#" data-bs-toggle="modal" data-event_id="{{$event->id}}"
+                               data-bs-target="#add-details-to-event-modal" class="col action-button">
+                                Creaza/Editeaza
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                                     <style>svg {
                                             fill: #a6ce39
@@ -146,7 +147,7 @@
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
 
-                $('.form_edit_propose_event').attr('action',  'propose-locations/update/' +
+                $('.form_edit_propose_event').attr('action', 'propose-locations/update/' +
                     location.id)
 
                 $('.event_location_due_date').val(location.due_date);

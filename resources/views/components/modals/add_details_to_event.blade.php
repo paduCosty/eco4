@@ -1,72 +1,174 @@
-<div class="modal fade" id="add-details-to-event-modal" tabindex="-1" aria-labelledby="add-details-to-event-label" aria-hidden="true">
+<div class="modal fade" id="add-details-to-event-modal" tabindex="-1" aria-labelledby="add-details-to-event-label"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="edit-product-modal-label">Adauga detalii eveniment ecologizare</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #a00404">X</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: #a00404">X
+                </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" id="event-details-form">
+                    @csrf
                     <div class="row">
                         <div class="col-sm">
                             <div class="mb-3">
                                 <label for="quantity" class="form-label">Cantitatea de deșeuri (kg):</label>
-                                <input type="number" class="form-control form-control-sm" id="quantity" required>
+                                <input type="number" class="form-control form-control-sm" name="waste" id="quantity"
+                                       required>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="mb-3">
                                 <label for="sack-number" class="form-label">Numărul de saci de deșeuri:</label>
-                                <input type="number" class="form-control form-control-sm" id="sack-number" required>
+                                <input type="number" class="form-control form-control-sm" id="sack-number" name="bags"
+                                       required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <div class="mb-3">
-                                <label for="photos" class="form-label">Adaugă poze:</label>
-                                <input type="file" class="form-control form-control-sm" id="photos" multiple>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" id="photos" multiple>
+                                <label class="custom-file-label" for="photos"></label>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row mt-3" id="uploaded-images">
+
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Salvează</button>
+                <button type="button" class="btn btn-primary" id="add-details-to-event">Salvează</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function event_details(location_id) {
-        $.ajax({
-            url: 'propose-locations/' + location_id,
-            type: 'GET',
-            success: function (response) {
-                response = response.data;
-                /*institution data*/
-                $('#institution-name').text(response.institution_name);
-                $('#institution-email').text(response.institution_email);
-                $('#institution-phone').text(response.institution_phone)
 
-                /*coordinator data*/
-                $('#coordinator-name').text(response.coordinator_name);
-                $('#coordinator-email').text(response.coordinator_email);
-                $('#coordinator-phone').text(response.coordinator_phone)
-                /*event data*/
-                $('#event-description').text(response.description);
-                $('#event-address').text(response.address);
-                $('#event-status').text(response.status);
-                $('#event-due-date').text(response.due_date);
-                $('#event-relief-type').text(response.relief_type);
-                $('#event-volunteer-size').text(response.size_volunteer_id);
+    $('#add-details-to-event-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var event_id = button.data('event_id');
+        var form = $('#event-details-form');
+        form.attr('action', 'propose-locations/update/' + event_id);
+    });
 
-            },
-            error: function (xhr, status, error) {
+    $('#add-details-to-event').click(function () {
+        var form = $('#event-details-form');
+        form.submit();
+    });
 
-                console.log(error);
+    $('#photos').on('change', function (e) {
+        var files = e.target.files; // List of selected files
+
+        // Iterate through each file and display them in HTML
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var imageTemplate =
+                    `<div class="col-sm-4 mb-4 images-box">
+                        <div class="card">
+                            <div class="card-body position-relative">
+                                <a href="#" style="text-decoration: none" class="delete-image position-absolute top-0 end-0 m-2 text-danger">&times;</a>
+                                <div class="square-container bg-light d-flex align-items-center justify-content-center">
+                                    <img src="${e.target.result}" class="uploaded-image" alt="Uploaded Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+
+                $('#uploaded-images').append(imageTemplate);
             }
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $(document).on('click', '.delete-image', function () {
+        $(this).closest('.images-box').remove();
+    });
+
+    $(document).on('click', '.uploaded-image', function () {
+        var imageUrl = $(this).attr('src');
+        var modalTemplate =
+            `<div class="modal fade" tabindex="-1" aria-labelledby="image-modal-label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    style="color: #a00404">X
+                            </button>
+                        </div>
+                        <div class="modal-body d-flex align-items-center justify-content-center">
+                            <img src="${imageUrl}" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+        var modalElement = $(modalTemplate); // Create the modal element from the template string
+
+        // Append the modal to the body and show it
+        $('body').append(modalElement);
+        modalElement.modal('show');
+
+        // Remove the modal from the DOM after it is closed
+        modalElement.on('hidden.bs.modal', function () {
+            modalElement.remove();
         });
-    }
+    });
 </script>
+
+
+<style>
+    .custom-file-input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .custom-file-label {
+        cursor: pointer;
+        background-color: #f5f5f5;
+        border: 1px solid #ced4da;
+        padding: 8px 12px;
+        border-radius: 4px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .custom-file-label:hover {
+        background-color: #e9ecef;
+    }
+
+    .custom-file-input:focus ~ .custom-file-label {
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .custom-file-input:focus ~ .custom-file-label::before {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .custom-file-input:lang(en) ~ .custom-file-label::after {
+        content: 'Browse files';
+    }
+
+    .uploaded-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .square-container {
+        width: 100px;
+        height: 100px;
+    }
+</style>

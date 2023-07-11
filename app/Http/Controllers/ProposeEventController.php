@@ -149,6 +149,7 @@ class ProposeEventController extends Controller
 
     public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
+//        dd($request->all());
         $validatedData = $request->validate([
             'description' => 'required',
             'due_date' => 'required',
