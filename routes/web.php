@@ -28,6 +28,7 @@ Route::get('/sitemap.xml', [ProposeEventController::class, 'sitemap_xml']);
 
 Route::middleware(['auth'])->group(function () {
     Route::post('propose-locations/update-unfolded-event/{userEventLocation}', [ProposeEventController::class, 'update_unfolded_event']);
+    Route::get('propose-locations/get-edit-unfolded-event/{userEventLocation}', [ProposeEventController::class, 'get_for_edit_unfolded_event']);
 });
 
 Route::middleware(['auth', 'user_role'])->group(function () {
@@ -125,9 +126,9 @@ Route::get('process-netopia-transaction', [NetopiaController::class, 'index'])->
 /*NETOPIA Payments END*/
 
 /*TERMS AND CONDITIONS START*/
-Route::get('get-contract-terms',[ApiApplicationTermsService::class, 'get_contract_terms']);
-Route::get('get-privacy-terms',[ApiApplicationTermsService::class, 'get_privacy_terms']);
-Route::get('get-terms-site',[ApiApplicationTermsService::class, 'get_terms_site']);
+Route::get('get-contract-terms', [ApiApplicationTermsService::class, 'get_contract_terms']);
+Route::get('get-privacy-terms', [ApiApplicationTermsService::class, 'get_privacy_terms']);
+Route::get('get-terms-site', [ApiApplicationTermsService::class, 'get_terms_site']);
 /*TERMS AND CONDITIONS END*/
 
 require __DIR__ . '/auth.php';

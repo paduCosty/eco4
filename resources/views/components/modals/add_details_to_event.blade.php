@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <form method="POST" id="event-details-form" enctype="multipart/form-data">
                     @csrf
-                     @method('post')
+                    @method('post')
                     <div class="row">
                         <div class="col-sm">
                             <div class="mb-3">
@@ -36,6 +36,8 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="images_for_delete" id="images-for-delete">
+
                     @if(session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
@@ -49,7 +51,6 @@
                         </div>
                     @endif
                     <div class="row mt-3" id="uploaded-images">
-
                     </div>
                 </form>
             </div>
@@ -61,12 +62,57 @@
 </div>
 
 <script>
+    // Function to fill the modal form with event details
 
+    function fillEventDetailsModal(location_id) {
+        // Make an AJAX request to get the event details
+        $.ajax({
+            url: 'propose-locations/' + location_id,
+            type: 'GET',
+            success: function (response) {
+                response = response.data;
+
+                $('#quantity').val(response.waste);
+                $('#sack-number').val(response.bags);
+
+                // Clear the existing images from the image container
+                $('#uploaded-images').empty();
+
+                // Add the images to the image container
+                $.each(response.images, function (index, image) {
+                    var imageTemplate =
+                        `<div class="col-sm-4 mb-4 images-box">
+                            <div class="card">
+                                <div class="card-body position-relative">
+                                    <a href="#" style="text-decoration: none" data-image_id="${image.id}" class="delete-image position-absolute top-0 end-0 m-2 text-danger">&times;</a>
+                                    <div class="square-container bg-light d-flex align-items-center justify-content-center">
+                                        <img src="${window.location.origin + '/' + image.path}" class="uploaded-image" alt="Uploaded Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+
+                    $('#uploaded-images').append(imageTemplate);
+                });
+
+                // Open the modal
+                $('#add-details-to-event-modal').modal('show');
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+    // Event triggered when the modal is opened
     $('#add-details-to-event-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var event_id = button.data('event_id');
+
         var form = $('#event-details-form');
         form.attr('action', '/propose-locations/update-unfolded-event/' + event_id);
+        // Call the function to fill the modal form with event details
+        fillEventDetailsModal(event_id);
     });
 
     $('#add-details-to-event').click(function () {
@@ -102,9 +148,20 @@
         }
     });
 
+    let image_for_delete = [];
     $(document).on('click', '.delete-image', function () {
         $(this).closest('.images-box').remove();
+        var imageId = $(this).data('image_id');
+        image_for_delete.push(imageId);
+        updateImagesForDeleteInput();
     });
+
+    // Funcția pentru a actualiza valoarea câmpului ascuns `#images-for-delete`
+    function updateImagesForDeleteInput() {
+        var imagesForDeleteInput = $('#images-for-delete');
+        var encodedIds = JSON.stringify(image_for_delete);
+        imagesForDeleteInput.val(encodedIds);
+    }
 
     $(document).on('click', '.uploaded-image', function () {
         var imageUrl = $(this).attr('src');
@@ -136,6 +193,11 @@
             modalElement.remove();
         });
     });
+
+    $(document).on('click', '.delete-image', function () {
+        $(this).closest('.images-box').remove();
+    });
+
 </script>
 
 
@@ -184,3 +246,4 @@
         height: 100px;
     }
 </style>
+

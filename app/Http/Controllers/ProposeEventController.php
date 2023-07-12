@@ -372,20 +372,33 @@ class ProposeEventController extends Controller
             ]);
         }
         return response()->json([
-            'message' => '203 success',
+            'message' => '203',
             'status' => false,
         ]);
     }
 
     public function update_unfolded_event(UserEventLocation $userEventLocation, Request $request)
     {
+        if ($request->event_images) {
+            $validator = Validator::make($request->all(), [
+                'event_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
 
-        $validator = Validator::make($request->all(), [
-            'event_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+        }
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        $images_for_delete = request()->input('images_for_delete');
+        //remove photo if is deleted from frontend
+        if ($images_for_delete) {
+            $image_ids = json_decode($images_for_delete, true);
+            foreach ($image_ids as $image_id) {
+                $image = UserEventLocationsPhotos::find($image_id);
+                if ($image) {
+                    $image->delete();
+                }
+            }
         }
 
         if ($request->hasFile('event_images')) {
@@ -403,14 +416,38 @@ class ProposeEventController extends Controller
                 ]);
 
             }
-            $userEventLocation->waste = $request->waste;
-            $userEventLocation->bags = $request->bags;
-            $crm_status = $this->apiService->sendEventToCrm($userEventLocation, 'Inactive');
-            if ($crm_status['status']) {
-                return redirect()->back()->with('success', 'Datele au fost salvate cu succes.');
-            }
         }
 
+        $userEventLocation->waste = $request->waste;
+        $userEventLocation->bags = $request->bags;
+
+        $crm_status = $this->apiService->sendEventToCrm($userEventLocation, 'Inactive');
+        if ($crm_status['status']) {
+            return redirect()->back()->with('success', 'Datele au fost salvate cu succes.');
+        }
+
+
         return redirect()->back()->with(['error' => 'Nu au fost găsite imagini în cerere.']);
+    }
+
+    public function get_for_edit_unfolded_event(UserEventLocation $userEventLocation)
+    {
+        $crm_event_data = $this->apiService->getEventFromCrm($userEventLocation->crm_propose_event_id);
+        if ($crm_event_data) {
+            $data = [
+                'waste' => $crm_event_data['Deseuri'] ?? '',
+                'bags' => $crm_event_data['Saci'] ?? '',
+                'images' => $userEventLocation->eventLocationImages
+            ];
+            return response()->json([
+                'message' => '200 success',
+                'status' => true,
+                'count_data' => $data
+            ]);
+        }
+        return response()->json([
+            'message' => '203',
+            'status' => false,
+        ]);
     }
 }
