@@ -7,21 +7,19 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\EventDateChangePartnerEmail;
 use App\Mail\MailToPartner;
 use App\Mail\ProposeEventMail;
-use App\Mail\VolunteersMail;
 use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\User;
 use App\Models\UserEventLocation;
+use App\Models\UserEventLocationsPhotos;
 use App\Services\ApiService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-use mysql_xdevapi\Exception;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Validator;
 
 class ProposeEventController extends Controller
 {
@@ -149,7 +147,6 @@ class ProposeEventController extends Controller
 
     public function update(Request $request, UserEventLocation $userEventLocation): \Illuminate\Http\RedirectResponse
     {
-//        dd($request->all());
         $validatedData = $request->validate([
             'description' => 'required',
             'due_date' => 'required',
@@ -176,7 +173,7 @@ class ProposeEventController extends Controller
         }
 
         $status = 'Inactive';
-        if ($userEventLocation->status == 'aprobat' ||$userEventLocation->status == 'in desfasurare') {
+        if ($userEventLocation->status == 'aprobat' || $userEventLocation->status == 'in desfasurare') {
             $status = "Active";
         }
         $crm_response['status'] = false;
@@ -217,11 +214,10 @@ class ProposeEventController extends Controller
 
     public function show(UserEventLocation $userEventLocation)
     {
-
+//dd($userEventLocation->eventLocationImages);
         if ($userEventLocation && Auth::check()) {
-
             $data = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
-
+            $event_data = $this->apiService->getEventFromCrm($userEventLocation->crm_propose_event_id);
             $data += [
                 'coordinator_name' => $userEventLocation->coordinator->name,
                 'coordinator_phone' => $userEventLocation->coordinator->phone,
@@ -232,6 +228,9 @@ class ProposeEventController extends Controller
                 'relief_type' => $userEventLocation->eventLocation->relief_type,
                 'size_volunteer_id' => $userEventLocation->eventLocation->sizeVolunteer->name,
                 'status' => $userEventLocation->status,
+                'waste' => $event_data->Deseuri,
+                'bags' => $event_data->Saci,
+                'images' => $userEventLocation->eventLocationImages,
             ];
 
             return response()->json(['status' => true, 'data' => $data]);
@@ -378,4 +377,40 @@ class ProposeEventController extends Controller
         ]);
     }
 
+    public function update_unfolded_event(UserEventLocation $userEventLocation, Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'event_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        if ($request->hasFile('event_images')) {
+            $images = $request->file('event_images');
+            $imagePaths = [];
+
+            foreach ($images as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move('storage/images/event', $imageName);
+                $imagePaths[] = 'storage/images/event/' . $imageName;
+
+                UserEventLocationsPhotos::create([
+                    'path' => 'storage/images/event/' . $imageName,
+                    'user_event_location_id' => $userEventLocation->id,
+                ]);
+
+            }
+            $userEventLocation->waste = $request->waste;
+            $userEventLocation->bags = $request->bags;
+            $crm_status = $this->apiService->sendEventToCrm($userEventLocation, 'Inactive');
+            if ($crm_status['status']) {
+                return redirect()->back()->with('success', 'Datele au fost salvate cu succes.');
+            }
+        }
+
+        return redirect()->back()->with(['error' => 'Nu au fost găsite imagini în cerere.']);
+    }
 }

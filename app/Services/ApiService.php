@@ -39,9 +39,8 @@ class ApiService
         return $data;
     }
 
-    public function sendEventToCrm($userEventLocation, $status): array
+    public function sendEventToCrm($userEventLocation, $status = null): array
     {
-
         //specify type if is create or update
         $action_type = 'add_action';
         if ($userEventLocation->crm_propose_event_id) {
@@ -55,7 +54,7 @@ class ApiService
         $end_date = Carbon::parse($userEventLocation->due_date)->setTime(15, 0, 0);
         $end_date = $end_date->format('Y-m-d H:i:s');
         $data = [
-            'id' => $userEventLocation->crm_propose_event_id,
+            'Id' => $userEventLocation->crm_propose_event_id,
             'Coordinator' => json_encode(array($userEventLocation->coordinator_id)),
             'Longitudine' => $userEventLocation->eventLocation->longitude,
             'Latitudine' => $userEventLocation->eventLocation->latitude,
@@ -64,7 +63,7 @@ class ApiService
             'LocationID' => $userEventLocation->eventLocation->cities_id,
             'Number' => $volunteers_size->required_volunteer_level,
             'Date' => $userEventLocation->due_date,
-            'Dataend' =>$end_date,
+            'Dataend' => $end_date,
             'Name' => $userEventLocation->eventLocation->address,
             'ProjectID' => 10,
             'EditionID' => 25,
@@ -92,6 +91,19 @@ class ApiService
 
         }
         return ['status' => false, 'message' => 'Actiunea nu a reusit contacteaza echipa de suport pentru mai multe detalii!'];
+    }
+
+    /*Take the event from crm*/
+    public function getEventFromCrm($event_id)
+    {
+        if ($event_id) {
+            $response = Http::asForm()->post($this->crmUrl . 'get_action_by_id/' . $event_id);
+        }
+
+        if($response->body()) {
+            return json_decode($response->body());
+        }
+        return false;
     }
 
 }

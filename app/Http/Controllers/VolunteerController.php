@@ -65,6 +65,7 @@ class VolunteerController extends Controller
                     'telefon' => $request->phone,
                     'santier' => $event_location->crm_propose_event_id,
                     'copii' => $children,
+                    'ProjectID' => 10
                 ]);
             }
         }

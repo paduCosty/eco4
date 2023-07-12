@@ -9,8 +9,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="event-details-form">
+                <form method="POST" id="event-details-form" enctype="multipart/form-data">
                     @csrf
+                     @method('post')
                     <div class="row">
                         <div class="col-sm">
                             <div class="mb-3">
@@ -30,12 +31,23 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" id="photos" multiple>
+                                <input type="file" class="custom-file-input" name="event_images[]" id="photos" multiple>
                                 <label class="custom-file-label" for="photos"></label>
                             </div>
                         </div>
                     </div>
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
 
+                    <!-- Verificați dacă există mesaj de succes -->
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="row mt-3" id="uploaded-images">
 
                     </div>
@@ -54,7 +66,7 @@
         var button = $(event.relatedTarget);
         var event_id = button.data('event_id');
         var form = $('#event-details-form');
-        form.attr('action', 'propose-locations/update/' + event_id);
+        form.attr('action', '/propose-locations/update-unfolded-event/' + event_id);
     });
 
     $('#add-details-to-event').click(function () {

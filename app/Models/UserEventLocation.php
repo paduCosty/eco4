@@ -47,4 +47,9 @@ class UserEventLocation extends Model
         return $this->belongsTo(Region::class, 'event_location_id');
     }
 
+    public function eventLocationImages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserEventLocationsPhotos::class, 'user_event_location_id');
+    }
+
 }

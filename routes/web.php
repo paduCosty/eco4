@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Response;
 
 Route::get('/sitemap.xml', [ProposeEventController::class, 'sitemap_xml']);
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('propose-locations/update-unfolded-event/{userEventLocation}', [ProposeEventController::class, 'update_unfolded_event']);
+});
 
 Route::middleware(['auth', 'user_role'])->group(function () {
     /*admin prefix*/
