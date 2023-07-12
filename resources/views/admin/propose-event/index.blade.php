@@ -5,7 +5,9 @@
     @include('admin.propose-event.enrolled_volunteers')
     @include('admin.propose-event.details_modal')
     @include('components.modals.add_details_to_event')
-
+    @php
+        use Carbon\Carbon;
+    @endphp
     <div class="container">
 
         <div class="text-center  mb-5" style="color:rgb(124, 121, 121)">
@@ -54,7 +56,8 @@
                 <th>Acțiuni</th>
             </tr>
             @php($i = 1)
-            @foreach ($eventLocations as $event)
+
+        @foreach ($eventLocations as $event)
                 <tr>
                     <td>{{ $i }}
                         @if(auth()->user()->role !== 'coordinator')
@@ -104,7 +107,8 @@
                                 </div>
                             </div>
                         @endif
-                        @if($event->status === 'desfasurat')
+
+                        @if($event->status === 'desfasurat' && Carbon::parse($event->due_date)->addDays(7)->greaterThan(Carbon::now()))
                             <a href="#" data-bs-toggle="modal" data-event_id="{{$event->id}}"
                                data-bs-target="#add-details-to-event-modal" class="col action-button">
                                 Creaza/Editeaza
