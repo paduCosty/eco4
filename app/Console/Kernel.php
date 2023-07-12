@@ -14,8 +14,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->command('event_completed:cron')
-            ->daily();
+        $schedule->command('event_completed:cron')->daily();
+        $schedule->command('update-event-to-end:cron')->dailyAt('15:00');
     }
 
     /**
