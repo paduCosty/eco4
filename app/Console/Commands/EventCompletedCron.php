@@ -46,14 +46,6 @@ class EventCompletedCron extends Command
             $event->save();
         }
 
-        $events_end = UserEventLocation::where('due_date', Carbon::now('Europe/Bucharest')->subDay()->toDateString())
-            ->where('status', 'in desfasurare')
-            ->get();
-        foreach ($events_end as $event) {
-            $event->status = 'desfasurat';
-            $event->save();
-        }
-
         $this->info('Event statuses updated successfully!');
     }
 }
