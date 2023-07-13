@@ -262,7 +262,7 @@ function initCreateEventMap(lat = null, lng = null, zoom = 8) {
             if (status === "OK" && results[0]) {
                 console.log(results[0].formatted_address);
                 $('#address_display').show();
-                $('#pin_address').val(results[0].formatted_address);
+                // $('#pin_address').val(results[0].formatted_address);
 
             } else {
                 console.log("Geocoding failed: " + status);
