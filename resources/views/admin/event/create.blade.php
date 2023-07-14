@@ -71,7 +71,7 @@
 
 {{--                        <div class="mb-3 col-md-6"  id="address_display">--}}
 {{--                            <label class="fs-5" for="pin_address">Adresa selectata:</label>--}}
-{{--                            <input class="form-control fs-6" readonly name="address" id="pin_address">--}}
+                            <input class="form-control fs-6" readonly name="address" id="pin_address" style="display: none">
 {{--                        </div>--}}
 
                         <div class="row form-group">

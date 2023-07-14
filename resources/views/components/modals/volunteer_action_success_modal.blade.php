@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-12">
-        <div class="modal-window modal fade" id="confirmModalBox" tabindex="-1" aria-labelledby="confirmModalLabel"
+        <div class="modal-window modal fade" id="volunteer-action-success-modal" tabindex="-1"
+             aria-labelledby="confirmModalLabel"
              aria-hidden="true" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="confirm">
@@ -19,25 +20,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <p class="confirm-message">
-                                    Felicitări! Formularul a fost trimis către noi. Vom reveni cu amănunte în cel
-                                    mai
+                                    Felicitări! Formularul a fost trimis către noi. Vom reveni cu amănunte în cel mai
                                     scurt timp, în principal pe email.
-                                    Iar dacă există urgențe, suntem de găsit și telefonic la numărul 0788 419 771
-                                    sau pe
-                                    mail la contact@planteazainromania.ro Vă mulțumim!
+                                    Dacă există urgențe, suntem de găsit la numărul de telefon <span
+                                        class="coordinator-phone"></span> - <span class="coordinator-name"></span> -
+                                    Coordonator acțiune.
+                                    Vă mulțumim!
                                 </p>
                             </div>
-
-                            {{-- <div class="row form-group">
-                                <div class="col-sm-12">
-                                    <div class="text-center">
-                                        <button class="form-submit modal-close-button text fs-5"
-                                                style="color: #a00404" data-bs-dismiss="modal" aria-label="Close"
-                                                type="button">Close
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ use App\Http\Controllers\NetopiaController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProposeEventController;
 use App\Http\Controllers\VolunteerController;
-use App\Services\ApiApplicationTermsService;
+use App\Services\ApiApplicationService;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Response;
@@ -126,9 +126,10 @@ Route::get('process-netopia-transaction', [NetopiaController::class, 'index'])->
 /*NETOPIA Payments END*/
 
 /*TERMS AND CONDITIONS START*/
-Route::get('get-contract-terms', [ApiApplicationTermsService::class, 'get_contract_terms']);
-Route::get('get-privacy-terms', [ApiApplicationTermsService::class, 'get_privacy_terms']);
-Route::get('get-terms-site', [ApiApplicationTermsService::class, 'get_terms_site']);
+Route::get('get-contract-terms', [ApiApplicationService::class, 'get_contract_terms']);
+Route::get('get-privacy-terms', [ApiApplicationService::class, 'get_privacy_terms']);
+Route::get('get-terms-site', [ApiApplicationService::class, 'get_terms_site']);
+Route::get('get-app-details-from-crm', [ApiApplicationService::class, 'get_app_details_from_crm']);
 /*TERMS AND CONDITIONS END*/
 
 require __DIR__ . '/auth.php';

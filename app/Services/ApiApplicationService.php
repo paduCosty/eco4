@@ -4,7 +4,7 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 
-class ApiApplicationTermsService
+class ApiApplicationService
 {
     public static function get_contract_terms()
     {
@@ -39,5 +39,15 @@ class ApiApplicationTermsService
         }
         return response()->json(['status' => false, 'message' => 'Server error!']);
 
+    }
+
+    public function get_app_details_from_crm() {
+        $client = new Client();
+        $response = $client->get(env('LOGIN_URL') . '/actions');
+        $data = json_decode($response->getBody()->getContents());
+        if ($data) {
+            return response()->json(['status' => true, 'data' => $data[0]->Name]);
+        }
+        return response()->json(['status' => false, 'message' => 'Server error!']);
     }
 }

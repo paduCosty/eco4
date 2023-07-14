@@ -5,7 +5,6 @@
 </head>
 <body>
 <div>
-    <h1>Confirmare participare - Acțiune de ecologizare</h1>
     <p>Dragă {{ $mailData['name'] }},</p>
     <p>Ne bucurăm să vă anunțăm că am acceptat cu entuziasm propunerea dvs. de a organiza o acțiune de ecologizare din data {{$mailData['due_date']}}.</p>
     <p>Suntem nerăbdători să participăm și să contribuim la această inițiativă importantă pentru protejarea mediului.

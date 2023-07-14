@@ -55,3 +55,22 @@ function get_terms_site() {
         }
     });
 }
+
+function get_app_details_from_crm() {
+    $.ajax({
+        url: '/get-app-details-from-crm',
+        method: 'GET',
+        beforeSend: function () {
+            $('.loading_indicator').show();
+        },
+        success: function (response) {
+            $('#about_us_modal_body').html(response.data);
+        },
+        complete: function () {
+            $('.loading_indicator').hide();
+        },
+        error: function (xhr, status, error) {
+            alert('A apărut o eroare: ' + error);
+        }
+    });
+}

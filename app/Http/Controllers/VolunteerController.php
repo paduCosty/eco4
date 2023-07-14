@@ -81,7 +81,14 @@ class VolunteerController extends Controller
         }
         if ($volunteer) {
             $eventLocation = EventRegistration::create($volunteer);
-            session()->flash('success', 'Datele au fost salvate cu succes!');
+
+            $coordinator_data = UserEventLocation::where('id', $request->users_event_location_id)
+                    ->select('id', 'coordinator_id')->first();
+
+            session()->flash('show_volunteer_action_success_modal');
+            session()->flash('coordinator-name', $coordinator_data->coordinator->name);
+            session()->flash('coordinator_phone', $coordinator_data->coordinator->phone);
+
             return redirect()->route('home');
         }
         return redirect()->route('home')->with('error', 'Inscrierea a esuat, contactatine sau incercati mai tarziu.');
