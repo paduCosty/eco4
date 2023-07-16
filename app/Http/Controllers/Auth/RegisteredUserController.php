@@ -64,7 +64,7 @@ class RegisteredUserController extends Controller
             ]);
         }
 
-        if ($response->json() == '1') {
+        if ($response->json() == '1' || $response->json() == 1) {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
