@@ -12,18 +12,18 @@
                     @method('post')
                     <div class="row form-group">
                         <div class="mb-3 col-md-6 ">
-                            <label class="fs-5 " style="color:rgb(124, 121, 121)" >Judet:</label>
-                            <input class="text-gray form-control fs-6 region_id" readonly>
+                            <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)" >Judet:</label>
+                            <input class="text-gray form-control-plaintext input-normal region_id" readonly>
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5" style="color:rgb(124, 121, 121)">Localitate:</label>
-                            <input class="form-control fs-6 text-gray cities_id" readonly>
+                            <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">Localitate:</label>
+                            <input class="form-control-plaintext input-normal text-gray cities_id" readonly>
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5" style="color:rgb(124, 121, 121)">Tip teren:</label>
-                            <select name="relief_type" class="form-control select-location fs-6" required>
+                            <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">Tip teren:</label>
+                            <select name="relief_type" class="form-control-plaintext input-normal select-location" required>
                                 <option  class=" text-gray" value="">Selecteaza</option>
                                 <option value="Campie">Campie
                                 </option>
@@ -37,8 +37,8 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5" style="color:rgb(124, 121, 121)">La fata locului:</label>
-                            <select name="size_volunteer_id" class="form-control select-location fs-6 text-gray" id="size_volunteer_id" required>
+                            <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">La fata locului:</label>
+                            <select name="size_volunteer_id" class="form-control-plaintext input-normal select-location text-gray" id="size_volunteer_id" required>
                                 <option value="">Selecteaza</option>
 
                             </select>
@@ -53,8 +53,8 @@
                             <div id="custom_map"></div>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5 " style="color:rgb(124, 121, 121)" for="pin_address">Adresa selectata:</label>
-                            <input class="form-control fs-6 text-gray pin_address" readonly name="address">
+                            <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)" for="pin_address">Adresa selectata:</label>
+                            <input class="form-control-plaintext input-normal text-gray pin_address" readonly name="address">
                         </div>
                     </div>
 

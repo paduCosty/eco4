@@ -23,8 +23,8 @@
                     <div class="row form-group">
 
                         <div class="col-md-6 mb-3">
-                            <label class="fs-5">Judet:</label>
-                            <select id="regions" class="form-control select-location fs-6" required>
+                            <label class="col-form-label form-modal-label">Judet:</label>
+                            <select id="regions" class="form-control-plaintext input-normal select-location " required>
                                 <option value="">Judet</option>
 
                                 @foreach ($regions as $region)
@@ -35,8 +35,8 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="fs-5">Localitate: </label>
-                            <div class="fs-6" id="city"></div>
+                            <label class="col-form-label form-modal-label">Localitate: </label>
+                            <div class="" id="city"></div>
                         </div>
 
                         <div class="mt-4">
@@ -45,8 +45,8 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5 ">Tip teren:</label>
-                            <select name="relief_type" class="form-control fs-6" required>
+                            <label class="col-form-label form-modal-label">Tip teren:</label>
+                            <select name="relief_type" class="form-control-plaintext input-normal" required>
                                 <option value="">Selecteaza</option>
                                 <option value="Campie">Campie</option>
                                 <option value="Deal">Deal</option>
@@ -55,8 +55,8 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="fs-5">La fata locului:</label>
-                            <select name="size_volunteer_id" class="form-control select-location fs-6"
+                            <label class="col-form-label form-modal-label">La fata locului:</label>
+                            <select name="size_volunteer_id" class="form-control-plaintext input-normal select-location"
                                 required>
                                 <option value="">Selecteaza</option>
                                 @foreach ($size_volunteers as $size_volunteer)
