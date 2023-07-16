@@ -139,7 +139,7 @@
 
                             @if($event->status == 'aprobat')
                                 <a type="button" class="col action-button generate-representation-link"
-                                   data-event_id="{{ $event->id }}">Reprezentati</a>
+                                   data-event_id="{{ $event->id }}">Distribuie Link</a>
                             @endif
 
 

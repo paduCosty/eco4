@@ -74,6 +74,7 @@ class EventController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+
         $validatedData = $request->validate([
 
             'description' => 'required',
@@ -124,8 +125,10 @@ class EventController extends Controller
                 $validatedData += ['coordinator_id' => Auth::user()->id];
             }
         }
-
+//        $validatedData['name'] = ;
         $event = UserEventLocation::create($validatedData);
+        $event->name = 'L' . $event->eventLocation->id . '/A' . $event->id . ' - ' . $event->eventLocation->city->name . ',' . $event->eventLocation->city->region->name;
+        $event->save();
         /*take partner email and name form crm*/
         $partner_data = $this->apiService->getPartnersFromCrm($event->eventLocation->user->id);
 
@@ -141,7 +144,8 @@ class EventController extends Controller
                 ));
 
         }
-        session()->flash('success', 'Datele au fost salvate cu succes!');
+
+        session()->flash('show_propose_event_confirmation_modal');
         return redirect()->route('home');
     }
 
@@ -214,7 +218,7 @@ class EventController extends Controller
 
     public function show(UserEventLocation $userEventLocation)
     {
-//dd($userEventLocation->eventLocationImages);
+
         if ($userEventLocation && Auth::check()) {
             $data = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
             $event_data = $this->apiService->getEventFromCrm($userEventLocation->crm_propose_event_id);
@@ -228,8 +232,8 @@ class EventController extends Controller
                 'relief_type' => $userEventLocation->eventLocation->relief_type,
                 'size_volunteer_id' => $userEventLocation->eventLocation->sizeVolunteer->name,
                 'status' => $userEventLocation->status,
-                'waste' => $event_data->Deseuri,
-                'bags' => $event_data->Saci,
+                'waste' => $event_data->Deseuri ?? '',
+                'bags' => $event_data->Saci ?? '',
                 'images' => $userEventLocation->eventLocationImages,
             ];
 
@@ -310,12 +314,19 @@ class EventController extends Controller
                 }
 
                 if ($request->val == 'aprobat' && $crm_response['status']) {
-                    $mailData = [
+
+                    $partner_details = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->crm_propose_event_id);
+                    $mail_data = [
+                        'coordinator_name' => $userEventLocation->coordinator->name,
                         'due_date' => $userEventLocation->due_date,
-                        'name' => $userEventLocation->name
+                        'institution_name' => $partner_details['institution_name'],
+                        'institution_phone' => $partner_details['institution_phone'],
+                        'institution_email' => $partner_details['institution_email'],
+                        'event_name' => $userEventLocation->name
                     ];
 
-                    $result = Mail::to($userEventLocation->coordinator->email)->send(new ProposeEventMail($mailData));
+                    $result = Mail::to($userEventLocation->coordinator->email)
+                        ->send(new ProposeEventMail($mail_data));
                     if ($result) {
                         $response_msg['email'] = 'Email-ul a fost trimis cu succes';
                     } else {

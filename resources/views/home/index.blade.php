@@ -286,18 +286,8 @@
         </div>
     </div>
 
-    {{--    @if (session('success'))--}}
+    <!--  Open confirmation modal after a volunteer is registered  -->
     @include('components.modals.volunteers.action_success_modal')
-    {{--        <script>--}}
-    {{--            $(document).ready(function () {--}}
-    {{--                $('#confirmModalBox').modal('show');--}}
-
-
-    {{--                $('description-textarea')--}}
-    {{--            });--}}
-    {{--        </script>--}}
-    {{--    @endif--}}
-
     @if (session('show_volunteer_action_success_modal'))
         <script>
             $(document).ready(function () {
@@ -308,5 +298,18 @@
             });
         </script>
     @endif
+
+    {{--Open confirmation modal after a coordinator propose a event--}}
+    @include('components.modals.propose_event.propose_event_confirmation_modal')
+    @if (session('show_propose_event_confirmation_modal'))
+        <script>
+            $(document).ready(function () {
+                var confirmModal = $('#propose-action-success-modal');
+                confirmModal.modal('show');
+            });
+        </script>
+    @endif
+
+
 
 @endsection

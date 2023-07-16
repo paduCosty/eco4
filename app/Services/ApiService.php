@@ -65,7 +65,7 @@ class ApiService
             'Date' => $userEventLocation->due_date,
             'Dataend' => $end_date,
             /*generate name for event in crm L=location A=action*/
-            'Name' =>'L' . $userEventLocation->eventLocation->id . '/A' . $userEventLocation->id . ' - ' . $userEventLocation->eventLocation->city->name . ',' . $userEventLocation->eventLocation->city->region->name,
+            'Name' => 'L' . $userEventLocation->eventLocation->id . '/A' . $userEventLocation->id . ' - ' . $userEventLocation->eventLocation->city->name . ',' . $userEventLocation->eventLocation->city->region->name,
             'ProjectID' => 10,
             'EditionID' => 25,
             'Radius' => 2000,
@@ -99,10 +99,10 @@ class ApiService
     {
         if ($event_id) {
             $response = Http::asForm()->post($this->crmUrl . 'get_action_by_id/' . $event_id);
-        }
 
-        if ($response->body()) {
-            return json_decode($response->body());
+            if ($response->body()) {
+                return json_decode($response->body());
+            }
         }
         return false;
     }
