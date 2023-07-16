@@ -64,7 +64,7 @@
             var location_id = button.data('location_id');
 
             $.ajax({
-                url: '/admin/event-locations/' + location_id,
+                url: '/admin/locations/' + location_id,
                 type: 'Get',
                 success: function (response) {
                     $('#details_region').val(response.data.region_name)

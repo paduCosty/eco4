@@ -31,7 +31,7 @@ $(document).ready(function () {
     $(document).on('change', '.insert-localities', function () {
         const cityId = $(this).val();
         $.ajax({
-            url: APP_URL + '/get-event-locations/' + cityId,
+            url: APP_URL + '/get-locations/' + cityId,
             success: function (data) {
                 initMapPropose(data)
             },

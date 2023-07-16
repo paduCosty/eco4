@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/eco4-fe.css') }}">
     <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -33,8 +33,12 @@
     <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
     <script src="{{ asset('js/home.js') }}"></script>
     <script src="{{ asset('js/applications_tersm_service.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    @include('components.modals.location_details_modal')
+    @include('components.modals.location.location_details_modal')
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -90,12 +94,12 @@
                         @if(auth()->check() && (auth()->user()->role == 'partner' || auth()->user()->role == 'admin'))
                             <li class="nav-item">
                                 <a class="nav-link action-button"
-                                   href="{{ route('event-locations.index') }}">{{ __('Locatii propuse') }}</a>
+                                   href="{{ route('locations.index') }}">{{ __('Locatii propuse') }}</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link action-button"
-                                   href="{{ route('propose-locations.index') }}">{{ __('Actiuni Ecologizare') }}</a>
+                                   href="{{ route('events.index') }}">{{ __('Actiuni Ecologizare') }}</a>
                             </li>
 
                         @elseif(auth()->check() && (auth()->user()->role == 'coordinator'))
@@ -164,10 +168,10 @@
     </main>
 </div>
 
-@include('components.modals.about_us_modal')
+@include('components.modals.app_services.about_us_modal')
 @include('components.modals.contact_us_modal')
-@include('components.modals.terms_and_conditions_modal')
-@include('components.modals.privacy_policy_modal')
+@include('components.modals.app_services.terms_and_conditions_modal')
+@include('components.modals.app_services.privacy_policy_modal')
 
 <footer class="mt-auto">
     <div class="container footer-container mt-1">
@@ -208,4 +212,16 @@
 </body>
 </html>
 
+<!--input data format type-->
+<script>
+    $(document).ready(function () {
+        $(".date-input").datepicker({
+            dateFormat: 'dd/mm/yy',
+            onSelect: function (dateText, inst) {
+                var formattedDate = moment(dateText, 'DD/MM/YYYY').format('DD/MM/YYYY');
+                $(this).val(formattedDate);
+            }
+        });
+    });
 
+</script>

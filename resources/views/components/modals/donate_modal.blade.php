@@ -281,7 +281,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <x-terms_site></x-terms_site>
+
                                             <div class="row form-group">
                                                 <div class="col-12">
                                                     <div class="text-end">

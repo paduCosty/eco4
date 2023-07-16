@@ -2,9 +2,9 @@
 
 @section('content')
 
-    @include('components.modals.enrol_modal')
+    @include('components.modals.volunteers.enrol_modal')
     @include('components.modals.donate_modal')
-    @include('components.modals.terms_contract_modal')
+    @include('components.modals.app_services.terms_contract_modal')
 
     <div>
         <div class="banner" style="margin-bottom: 30px;">
@@ -144,7 +144,7 @@
                         </div>
                     </div>
 
-                    @include('components.modals.propose-event-location-modal')
+                    @include('components.modals.propose_event.propose-event-location-modal')
 
                     <div class="col-sm-7 slider-link add-next-eco-action">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#propose-action-modal">Propune acțiune de
@@ -286,17 +286,17 @@
         </div>
     </div>
 
-{{--    @if (session('success'))--}}
-        @include('components.modals.volunteer_action_success_modal')
-{{--        <script>--}}
-{{--            $(document).ready(function () {--}}
-{{--                $('#confirmModalBox').modal('show');--}}
+    {{--    @if (session('success'))--}}
+    @include('components.modals.volunteers.action_success_modal')
+    {{--        <script>--}}
+    {{--            $(document).ready(function () {--}}
+    {{--                $('#confirmModalBox').modal('show');--}}
 
 
-{{--                $('description-textarea')--}}
-{{--            });--}}
-{{--        </script>--}}
-{{--    @endif--}}
+    {{--                $('description-textarea')--}}
+    {{--            });--}}
+    {{--        </script>--}}
+    {{--    @endif--}}
 
     @if (session('show_volunteer_action_success_modal'))
         <script>

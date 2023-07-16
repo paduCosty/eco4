@@ -67,7 +67,7 @@
 <script>
     function event_details(location_id) {
         $.ajax({
-            url: 'propose-locations/' + location_id,
+            url: 'events/' + location_id,
             type: 'GET',
             success: function (response) {
                 response = response.data;

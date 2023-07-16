@@ -52,7 +52,7 @@
                     <td>{{ ++$i }}
                         <a href="#" data-location_id="{{$location->id}}" class="action-button"
                            data-bs-toggle="modal"
-                           data-bs-target="#locations-details-modal">L#{{$location->id}}</a>
+                           data-bs-target="#locations-details-modal">L{{$location->id}}</a>
                     </td>
                     <td>{{ $location->city->region->name }}</td>
                     <td>{{ $location->address }}</td>
@@ -61,7 +61,7 @@
                     <td>{{ $location->longitude }}</td>
                     <td>{{ $location->latitude }}</td>
                     <td>
-                        <form action="{{ route('event-locations.destroy', $location->id) }}" class="delete-form"
+                        <form action="{{ route('locations.destroy', $location->id) }}" class="delete-form"
                               method="POST">
                             <a class="action-button edit_event_button col mb-3" type="button"
                                event="{{ json_encode($location) }}" data-bs-toggle="modal"
@@ -71,7 +71,7 @@
                             @csrf
                             @if (!$location->users_event_locations_count)
                                 @method('DELETE')
-                                <a type="button" class="action-button" id="delete-button">Delete</a>
+                                <a type="button" class="action-button delete-location-button">Delete</a>
                             @endif
                         </form>
                     </td>
@@ -81,8 +81,8 @@
         {!! $events->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 
-    @include('admin.event.edit')
-    @include('admin.event.create')
+    @include('partners.locations.edit')
+    @include('partners.locations.create')
 
 
     <script>
@@ -134,7 +134,7 @@
             for (let i = 0; i < size_volunteers.length; ++i) {
                 html_select += `<option class="size_volunteers_option" value=${size_volunteers[i].id}>${size_volunteers[i].name}</option>`
             }
-            $('.form_edit_event').attr('action', APP_URL + '/admin/event-locations/update/' + event.id)
+            $('.form_edit_event').attr('action', APP_URL + '/admin/locations/update/' + event.id)
             $('.region_id').val(event.city.region.name).text(event.city.region.id);
             $('.cities_id').val(event.city.name).text(event.city.id);
             $('.gps_longitude').val(event.longitude)
@@ -146,7 +146,7 @@
             initEditEventMap(event.latitude, event.longitude);
         });
 
-        $('#delete-button').click(function () {
+        $('.delete-location-button').click(function () {
             if (confirm('Esti sigur ca vrei sa stergi acest Eveniment')) {
                 $(this).closest('.delete-form').submit();
 

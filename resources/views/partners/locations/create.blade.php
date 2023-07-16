@@ -18,7 +18,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('event-locations.store') }}" method="POST">
+                <form action="{{ route('locations.store') }}" method="POST">
                     @csrf
                     <div class="row form-group">
 

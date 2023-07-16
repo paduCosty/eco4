@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Mail;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Validator;
 
-class ProposeEventController extends Controller
+class EventController extends Controller
 {
 
     protected $apiService;
@@ -60,7 +60,7 @@ class ProposeEventController extends Controller
                 ->paginate(10);
         }
 
-        return view('admin.propose-event.index', compact('eventLocations',));
+        return view('users.events.index', compact('eventLocations',));
     }
 
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -137,7 +137,7 @@ class ProposeEventController extends Controller
                     $event->due_date,
                     $event->eventLocation->address,
                     $event->coordinator->name,
-                    url('/admin/propose-locations')
+                    url('/admin/events')
                 ));
 
         }
@@ -204,12 +204,12 @@ class ProposeEventController extends Controller
             session()->flash('success', $crm_response['message'] ?? 'Datele au fost salvate cu succes!');
             if (Auth::user()->role === 'coordinator')
                 return redirect()->route('coordinator.event');
-            return redirect()->route('propose-locations.index');
+            return redirect()->route('events.index');
         }
         session()->flash('error', $crm_response['messsage'] ?? 'Datele nu au fost actualizate');
         if (Auth::user()->role === 'coordinator')
             return redirect()->route('coordinator.event');
-        return redirect()->route('propose-locations.index');
+        return redirect()->route('events.index');
     }
 
     public function show(UserEventLocation $userEventLocation)
@@ -277,7 +277,7 @@ class ProposeEventController extends Controller
 
         $regions = Region::all();
 
-        return view('propose-event.index', compact('count_events', 'regions', 'events_regions', 'accepted_regions', 'share_link_data'));
+        return view('home.index', compact('count_events', 'regions', 'events_regions', 'accepted_regions', 'share_link_data'));
     }
 
     public function approve_or_decline_propose_event(Request $request)

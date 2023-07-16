@@ -67,7 +67,7 @@
     function fillEventDetailsModal(location_id) {
         // Make an AJAX request to get the event details
         $.ajax({
-            url: 'propose-locations/' + location_id,
+            url: 'events/' + location_id,
             type: 'GET',
             success: function (response) {
                 response = response.data;
@@ -110,7 +110,7 @@
         var event_id = button.data('event_id');
 
         var form = $('#event-details-form');
-        form.attr('action', '/propose-locations/update-unfolded-event/' + event_id);
+        form.attr('action', '/events/update-unfolded-event/' + event_id);
         // Call the function to fill the modal form with event details
         fillEventDetailsModal(event_id);
     });

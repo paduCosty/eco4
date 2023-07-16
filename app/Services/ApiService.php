@@ -64,7 +64,8 @@ class ApiService
             'Number' => $volunteers_size->required_volunteer_level,
             'Date' => $userEventLocation->due_date,
             'Dataend' => $end_date,
-            'Name' => $userEventLocation->eventLocation->address,
+            /*generate name for event in crm L=location A=action*/
+            'Name' =>'L' . $userEventLocation->eventLocation->id . '/A' . $userEventLocation->id . ' - ' . $userEventLocation->eventLocation->city->name . ',' . $userEventLocation->eventLocation->city->region->name,
             'ProjectID' => 10,
             'EditionID' => 25,
             'Radius' => 2000,
@@ -77,7 +78,7 @@ class ApiService
 
         ];
 
-        if(Auth::user()->role === 'partner' || Auth::user()->role == 'admin') {
+        if (Auth::user()->role === 'partner' || Auth::user()->role == 'admin') {
             $data['Status'] = $status;
         }
         $response = Http::asForm()->post($this->crmUrl . $action_type, $data);
@@ -100,7 +101,7 @@ class ApiService
             $response = Http::asForm()->post($this->crmUrl . 'get_action_by_id/' . $event_id);
         }
 
-        if($response->body()) {
+        if ($response->body()) {
             return json_decode($response->body());
         }
         return false;

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
-class EventLocationController extends Controller
+class LocationController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -35,7 +35,7 @@ class EventLocationController extends Controller
         $size_volunteers = SizeVolunteers::all();
         $regions = Region::all();
 
-        return view('admin.event.index',
+        return view('partners.locations.index',
             compact('events', 'regions', 'size_volunteers')
         );
     }
@@ -53,7 +53,7 @@ class EventLocationController extends Controller
         $user_id = Auth::id();
 
         if (!$user_id) {
-            redirect()->route('event-locations.index');
+            redirect()->route('locations.index');
         }
 
         $validatedData = $request->validate([
@@ -76,16 +76,16 @@ class EventLocationController extends Controller
 
         EventLocation::create($validatedData);
 
-        return redirect()->route('event-locations.index')
+        return redirect()->route('locations.index')
             ->with('success', 'Locul de ecologizare a fost creat cu succes!');
     }
 
-    public function update(Request $request, EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, EventLocation $location): \Illuminate\Http\RedirectResponse
     {
         $user_id = Auth::id();
 
         if (!$user_id) {
-            redirect()->route('event-locations.index');
+            redirect()->route('locations.index');
         }
         $validatedData = $request->validate([
             'longitude' => 'required',
@@ -95,36 +95,36 @@ class EventLocationController extends Controller
             'size_volunteer_id' => 'required',
         ]);
 
-        $eventLocation->update($validatedData);
+        $location->update($validatedData);
 
-        return redirect()->route('event-locations.index')
+        return redirect()->route('locations.index')
             ->with('success', 'Locul de ecologizare a fost editat cu succes!');
     }
 
-    public function destroy(EventLocation $eventLocation): \Illuminate\Http\RedirectResponse
+    public function destroy(EventLocation $location): \Illuminate\Http\RedirectResponse
     {
         if (Auth::check()) {
-            $eventLocation->delete();
-            return redirect()->route('event-locations.index')
+            $location->delete();
+            return redirect()->route('locations.index')
                 ->with('success', 'Locul de ecologizare a fost șters cu succes!');
         }
-        return redirect()->route('event-locations.index')
+        return redirect()->route('locations.index')
             ->with('error', 'Nu ai acces pentru a face aceasta actiune');
     }
 
-    public function show(EventLocation $eventLocation)
+    public function show(EventLocation $location)
     {
-        if ($eventLocation) {
+        if ($location) {
             $data = [
-                'id' => $eventLocation->id,
-                'longitude' => $eventLocation->longitude,
-                'latitude' => $eventLocation->latitude,
-                'address' => $eventLocation->address,
-                'relief_type' => $eventLocation->relief_type,
-                'city_name' => $eventLocation->city->name,
-                'region_name' => $eventLocation->city->region->name,
-                'size_volunteer_name' => $eventLocation->sizeVolunteer->name . '(' . $eventLocation->sizeVolunteer->required_volunteer_level . ')',
-                'status' => $eventLocation->status,
+                'id' => $location->id,
+                'longitude' => $location->longitude,
+                'latitude' => $location->latitude,
+                'address' => $location->address,
+                'relief_type' => $location->relief_type,
+                'city_name' => $location->city->name,
+                'region_name' => $location->city->region->name,
+                'size_volunteer_name' => $location->sizeVolunteer->name . '(' . $location->sizeVolunteer->required_volunteer_level . ')',
+                'status' => $location->status,
             ];
             return response()->json(['message' => 'success', 'status' => true, 'data' => $data]);
         }

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('admin.propose-event.edit')
-    @include('admin.propose-event.enrolled_volunteers')
-    @include('admin.propose-event.details_modal')
-    @include('components.modals.add_details_to_event')
+    @include('users.events.edit')
+    @include('users.events.enrolled_volunteers')
+    @include('users.events.details_modal')
+    @include('components.modals.event.add_details_to_event')
     @php
         use Carbon\Carbon;
     @endphp
@@ -46,7 +46,7 @@
             <tr>
                 <th>Nr.
                     @if(auth()->user()->role !== 'coordinator')
-                        /id
+                        id
                     @endif
                 </th>
                 <th>Adresa</th>
@@ -57,14 +57,14 @@
             </tr>
             @php($i = 1)
 
-        @foreach ($eventLocations as $event)
+            @foreach ($eventLocations as $event)
                 <tr>
                     <td>{{ $i }}
                         @if(auth()->user()->role !== 'coordinator')
                             <a href="#" data-location_id="{{$event->event_location_id}}" class="action-button"
                                data-bs-toggle="modal"
-                               data-bs-target="#locations-details-modal">A#{{$event->id}}
-                                /L#{{$event->event_location_id}}</a></td>
+                               data-bs-target="#locations-details-modal">A{{$event->id}}
+                                L{{$event->event_location_id}}</a></td>
                     @endif
                     <td>
                         {{ $event->eventLocation->city->name }},
@@ -160,7 +160,7 @@
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
 
-                $('.form_edit_propose_event').attr('action', 'propose-locations/update/' +
+                $('.form_edit_propose_event').attr('action', 'events/update/' +
                     location.id)
 
                 $('.event_location_due_date').val(location.due_date);

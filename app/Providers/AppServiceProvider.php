@@ -20,8 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::component('terms-contract', 'x-terms-contract');
-        Blade::component('privacy_policy', 'x-privacy_policy');
-        Blade::component('terms_site', 'x-terms_site');
+//
     }
 }
