@@ -63,7 +63,7 @@ class RegisteredUserController extends Controller
                 'password' => 'Inregistrarea a esuat.',
             ]);
         }
-
+// dd($response->json());
         if ($response->json() == '1') {
             $user = User::create([
                 'name' => $request->name,
