@@ -33,6 +33,8 @@
     <script src="{{ asset('js/propose_event_google_maps.js') }}"></script>
     <script src="{{ asset('js/home.js') }}"></script>
     <script src="{{ asset('js/applications_tersm_service.js') }}"></script>
+    <script src="{{ asset('js/events/image_handler.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>

@@ -152,7 +152,7 @@
         {!! $eventLocations->withQueryString()->links('pagination::bootstrap-5') !!}
 
     </div>
-
+<div class="show-images-modal"></div>
     <script>
         $(document).ready(function () {
             const APP_URL = window.location.origin;

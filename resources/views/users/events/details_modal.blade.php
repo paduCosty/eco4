@@ -1,9 +1,12 @@
-<div class="modal fade" id="details-event-modal" tabindex="-1" aria-labelledby="details-event-modal-label" aria-hidden="true">
+<div class="modal fade" id="details-event-modal" tabindex="-1" aria-labelledby="details-event-modal-label"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="edit-product-modal-label">Detalii eveniment ecologizare</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #a00404">X</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="color: #a00404">X
+                </button>
             </div>
 
             <div class="modal-body">
@@ -42,20 +45,8 @@
 
                     <div class="event-photos">
                         <h2>Poze eveniment</h2>
-                        <div id="event-photos-carousel" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div id="uploaded-images-container"></div>
 
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#event-photos-carousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#event-photos-carousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+                        <div class="row mt-3" id="uploaded-images-container"></div>
                     </div>
                 </div>
             </div>
@@ -91,13 +82,10 @@
                 $('#event-waste').text(response.waste);
                 $('#event-bags').text(response.bags);
 
-                // Curăță conținutul div-ului cu poze
+                // Clears the content of the picture div
                 $('#uploaded-images-container').empty();
 
-                $.each(response.images, function(index, image) {
-                    var imageElement = $('<img>').attr('src', window.location.origin + '/' + image.path);
-                    $('#uploaded-images-container').append(imageElement);
-                });
+                image_box(response, 'uploaded-images-container');
 
             },
             error: function (xhr, status, error) {
