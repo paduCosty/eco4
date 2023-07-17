@@ -15,15 +15,15 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="mb-3">
-                                <label for="quantity" class="form-label">Cantitatea de deșeuri (kg):</label>
-                                <input type="number" class="form-control form-control-sm" name="waste" id="quantity"
+                                <label for="quantity" class="col-form-label form-modal-label">Cantitatea de deșeuri (kg):</label>
+                                <input type="number" class="form-control-plaintext input-normal form-control-sm" name="waste" id="quantity"
                                        required>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="mb-3">
-                                <label for="sack-number" class="form-label">Numărul de saci de deșeuri:</label>
-                                <input type="number" class="form-control form-control-sm" id="sack-number" name="bags"
+                                <label for="sack-number" class="col-form-label form-modal-label">Numărul de saci de deșeuri:</label>
+                                <input type="number" class="form-control-plaintext input-normal form-control-sm" id="sack-number" name="bags"
                                        required>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="add-details-to-event">Salvează</button>
+                <button type="button" class="form-submit" id="add-details-to-event">Salvează</button>
             </div>
         </div>
     </div>

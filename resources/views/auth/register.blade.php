@@ -16,7 +16,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                           class="form-control @error('name') is-invalid @enderror" name="name"
+                                           class="form-control-plaintext input-normal @error('name') is-invalid @enderror" name="name"
                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
@@ -33,7 +33,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                           class="form-control @error('email') is-invalid @enderror" name="email"
+                                           class="form-control-plaintext input-normal @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
@@ -50,7 +50,7 @@
 
                                 <div class="col-md-6">
                                     <input id="phone" type="text"
-                                           class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                           class="form-control-plaintext input-normal @error('phone') is-invalid @enderror" name="phone"
                                            value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                     @error('phone')
@@ -66,7 +66,7 @@
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
-                                           class="form-control @error('address') is-invalid @enderror" name="address"
+                                           class="form-control-plaintext input-normal @error('address') is-invalid @enderror" name="address"
                                            value="{{ old('address') }}" required autocomplete="address" autofocus>
 
                                     @error('address')
@@ -82,7 +82,7 @@
 
                                 <div class="col-md-6">
                                     <input id="data" type="date"
-                                           class="form-control @error('data') is-invalid @enderror" name="data"
+                                           class="form-control-plaintext input-normal @error('data') is-invalid @enderror" name="data"
                                            value="{{ old('data') }}" required autocomplete="data" autofocus>
 
                                     @error('data')
@@ -94,11 +94,10 @@
                             </div>
                             <div class="row mb-3">
                                 <label for="country"
-                                       class="col-md-4 col-form-label text-md-end">{{ __('Tara') }}</label>
-
+                                       class="col-md-4 col-form-label form-modal-label text-md-end">{{ __('Tara') }}</label>
                                 <div class="col-md-6">
                                     <input id="country" type="text"
-                                           class="form-control @error('country') is-invalid @enderror" name="country"
+                                           class="form-control-plaintext input-normal @error('country') is-invalid @enderror" name="country"
                                            value="{{ old('country') }}" required autocomplete="country" autofocus>
 
                                     @error('country')
@@ -114,7 +113,7 @@
 
                                 <div class="col-md-6">
                                     <input id="city" type="text"
-                                           class="form-control @error('city') is-invalid @enderror" name="city"
+                                           class="form-control-plaintext input-normal @error('city') is-invalid @enderror" name="city"
                                            value="{{ old('city') }}" required autocomplete="ity" autofocus>
 
                                     @error('city')
@@ -131,7 +130,7 @@
                                 <div class="col-md-6">
 
                                     <select name="gender"
-                                            class="form-control" required>
+                                            class="form-control-plaintext input-normal" required>
                                         <option value="">Selecteaza</option>
 
                                         <option value="M">Masculin</option>
@@ -146,7 +145,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
+                                           class="form-control-plaintext input-normal @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="new-password">
 
                                     @error('password')

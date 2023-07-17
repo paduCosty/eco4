@@ -97,7 +97,7 @@
                     region_id: region_id
                 },
                 success: function (response) {
-                    var options = `<select name="cities_id" id="cities_by_region" class="form-control select-location" required>
+                    var options = `<select name="cities_id" id="cities_by_region" class="form-control-plaintext input-normal select-location" required>
                                             <option value="">Localitatea</option>`;
                     $.each(response.data, function (index, value) {
                         options += '<option lat="' + value.latitude + '" lng="' +

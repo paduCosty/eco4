@@ -17,7 +17,7 @@
                         <div class="mb-3 col-md-6">
                             <label for="due_date" class="col-form-label text-md-right">{{ __('Due Date') }}</label>
                             <input id="due_date"
-                                   class="form-control date-input @error('due_date') is-invalid @enderror event_location_due_date"
+                                   class="form-control-plaintext input-normal date-input @error('due_date') is-invalid @enderror event_location_due_date"
                                    name="due_date" required>
 
                             @error('due_date')
@@ -30,7 +30,7 @@
                             <div class="mb-3 col-md-6">
                                 <label for="status" class="col-form-label text-md-right">{{ __('Status') }}</label>
                                 <select id="status"
-                                        class="form-control @error('status') is-invalid @enderror event_location_status"
+                                        class="form-control-plaintext input-normal @error('status') is-invalid @enderror event_location_status"
                                         name="status" required>
                                     <option value="">Selecteaza status</option>
                                     <option value="in asteptare">In asteptare</option>
@@ -46,7 +46,7 @@
                                    class="col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <textarea id="email"
-                                      class="form-control @error('description') is-invalid @enderror event_location_description"
+                                      class="form-control-plaintext input-normal @error('description') is-invalid @enderror event_location_description"
                                       name="description" required autocomplete="email">
                             </textarea>
 

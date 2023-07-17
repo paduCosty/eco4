@@ -11,24 +11,24 @@
             <div class="modal-body">
                 <div class="row form-group">
                     <div class="mb-3 col-md-6 ">
-                        <label class="fs-5 " style="color:rgb(124, 121, 121)">Judet:</label>
-                        <input class="text-gray form-control fs-6 region_id" id="details_region" readonly>
+                        <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">Judet:</label>
+                        <input class="text-gray form-control-plaintext input-normal region_id" id="details_region" readonly>
                     </div>
 
                     <div class="mb-3 col-md-6">
-                        <label class="fs-5" style="color:rgb(124, 121, 121)">Localitate:</label>
-                        <input class="form-control fs-6 text-gray cities_id" id="details_city" readonly>
+                        <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">Localitate:</label>
+                        <input class="form-control-plaintext input-normal text-gray cities_id" id="details_city" readonly>
                     </div>
 
                     <div class="mb-3 col-md-6">
-                        <label class="fs-5" style="color:rgb(124, 121, 121)">Tip teren:</label>
-                        <input name="relief_type" id="details_relief_type" class="form-control select-location fs-6"
+                        <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">Tip teren:</label>
+                        <input name="relief_type" id="details_relief_type" class="form-control-plaintext input-normal select-location"
                                readonly>
                     </div>
 
                     <div class="mb-3 col-md-6">
-                        <label class="fs-5" style="color:rgb(124, 121, 121)">La fata locului:</label>
-                        <input name="size_volunteer_id" class="form-control select-location fs-6 text-gray"
+                        <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)">La fata locului:</label>
+                        <input name="size_volunteer_id" class="form-control-plaintext input-normal select-location text-gray"
                                id="details_size_volunteer" readonly>
                     </div>
 
@@ -37,9 +37,9 @@
                     </div>
 
                     <div class="mb-3 col-md-6">
-                        <label class="fs-5 " style="color:rgb(124, 121, 121)" for="pin_address">Adresa
+                        <label class="col-form-label form-modal-label" style="color:rgb(124, 121, 121)" for="pin_address">Adresa
                             selectata:</label>
-                        <input class="form-control fs-6 text-gray pin_address" readonly name="address" id="details_address">
+                        <input class="form-control-plaintext input-normal text-gray pin_address" readonly name="address" id="details_address">
                     </div>
                 </div>
             </div>
