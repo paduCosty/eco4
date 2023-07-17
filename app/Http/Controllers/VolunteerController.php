@@ -97,7 +97,6 @@ class VolunteerController extends Controller
 
     public function mail_to_volunteers(Request $request, UserEventLocation $event_location_id)
     {
-
         $validator = Validator::make($request->all(), [
             'message' => 'required|string',
             'volunteers_selected' => 'array|min:1', //minimum one volunteer

@@ -14,15 +14,15 @@ class VolunteersMail extends Mailable
     use Queueable, SerializesModels;
 
     public $mailMessage;
-    public $eventNname;
+    public $eventName;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($mailMessage, $eventNname)
+    public function __construct($mailMessage, $eventName)
     {
         $this->mailMessage = $mailMessage;
-        $this->eventNname = $eventNname;
+        $this->eventName = $eventName;
     }
 
     /**
@@ -31,7 +31,7 @@ class VolunteersMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mesaj legat de actiunea de ecologizare '. $this->eventNname.' - eco4',
+            subject: 'Mesaj legat de actiunea de ecologizare '. $this->eventName.' - eco4',
         );
     }
 
