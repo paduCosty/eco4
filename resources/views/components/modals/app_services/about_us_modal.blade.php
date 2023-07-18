@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="modal-body" id="about_us_modal_body">
-                            <div id="loading_indicator" style="display: none;">Loading...</div>
+                            <div class="loading_indicator" style="display: none;">Loading...</div>
                     </div>
                 </div>
             </div>

@@ -214,16 +214,3 @@
 </body>
 </html>
 
-<!--input data format type-->
-<script>
-    $(document).ready(function () {
-        $(".date-input").datepicker({
-            dateFormat: 'dd/mm/yy',
-            onSelect: function (dateText, inst) {
-                var formattedDate = moment(dateText, 'DD/MM/YYYY').format('DD/MM/YYYY');
-                $(this).val(formattedDate);
-            }
-        });
-    });
-
-</script>

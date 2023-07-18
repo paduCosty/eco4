@@ -44,9 +44,10 @@ class ApiApplicationService
     public function get_app_details_from_crm() {
         $client = new Client();
         $response = $client->get(env('LOGIN_URL') . 'single_project/10');
+//        dd(json_decode($response->getBody()->getContents()));
         $data = json_decode($response->getBody()->getContents());
         if ($data) {
-            return response()->json(['status' => true, 'data' => $data[0]->Name]);
+            return response()->json(['status' => true, 'data' => $data[0]->Description]);
         }
         return response()->json(['status' => false, 'message' => 'Server error!']);
     }
