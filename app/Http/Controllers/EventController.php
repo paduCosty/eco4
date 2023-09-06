@@ -140,11 +140,11 @@ class EventController extends Controller
         $images = $request->file('event_images');
         $cdn = new CdnService;
         foreach ($images as $image) {
-            $cdn_link = $cdn->sendPhotoToCdn($image);
+            $cdn_link = $cdn->sendPhotoToCdn($image, $event->id.'/before');
             $filename = basename($cdn_link);
             PreGreeningEventImages::create([
                 'event_location_id' => $event->id,
-                'image_path' => $filename
+                'path' => $filename
             ]);
         }
 
@@ -258,7 +258,7 @@ class EventController extends Controller
                 'bags' => $event_data->Saci ?? '',
                 'before_images' => $userEventLocation->preGreeningEventImages,
                 'images' => $userEventLocation->eventLocationImages,
-                'cdn_api' => (new \App\Services\CdnService)->cdn_path(),
+                'cdn_api' => (new \App\Services\CdnService)->cdn_path($userEventLocation->id .'/before/'),
             ];
 
             return response()->json(['status' => true, 'data' => $data]);

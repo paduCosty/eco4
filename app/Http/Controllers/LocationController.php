@@ -158,7 +158,7 @@ class LocationController extends Controller
                 'lat' => $userEventLocation->eventLocation->latitude,
                 'address' => $userEventLocation->eventLocation->address,
                 'before_images' => $userEventLocation->preGreeningEventImages,
-                'cdn_api' => (new \App\Services\CdnService)->cdn_path(),
+                'cdn_api' => (new \App\Services\CdnService)->cdn_path($userEventLocation->id .'/before/'),
             ];
             return response()->json(['message' => true, 'event' => $location_event]);
         }

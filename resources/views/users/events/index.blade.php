@@ -182,7 +182,7 @@
 
                 let response = []
                 response['edit_before_photos'] = images;
-                response['cdn_api'] = cdn_api;
+                response['cdn_api'] = cdn_api + location.id +'/before/';
 
                 $('.event_location_due_date').val(location.due_date);
                 $('.event_location_status').val(location.status);
