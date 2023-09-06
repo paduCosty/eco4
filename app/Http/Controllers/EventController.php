@@ -8,19 +8,24 @@ use App\Mail\EventDateChangePartnerEmail;
 use App\Mail\MailToPartner;
 use App\Mail\ProposeEventMail;
 use App\Models\EventLocation;
+use App\Models\PreGreeningEventImages;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\User;
 use App\Models\UserEventLocation;
 use App\Models\UserEventLocationsPhotos;
 use App\Services\ApiService;
+use App\Services\CdnService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Mockery\Exception;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Throwable;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Validator;
-
+use GuzzleHttp\Client;
 class EventController extends Controller
 {
 
@@ -60,7 +65,8 @@ class EventController extends Controller
                 ->paginate(10);
         }
 
-        return view('users.events.index', compact('eventLocations',));
+        $cdnUrl =  (new \App\Services\CdnService)->cdn_path();
+        return view('users.events.index', compact('eventLocations','cdnUrl'));
     }
 
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -125,23 +131,39 @@ class EventController extends Controller
                 $validatedData += ['coordinator_id' => Auth::user()->id];
             }
         }
-//        $validatedData['name'] = ;
+
         $event = UserEventLocation::create($validatedData);
         $event->name = 'L' . $event->eventLocation->id . '/A' . $event->id . ' - ' . $event->eventLocation->city->name . ',' . $event->eventLocation->city->region->name;
         $event->save();
+
+        /*send image to cdn*/
+        $images = $request->file('event_images');
+        $cdn = new CdnService;
+        foreach ($images as $image) {
+            $cdn_link = $cdn->sendPhotoToCdn($image);
+            $filename = basename($cdn_link);
+            PreGreeningEventImages::create([
+                'event_location_id' => $event->id,
+                'image_path' => $filename
+            ]);
+        }
+
         /*take partner email and name form crm*/
         $partner_data = $this->apiService->getPartnersFromCrm($event->eventLocation->user->id);
-
         if ($event && isset($partner_data['institution_email'])) {
             /*send mail to partner*/
-            Mail::to($partner_data['institution_email'])
-                ->send(new MailToPartner(
-                    $partner_data['institution_name'] ?? '',
-                    $event->due_date,
-                    $event->eventLocation->address,
-                    $event->coordinator->name,
-                    url('/admin/events')
-                ));
+            try {
+                Mail::to($partner_data['institution_email'])
+                    ->send(new MailToPartner(
+                        $partner_data['institution_name'] ?? '',
+                        $event->due_date,
+                        $event->eventLocation->address,
+                        $event->coordinator->name,
+                        url('/admin/events')
+                    ));
+            } catch (Throwable $exception) {
+                return redirect()->back()->with('error', 'Eroare la trimiterea mail-ului');
+            }
 
         }
 
@@ -234,7 +256,9 @@ class EventController extends Controller
                 'status' => $userEventLocation->status,
                 'waste' => $event_data->Deseuri ?? '',
                 'bags' => $event_data->Saci ?? '',
+                'before_images' => $userEventLocation->preGreeningEventImages,
                 'images' => $userEventLocation->eventLocationImages,
+                'cdn_api' => (new \App\Services\CdnService)->cdn_path(),
             ];
 
             return response()->json(['status' => true, 'data' => $data]);
@@ -460,5 +484,23 @@ class EventController extends Controller
             'message' => '203',
             'status' => false,
         ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(UserEventLocation $userEventLocation): RedirectResponse
+    {
+        if(Auth::user()->role =='admin') {
+            $userEventLocation->eventLocationImages()->delete();
+            $userEventLocation->eventRegistrations()->delete();
+
+            $userEventLocation->delete();
+        } else {
+            return redirect()->back()
+                ->with('error','Nu ai suficiete permisii pentru a efectua aceasta actiune');
+        }
+        return redirect()->back()
+            ->with('success','Product deleted successfully');
     }
 }

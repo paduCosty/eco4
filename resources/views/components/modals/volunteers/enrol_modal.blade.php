@@ -47,6 +47,12 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="event-photos">
+                                        <h2>Poze eveniment</h2>
+                                        <div class="row mt-3" id="before_images"></div>
+                                    </div>
+
                                     <form method="POST" action="{{ route('volunteer_registration.store') }}">
                                         @csrf
                                         <div class="row form-group">
@@ -253,11 +259,10 @@
 <script>
     $(document).ready(function () {
         var APP_URL = window.location.origin;
-        /*get all cities wo has a propose event set*/
+        /*get all cities from a region*/
         $('#propose_regions_enrol').change(function () {
             $('.region_cities_enrol').remove();
             var region_id = $(this).val();
-            console.log(region_id)
 
             $.ajax({
                 url: APP_URL + '/get-cities',
@@ -280,6 +285,7 @@
             });
         });
 
+        /*add childrens*/
         var dynamicFields = $('#dynamic_fields');
         var counter = 1;
 
@@ -307,4 +313,6 @@
             counter++;
         });
     });
+
 </script>
+

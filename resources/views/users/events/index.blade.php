@@ -128,7 +128,10 @@
                         <div class="d-flex">
                             @if((auth()->user()->role === 'coordinator' && $event->status != 'aprobat') || $event->status != 'desfasurat')
                                 <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
-                                   data-bs-target="#edit-propose-event-modal" location="{{ json_encode($event) }}">
+                                   data-bs-target="#edit-propose-event-modal" location="{{ json_encode($event) }}"
+                                   pre_greening_images="{{ json_encode($event->preGreeningEventImages) }}"
+                                   cdnUrl="{{ json_encode($cdnUrl) }}"
+                                >
                                     Edit
                                 </a>
                             @endif
@@ -142,7 +145,19 @@
                                    data-event_id="{{ $event->id }}">Distribuie Link</a>
                             @endif
 
-
+                            @if(auth()->user()->role === "admin")
+                                <form action="{{ route('events.destroy',$event->id) }}"
+                                      method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="col action-button "
+                                            onclick="return confirm('{{ __('Are you sure you want to delete?') }}')"
+                                            style="color:red!important; background: none; border: none;" type="submit"
+                                            data-bs-toggle="modal" event_location_id="{{ $event->id }}">
+                                        Delete
+                                    </button>
+                                </form>
+                            @endif
                         </div>
                     </td>
                 </tr>
@@ -152,20 +167,30 @@
         {!! $eventLocations->withQueryString()->links('pagination::bootstrap-5') !!}
 
     </div>
-<div class="show-images-modal"></div>
+    <div class="show-images-modal"></div>
     <script>
         $(document).ready(function () {
             const APP_URL = window.location.origin;
             /*open edit modal*/
             $(".open_edit_modal").on("click", function () {
                 let location = JSON.parse($(this).attr('location'));
+                let images = JSON.parse($(this).attr('pre_greening_images'));
+                let cdn_api = JSON.parse($(this).attr('cdnUrl'));
 
                 $('.form_edit_propose_event').attr('action', 'events/update/' +
                     location.id)
 
+                let response = []
+                response['edit_before_photos'] = images;
+                response['cdn_api'] = cdn_api;
+
                 $('.event_location_due_date').val(location.due_date);
                 $('.event_location_status').val(location.status);
                 $('.event_location_description').val(location.description);
+
+                image_box(response, 'edit_before_photos');
+
+
             });
 
             /* Update status */

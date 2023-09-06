@@ -52,7 +52,7 @@ $(document).ready(function () {
                     isFormValid = false;
                     return false;
                 }
-            } else if ($(this).is(':text')) {
+            } else if ($(this).is(':text') || $(this).is(':file')) {
                 if (!$(this).val()) {
                     isFormValid = false;
                     return false;
@@ -136,7 +136,6 @@ function initMapPropose(data) {
 
                 document.getElementById('gps_place_selected').value = location.id;
 
-                console.log(location);
                 $('#gps-elements').remove();
                 $('#marker_details').append(`
                      <div id="gps-elements" class="bg-light p-3 rounded">

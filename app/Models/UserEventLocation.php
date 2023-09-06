@@ -52,4 +52,9 @@ class UserEventLocation extends Model
         return $this->hasMany(UserEventLocationsPhotos::class, 'user_event_location_id');
     }
 
+    public function preGreeningEventImages()
+    {
+        return $this->hasMany(PreGreeningEventImages::class, 'event_location_id');
+    }
+
 }

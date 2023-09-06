@@ -143,11 +143,13 @@ function enrol_event_data(event_id) {
 
         success: function (response) {
             $('.users_event_location_id').val(response.event.id)
-            $('#event-description').text(response.event.description)
+            $('#event-description').html(response.event.description)
             $('#event_region_name').text(response.event.region_name)
             $('#event_city_name').text(response.event.city_name)
             $('#event-address').text(response.event.address)
 
+
+            image_box(response.event, 'before_images');
             initMapEnrol(response.event.lat, response.event.lng);
         },
         error: function (xhr, status, error) {

@@ -7,6 +7,7 @@ use App\Models\EventLocation;
 use App\Models\Region;
 use App\Models\SizeVolunteers;
 use App\Models\UserEventLocation;
+use App\Services\CdnService;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -156,6 +157,8 @@ class LocationController extends Controller
                 'lng' => $userEventLocation->eventLocation->longitude,
                 'lat' => $userEventLocation->eventLocation->latitude,
                 'address' => $userEventLocation->eventLocation->address,
+                'before_images' => $userEventLocation->preGreeningEventImages,
+                'cdn_api' => (new \App\Services\CdnService)->cdn_path(),
             ];
             return response()->json(['message' => true, 'event' => $location_event]);
         }

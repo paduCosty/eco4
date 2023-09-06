@@ -18,7 +18,7 @@
                             <label for="due_date" class="col-form-label text-md-right">{{ __('Due Date') }}</label>
                             <input id="due_date"
                                    class="form-control-plaintext input-normal date-input @error('due_date') is-invalid @enderror event_location_due_date"
-                                   name="due_date" required>
+                                   name="due_date" required type="date">
 
                             @error('due_date')
                             <span class="invalid-feedback" role="alert">
@@ -42,10 +42,10 @@
                             </div>
                         @endif
                         <div class="mb-3 col-md-12">
-                            <label for="email"
+                            <label for="description"
                                    class="col-form-label text-md-right">{{ __('Description') }}</label>
 
-                            <textarea id="email"
+                            <textarea id="description"
                                       class="form-control-plaintext input-normal @error('description') is-invalid @enderror event_location_description"
                                       name="description" required autocomplete="email">
                             </textarea>
@@ -55,6 +55,11 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+
+                        <div class="event-photos">
+                            <h2>Poze eveniment</h2>
+                            <div class="row mt-3" id="edit_before_photos"></div>
                         </div>
                     </div>
 

@@ -44,9 +44,13 @@
                     </div>
 
                     <div class="event-photos">
-                        <h2>Poze eveniment</h2>
+                        <h2>Poze eveniment inainte de ecologizare</h2>
+                        <div class="row mt-3" id="before_images"></div>
+                    </div>
 
-                        <div class="row mt-3" id="uploaded-images-container"></div>
+                    <div class="event-photos">
+                        <h2>Poze eveniment dupa ecologizare</h2>
+                        <div class="row mt-3" id="after_images"></div>
                     </div>
                 </div>
             </div>
@@ -72,7 +76,7 @@
                 $('#coordinator-email').text(response.coordinator_email);
                 $('#coordinator-phone').text(response.coordinator_phone)
                 /*event data*/
-                $('#event-description').text(response.description);
+                $('#event-description').html(response.description);
                 $('#event-address').text(response.address);
                 $('#event-status').text(response.status);
                 $('#event-due-date').text(response.due_date);
@@ -84,8 +88,10 @@
 
                 // Clears the content of the picture div
                 $('#uploaded-images-container').empty();
+                $('#before_images').empty();
 
-                image_box(response, 'uploaded-images-container');
+                image_box(response, 'before_images');
+                image_box(response, 'after_images');
 
             },
             error: function (xhr, status, error) {

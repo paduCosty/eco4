@@ -103,7 +103,7 @@
                                         </div>
                                     @endif
                                     <div class="container">
-                                        <form id="volunteer_proposal_form" action="{{ route('home.store') }}"
+                                        <form id="volunteer_proposal_form" action="{{ route('home.store') }}" enctype="multipart/form-data"
                                               method="POST">
                                             @csrf
                                             <div class="row form-group">
@@ -230,6 +230,19 @@
                                             <div id="marker_details"></div>
 
                                             <div class="mb-3 col-md-12">
+                                                <label for="" class="col-form-label form-modal-label ">
+                                                    Adauga imagini de la fata locului:
+                                                </label>
+                                                <div class="file-input-wrapper">
+                                                    <input type="file" name="event_images[]"
+                                                           class="form-control input-normal" multiple="multiple"
+                                                           accept="image/*" required>
+                                                    <span class="file-warning how-it-works" style="color: red;"></span>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="mb-3 col-md-12">
                                                 <label for="" class="col-form-label form-modal-label ">Descriere:
                                                 </label>
                                                 <textarea type="text" maxlength="500" id="textarea-details"
@@ -265,3 +278,47 @@
         </div>
     </div>
 </div>
+
+<script>
+    const textarea = $("#textarea-details");
+    const form = $("#volunteer_proposal_form");
+
+    form.submit(function (event) {
+        const descriptionContent = textarea.val();
+        const formattedDescription = descriptionContent.replace(/(\r\n|\n|\r)/g, "<br>");
+        textarea.val(formattedDescription);
+    });
+
+    $('form').on('submit', function (event) {
+        const fileInput = $('input[type="file"]');
+
+        if (fileInput[0].files.length > 2) {
+            alert("Puteți încărca doar două imagini.");
+            fileInput.val('');
+            event.preventDefault();
+        }
+    });
+
+    let filesSelected = false;
+
+    $('input[type="file"]').on('change', function() {
+        const fileWrapper = $(this).closest('.file-input-wrapper');
+        const fileWarning = fileWrapper.find('.file-warning');
+        const submitButton = $('#volunteer-proposal-add-button');
+
+        if (this.files.length > 2) {
+            fileWarning.text("Puteți încărca doar două imagini.");
+            $(this).val('');
+            filesSelected = false;
+        } else {
+            fileWarning.text('');
+            filesSelected = true;
+        }
+
+        if (filesSelected) {
+            submitButton.prop('disabled', false);
+        } else {
+            submitButton.prop('disabled', true);
+        }
+    });
+</script>

@@ -44,7 +44,6 @@
                         </div>
                     @endif
 
-                    <!-- Verificați dacă există mesaj de succes -->
                     @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -141,7 +140,6 @@
         updateImagesForDeleteInput();
     });
 
-    // Funcția pentru a actualiza valoarea câmpului ascuns `#images-for-delete`
     function updateImagesForDeleteInput() {
         var imagesForDeleteInput = $('#images-for-delete');
         var encodedIds = JSON.stringify(image_for_delete);
@@ -192,7 +190,7 @@
     }
 
     .uploaded-image {
-        width: 100%;
+        width: 100pc;
         height: 100%;
         object-fit: cover;
     }
