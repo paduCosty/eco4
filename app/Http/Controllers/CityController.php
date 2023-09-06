@@ -63,7 +63,7 @@ class CityController extends Controller
     {
         $region_id = $request->region_id;
         $approved_events = UserEventLocation::where('users_event_locations.status', 'aprobat');
-        if ($region_id) {
+        if (is_numeric($region_id)) {
             $approved_events = $approved_events->whereHas('eventLocation.city', function ($query) use ($region_id) {
                 $query->where('region_id', $region_id);
             });
@@ -80,9 +80,16 @@ class CityController extends Controller
             ->select(
                 'users_event_locations.*',
                 'size_volunteers.name as size_volunteer_name',
-            )
-            ->get();
+            );
 
+        if (!is_numeric($region_id)) {
+            $approved_events = $approved_events
+                ->orderBy('due_date', 'desc')
+                ->take(3);
+        }
+            $approved_events = $approved_events->get();
+
+//
         if ($approved_events) {
             $response = array(
                 'status' => 'success',
@@ -95,6 +102,7 @@ class CityController extends Controller
                 'message' => 'Ceva nu a mers',
             );
         }
+//        dd($approved_events);
         return response()->json($response);
     }
 

@@ -55,8 +55,9 @@ $(document).ready(function () {
     });
 });
 
+get_region_events()
 function get_region_events(region_id, event_id = null) {
-    if (region_id) {
+    // if (region_id) {
         $(document).ready(function () {
             $.ajax({
                 url: APP_URL + '/approved-events/' + region_id,
@@ -133,7 +134,7 @@ function get_region_events(region_id, event_id = null) {
                 }
             });
         });
-    }
+    // }
 }
 
 function enrol_event_data(event_id) {
