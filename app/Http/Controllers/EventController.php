@@ -26,6 +26,7 @@ use Throwable;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
+
 class EventController extends Controller
 {
 
@@ -65,8 +66,8 @@ class EventController extends Controller
                 ->paginate(10);
         }
 
-        $cdnUrl =  (new \App\Services\CdnService)->cdn_path();
-        return view('users.events.index', compact('eventLocations','cdnUrl'));
+        $cdnUrl = (new \App\Services\CdnService)->cdn_path();
+        return view('users.events.index', compact('eventLocations', 'cdnUrl'));
     }
 
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
@@ -140,8 +141,7 @@ class EventController extends Controller
         $images = $request->file('event_images');
         $cdn = new CdnService;
         foreach ($images as $image) {
-            $cdn_link = $cdn->sendPhotoToCdn($image, $event->id.'/before');
-            $filename = basename($cdn_link);
+            $filename = $cdn->sendPhotoToCdn($image, $event->id . '/before');
             PreGreeningEventImages::create([
                 'event_location_id' => $event->id,
                 'path' => $filename
@@ -240,7 +240,6 @@ class EventController extends Controller
 
     public function show(UserEventLocation $userEventLocation)
     {
-
         if ($userEventLocation && Auth::check()) {
             $data = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
             $event_data = $this->apiService->getEventFromCrm($userEventLocation->crm_propose_event_id);
@@ -257,8 +256,9 @@ class EventController extends Controller
                 'waste' => $event_data->Deseuri ?? '',
                 'bags' => $event_data->Saci ?? '',
                 'before_images' => $userEventLocation->preGreeningEventImages,
-                'images' => $userEventLocation->eventLocationImages,
-                'cdn_api' => (new \App\Services\CdnService)->cdn_path($userEventLocation->id .'/before/'),
+                'cdn_api' => (new \App\Services\CdnService)->cdn_path($userEventLocation->id),
+                'uploaded_images' => $userEventLocation->eventLocationImages,
+
             ];
 
             return response()->json(['status' => true, 'data' => $data]);
@@ -438,17 +438,19 @@ class EventController extends Controller
 
         if ($request->hasFile('event_images')) {
             $images = $request->file('event_images');
-            $imagePaths = [];
 
             foreach ($images as $image) {
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->move('storage/images/event', $imageName);
-                $imagePaths[] = 'storage/images/event/' . $imageName;
-
-                UserEventLocationsPhotos::create([
-                    'path' => 'storage/images/event/' . $imageName,
-                    'user_event_location_id' => $userEventLocation->id,
-                ]);
+                $cdn_image = (new \App\Services\CdnService)->sendPhotoToCdn($image, $userEventLocation->id . '/after/');
+                if ($cdn_image) {
+                    UserEventLocationsPhotos::create([
+                        'path' => '/after/'. $cdn_image,
+                        'user_event_location_id' => $userEventLocation->id,
+                    ]);
+                } else {
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Imaginea- "' . $image->getClientOriginalName() . '" nu a putut fi adaugata!');
+                }
 
             }
         }
@@ -491,16 +493,16 @@ class EventController extends Controller
      */
     public function destroy(UserEventLocation $userEventLocation): RedirectResponse
     {
-        if(Auth::user()->role =='admin') {
+        if (Auth::user()->role == 'admin') {
             $userEventLocation->eventLocationImages()->delete();
             $userEventLocation->eventRegistrations()->delete();
 
             $userEventLocation->delete();
         } else {
             return redirect()->back()
-                ->with('error','Nu ai suficiete permisii pentru a efectua aceasta actiune');
+                ->with('error', 'Nu ai suficiete permisii pentru a efectua aceasta actiune');
         }
         return redirect()->back()
-            ->with('success','Product deleted successfully');
+            ->with('success', 'Product deleted successfully');
     }
 }

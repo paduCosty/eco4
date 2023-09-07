@@ -91,6 +91,8 @@
                 $('#before_images').empty();
 
                 image_box(response, 'before_images');
+                let images = response.uploaded_images
+                response.after_images = images;
                 image_box(response, 'after_images');
 
             },

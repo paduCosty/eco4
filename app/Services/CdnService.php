@@ -30,7 +30,7 @@ class CdnService
         $link = $response->url ?? false;
         curl_close($ch);
 
-        return $link;
+        return basename($link);
     }
 
     public function cdn_path($path = '')

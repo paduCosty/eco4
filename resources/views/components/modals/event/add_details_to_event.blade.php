@@ -15,15 +15,19 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="mb-3">
-                                <label for="quantity" class="col-form-label form-modal-label">Cantitatea de deșeuri (kg):</label>
-                                <input type="number" class="form-control-plaintext input-normal form-control-sm" name="waste" id="quantity"
+                                <label for="quantity" class="col-form-label form-modal-label">Cantitatea de deșeuri
+                                    (kg):</label>
+                                <input type="number" class="form-control-plaintext input-normal form-control-sm"
+                                       name="waste" id="quantity"
                                        required>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="mb-3">
-                                <label for="sack-number" class="col-form-label form-modal-label">Numărul de saci de deșeuri:</label>
-                                <input type="number" class="form-control-plaintext input-normal form-control-sm" id="sack-number" name="bags"
+                                <label for="sack-number" class="col-form-label form-modal-label">Numărul de saci de
+                                    deșeuri:</label>
+                                <input type="number" class="form-control-plaintext input-normal form-control-sm"
+                                       id="sack-number" name="bags"
                                        required>
                             </div>
                         </div>
@@ -49,8 +53,11 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <div class="row mt-3" id="uploaded-images">
-                    </div>
+{{--                    <div class="event-photos">--}}
+                        <h2>Poze eveniment inainte de ecologizare</h2>
+                        <div class="row mt-3" id="uploaded_images"></div>
+{{--                    </div>--}}
+                    <div id="test11"></div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -74,13 +81,25 @@
                 $('#quantity').val(response.waste);
                 $('#sack-number').val(response.bags);
 
-                // Clear the existing images from the image container
-                $('#uploaded-images').empty();
-
                 // Add the images to the image container
-                image_box(response, 'uploaded-images', true);
+                image_box(response, 'uploaded_images', true);
                 // Open the modal
                 $('#add-details-to-event-modal').modal('show');
+
+                $('#photos').on('change', function (e) {
+                    var files = e.target.files; // List of selected files
+                    // Iterate through each file and display them in HTML
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            image_box_render(e.target.result, location_id, 'uploaded_images', true)
+                        }
+
+                        reader.readAsDataURL(file);
+                    }
+                });
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -104,34 +123,6 @@
         form.submit();
     });
 
-    $('#photos').on('change', function (e) {
-        var files = e.target.files; // List of selected files
-
-        // Iterate through each file and display them in HTML
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                var imageTemplate =
-                    `<div class="col-sm-4 mb-4 images-box">
-                        <div class="card">
-                            <div class="card-body position-relative">
-                                <a href="#" style="text-decoration: none" class="delete-image position-absolute top-0 end-0 m-2 text-danger">&times;</a>
-                                <div class="square-container bg-light d-flex align-items-center justify-content-center">
-                                    <img src="${e.target.result}" class="uploaded-image" alt="Uploaded Image">
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-
-                $('#uploaded-images').append(imageTemplate);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    });
-
     let image_for_delete = [];
     $(document).on('click', '.delete-image', function () {
         $(this).closest('.images-box').remove();
@@ -145,8 +136,6 @@
         var encodedIds = JSON.stringify(image_for_delete);
         imagesForDeleteInput.val(encodedIds);
     }
-
-
 
     $(document).on('click', '.delete-image', function () {
         $(this).closest('.images-box').remove();

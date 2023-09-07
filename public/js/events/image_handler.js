@@ -1,21 +1,28 @@
 function image_box(response, element, edit_or_show) {
     $('#' + element).empty();
-    $.each(response[element], function (index, image) {
-        var imageTemplate =
-            `<div class="col-sm-4 mb-4 images-box">
-                <div class="card">
-                    <div class="card-body position-relative">
-                        ${edit_or_show ? `<a href="#" style="text-decoration: none" data-image_id="${image.id}" class="delete-image position-absolute top-0 end-0 m-2 text-danger">&times;</a>` : ''}
-                        <div class="square-container bg-light d-flex align-items-center justify-content-center">
-                            <img src="${response.cdn_api + image.path}" class="uploaded-image" alt="Uploaded Image" style="width: 100%; height: 100%">
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+    console.log(response)
 
-        $('#' + element).append(imageTemplate);
+    $.each(response[element], function (index, image) {
+        image_box_render(response.cdn_api + image.path, image.id, element, edit_or_show);
     });
 }
+
+function image_box_render(image_path, image_id, element, edit_or_show) {
+    var imageTemplate =
+        `<div class="col-sm-4 mb-4 images-box">
+            <div class="card">
+                <div class="card-body position-relative d-flex align-items-center justify-content-center">
+                    ${edit_or_show ? `<a href="#" style="text-decoration: none" data-image_id="${image_id}" class="delete-image position-absolute top-0 end-0 m-2 text-danger">&times;</a>` : ''}
+                    <div class="square-container bg-light">
+                        <img src="${image_path}" class="uploaded-image" alt="Uploaded Image" style="width: 100%; height: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+    $('#' + element).append(imageTemplate);
+}
+
 
 $(document).on('click', '.uploaded-image', function () {
     var imageUrl = $(this).attr('src');
