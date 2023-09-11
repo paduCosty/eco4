@@ -129,7 +129,10 @@
                             @if((auth()->user()->role === 'coordinator' && $event->status != 'aprobat') || $event->status != 'desfasurat')
                                 <a class="col action-button open_edit_modal" type="button" data-bs-toggle="modal"
                                    data-bs-target="#edit-propose-event-modal" location="{{ json_encode($event) }}"
-                                   pre_greening_images="{{ json_encode($event->preGreeningEventImages) }}"
+                                   pre_greening_images="{{ json_encode([
+                                                        'edit_before_photos'=>$event->preGreeningEventImages,
+                                                        'table' => $event->preGreeningEventImages()->getRelated()->getTable()
+                                                    ]) }}"
                                    cdnUrl="{{ json_encode($cdnUrl) }}"
                                 >
                                     Edit
@@ -179,17 +182,15 @@
 
                 $('.form_edit_propose_event').attr('action', 'events/update/' +
                     location.id)
-
                 let response = []
-                response['edit_before_photos'] = images;
-                response['cdn_api'] = cdn_api + location.id +'/before/';
+                response = images;
+                response['cdn_api'] = cdn_api + location.id;
 
                 $('.event_location_due_date').val(location.due_date);
                 $('.event_location_status').val(location.status);
                 $('.event_location_description').val(location.description);
 
-                image_box(response, 'edit_before_photos');
-
+                image_box(response, 'edit_before_photos', true);
 
             });
 

@@ -234,12 +234,13 @@
                                                     Adauga imagini de la fata locului:
                                                 </label>
                                                 <div class="file-input-wrapper">
-                                                    <input type="file" name="event_images[]"
+                                                    <input type="file" name="event_images[]" id="propose-photos"
                                                            class="form-control input-normal" multiple="multiple"
                                                            accept="image/*" required>
                                                     <span class="file-warning how-it-works" style="color: red;"></span>
-                                                </div>
 
+                                                </div>
+                                                <div class="row mt-3" id="uploaded_images"></div>
                                             </div>
 
                                             <div class="mb-3 col-md-12">
@@ -301,24 +302,8 @@
 
     let filesSelected = false;
 
-    $('input[type="file"]').on('change', function() {
-        const fileWrapper = $(this).closest('.file-input-wrapper');
-        const fileWarning = fileWrapper.find('.file-warning');
-        const submitButton = $('#volunteer-proposal-add-button');
-
-        if (this.files.length > 2) {
-            fileWarning.text("Puteți încărca doar două imagini.");
-            $(this).val('');
-            filesSelected = false;
-        } else {
-            fileWarning.text('');
-            filesSelected = true;
-        }
-
-        if (filesSelected) {
-            submitButton.prop('disabled', false);
-        } else {
-            submitButton.prop('disabled', true);
-        }
+    $('input[type="file"]').on('change', function(e) {
+        event_file_filter(e, this, 'uploaded_images')
     });
+
 </script>

@@ -39,6 +39,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('components.modals.location.location_details_modal')
 
@@ -145,7 +146,6 @@
     							padding-top: 18px;">
                                 Suntem prezenți pe:
                             </div>
-
                             <a href="https://www.facebook.com/planteazainromania" target="_blank">
                                 <svg id="fb" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 68.63 68.63"
@@ -158,6 +158,7 @@
                                         transform="translate(-38.24 -198.47)" style="fill:#ffffff"></path>
                                 </svg>
                             </a>
+                            <div class="message-container"></div>
                         </div>
                     </li>
                 </ul>

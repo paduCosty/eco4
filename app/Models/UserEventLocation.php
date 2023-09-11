@@ -49,7 +49,7 @@ class UserEventLocation extends Model
 
     public function eventLocationImages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(UserEventLocationsPhotos::class, 'user_event_location_id');
+        return $this->hasMany(UserEventLocationsPhotos::class, 'event_location_id');
     }
 
     public function preGreeningEventImages()

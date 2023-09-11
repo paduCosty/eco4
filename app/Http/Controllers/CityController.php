@@ -89,7 +89,6 @@ class CityController extends Controller
         }
             $approved_events = $approved_events->get();
 
-//
         if ($approved_events) {
             $response = array(
                 'status' => 'success',
@@ -102,7 +101,7 @@ class CityController extends Controller
                 'message' => 'Ceva nu a mers',
             );
         }
-//        dd($approved_events);
+
         return response()->json($response);
     }
 

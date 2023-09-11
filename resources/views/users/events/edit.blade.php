@@ -56,11 +56,23 @@
                                 </span>
                             @enderror
                         </div>
+                         <div class="mb-3 col-md-12">
+                            <label for="" class="col-form-label form-modal-label ">
+                                Adauga imagini de la fata locului:
+                            </label>
+                            <div class="file-input-wrapper">
+                                <input type="file" name="event_images[]" id="propose-photos"
+                                       class="form-control input-normal" multiple="multiple"
+                                       accept="image/*" required>
+                                <span class="file-warning how-it-works" style="color: red;"></span>
 
+                            </div>
+                        </div>
                         <div class="event-photos">
                             <h2>Poze eveniment</h2>
                             <div class="row mt-3" id="edit_before_photos"></div>
                         </div>
+
                     </div>
 
                     <div class="row form-group">
@@ -76,3 +88,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    let filesSelected = false;
+
+    $('#propose-photos').on('change', function(e) {
+        event_file_filter(e, this, 'edit_before_photos')
+    });
+</script>

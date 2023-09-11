@@ -18,6 +18,7 @@ use App\Services\ApiService;
 use App\Services\CdnService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Mockery\Exception;
@@ -65,7 +66,6 @@ class EventController extends Controller
             $eventLocations = $eventLocations->orderBy('id', 'DESC')
                 ->paginate(10);
         }
-
         $cdnUrl = (new \App\Services\CdnService)->cdn_path();
         return view('users.events.index', compact('eventLocations', 'cdnUrl'));
     }
@@ -144,7 +144,7 @@ class EventController extends Controller
             $filename = $cdn->sendPhotoToCdn($image, $event->id . '/before');
             PreGreeningEventImages::create([
                 'event_location_id' => $event->id,
-                'path' => $filename
+                'path' => '/before/' . $filename
             ]);
         }
 
@@ -176,13 +176,30 @@ class EventController extends Controller
         $validatedData = $request->validate([
             'description' => 'required',
             'due_date' => 'required',
-
         ]);
 
         if (Auth::user()->role !== 'coordinator') {
             $validatedData += $request->validate([
                 'status' => 'required',
             ]);
+        }
+
+        if ($request->hasFile('event_images')) {
+            $images = $request->file('event_images');
+
+            foreach ($images as $image) {
+                $cdn_image = (new \App\Services\CdnService)->sendPhotoToCdn($image, $userEventLocation->id . '/after');
+                if ($cdn_image) {
+                    UserEventLocationsPhotos::create([
+                        'path' => '/after/' . $cdn_image,
+                        'event_location_id' => $userEventLocation->id,
+                    ]);
+                } else {
+                    return redirect()
+                        ->back()
+                        ->with('error', 'Imaginea- "' . $image->getClientOriginalName() . '" nu a putut fi adaugata!');
+                }
+            }
         }
 
         $data_modified = false;
@@ -240,6 +257,7 @@ class EventController extends Controller
 
     public function show(UserEventLocation $userEventLocation)
     {
+
         if ($userEventLocation && Auth::check()) {
             $data = $this->apiService->getPartnersFromCrm($userEventLocation->eventLocation->user->id);
             $event_data = $this->apiService->getEventFromCrm($userEventLocation->crm_propose_event_id);
@@ -258,6 +276,7 @@ class EventController extends Controller
                 'before_images' => $userEventLocation->preGreeningEventImages,
                 'cdn_api' => (new \App\Services\CdnService)->cdn_path($userEventLocation->id),
                 'uploaded_images' => $userEventLocation->eventLocationImages,
+                'table' => $userEventLocation->eventLocationImages()->getRelated()->getTable(),
 
             ];
 
@@ -424,34 +443,33 @@ class EventController extends Controller
             }
         }
 
-        $images_for_delete = request()->input('images_for_delete');
+//        $images_for_delete = request()->input('images_for_delete');
         //remove photo if is deleted from frontend
-        if ($images_for_delete) {
-            $image_ids = json_decode($images_for_delete, true);
-            foreach ($image_ids as $image_id) {
-                $image = UserEventLocationsPhotos::find($image_id);
-                if ($image) {
-                    $image->delete();
-                }
-            }
-        }
+//        if ($images_for_delete) {
+//            $image_ids = json_decode($images_for_delete, true);
+//            foreach ($image_ids as $image_id) {
+//                $image = UserEventLocationsPhotos::find($image_id);
+//                if ($image) {
+//                    $image->delete();
+//                }
+//            }
+//        }
 
         if ($request->hasFile('event_images')) {
             $images = $request->file('event_images');
 
             foreach ($images as $image) {
-                $cdn_image = (new \App\Services\CdnService)->sendPhotoToCdn($image, $userEventLocation->id . '/after/');
+                $cdn_image = (new \App\Services\CdnService)->sendPhotoToCdn($image, $userEventLocation->id . '/after');
                 if ($cdn_image) {
                     UserEventLocationsPhotos::create([
-                        'path' => '/after/'. $cdn_image,
-                        'user_event_location_id' => $userEventLocation->id,
+                        'path' => '/after/' . $cdn_image,
+                        'event_location_id' => $userEventLocation->id,
                     ]);
                 } else {
                     return redirect()
                         ->back()
                         ->with('error', 'Imaginea- "' . $image->getClientOriginalName() . '" nu a putut fi adaugata!');
                 }
-
             }
         }
 
@@ -495,6 +513,7 @@ class EventController extends Controller
     {
         if (Auth::user()->role == 'admin') {
             $userEventLocation->eventLocationImages()->delete();
+            $userEventLocation->preGreeningEventImages()->delete();
             $userEventLocation->eventRegistrations()->delete();
 
             $userEventLocation->delete();
@@ -504,5 +523,16 @@ class EventController extends Controller
         }
         return redirect()->back()
             ->with('success', 'Product deleted successfully');
+    }
+
+    public function destroy_image(Request $request)
+    {
+        $file = DB::table($request->table)->where('id', $request->file_id)->first();
+        $cdn_response = (new \App\Services\CdnService)
+            ->removeCdnFile($file->event_location_id . $request->file_path);
+        if ($cdn_response) {
+            $query = DB::table($request->table)->where('id', $request->file_id)->delete();
+        }
+        return response()->json($cdn_response);
     }
 }

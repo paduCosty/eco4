@@ -42,6 +42,8 @@ Route::middleware(['auth', 'user_role'])->group(function () {
             'events' => 'userEventLocation'
         ]);
         Route::post('events/update/{userEventLocation}', [EventController::class, 'update']);
+        Route::delete('events/destroy-image/{file_id}', [EventController::class, 'destroy_image'])
+            ->name('remove.image');
 
 //        Route::get('/events', [EventController::class, 'index'])->name('admin.events.home');
         /*ajax calls city*/

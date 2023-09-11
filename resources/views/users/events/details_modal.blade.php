@@ -87,12 +87,10 @@
                 $('#event-bags').text(response.bags);
 
                 // Clears the content of the picture div
-                $('#uploaded-images-container').empty();
-                $('#before_images').empty();
 
                 image_box(response, 'before_images');
-                let images = response.uploaded_images
-                response.after_images = images;
+
+                response.after_images = response.uploaded_images;
                 image_box(response, 'after_images');
 
             },

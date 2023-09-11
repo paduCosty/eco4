@@ -53,11 +53,10 @@
                             {{ session('success') }}
                         </div>
                     @endif
-{{--                    <div class="event-photos">--}}
+                    <div class="event-photos">
                         <h2>Poze eveniment inainte de ecologizare</h2>
                         <div class="row mt-3" id="uploaded_images"></div>
-{{--                    </div>--}}
-                    <div id="test11"></div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -80,26 +79,10 @@
 
                 $('#quantity').val(response.waste);
                 $('#sack-number').val(response.bags);
-
                 // Add the images to the image container
                 image_box(response, 'uploaded_images', true);
                 // Open the modal
                 $('#add-details-to-event-modal').modal('show');
-
-                $('#photos').on('change', function (e) {
-                    var files = e.target.files; // List of selected files
-                    // Iterate through each file and display them in HTML
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        var reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            image_box_render(e.target.result, location_id, 'uploaded_images', true)
-                        }
-
-                        reader.readAsDataURL(file);
-                    }
-                });
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -107,6 +90,9 @@
         });
     }
 
+    $(document).on('change', '#photos', function (e) {
+        preview_selected_files(e, null, 'uploaded_images', false);
+    });
     // Event triggered when the modal is opened
     $('#add-details-to-event-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -115,7 +101,11 @@
         var form = $('#event-details-form');
         form.attr('action', '/events/update-unfolded-event/' + event_id);
         // Call the function to fill the modal form with event details
-        fillEventDetailsModal(event_id);
+        var inputElement = $('#photos')[0];
+        if (inputElement.files.length === 0) {
+            fillEventDetailsModal(event_id);
+        }
+
     });
 
     $('#add-details-to-event').click(function () {
@@ -123,23 +113,13 @@
         form.submit();
     });
 
-    let image_for_delete = [];
-    $(document).on('click', '.delete-image', function () {
-        $(this).closest('.images-box').remove();
-        var imageId = $(this).data('image_id');
-        image_for_delete.push(imageId);
-        updateImagesForDeleteInput();
-    });
 
-    function updateImagesForDeleteInput() {
-        var imagesForDeleteInput = $('#images-for-delete');
-        var encodedIds = JSON.stringify(image_for_delete);
-        imagesForDeleteInput.val(encodedIds);
-    }
 
-    $(document).on('click', '.delete-image', function () {
-        $(this).closest('.images-box').remove();
-    });
+
+
+    // $(document).on('click', '.delete-image', function () {
+    //    $(this).closest('.images-box').remove();
+    // });
 
 </script>
 

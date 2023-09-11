@@ -15,7 +15,6 @@ class CdnService
 
     public function sendPhotoToCdn($image, $path)
     {
-
         $img = file_get_contents($image);
         $data_img = ['path' => $path, 'img' => base64_encode($img)];
 
@@ -36,5 +35,19 @@ class CdnService
     public function cdn_path($path = '')
     {
         return env('API_CDN') . env('IMAGES_PATH') . '/' . $path ?? '';
+    }
+
+    public function removeCdnFile($path) {
+        $ch = curl_init();
+        $data = array('path' => $path);
+        curl_setopt($ch, CURLOPT_URL, self::$cdn_url . self::$cdn_secret. '&delete=1');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response =  json_decode(curl_exec($ch));
+        curl_close($ch);
+
+        return $response;
+
     }
 }
