@@ -1,20 +1,20 @@
 # Eco4 — Environmental Volunteering Platform
 
-A Laravel web application for organising environmental volunteer events (greening and clean-up actions) across Romania. Anyone can propose an event at a location, coordinators and admins review and run it, volunteers sign up, and supporters can donate online.
+A Laravel web application that helps municipalities and volunteers coordinate environmental clean-up (greening) actions across Romania. Municipalities mark polluted locations on an interactive map, volunteers and organisations run clean-up events there, and supporters can donate online.
 
 I was the primary developer of this application, from database design to production deployment.
 
 ## What it does
 
 **For the public**
-- Browse approved events by region → city → location
+- Browse polluted locations and approved events on an interactive map (Google Maps), by region → city → location
 - Propose a new event at a location
 - Register as a volunteer for an event
 - Share a direct link to any event
 - Donate through **PayPal** or **Netopia** (Romanian card payments)
 - Contact form
 
-**For coordinators**
+**For municipalities and coordinators**
 - Manage the events assigned to them
 - See registered volunteers and email them directly from the app
 - Upload and manage photos for each event
